@@ -71,3 +71,33 @@ export interface MovementRegistration {
     parishId: string
   }
 }
+
+export type PaymentMethod = 'WAVE' | 'ORANGE_MONEY' | 'MTN_MONEY' | 'MOOV_MONEY' | 'CASH' | 'OTHER'
+
+export interface MovementFee {
+  id: string
+  movementId: string
+  name: string
+  amount: string | number
+  currency: string
+  dueDate?: string | null
+  active: boolean
+  movement: { id: string; name: string; code: string }
+}
+
+export interface MovementPayment {
+  id: string
+  amount: string | number
+  currency: string
+  method: PaymentMethod
+  status: string
+  transactionReference?: string | null
+  paidAt?: string | null
+  registration?: {
+    id: string
+    status: RegistrationStatus
+    child: { id: string; firstName: string; lastName: string }
+    movement: { id: string; name: string; code: string }
+  } | null
+  fee?: { id: string; name: string; amount: string | number } | null
+}
