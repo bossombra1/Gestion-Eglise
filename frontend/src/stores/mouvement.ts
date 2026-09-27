@@ -14,6 +14,8 @@ export const useMouvementStore = defineStore('mouvement', () => {
   const children = ref<MovementChild[]>([])
   const parents = ref<MovementParent[]>([])
   const registrations = ref<MovementRegistration[]>([])
+  const fees = ref<import('@/types/mouvement').MovementFee[]>([])
+  const payments = ref<import('@/types/mouvement').MovementPayment[]>([])
   const loading = ref(false)
   const registrationsLoading = ref(false)
   const error = ref<string | null>(null)
@@ -60,6 +62,26 @@ export const useMouvementStore = defineStore('mouvement', () => {
     }
   }
 
+  async function loadFees() {
+    const response = await mouvementService.getFees()
+    fees.value = response.data ?? response
+  }
+
+  async function loadPayments() {
+    const response = await mouvementService.getPayments()
+    payments.value = response.data ?? response
+  }
+
+  async function createFee(input: { movementId: string; name: string; amount: number; dueDate?: string }) {
+    await mouvementService.createFee(input)
+    await loadFees()
+  }
+
+  async function createPayment(input: { registrationId: string; feeId?: string; amount: number; method: string; transactionReference?: string }) {
+    await mouvementService.createPayment(input)
+    await loadPayments()
+  }
+
   async function approveRegistration(id: string) {
     await mouvementService.approveRegistration(id)
     await loadRegistrations()
@@ -75,6 +97,8 @@ export const useMouvementStore = defineStore('mouvement', () => {
     children,
     parents,
     registrations,
+    fees,
+    payments,
     loading,
     registrationsLoading,
     error,
@@ -84,6 +108,10 @@ export const useMouvementStore = defineStore('mouvement', () => {
     loadChildren,
     loadParents,
     loadRegistrations,
+    loadFees,
+    loadPayments,
+    createFee,
+    createPayment,
     approveRegistration,
     rejectRegistration,
   }
