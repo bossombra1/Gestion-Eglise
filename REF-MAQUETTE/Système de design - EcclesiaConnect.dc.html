@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/styles.css">
+<script src="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Noto+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-700); text-decoration: underline; }
+  @keyframes ec-pulse { 0%,100% { opacity: 1 } 50% { opacity: .45 } }
+</style>
+</helmet>
+
+<div style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:0 0 120px">
+
+<div style="width:1240px;min-width:1240px;margin:0 auto;padding:0 56px">
+
+  <!-- MASTHEAD -->
+  <div style="padding-top:64px">
+    <div style="height:6px;background:var(--color-text)"></div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:10px 0 9px">
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Diocèse d'Abidjan · Paroisse pilote</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-accent-700)">Système de design · v1.0</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Mobile d'abord · Hors-ligne d'abord</div>
+    </div>
+    <div style="height:1px;background:var(--color-text)"></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:64px;padding:52px 0 0;align-items:end">
+    <div>
+      <h1 style="font-size:92px;line-height:0.94;letter-spacing:-0.03em;margin:0 0 20px">EcclesiaConnect<br><span style="font-style:italic;font-weight:400">Paroisse Mobile</span></h1>
+      <p style="font-size:19px;line-height:1.5;max-width:56ch;margin:0;text-wrap:pretty">La langue visuelle d'une paroisse qui tient dans une poche. Chaleureuse et digne, jamais décorative : chaque couleur, chaque taille de texte et chaque composant est choisi pour rester lisible sur un téléphone d'entrée de gamme, en plein soleil, avec une connexion incertaine.</p>
+    </div>
+    <div style="padding-bottom:6px">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:14px">Ce document contient</div>
+      <div style="display:grid;gap:7px;font-size:15px">
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">01</span>Principes d'usage</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">02</span>Palette et contrastes</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">03</span>Typographie</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">04</span>Grille et espacements</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">05</span>Composants</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">06</span>Iconographie</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">07</span>Densité standard et accessibilité</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 PRINCIPES -->
+  <div style="padding-top:104px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">01</div>
+      <h2 style="font-size:40px;margin:0">Principes d'usage</h2>
+    </div>
+    <p style="font-size:16px;max-width:58ch;margin:0 0 44px;color:var(--color-neutral-800)">Sept règles qui tranchent les débats. En cas de doute sur un écran, c'est ici qu'on revient.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:72px;row-gap:38px">
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:7px">Règle 1</div>
+        <h3 style="font-size:24px;margin:0 0 8px">Toujours coupler icône et texte</h3>
+        <p style="font-size:15.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Aucune icône ne voyage seule — ni dans la navigation basse, ni dans les badges, ni dans les boutons. Un pictogramme est une aide à la reconnaissance, jamais le porteur du sens.</p>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:7px">Règle 2</div>
+        <h3 style="font-size:24px;margin:0 0 8px">Les montants s'écrivent en FCFA, en entier</h3>
+        <p style="font-size:15.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">« 5 000 FCFA », jamais « 5K », « 5 000 F » ni « 5 000 CFA ». Espace fine comme séparateur de milliers, devise après le nombre, aucun décimal. Les sommes n'utilisent jamais de rouge : le rouge est réservé aux erreurs.</p>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:7px">Règle 3</div>
+        <h3 style="font-size:24px;margin:0 0 8px">La couleur ne dit jamais seule</h3>
+        <p style="font-size:15.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Chaque statut porte un mot et une forme (point plein, contour, coche, croix) en plus de sa teinte, pour les daltoniens et pour les écrans délavés par le soleil.</p>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:7px">Règle 4</div>
+        <h3 style="font-size:24px;margin:0 0 8px">44 px minimum, 48 recommandé</h3>
+        <p style="font-size:15.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Toute zone tactile fait au moins 44 × 44 px, 52 px en mode accessibilité, avec 8 px de garde entre deux cibles. On n'empile pas deux actions destructrices côte à côte.</p>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:7px">Règle 5</div>
+        <h3 style="font-size:24px;margin:0 0 8px">Hors-ligne est un état normal, pas une panne</h3>
+        <p style="font-size:15.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">On annonce l'état du réseau calmement et on promet la suite : « Vos dons partiront dès le retour du réseau. » Jamais de rouge d'erreur, jamais d'écran vide.</p>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:7px">Règle 6</div>
+        <h3 style="font-size:24px;margin:0 0 8px">Un écran, une action principale</h3>
+        <p style="font-size:15.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Un seul bouton primaire par écran. Le vouvoiement partout, des phrases courtes, aucun jargon technique ni anglicisme : « Donner » plutôt que « Checkout », « Se connecter » plutôt que « Login ».</p>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:7px">Règle 7</div>
+        <h3 style="font-size:24px;margin:0 0 8px">Sobriété liturgique</h3>
+        <p style="font-size:15.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Une croix fine, discrète, uniquement pour marquer un contenu liturgique. Pas d'illustration pieuse, pas de dorure, pas de motif décoratif : la dignité vient du blanc et de la mise en page.</p>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:7px">Poids</div>
+        <h3 style="font-size:24px;margin:0 0 8px">Budget : 200 Ko par écran</h3>
+        <p style="font-size:15.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Une seule famille de caractères, deux graisses chargées, icônes vectorielles, photos en 2 tailles maximum. Tout écran doit s'afficher utile en moins de 3 s sur un réseau 3G lent.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 PALETTE -->
+  <div style="padding-top:110px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">02</div>
+      <h2 style="font-size:40px;margin:0">Palette</h2>
+    </div>
+    <p style="font-size:16px;max-width:62ch;margin:0 0 46px;color:var(--color-neutral-800)">Un bleu de nuit liturgique porte l'autorité et la confiance ; une terre cuite d'Abidjan porte la chaleur et l'appel à l'action. L'or reste rare : il ne sert qu'aux fêtes et aux temps liturgiques.</p>
+
+    <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:16px">Primaire · Bleu de Vigile</div>
+    <div style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;margin-bottom:44px">
+      <div><div style="height:104px;background:#E8EDF5;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Bleu 100</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#E8EDF5</div><div style="font-size:11.5px;color:var(--color-neutral-600);font-family:'Noto Sans',sans-serif">Fonds teintés</div></div>
+      <div><div style="height:104px;background:#C3D0E1;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Bleu 200</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#C3D0E1</div><div style="font-size:11.5px;color:var(--color-neutral-600);font-family:'Noto Sans',sans-serif">Bordures</div></div>
+      <div><div style="height:104px;background:#8FA6C4;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Bleu 300</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#8FA6C4</div><div style="font-size:11.5px;color:var(--color-neutral-600);font-family:'Noto Sans',sans-serif">Désactivé</div></div>
+      <div><div style="height:104px;background:#3C6CA8;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Bleu 400</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#3C6CA8</div><div style="font-size:11.5px;color:var(--color-neutral-600);font-family:'Noto Sans',sans-serif">Sur fond sombre</div></div>
+      <div><div style="height:104px;background:#24548F;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Bleu 500</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#24548F</div><div style="font-size:11.5px;color:var(--color-neutral-600);font-family:'Noto Sans',sans-serif">Liens, icônes</div></div>
+      <div><div style="height:104px;background:#14345E;border-radius:2px;position:relative"><div style="position:absolute;left:9px;bottom:8px;color:#fff;font-size:11px;font-family:'Noto Sans',sans-serif;letter-spacing:0.08em">BASE</div></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Bleu 700</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#14345E</div><div style="font-size:11.5px;color:var(--color-neutral-600);font-family:'Noto Sans',sans-serif">Bouton primaire</div></div>
+      <div><div style="height:104px;background:#0E2A4E;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Bleu 800</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#0E2A4E</div><div style="font-size:11.5px;color:var(--color-neutral-600);font-family:'Noto Sans',sans-serif">État pressé</div></div>
+      <div><div style="height:104px;background:#0B1F3A;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Bleu 900</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#0B1F3A</div><div style="font-size:11.5px;color:var(--color-neutral-600);font-family:'Noto Sans',sans-serif">En-têtes pleins</div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;margin-bottom:44px">
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:16px">Accent · Terre d'Abidjan</div>
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+          <div><div style="height:88px;background:#FBEDE6;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Terre 100</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#FBEDE6</div></div>
+          <div><div style="height:88px;background:#E8A98F;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Terre 300</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#E8A98F</div></div>
+          <div><div style="height:88px;background:#C25A34;border-radius:2px;position:relative"><div style="position:absolute;left:9px;bottom:8px;color:#fff;font-size:11px;font-family:'Noto Sans',sans-serif;letter-spacing:0.08em">FONDS</div></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Terre 500</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#C25A34</div></div>
+          <div><div style="height:88px;background:#A84A28;border-radius:2px;position:relative"><div style="position:absolute;left:9px;bottom:8px;color:#fff;font-size:11px;font-family:'Noto Sans',sans-serif;letter-spacing:0.08em">TEXTE</div></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Terre 700</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#A84A28</div></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:16px">Or liturgique · usage rare</div>
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+          <div><div style="height:88px;background:#FDF3DC;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Or 100</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#FDF3DC</div></div>
+          <div><div style="height:88px;background:#F2C14E;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Or 300</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#F2C14E</div></div>
+          <div><div style="height:88px;background:#D99A2B;border-radius:2px"></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Or 500</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#D99A2B</div></div>
+          <div><div style="height:88px;background:#8A5200;border-radius:2px;position:relative"><div style="position:absolute;left:9px;bottom:8px;color:#fff;font-size:11px;font-family:'Noto Sans',sans-serif;letter-spacing:0.08em">TEXTE</div></div><div style="font-size:12.5px;font-weight:600;margin-top:9px;font-family:'Noto Sans',sans-serif">Or 700</div><div style="font-size:12px;color:var(--color-neutral-700);font-family:'Noto Sans',sans-serif">#8A5200</div></div>
+        </div>
+        <p style="font-size:14px;line-height:1.5;margin:14px 0 0;color:var(--color-neutral-700)">Temps forts uniquement : Noël, Pâques, fête patronale, objectif de collecte atteint. Jamais deux accents dans un même composant.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:56px">
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:16px">Couleurs sémantiques</div>
+        <div style="display:grid;gap:10px;font-family:'Noto Sans',sans-serif">
+          <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;height:44px;background:#14713C;border-radius:2px;flex:none"></div><div style="flex:none;width:130px"><div style="font-size:14px;font-weight:600">Succès</div><div style="font-size:12px;color:#6B655D">#14713C · 6,1:1</div></div><div style="font-size:13.5px;color:#4A443E">Don enregistré, inscription confirmée, paiement reçu.</div></div>
+          <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;height:44px;background:#8A5200;border-radius:2px;flex:none"></div><div style="flex:none;width:130px"><div style="font-size:14px;font-weight:600">Alerte</div><div style="font-size:12px;color:#6B655D">#8A5200 · 6,4:1</div></div><div style="font-size:13.5px;color:#4A443E">En attente de validation, échéance proche, action requise.</div></div>
+          <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;height:44px;background:#B3261E;border-radius:2px;flex:none"></div><div style="flex:none;width:130px"><div style="font-size:14px;font-weight:600">Erreur</div><div style="font-size:12px;color:#6B655D">#B3261E · 6,5:1</div></div><div style="font-size:13.5px;color:#4A443E">Paiement refusé, champ invalide. Jamais pour un montant.</div></div>
+          <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;height:44px;background:#1C5D8C;border-radius:2px;flex:none"></div><div style="flex:none;width:130px"><div style="font-size:14px;font-weight:600">Information</div><div style="font-size:12px;color:#6B655D">#1C5D8C · 7,0:1</div></div><div style="font-size:13.5px;color:#4A443E">Annonce du secrétariat, rappel d'horaire, état hors-ligne.</div></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:16px">Neutres · papier et encre</div>
+        <div style="display:flex;border-radius:2px;overflow:hidden;font-family:'Noto Sans',sans-serif">
+          <div style="flex:1;height:64px;background:#FFFFFF"></div>
+          <div style="flex:1;height:64px;background:#F7F5F2"></div>
+          <div style="flex:1;height:64px;background:#EDE9E4"></div>
+          <div style="flex:1;height:64px;background:#DDD7CF"></div>
+          <div style="flex:1;height:64px;background:#C2BAB0"></div>
+          <div style="flex:1;height:64px;background:#9A9289"></div>
+          <div style="flex:1;height:64px;background:#6B655D"></div>
+          <div style="flex:1;height:64px;background:#4A443E"></div>
+          <div style="flex:1;height:64px;background:#2E2925"></div>
+          <div style="flex:1;height:64px;background:#1A1714"></div>
+        </div>
+        <div style="display:flex;font-family:'Noto Sans',sans-serif;font-size:10.5px;color:var(--color-neutral-700);margin-top:7px">
+          <div style="flex:1">000</div><div style="flex:1">50</div><div style="flex:1">100</div><div style="flex:1">200</div><div style="flex:1">300</div><div style="flex:1">400</div><div style="flex:1">500</div><div style="flex:1">600</div><div style="flex:1">700</div><div style="flex:1">800</div>
+        </div>
+        <p style="font-size:14px;line-height:1.5;margin:14px 0 0;color:var(--color-neutral-700)">Fond d'application <span style="font-family:'Noto Sans',sans-serif">#F7F5F2</span> (blanc légèrement chaud, moins fatigant au soleil), surfaces <span style="font-family:'Noto Sans',sans-serif">#FFFFFF</span>, texte courant <span style="font-family:'Noto Sans',sans-serif">#2E2925</span>, texte secondaire <span style="font-family:'Noto Sans',sans-serif">#6B655D</span>. Les gris 300 et 400 ne portent jamais de texte.</p>
+      </div>
+    </div>
+
+    <sc-if value="{{ afficherAuditContraste }}" hint-placeholder-val="{{ true }}">
+    <div style="padding-top:52px">
+      <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:6px">Audit WCAG 2.1</div>
+      <h3 style="font-size:26px;margin:0 0 20px">Paires vérifiées</h3>
+      <table class="table" style="width:100%;font-family:'Noto Sans',sans-serif">
+        <thead>
+          <tr><th>Texte</th><th>Sur fond</th><th>Ratio</th><th>Niveau</th><th>Emploi</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>#2E2925</td><td>#F7F5F2</td><td>13,4:1</td><td>AAA</td><td>Corps de texte</td></tr>
+          <tr><td>#6B655D</td><td>#F7F5F2</td><td>5,1:1</td><td>AA</td><td>Texte secondaire, légendes</td></tr>
+          <tr><td>#FFFFFF</td><td>#14345E</td><td>12,3:1</td><td>AAA</td><td>Bouton primaire</td></tr>
+          <tr><td>#14345E</td><td>#FFFFFF</td><td>12,3:1</td><td>AAA</td><td>Bouton secondaire, titres</td></tr>
+          <tr><td>#A84A28</td><td>#FFFFFF</td><td>5,7:1</td><td>AA</td><td>Liens et libellés en accent</td></tr>
+          <tr><td>#FFFFFF</td><td>#C25A34</td><td>4,4:1</td><td>AA grand</td><td>Fond d'accent, texte ≥ 19 px gras</td></tr>
+          <tr><td>#14713C</td><td>#FFFFFF</td><td>6,1:1</td><td>AA</td><td>Badge « Payé »</td></tr>
+          <tr><td>#8A5200</td><td>#FDF3DC</td><td>5,6:1</td><td>AA</td><td>Badge « En attente »</td></tr>
+          <tr><td>#B3261E</td><td>#FFFFFF</td><td>6,5:1</td><td>AA</td><td>Badge « Refusé », erreurs de champ</td></tr>
+          <tr><td>#8FA6C4</td><td>#FFFFFF</td><td>2,2:1</td><td>Hors texte</td><td>Uniquement états désactivés (exempt WCAG)</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:14px;margin:16px 0 0;color:var(--color-neutral-700);max-width:70ch">Le mode accessibilité relève chaque paire au-dessus de 7:1 en remplaçant les textes secondaires par <span style="font-family:'Noto Sans',sans-serif">#2E2925</span> et les bordures 200 par des bordures 400.</p>
+    </div>
+    </sc-if>
+  </div>
+
+  <!-- 03 TYPOGRAPHIE -->
+  <div style="padding-top:110px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">03</div>
+      <h2 style="font-size:40px;margin:0">Typographie</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 40px;color:var(--color-neutral-800)">Une seule famille : <strong>Noto Sans</strong>. Elle est préinstallée ou disponible sur pratiquement tous les Android d'entrée de gamme (donc gratuite en poids), ses hinting et sa hauteur d'x élevée la rendent nette en basse résolution, et elle couvre le français avec ses diacritiques ainsi que les caractères des langues locales. Deux graisses chargées : 400 et 700. Le 600 n'est utilisé que s'il est déjà présent sur l'appareil.</p>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px">
+      <div style="font-family:'Noto Sans',sans-serif">
+        <div style="border-top:1px solid var(--color-neutral-300);padding:18px 0"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6B655D;margin-bottom:8px">Titre écran · 28/34 · 700</div><div style="font-size:28px;line-height:34px;font-weight:700;color:#2E2925">Dons et collectes</div></div>
+        <div style="border-top:1px solid var(--color-neutral-300);padding:18px 0"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6B655D;margin-bottom:8px">Titre section · 22/28 · 700</div><div style="font-size:22px;line-height:28px;font-weight:700;color:#2E2925">Objectif de la toiture</div></div>
+        <div style="border-top:1px solid var(--color-neutral-300);padding:18px 0"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6B655D;margin-bottom:8px">Titre carte · 18/24 · 600</div><div style="font-size:18px;line-height:24px;font-weight:600;color:#2E2925">Messe des familles — dimanche 8 h</div></div>
+        <div style="border-top:1px solid var(--color-neutral-300);padding:18px 0"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6B655D;margin-bottom:8px">Corps · 17/26 · 400 — taille par défaut</div><div style="font-size:17px;line-height:26px;color:#2E2925">Votre offrande soutient l'entretien de l'église et les œuvres de la paroisse. Vous recevrez un reçu par SMS après validation par le trésorier.</div></div>
+        <div style="border-top:1px solid var(--color-neutral-300);padding:18px 0"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6B655D;margin-bottom:8px">Corps fort · 17/26 · 700</div><div style="font-size:17px;line-height:26px;font-weight:700;color:#2E2925">5 000 FCFA prélevés le 5 de chaque mois</div></div>
+        <div style="border-top:1px solid var(--color-neutral-300);padding:18px 0"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6B655D;margin-bottom:8px">Libellé · 15/20 · 600</div><div style="font-size:15px;line-height:20px;font-weight:600;color:#2E2925">Numéro Mobile Money</div></div>
+        <div style="border-top:1px solid var(--color-neutral-300);padding:18px 0"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6B655D;margin-bottom:8px">Légende · 14/20 · 400 — plancher absolu</div><div style="font-size:14px;line-height:20px;color:#6B655D">Reçu n° 2026-0431 · enregistré le 12 mars</div></div>
+        <div style="border-top:1px solid var(--color-neutral-300);border-bottom:1px solid var(--color-neutral-300);padding:18px 0"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6B655D;margin-bottom:8px">Montant · 34/38 · 700 · chiffres tabulaires</div><div style="font-size:34px;line-height:38px;font-weight:700;font-variant-numeric:tabular-nums;color:#14345E">4 250 000 FCFA</div></div>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:16px">Règles</div>
+        <div style="display:grid;gap:22px;max-width:46ch">
+          <div><h4 style="font-size:19px;margin:0 0 6px">Jamais sous 14 px</h4><p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Aucun texte de l'application ne descend sous 14 px, mentions légales incluses. Le corps par défaut est 17 px, non 16 : un point de plus fait toute la différence pour un lecteur de 70 ans.</p></div>
+          <div><h4 style="font-size:19px;margin:0 0 6px">Mode grands caractères</h4><p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Toute l'échelle est exprimée en unités relatives et suit le réglage système jusqu'à 200 %. Les hauteurs de composants sont en <span style="font-family:'Noto Sans',sans-serif">min-height</span>, jamais en hauteur fixe, pour que rien ne se coupe.</p></div>
+          <div><h4 style="font-size:19px;margin:0 0 6px">Mesure de lecture</h4><p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">45 à 70 caractères par ligne. Sur mobile cela signifie une seule colonne, alignée à gauche — jamais de justification, qui creuse des rivières illisibles en petite largeur.</p></div>
+          <div><h4 style="font-size:19px;margin:0 0 6px">Chiffres</h4><p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Chiffres tabulaires pour tous les montants et toutes les listes de transactions, afin que les colonnes s'alignent. Interligne minimum 1,5 pour le corps de texte.</p></div>
+          <div><h4 style="font-size:19px;margin:0 0 6px">Repli</h4><p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Pile de repli : <span style="font-family:'Noto Sans',sans-serif;font-size:14px">"Noto Sans", "Roboto", system-ui, sans-serif</span>. Si la police web ne charge pas, l'écran reste lisible avec la police système — aucun texte invisible pendant le chargement.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 GRILLE -->
+  <div style="padding-top:110px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">04</div>
+      <h2 style="font-size:40px;margin:0">Grille et espacements</h2>
+    </div>
+    <p style="font-size:16px;max-width:60ch;margin:0 0 44px;color:var(--color-neutral-800)">Base de 4 px, rythme de 8. Mobile en une colonne pleine largeur ; le web du secrétariat densifie sans changer l'échelle.</p>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:64px">
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:18px">Échelle d'espacement</div>
+        <div style="display:grid;gap:11px;font-family:'Noto Sans',sans-serif">
+          <div style="display:flex;align-items:center;gap:16px"><div style="width:4px;height:18px;background:#C25A34;flex:none"></div><div style="font-size:13.5px;width:62px;flex:none">esp-1 · 4</div><div style="font-size:13px;color:#6B655D">Icône ↔ son libellé</div></div>
+          <div style="display:flex;align-items:center;gap:16px"><div style="width:8px;height:18px;background:#C25A34;flex:none"></div><div style="font-size:13.5px;width:62px;flex:none">esp-2 · 8</div><div style="font-size:13px;color:#6B655D">Garde entre deux cibles tactiles</div></div>
+          <div style="display:flex;align-items:center;gap:16px"><div style="width:12px;height:18px;background:#C25A34;flex:none"></div><div style="font-size:13.5px;width:62px;flex:none">esp-3 · 12</div><div style="font-size:13px;color:#6B655D">Intérieur des champs</div></div>
+          <div style="display:flex;align-items:center;gap:16px"><div style="width:16px;height:18px;background:#C25A34;flex:none"></div><div style="font-size:13.5px;width:62px;flex:none">esp-4 · 16</div><div style="font-size:13px;color:#6B655D">Marge d'écran, intérieur des cartes</div></div>
+          <div style="display:flex;align-items:center;gap:16px"><div style="width:24px;height:18px;background:#C25A34;flex:none"></div><div style="font-size:13.5px;width:62px;flex:none">esp-6 · 24</div><div style="font-size:13px;color:#6B655D">Entre deux cartes</div></div>
+          <div style="display:flex;align-items:center;gap:16px"><div style="width:32px;height:18px;background:#C25A34;flex:none"></div><div style="font-size:13.5px;width:62px;flex:none">esp-8 · 32</div><div style="font-size:13px;color:#6B655D">Entre deux sections</div></div>
+          <div style="display:flex;align-items:center;gap:16px"><div style="width:48px;height:18px;background:#C25A34;flex:none"></div><div style="font-size:13.5px;width:62px;flex:none">esp-12 · 48</div><div style="font-size:13px;color:#6B655D">Respiration de bas d'écran</div></div>
+        </div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-700);margin:36px 0 14px">Points de rupture</div>
+        <div style="display:grid;gap:8px;font-family:'Noto Sans',sans-serif;font-size:13.5px;color:#4A443E">
+          <div><strong style="color:#2E2925">360 – 599 px</strong> · mobile, 1 colonne, marge 16, gouttière 8</div>
+          <div><strong style="color:#2E2925">600 – 1023 px</strong> · tablette, 8 colonnes, marge 24, gouttière 16</div>
+          <div><strong style="color:#2E2925">≥ 1024 px</strong> · web secrétariat, 12 colonnes, marge 32, gouttière 24, largeur max 1200</div>
+        </div>
+        <p style="font-size:14px;line-height:1.55;margin:20px 0 0;color:var(--color-neutral-700);max-width:44ch">Référence de conception : 360 × 640 px. Tout doit fonctionner à cette taille — c'est le téléphone le plus courant dans la paroisse.</p>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:18px">Gabarit mobile · 360 px</div>
+        <div style="display:flex;gap:32px;align-items:flex-start">
+          <div style="width:280px;flex:none;background:#F7F5F2;border:1px solid #DDD7CF;border-radius:3px;padding:0;font-family:'Noto Sans',sans-serif">
+            <div style="background:#14345E;padding:12px 13px;display:flex;align-items:center;gap:8px"><div style="color:#8FA6C4;font-size:10px;letter-spacing:0.1em">EN-TÊTE · 56</div></div>
+            <div style="padding:13px;display:grid;gap:10px">
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px">
+                <div style="height:150px;background:rgba(194,90,52,0.14);border:1px dashed #C25A34"></div>
+                <div style="height:150px;background:rgba(194,90,52,0.14);border:1px dashed #C25A34"></div>
+                <div style="height:150px;background:rgba(194,90,52,0.14);border:1px dashed #C25A34"></div>
+                <div style="height:150px;background:rgba(194,90,52,0.14);border:1px dashed #C25A34"></div>
+              </div>
+              <div style="font-size:11px;color:#6B655D;text-align:center">4 colonnes · gouttière 8 · marge 16</div>
+            </div>
+            <div style="border-top:1px solid #DDD7CF;padding:11px 13px;display:flex;justify-content:space-between;color:#6B655D;font-size:10px;letter-spacing:0.1em"><span>NAV BASSE · 64</span><span>+ zone sûre</span></div>
+          </div>
+          <div style="display:grid;gap:20px;max-width:34ch">
+            <div><h4 style="font-size:18px;margin:0 0 6px">Une colonne, toujours</h4><p style="font-size:14.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Sur mobile les 4 colonnes servent à aligner, pas à découper : le contenu occupe les 4. Deux colonnes de texte côte à côte sont interdites sous 600 px.</p></div>
+            <div><h4 style="font-size:18px;margin:0 0 6px">Le pouce commande</h4><p style="font-size:14.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">L'action principale se place en bas d'écran, au-dessus de la navigation. Les actions rares vont en haut.</p></div>
+            <div><h4 style="font-size:18px;margin:0 0 6px">Densification web</h4><p style="font-size:14.5px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Le secrétariat garde la même échelle typographique ; seules les hauteurs de ligne des tableaux passent de 56 à 44 px et les cartes deviennent des rangées.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 COMPOSANTS -->
+  <div style="padding-top:110px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">05</div>
+      <h2 style="font-size:40px;margin:0">Composants</h2>
+    </div>
+    <p style="font-size:16px;max-width:60ch;margin:0 0 46px;color:var(--color-neutral-800)">Tous les composants sont montrés à leur taille réelle, en mode standard, dans leurs états.</p>
+
+    <!-- Boutons -->
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;margin-bottom:56px">
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:16px">Boutons · hauteur 48</div>
+        <div style="background:#FFFFFF;border:1px solid #EDE9E4;border-radius:3px;padding:20px;font-family:'Noto Sans',sans-serif;display:grid;gap:14px">
+          <div style="display:flex;align-items:center;gap:14px"><button style="min-height:48px;padding:0 22px;background:#14345E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:9px" style-hover="background:#0E2A4E"><i class="ph-duotone ph-hand-coins" style="font-size:21px"></i>Donner maintenant</button><span style="font-size:12.5px;color:#6B655D">Primaire · un seul par écran</span></div>
+          <div style="display:flex;align-items:center;gap:14px"><button style="min-height:48px;padding:0 22px;background:#FFFFFF;color:#14345E;border:2px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:600;cursor:pointer" style-hover="background:#E8EDF5">Voir mes reçus</button><span style="font-size:12.5px;color:#6B655D">Secondaire</span></div>
+          <div style="display:flex;align-items:center;gap:14px"><button style="min-height:48px;padding:0 18px;background:transparent;color:#A84A28;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:600;cursor:pointer" style-hover="background:#FBEDE6">Modifier le montant</button><span style="font-size:12.5px;color:#6B655D">Tertiaire · action textuelle</span></div>
+          <div style="display:flex;align-items:center;gap:14px"><button disabled="disabled" style="min-height:48px;padding:0 22px;background:#EDE9E4;color:#9A9289;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:700;cursor:not-allowed">Envoyer</button><span style="font-size:12.5px;color:#6B655D">Désactivé · toujours accompagné du motif</span></div>
+          <div style="font-size:13.5px;color:#8A5200;display:flex;align-items:center;gap:7px;margin-top:-6px"><i class="ph-duotone ph-info" style="font-size:17px"></i>Saisissez d'abord un montant.</div>
+          <div style="display:flex;align-items:center;gap:14px"><button style="min-height:48px;padding:0 22px;background:#0E2A4E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:700;display:inline-flex;align-items:center;gap:10px"><span style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%"></span>Envoi en cours…</button><span style="font-size:12.5px;color:#6B655D">Chargement · libellé remplacé</span></div>
+          <button style="min-height:48px;width:100%;background:#C25A34;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:700;cursor:pointer" style-hover="background:#A84A28">Rejoindre le groupe des jeunes</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:16px">Champs de formulaire</div>
+        <div style="background:#FFFFFF;border:1px solid #EDE9E4;border-radius:3px;padding:20px;font-family:'Noto Sans',sans-serif;display:grid;gap:18px">
+          <div>
+            <label style="display:block;font-size:15px;font-weight:600;color:#2E2925;margin-bottom:6px">Nom et prénoms</label>
+            <div style="min-height:52px;border:1.5px solid #C2BAB0;border-radius:6px;padding:14px;font-size:17px;color:#9A9289;background:#fff">Ex. Kouassi Adjoua</div>
+            <div style="font-size:14px;color:#6B655D;margin-top:5px">Repos · repère à 14 px sous le champ</div>
+          </div>
+          <div>
+            <label style="display:block;font-size:15px;font-weight:600;color:#14345E;margin-bottom:6px">Numéro Mobile Money</label>
+            <div style="min-height:52px;border:2px solid #14345E;border-radius:6px;padding:13px;font-size:17px;color:#2E2925;background:#fff;box-shadow:0 0 0 3px rgba(20,52,94,0.15)">07 07 12 34 56<span style="border-left:2px solid #14345E;margin-left:2px">&nbsp;</span></div>
+            <div style="font-size:14px;color:#6B655D;margin-top:5px">Actif · anneau de focus visible au clavier</div>
+          </div>
+          <div>
+            <label style="display:block;font-size:15px;font-weight:600;color:#2E2925;margin-bottom:6px">Montant du don</label>
+            <div style="min-height:52px;border:2px solid #B3261E;border-radius:6px;padding:13px;font-size:17px;color:#2E2925;background:#fff;display:flex;justify-content:space-between;align-items:center"><span>200 FCFA</span><i class="ph-duotone ph-warning-circle" style="font-size:21px;color:#B3261E"></i></div>
+            <div style="font-size:14px;color:#B3261E;margin-top:5px;display:flex;gap:6px;align-items:flex-start"><i class="ph-duotone ph-x-circle" style="font-size:17px;flex:none;margin-top:1px"></i><span>Le don minimum est de 500 FCFA. Corrigez le montant pour continuer.</span></div>
+          </div>
+          <div>
+            <label style="display:block;font-size:15px;font-weight:600;color:#9A9289;margin-bottom:6px">Paroisse</label>
+            <div style="min-height:52px;border:1.5px solid #DDD7CF;border-radius:6px;padding:14px;font-size:17px;color:#9A9289;background:#F7F5F2;display:flex;justify-content:space-between;align-items:center"><span>Saint-Jean de Cocody</span><i class="ph-duotone ph-lock-simple" style="font-size:19px"></i></div>
+            <div style="font-size:14px;color:#6B655D;margin-top:5px">Désactivé · défini par votre inscription</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badges + cartes -->
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:64px;margin-bottom:56px">
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:16px">Badges de statut</div>
+        <div style="background:#FFFFFF;border:1px solid #EDE9E4;border-radius:3px;padding:20px;font-family:'Noto Sans',sans-serif">
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px">
+            <span style="display:inline-flex;align-items:center;gap:7px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:16px;padding:7px 14px;font-size:15px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:18px"></i>Payé</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;background:#FDF3DC;color:#8A5200;border:1px dashed #8A5200;border-radius:16px;padding:7px 14px;font-size:15px;font-weight:600"><i class="ph-duotone ph-clock" style="font-size:18px"></i>En attente</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;background:#E8EDF5;color:#14345E;border:1px solid #14345E;border-radius:16px;padding:7px 14px;font-size:15px;font-weight:600"><i class="ph-duotone ph-seal-check" style="font-size:18px"></i>Validé</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;background:#FBE9E8;color:#B3261E;border:1px solid #B3261E;border-radius:16px;padding:7px 14px;font-size:15px;font-weight:600"><i class="ph-duotone ph-x-circle" style="font-size:18px"></i>Refusé</span>
+          </div>
+          <p style="font-size:14px;line-height:1.55;margin:0;color:#4A443E">Trois signaux par badge : la teinte, le mot, et la forme du contour — plein pour un état acquis, tireté pour un état en cours. « Payé » vient de l'opérateur, « Validé » du trésorier : les deux ne sont pas synonymes et ne partagent jamais la même couleur.</p>
+        </div>
+
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin:36px 0 16px">Avatar · repli générique</div>
+        <div style="background:#FFFFFF;border:1px solid #EDE9E4;border-radius:3px;padding:20px;font-family:'Noto Sans',sans-serif">
+          <div style="display:flex;align-items:flex-end;gap:18px;margin-bottom:16px">
+            <div style="text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:24px;font-weight:700">KA</div><div style="font-size:12px;color:#6B655D;margin-top:7px">Initiales</div></div>
+            <div style="text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:24px;font-weight:700">MB</div><div style="font-size:12px;color:#6B655D;margin-top:7px">Teinte 2</div></div>
+            <div style="text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:#EDE9E4;color:#6B655D;display:grid;place-items:center"><i class="ph-duotone ph-user" style="font-size:32px"></i></div><div style="font-size:12px;color:#6B655D;margin-top:7px">Sans nom</div></div>
+            <div style="text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:#E8EDF5;color:#14345E;display:grid;place-items:center;position:relative"><i class="ph-duotone ph-users-three" style="font-size:32px"></i></div><div style="font-size:12px;color:#6B655D;margin-top:7px">Famille</div></div>
+            <div style="text-align:center"><div style="width:44px;height:44px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:17px;font-weight:700">SP</div><div style="font-size:12px;color:#6B655D;margin-top:7px">44 px</div></div>
+            <div style="text-align:center"><div style="width:32px;height:32px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700">SP</div><div style="font-size:12px;color:#6B655D;margin-top:7px">32 px</div></div>
+          </div>
+          <p style="font-size:14px;line-height:1.55;margin:0;color:#4A443E">Aucune photo n'est obligatoire. Le repli est l'initiale du prénom et du nom sur une teinte dérivée du nom — stable, donc reconnaissable d'un écran à l'autre. Deux teintes de repli seulement, pour ne pas transformer une liste en arc-en-ciel.</p>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:16px">Cartes</div>
+        <div style="display:grid;gap:14px;font-family:'Noto Sans',sans-serif;max-width:420px">
+          <div style="background:#FFFFFF;border:1px solid #EDE9E4;border-left:4px solid #14345E;border-radius:6px;padding:16px;box-shadow:0 1px 2px rgba(26,23,20,0.06)">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px">
+              <div style="font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28;display:flex;align-items:center;gap:6px"><i class="ph-duotone ph-cross" style="font-size:16px"></i>Liturgie</div>
+              <div style="font-size:14px;color:#6B655D">Dim. 8 h</div>
+            </div>
+            <div style="font-size:18px;font-weight:600;color:#2E2925;line-height:1.3;margin-bottom:6px">Messe des familles</div>
+            <div style="font-size:15px;color:#4A443E;line-height:1.5;margin-bottom:12px">Église Saint-Jean · animation par la chorale des jeunes</div>
+            <div style="display:flex;gap:10px;align-items:center"><button style="min-height:44px;padding:0 16px;background:#14345E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700">Je participe</button><button style="min-height:44px;padding:0 14px;background:transparent;color:#14345E;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:6px"><i class="ph-duotone ph-bell" style="font-size:18px"></i>Me rappeler</button></div>
+          </div>
+
+          <div style="background:#FFFFFF;border:1px solid #EDE9E4;border-radius:6px;padding:16px;box-shadow:0 1px 2px rgba(26,23,20,0.06)">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px">
+              <div style="font-size:15px;font-weight:600;color:#2E2925">Don du 12 mars 2026</div>
+              <span style="display:inline-flex;align-items:center;gap:6px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:16px;padding:4px 11px;font-size:14px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:16px"></i>Payé</span>
+            </div>
+            <div style="font-size:26px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums;margin-bottom:4px">10 000 FCFA</div>
+            <div style="font-size:14px;color:#6B655D">Quête pour la toiture · Orange Money · reçu n° 2026-0431</div>
+          </div>
+
+          <div style="background:#F7F5F2;border:1px solid #DDD7CF;border-radius:6px;padding:16px">
+            <div style="font-size:14px;color:#6B655D;margin-bottom:4px">Carte sur fond d'application</div>
+            <div style="font-size:15px;color:#4A443E;line-height:1.5">Élévation 0 pour les listes longues : une bordure suffit, l'ombre est réservée aux éléments actionnables et aux feuilles modales.</div>
+          </div>
+        </div>
+
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin:36px 0 16px">Jauge de collecte</div>
+        <div style="background:#FFFFFF;border:1px solid #EDE9E4;border-radius:6px;padding:18px;font-family:'Noto Sans',sans-serif;max-width:420px;display:grid;gap:22px">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px"><div style="font-size:17px;font-weight:600;color:#2E2925">Réfection de la toiture</div><div style="font-size:14px;color:#6B655D">71 %</div></div>
+            <div style="height:16px;border-radius:8px;background:#EDE9E4;overflow:hidden"><div style="width:71%;height:100%;background:#14345E;border-radius:8px"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:15px"><span style="font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">4 250 000 FCFA</span><span style="color:#6B655D;font-variant-numeric:tabular-nums">sur 6 000 000 FCFA</span></div>
+            <div style="font-size:14px;color:#6B655D;margin-top:3px">Clôture le 30 juin · 214 donateurs</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px"><div style="font-size:17px;font-weight:600;color:#2E2925">Camp des servants d'autel</div><div style="font-size:14px;color:#8A5200;font-weight:600;display:flex;align-items:center;gap:5px"><i class="ph-duotone ph-star" style="font-size:16px"></i>Objectif atteint</div></div>
+            <div style="height:16px;border-radius:8px;background:#EDE9E4;overflow:hidden"><div style="width:100%;height:100%;background:#D99A2B;border-radius:8px"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:15px"><span style="font-weight:700;color:#8A5200;font-variant-numeric:tabular-nums">1 500 000 FCFA</span><span style="color:#6B655D;font-variant-numeric:tabular-nums">sur 1 500 000 FCFA</span></div>
+          </div>
+          <p style="font-size:14px;line-height:1.5;margin:0;color:#4A443E">Le pourcentage est toujours doublé du montant en FCFA : une jauge seule ne dit rien à qui ne lit pas les graphiques. L'or ne paraît qu'à 100 %.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav, en-tête, hors-ligne -->
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px">
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:16px">En-têtes d'écran</div>
+        <div style="display:grid;gap:14px;font-family:'Noto Sans',sans-serif">
+          <div style="border-radius:6px;overflow:hidden;border:1px solid #EDE9E4">
+            <div style="background:#14345E;padding:14px 16px;min-height:56px;display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:15px;font-weight:700;flex:none">KA</div>
+              <div style="min-width:0"><div style="font-size:14px;color:#C3D0E1">Bonsoir,</div><div style="font-size:19px;font-weight:700;color:#fff;line-height:1.2">Kouassi Adjoua</div></div>
+              <button style="margin-left:auto;width:44px;height:44px;border-radius:22px;background:rgba(255,255,255,0.12);border:0;color:#fff;display:grid;place-items:center;flex:none;cursor:pointer" style-hover="background:rgba(255,255,255,0.22)"><i class="ph-duotone ph-bell" style="font-size:22px"></i></button>
+            </div>
+            <div style="background:#fff;padding:9px 16px;font-size:13px;color:#6B655D">En-tête d'accueil · plein, 56 px min</div>
+          </div>
+          <div style="border-radius:6px;overflow:hidden;border:1px solid #EDE9E4">
+            <div style="background:#fff;padding:12px 12px;min-height:56px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #EDE9E4">
+              <button style="width:44px;height:44px;border-radius:6px;background:transparent;border:0;color:#14345E;display:grid;place-items:center;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-arrow-left" style="font-size:24px"></i></button>
+              <div style="font-size:19px;font-weight:700;color:#2E2925">Faire un don</div>
+              <button style="margin-left:auto;min-height:44px;padding:0 12px;background:transparent;border:0;color:#A84A28;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer">Aide</button>
+            </div>
+            <div style="background:#fff;padding:9px 16px;font-size:13px;color:#6B655D">En-tête de page interne · retour à gauche</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:16px">Navigation basse · 64 px</div>
+        <div style="border:1px solid #EDE9E4;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif">
+          <div style="background:#F7F5F2;height:96px;display:grid;place-items:center;color:#9A9289;font-size:13px">contenu de l'écran</div>
+          <div style="background:#fff;border-top:1px solid #DDD7CF;display:grid;grid-template-columns:repeat(5,1fr)">
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid #14345E;background:#E8EDF5"><i class="ph-duotone ph-house" style="font-size:24px;color:#14345E"></i><div style="font-size:12px;font-weight:700;color:#14345E">Accueil</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-calendar-dots" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Agenda</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-hand-coins" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Donner</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent;position:relative"><i class="ph-duotone ph-users-three" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Groupes</div><span style="position:absolute;top:6px;right:calc(50% - 20px);min-width:18px;height:18px;border-radius:9px;background:#B3261E;color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 4px">3</span></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-user-circle" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Profil</div></div>
+          </div>
+        </div>
+        <p style="font-size:14px;line-height:1.55;margin:14px 0 0;color:var(--color-neutral-800)">Cinq entrées maximum, libellé sous chaque icône, jamais tronqué. L'onglet actif porte trois marques : le trait supérieur, le fond teinté et le libellé en gras.</p>
+        <sc-if value="{{ afficherIconesSeules }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:20px;border:1px solid #B3261E;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif">
+          <div style="background:#FBE9E8;padding:8px 12px;font-size:13px;font-weight:700;color:#B3261E;display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-x-circle" style="font-size:17px"></i>À ne pas faire · icônes sans libellé</div>
+          <div style="background:#fff;display:grid;grid-template-columns:repeat(5,1fr)">
+            <div style="min-height:56px;display:grid;place-items:center"><i class="ph-duotone ph-house" style="font-size:24px;color:#14345E"></i></div>
+            <div style="min-height:56px;display:grid;place-items:center"><i class="ph-duotone ph-calendar-dots" style="font-size:24px;color:#6B655D"></i></div>
+            <div style="min-height:56px;display:grid;place-items:center"><i class="ph-duotone ph-hand-coins" style="font-size:24px;color:#6B655D"></i></div>
+            <div style="min-height:56px;display:grid;place-items:center"><i class="ph-duotone ph-users-three" style="font-size:24px;color:#6B655D"></i></div>
+            <div style="min-height:56px;display:grid;place-items:center"><i class="ph-duotone ph-user-circle" style="font-size:24px;color:#6B655D"></i></div>
+          </div>
+          <div style="background:#fff;padding:10px 12px;font-size:13.5px;color:#4A443E;border-top:1px solid #EDE9E4">Une main tendue tenant des pièces ne signifie « donner » que pour ceux qui l'ont déjà appris.</div>
+        </div>
+        </sc-if>
+      </div>
+
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:16px">Connexion et synchronisation</div>
+        <div style="display:grid;gap:12px;font-family:'Noto Sans',sans-serif">
+          <div style="border-radius:6px;overflow:hidden;border:1px solid #EDE9E4">
+            <div style="background:#1C5D8C;color:#fff;padding:11px 14px;min-height:44px;display:flex;align-items:center;gap:10px"><i class="ph-duotone ph-wifi-slash" style="font-size:21px;flex:none"></i><div style="font-size:15px;font-weight:600;line-height:1.35">Hors connexion — vos dons partiront dès le retour du réseau.</div></div>
+          </div>
+          <div style="border-radius:6px;overflow:hidden;border:1px solid #EDE9E4">
+            <div style="background:#FDF3DC;color:#8A5200;padding:11px 14px;min-height:44px;display:flex;align-items:center;gap:10px"><i class="ph-duotone ph-arrows-clockwise" style="font-size:21px;flex:none"></i><div style="font-size:15px;font-weight:600;line-height:1.35">Synchronisation… 2 dons en attente d'envoi</div></div>
+          </div>
+          <div style="border-radius:6px;overflow:hidden;border:1px solid #EDE9E4">
+            <div style="background:#E4F1E8;color:#14713C;padding:11px 14px;min-height:44px;display:flex;align-items:center;gap:10px"><i class="ph-duotone ph-cloud-check" style="font-size:21px;flex:none"></i><div style="font-size:15px;font-weight:600;line-height:1.35">À jour · dernière synchro à 18 h 42</div></div>
+          </div>
+          <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:14px">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><span style="width:10px;height:10px;border-radius:50%;background:#9A9289;flex:none;animation:ec-pulse 1.8s ease-in-out infinite"></span><div style="font-size:15px;font-weight:600;color:#2E2925">Puce d'état · barre d'en-tête</div></div>
+            <div style="font-size:14px;color:#4A443E;line-height:1.5">Le point n'apparaît jamais seul : il est suivi du mot « Hors ligne » ou « À jour ». Le bandeau se place sous l'en-tête, pousse le contenu vers le bas et ne masque rien.</div>
+          </div>
+          <p style="font-size:14px;line-height:1.55;margin:2px 0 0;color:var(--color-neutral-800)">Bleu information, jamais rouge : perdre le réseau n'est pas une faute de l'utilisateur. Tout écrit hors-ligne est conservé localement et renvoyé automatiquement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 ICONOGRAPHIE -->
+  <div style="padding-top:110px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">06</div>
+      <h2 style="font-size:40px;margin:0">Iconographie</h2>
+    </div>
+    <p style="font-size:16px;max-width:62ch;margin:0 0 40px;color:var(--color-neutral-800)">Phosphor duotone, 24 px dans l'interface, 32 px dans les états vides. Traits pleins, formes reconnaissables au premier regard, et un libellé sous chacune — sans exception.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:22px;font-family:'Noto Sans',sans-serif">
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-calendar-dots" style="font-size:34px;color:#14345E"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Agenda</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Messes, événements</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-hand-coins" style="font-size:34px;color:#14345E"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Donner</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Quête, offrande</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-users-three" style="font-size:34px;color:#14345E"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Groupes</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Chorale, CEB, jeunes</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-house-line" style="font-size:34px;color:#14345E"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Famille</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Foyer, membres</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-bell" style="font-size:34px;color:#14345E"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Annonces</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Notifications</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-cross" style="font-size:34px;color:#A84A28"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Liturgie</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Croix discrète, accent</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-receipt" style="font-size:34px;color:#14345E"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Reçus</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Historique</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-device-mobile" style="font-size:34px;color:#14345E"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Mobile Money</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Paiement</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-wifi-slash" style="font-size:34px;color:#1C5D8C"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Hors ligne</div><div style="font-size:13px;color:#6B655D;margin-top:2px">État réseau</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-user-circle" style="font-size:34px;color:#14345E"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Profil</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Mon compte</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-microphone-stage" style="font-size:34px;color:#14345E"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Intentions</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Prières, demandes</div></div>
+      <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px;text-align:center"><i class="ph-duotone ph-question" style="font-size:34px;color:#14345E"></i><div style="font-size:15px;font-weight:600;color:#2E2925;margin-top:9px">Aide</div><div style="font-size:13px;color:#6B655D;margin-top:2px">Assistance</div></div>
+    </div>
+    <p style="font-size:15px;line-height:1.55;margin:26px 0 0;max-width:74ch;color:var(--color-neutral-800)">Chaque icône reçoit un <span style="font-family:'Noto Sans',sans-serif;font-size:14px">aria-label</span> identique à son libellé visible. Aucune icône ne remplace un bouton textuel dans un parcours de paiement. Les icônes ne portent jamais d'information seule — ce sont des repères de reconnaissance, pas un langage.</p>
+  </div>
+
+  <!-- 07 DENSITÉS -->
+  <div style="padding-top:110px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">07</div>
+      <h2 style="font-size:40px;margin:0">Densité standard et mode accessibilité</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 44px;color:var(--color-neutral-800)">Le mode accessibilité n'est pas un thème séparé : ce sont les mêmes composants avec un jeu de valeurs relevé. Il s'active dans le profil, en un geste, et suit aussi le réglage système du téléphone.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px">
+      <sc-if value="{{ montrerStandard }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px"><div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2)">Standard</div><div style="font-size:14px;color:var(--color-neutral-700)">corps 17 · cible 48 · contraste ≥ 4,5:1</div></div>
+        <div style="background:#F7F5F2;border:1px solid #DDD7CF;border-radius:6px;padding:16px;font-family:'Noto Sans',sans-serif">
+          <div style="font-size:28px;font-weight:700;color:#2E2925;line-height:1.2;margin-bottom:6px">Faire un don</div>
+          <div style="font-size:17px;line-height:26px;color:#4A443E;margin-bottom:16px">Choisissez un montant pour la quête de ce dimanche.</div>
+          <div style="display:flex;gap:8px;margin-bottom:16px">
+            <div style="flex:1;min-height:48px;border:1.5px solid #C2BAB0;border-radius:6px;display:grid;place-items:center;font-size:16px;font-weight:600;color:#2E2925;background:#fff">1 000</div>
+            <div style="flex:1;min-height:48px;border:2px solid #14345E;border-radius:6px;display:grid;place-items:center;font-size:16px;font-weight:700;color:#14345E;background:#E8EDF5">5 000</div>
+            <div style="flex:1;min-height:48px;border:1.5px solid #C2BAB0;border-radius:6px;display:grid;place-items:center;font-size:16px;font-weight:600;color:#2E2925;background:#fff">10 000</div>
+          </div>
+          <div style="font-size:15px;font-weight:600;color:#2E2925;margin-bottom:6px">Montant</div>
+          <div style="min-height:52px;border:1.5px solid #C2BAB0;border-radius:6px;padding:14px;font-size:17px;color:#2E2925;background:#fff;margin-bottom:8px;font-variant-numeric:tabular-nums">5 000 FCFA</div>
+          <div style="font-size:14px;color:#6B655D;margin-bottom:16px">Reçu envoyé par SMS après validation.</div>
+          <button style="min-height:48px;width:100%;background:#14345E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-hand-coins" style="font-size:21px"></i>Donner 5 000 FCFA</button>
+        </div>
+        <div style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin-top:16px;font-family:var(--font-body)">Bordures en gris 300, texte secondaire en gris 500, ombres légères autorisées, animations de 200 ms.</div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ montrerAccessible }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px"><div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2)">Accessibilité</div><div style="font-size:14px;color:var(--color-neutral-700)">corps 21 · cible 56 · contraste ≥ 7:1</div></div>
+        <div style="background:#FFFFFF;border:2px solid #2E2925;border-radius:6px;padding:20px;font-family:'Noto Sans',sans-serif">
+          <div style="font-size:34px;font-weight:700;color:#1A1714;line-height:1.2;margin-bottom:8px">Faire un don</div>
+          <div style="font-size:21px;line-height:32px;color:#2E2925;margin-bottom:20px">Choisissez un montant pour la quête de ce dimanche.</div>
+          <div style="display:grid;gap:10px;margin-bottom:20px">
+            <div style="min-height:56px;border:2px solid #2E2925;border-radius:6px;display:flex;align-items:center;padding:0 16px;font-size:20px;font-weight:700;color:#1A1714;background:#fff">1 000 FCFA</div>
+            <div style="min-height:56px;border:3px solid #0B1F3A;border-radius:6px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:20px;font-weight:700;color:#0B1F3A;background:#E8EDF5">5 000 FCFA<i class="ph-duotone ph-check-circle" style="font-size:26px"></i></div>
+            <div style="min-height:56px;border:2px solid #2E2925;border-radius:6px;display:flex;align-items:center;padding:0 16px;font-size:20px;font-weight:700;color:#1A1714;background:#fff">10 000 FCFA</div>
+          </div>
+          <div style="font-size:19px;font-weight:700;color:#1A1714;margin-bottom:8px">Montant</div>
+          <div style="min-height:60px;border:2px solid #2E2925;border-radius:6px;padding:16px;font-size:21px;font-weight:700;color:#1A1714;background:#fff;margin-bottom:10px;font-variant-numeric:tabular-nums">5 000 FCFA</div>
+          <div style="font-size:18px;color:#2E2925;margin-bottom:20px;line-height:1.5">Reçu envoyé par SMS après validation.</div>
+          <button style="min-height:60px;width:100%;background:#0B1F3A;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:21px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer" style-hover="background:#000">Donner 5 000 FCFA</button>
+        </div>
+        <div style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin-top:16px;font-family:var(--font-body)">Bordures à 2 px en gris 700, plus d'ombres — le contour porte la séparation. Texte secondaire promu en texte courant, boutons pleine largeur empilés, animations réduites à un fondu de 100 ms (ou supprimées si l'appareil demande moins de mouvement). Les icônes passent à 28 px et gardent leur libellé.</div>
+      </div>
+      </sc-if>
+    </div>
+
+    <div style="padding-top:52px">
+      <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:6px">Table de correspondance</div>
+      <h3 style="font-size:26px;margin:0 0 20px">Ce que change le mode accessibilité</h3>
+      <table class="table" style="width:100%;font-family:'Noto Sans',sans-serif">
+        <thead><tr><th>Jeton</th><th>Standard</th><th>Accessibilité</th></tr></thead>
+        <tbody>
+          <tr><td>Corps de texte</td><td>17 / 26</td><td>21 / 32</td></tr>
+          <tr><td>Titre d'écran</td><td>28 / 34</td><td>34 / 41</td></tr>
+          <tr><td>Légende</td><td>14 / 20</td><td>18 / 26</td></tr>
+          <tr><td>Cible tactile</td><td>48 px</td><td>56 px</td></tr>
+          <tr><td>Hauteur de champ</td><td>52 px</td><td>60 px</td></tr>
+          <tr><td>Bordure</td><td>1,5 px · gris 300</td><td>2 px · gris 700</td></tr>
+          <tr><td>Bleu primaire</td><td>#14345E</td><td>#0B1F3A</td></tr>
+          <tr><td>Texte secondaire</td><td>#6B655D</td><td>#2E2925</td></tr>
+          <tr><td>Élévation</td><td>Ombre légère</td><td>Aucune · contour seul</td></tr>
+          <tr><td>Transitions</td><td>200 ms</td><td>100 ms ou aucune</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PIED -->
+  <div style="padding-top:96px">
+    <div style="height:1px;background:var(--color-text);margin-bottom:10px"></div>
+    <div style="display:flex;justify-content:space-between;gap:24px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase">
+      <div>EcclesiaConnect · Paroisse Mobile</div>
+      <div style="color:var(--color-accent-700)">Système de design v1.0</div>
+      <div>Paroisse pilote · extensible au diocèse</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;afficherAuditContraste&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Contenu de la planche&quot;},
+  &quot;afficherIconesSeules&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Contenu de la planche&quot;},
+  &quot;apercuDensite&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Les deux&quot;, &quot;Standard seule&quot;, &quot;Accessibilité seule&quot;], &quot;default&quot;: &quot;Les deux&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contenu de la planche&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const mode = this.props.apercuDensite ?? "Les deux";
+    return {
+      afficherAuditContraste: this.props.afficherAuditContraste ?? true,
+      afficherIconesSeules: this.props.afficherIconesSeules ?? false,
+      montrerStandard: mode !== "Accessibilité seule",
+      montrerAccessible: mode !== "Standard seule",
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/styles.css">
+<script src="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Noto+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-700); text-decoration: underline; }
+</style>
+</helmet>
+
+<div style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:0 0 120px">
+<div style="width:1560px;min-width:1560px;margin:0 auto;padding:0 56px">
+
+  <div style="padding-top:64px">
+    <div style="height:6px;background:var(--color-text)"></div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:10px 0 9px">
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">EcclesiaConnect · Paroisse Mobile</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-accent-700)">Poste du trésorier</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Bureau 1440 · Accès financier</div>
+    </div>
+    <div style="height:1px;background:var(--color-text)"></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:64px;padding:52px 0 0;align-items:end">
+    <div>
+      <h1 style="font-size:84px;line-height:0.95;letter-spacing:-0.03em;margin:0 0 20px">Compter <span style="font-style:italic;font-weight:400">devant tous</span></h1>
+      <p style="font-size:19px;line-height:1.5;max-width:58ch;margin:0;text-wrap:pretty">Un trésorier de paroisse n'a pas besoin d'un logiciel comptable : il a besoin de pouvoir répondre, sans hésiter, à la question posée au fond de l'église — « où va l'argent ? ». Même coquille que le secrétariat, mêmes couleurs de statut, mais un seul principe de mise en page : le chiffre d'abord, sa période juste au-dessus, sa provenance juste en dessous.</p>
+    </div>
+    <div style="padding-bottom:6px">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:14px">Écrans</div>
+      <div style="display:grid;gap:7px;font-size:15px">
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">01</span>Tableau de bord financier</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">02</span>Réconciliation des paiements</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">03</span>Suivi des objectifs de collecte</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">04</span>Attestations de dons</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">05</span>Export comptable</div>
+      </div>
+      <div style="margin-top:20px;border-top:1px solid var(--color-neutral-300);padding-top:14px;font-size:13.5px;line-height:1.5;color:var(--color-neutral-700)">Trois règles tenues sur les cinq écrans : la période est écrite en clair au-dessus de chaque total, aucun montant n'apparaît sans son mode de paiement, et un écart non résolu ne peut jamais se cacher derrière une moyenne.</div>
+    </div>
+  </div>
+
+  <!-- ============ 01 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">01</div>
+      <h2 style="font-size:40px;margin:0">Tableau de bord financier</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Cinq recettes, cinq canaux d'encaissement, une seule période à la fois. Le sélecteur semaine / mois / année est le premier élément de la page parce que c'est la première question à trancher — et la période choisie est répétée en clair sous chaque total, pour qu'une capture d'écran isolée reste lisible.</p>
+
+    <div data-screen-label="01 Tableau de bord financier" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-chart-pie-slice" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-scales" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Réconciliation</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#fff;background:#B3261E;border-radius:9px;padding:2px 7px">12</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-target" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Objectifs de collecte</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-certificate" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Attestations</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-file-arrow-down" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Export comptable</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-lock-simple" style="font-size:19px;color:#5C77A0"></i><span style="font-size:14.5px;color:#5C77A0">Secrétariat</span></div>
+          <div style="font-size:12px;color:#A8C0DD;line-height:1.4;padding:0 11px 4px">Registres, intentions et inscriptions ne sont pas ouverts au poste du trésorier.</div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#14713C;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">GS</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Gnahoré Séraphin</div><div style="font-size:12px;color:#8FA6C4">Trésorier</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px;display:flex;align-items:center;gap:16px">
+          <div><div style="font-size:20px;font-weight:700;color:#2E2925">Recettes de la paroisse</div><div style="font-size:13.5px;color:#6B655D">Arrêté au mardi 2 septembre 2026, 08 h 05</div></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+            <div style="display:flex;border:1.5px solid #C2BAB0;border-radius:5px;overflow:hidden;background:#fff">
+              <div style="min-height:38px;display:flex;align-items:center;padding:0 15px;font-size:14px;color:#4A443E;cursor:pointer" style-hover="background:#F2EFEA">Semaine</div>
+              <div style="min-height:38px;display:flex;align-items:center;padding:0 15px;font-size:14px;font-weight:700;color:#fff;background:#14345E;cursor:pointer">Mois</div>
+              <div style="min-height:38px;display:flex;align-items:center;padding:0 15px;font-size:14px;color:#4A443E;cursor:pointer" style-hover="background:#F2EFEA">Année</div>
+            </div>
+            <div style="min-height:38px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 12px;cursor:pointer"><i class="ph-duotone ph-calendar-dots" style="font-size:16px;color:#14345E"></i><span style="font-size:14px;font-weight:600;color:#2E2925">Août 2026</span><i class="ph-duotone ph-caret-down" style="font-size:14px;color:#6B655D"></i></div>
+          </div>
+        </div>
+
+        <div style="padding:16px 20px;display:flex;flex-direction:column;gap:14px">
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 392px;gap:14px;align-items:start">
+
+            <div style="display:flex;flex-direction:column;gap:14px">
+
+              <div style="background:#14345E;border-radius:5px;padding:16px 18px;display:flex;align-items:flex-end;gap:26px">
+                <div>
+                  <div style="font-size:12.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#A8C0DD">Total encaissé · mois d'août 2026</div>
+                  <div style="display:flex;align-items:baseline;gap:10px;margin-top:6px"><span style="font-size:52px;font-weight:700;color:#fff;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-0.02em">5 461 500</span><span style="font-size:22px;font-weight:600;color:#E8A98F">FCFA</span></div>
+                  <div style="font-size:13.5px;color:#C3D0E1;margin-top:7px;font-variant-numeric:tabular-nums">Du 1<sup>er</sup> au 31 août · 1 284 opérations · panier moyen 4 250 FCFA</div>
+                </div>
+                <div style="margin-left:auto;text-align:right">
+                  <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.12);border-radius:5px;padding:7px 11px"><i class="ph-duotone ph-trend-up" style="font-size:18px;color:#8FE0A8"></i><span style="font-size:14.5px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">+11,7 %</span></div>
+                  <div style="font-size:13px;color:#A8C0DD;margin-top:6px;font-variant-numeric:tabular-nums">contre 4 890 000 FCFA<br>en juillet 2026</div>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px">
+                <div style="padding:11px 14px;border-bottom:1px solid #EDE9E4;display:flex;align-items:center;gap:12px">
+                  <div style="font-size:15.5px;font-weight:700;color:#2E2925">Ventilation par nature de recette</div>
+                  <div style="margin-left:auto;font-size:13px;color:#6B655D">Mois d'août 2026</div>
+                </div>
+                <div style="padding:4px 14px 12px">
+                  <div style="display:grid;grid-template-columns:200px 1fr 148px 92px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F2EFEA">
+                    <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-hand-coins" style="font-size:19px;color:#14345E"></i><span style="font-size:14.5px;font-weight:600;color:#2E2925">Denier du Culte</span></div>
+                    <div style="height:16px;background:#F2EFEA;border-radius:2px;overflow:hidden"><div style="width:100%;height:100%;background:#14345E"></div></div>
+                    <div style="font-size:16px;font-weight:700;color:#2E2925;text-align:right;font-variant-numeric:tabular-nums">2 310 000 <span style="font-size:12.5px;font-weight:600;color:#6B655D">FCFA</span></div>
+                    <div style="font-size:14px;color:#6B655D;text-align:right;font-variant-numeric:tabular-nums">42,3 %</div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:200px 1fr 148px 92px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F2EFEA">
+                    <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-basket" style="font-size:19px;color:#24548F"></i><span style="font-size:14.5px;font-weight:600;color:#2E2925">Quêtes dominicales</span></div>
+                    <div style="height:16px;background:#F2EFEA;border-radius:2px;overflow:hidden"><div style="width:79.8%;height:100%;background:#24548F"></div></div>
+                    <div style="font-size:16px;font-weight:700;color:#2E2925;text-align:right;font-variant-numeric:tabular-nums">1 842 500 <span style="font-size:12.5px;font-weight:600;color:#6B655D">FCFA</span></div>
+                    <div style="font-size:14px;color:#6B655D;text-align:right;font-variant-numeric:tabular-nums">33,7 %</div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:200px 1fr 148px 92px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F2EFEA">
+                    <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-gift" style="font-size:19px;color:#C25A34"></i><span style="font-size:14.5px;font-weight:600;color:#2E2925">Dons ponctuels</span></div>
+                    <div style="height:16px;background:#F2EFEA;border-radius:2px;overflow:hidden"><div style="width:27.7%;height:100%;background:#C25A34"></div></div>
+                    <div style="font-size:16px;font-weight:700;color:#2E2925;text-align:right;font-variant-numeric:tabular-nums">640 000 <span style="font-size:12.5px;font-weight:600;color:#6B655D">FCFA</span></div>
+                    <div style="font-size:14px;color:#6B655D;text-align:right;font-variant-numeric:tabular-nums">11,7 %</div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:200px 1fr 148px 92px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F2EFEA">
+                    <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-users-three" style="font-size:19px;color:#D99A2B"></i><span style="font-size:14.5px;font-weight:600;color:#2E2925">Cotisations mouvements</span></div>
+                    <div style="height:16px;background:#F2EFEA;border-radius:2px;overflow:hidden"><div style="width:16.7%;height:100%;background:#D99A2B"></div></div>
+                    <div style="font-size:16px;font-weight:700;color:#2E2925;text-align:right;font-variant-numeric:tabular-nums">385 000 <span style="font-size:12.5px;font-weight:600;color:#6B655D">FCFA</span></div>
+                    <div style="font-size:14px;color:#6B655D;text-align:right;font-variant-numeric:tabular-nums">7,0 %</div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:200px 1fr 148px 92px;gap:12px;align-items:center;padding:11px 0">
+                    <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-microphone-stage" style="font-size:19px;color:#8A5200"></i><span style="font-size:14.5px;font-weight:600;color:#2E2925">Intentions de messe</span></div>
+                    <div style="height:16px;background:#F2EFEA;border-radius:2px;overflow:hidden"><div style="width:12.3%;height:100%;background:#8A5200"></div></div>
+                    <div style="font-size:16px;font-weight:700;color:#2E2925;text-align:right;font-variant-numeric:tabular-nums">284 000 <span style="font-size:12.5px;font-weight:600;color:#6B655D">FCFA</span></div>
+                    <div style="font-size:14px;color:#6B655D;text-align:right;font-variant-numeric:tabular-nums">5,2 %</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px">
+                <div style="padding:11px 14px;border-bottom:1px solid #EDE9E4;display:flex;align-items:center;gap:12px">
+                  <div style="font-size:15.5px;font-weight:700;color:#2E2925">Évolution des recettes</div>
+                  <div style="margin-left:auto;font-size:13px;color:#6B655D">Six derniers mois · total mensuel en FCFA</div>
+                </div>
+                <div style="padding:16px 16px 12px">
+                  <div style="display:flex;align-items:flex-end;gap:18px;height:196px">
+                    <div style="width:78px;flex:none;height:100%;display:flex;flex-direction:column;justify-content:space-between;font-size:12px;color:#9A9289;text-align:right;font-variant-numeric:tabular-nums;padding-bottom:26px">
+                      <div>6 000 000</div><div>4 000 000</div><div>2 000 000</div><div>0</div>
+                    </div>
+                    <div style="flex:1;display:grid;grid-template-columns:repeat(6,1fr);gap:16px;height:100%;align-items:end">
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+                        <div style="font-size:12.5px;font-weight:600;color:#4A443E;font-variant-numeric:tabular-nums">4 120 000</div>
+                        <div style="width:100%;height:113px;background:#A8C0DD;border-radius:2px 2px 0 0"></div>
+                        <div style="font-size:13px;color:#6B655D">Mars</div>
+                      </div>
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+                        <div style="font-size:12.5px;font-weight:600;color:#4A443E;font-variant-numeric:tabular-nums">5 640 000</div>
+                        <div style="width:100%;height:155px;background:#A8C0DD;border-radius:2px 2px 0 0;position:relative"><div style="position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:11.5px;font-weight:700;color:#14345E">Pâques</div></div>
+                        <div style="font-size:13px;color:#6B655D">Avril</div>
+                      </div>
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+                        <div style="font-size:12.5px;font-weight:600;color:#4A443E;font-variant-numeric:tabular-nums">4 380 000</div>
+                        <div style="width:100%;height:120px;background:#A8C0DD;border-radius:2px 2px 0 0"></div>
+                        <div style="font-size:13px;color:#6B655D">Mai</div>
+                      </div>
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+                        <div style="font-size:12.5px;font-weight:600;color:#4A443E;font-variant-numeric:tabular-nums">4 510 000</div>
+                        <div style="width:100%;height:124px;background:#A8C0DD;border-radius:2px 2px 0 0"></div>
+                        <div style="font-size:13px;color:#6B655D">Juin</div>
+                      </div>
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+                        <div style="font-size:12.5px;font-weight:600;color:#4A443E;font-variant-numeric:tabular-nums">4 890 000</div>
+                        <div style="width:100%;height:134px;background:#A8C0DD;border-radius:2px 2px 0 0"></div>
+                        <div style="font-size:13px;color:#6B655D">Juillet</div>
+                      </div>
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+                        <div style="font-size:12.5px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">5 461 500</div>
+                        <div style="width:100%;height:150px;background:#14345E;border-radius:2px 2px 0 0"></div>
+                        <div style="font-size:13px;font-weight:700;color:#14345E">Août</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="border-top:1px solid #EDE9E4;margin-top:10px;padding-top:9px;font-size:13px;color:#6B655D;line-height:1.45">Les mois de fête gonflent naturellement la courbe : avril porte le Triduum, décembre portera Noël. Aucune moyenne glissante n'est affichée — elle masquerait ces deux pics que le conseil paroissial doit précisément voir.</div>
+                </div>
+              </div>
+
+            </div>
+
+            <div style="display:grid;gap:14px">
+
+              <div style="background:#fff;border:2px solid #B3261E;border-radius:5px;overflow:hidden">
+                <div style="background:#FBE9E8;padding:9px 13px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #B3261E">
+                  <i class="ph-duotone ph-warning-circle" style="font-size:19px;color:#B3261E"></i>
+                  <div style="font-size:14px;font-weight:700;color:#B3261E">Réconciliation sous le seuil</div>
+                </div>
+                <div style="padding:13px">
+                  <div style="display:flex;align-items:flex-end;gap:12px">
+                    <div><div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">Taux automatique</div><div style="font-size:38px;font-weight:700;color:#B3261E;line-height:1.05;font-variant-numeric:tabular-nums;margin-top:3px">{{ tauxAffiche }}</div></div>
+                    <div style="padding-bottom:6px;font-size:13.5px;color:#4A443E;line-height:1.4;font-variant-numeric:tabular-nums">Seuil attendu<br><span style="font-weight:700;color:#2E2925">{{ seuilAffiche }}</span></div>
+                  </div>
+                  <div style="margin-top:11px;height:12px;background:#F2EFEA;border-radius:2px;position:relative;overflow:hidden">
+                    <div style="width:94.2%;height:100%;background:#B3261E"></div>
+                    <div style="position:absolute;top:-3px;bottom:-3px;left:98%;width:2px;background:#0B1F3A"></div>
+                  </div>
+                  <div style="font-size:13.5px;color:#4A443E;line-height:1.45;margin-top:10px;font-variant-numeric:tabular-nums">12 transactions sur 1 284 ne se rapprochent pas d'un enregistrement interne, pour <span style="font-weight:700;color:#2E2925">148 000 FCFA</span>. La plus ancienne date du 19 août.</div>
+                  <button style="min-height:40px;width:100%;margin-top:11px;background:#B3261E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px" style-hover="background:#8F1E17"><i class="ph-duotone ph-scales" style="font-size:18px"></i>Ouvrir la réconciliation</button>
+                  <div style="font-size:12.5px;color:#6B655D;line-height:1.4;margin-top:7px">Sous 98 %, l'alerte reste affichée jusqu'à résolution : elle ne se referme pas d'elle-même au changement de mois.</div>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px">
+                <div style="padding:11px 13px;border-bottom:1px solid #EDE9E4">
+                  <div style="font-size:15.5px;font-weight:700;color:#2E2925">Par mode de paiement</div>
+                  <div style="font-size:13px;color:#6B655D;margin-top:2px">Mois d'août 2026 · 5 461 500 FCFA au total</div>
+                </div>
+                <div style="padding:6px 13px 12px">
+                  <div style="display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid #F2EFEA">
+                    <div style="width:34px;height:34px;border-radius:5px;background:#1DC8FF;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none">Wave</div>
+                    <div style="min-width:0;flex:1"><div style="font-size:14.5px;font-weight:600;color:#2E2925">Wave</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">512 opérations</div></div>
+                    <div style="text-align:right"><div style="font-size:15.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">1 795 000</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">32,9 %</div></div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid #F2EFEA">
+                    <div style="width:34px;height:34px;border-radius:5px;background:#FF6600;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700;flex:none">OM</div>
+                    <div style="min-width:0;flex:1"><div style="font-size:14.5px;font-weight:600;color:#2E2925">Orange Money</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">398 opérations</div></div>
+                    <div style="text-align:right"><div style="font-size:15.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">1 402 500</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">25,7 %</div></div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid #F2EFEA">
+                    <div style="width:34px;height:34px;border-radius:5px;background:#FFCB05;color:#14345E;display:grid;place-items:center;font-size:13px;font-weight:700;flex:none">MTN</div>
+                    <div style="min-width:0;flex:1"><div style="font-size:14.5px;font-weight:600;color:#2E2925">MTN MoMo</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">141 opérations</div></div>
+                    <div style="text-align:right"><div style="font-size:15.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">486 000</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">8,9 %</div></div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid #F2EFEA">
+                    <div style="width:34px;height:34px;border-radius:5px;background:#0057B8;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none">Moov</div>
+                    <div style="min-width:0;flex:1"><div style="font-size:14.5px;font-weight:600;color:#2E2925">Moov Money</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">62 opérations</div></div>
+                    <div style="text-align:right"><div style="font-size:15.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">213 000</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">3,9 %</div></div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:11px;padding:10px 0">
+                    <div style="width:34px;height:34px;border-radius:5px;background:#4A443E;color:#fff;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-money" style="font-size:18px"></i></div>
+                    <div style="min-width:0;flex:1"><div style="font-size:14.5px;font-weight:600;color:#2E2925">Espèces</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">171 bordereaux de caisse</div></div>
+                    <div style="text-align:right"><div style="font-size:15.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">1 565 000</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">28,7 %</div></div>
+                  </div>
+                  <div style="border-top:1px solid #EDE9E4;margin-top:4px;padding-top:9px;display:flex;align-items:center;gap:8px"><i class="ph-duotone ph-info" style="font-size:16px;color:#14345E;flex:none"></i><div style="font-size:12.5px;color:#4A443E;line-height:1.4">Les espèces ne sont jamais réconciliées automatiquement : elles dépendent du bordereau saisi au secrétariat.</div></div>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:13px">
+                <div style="font-size:15px;font-weight:700;color:#2E2925;margin-bottom:10px">Prochaines échéances</div>
+                <div style="display:grid;gap:9px">
+                  <div style="display:flex;align-items:flex-start;gap:9px"><i class="ph-duotone ph-bank" style="font-size:18px;color:#14345E;flex:none;margin-top:1px"></i><div><div style="font-size:14px;font-weight:600;color:#2E2925">Versement diocésain du trimestre</div><div style="font-size:13px;color:#6B655D;font-variant-numeric:tabular-nums">Avant le 15 septembre · 1 638 450 FCFA (30 % des recettes)</div></div></div>
+                  <div style="display:flex;align-items:flex-start;gap:9px"><i class="ph-duotone ph-file-text" style="font-size:18px;color:#8A5200;flex:none;margin-top:1px"></i><div><div style="font-size:14px;font-weight:600;color:#2E2925">Clôture comptable d'août</div><div style="font-size:13px;color:#6B655D">À faire après résolution des 12 écarts</div></div></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Le taux de réconciliation est le seul indicateur affiché en rouge sur cet écran, et il l'est même quand tout le reste va bien : c'est lui qui dit si les chiffres du dessus méritent d'être crus.</div>
+  </div>
+
+  <!-- ============ 02 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">02</div>
+      <h2 style="font-size:40px;margin:0">Réconciliation des paiements</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Deux colonnes de montants côte à côte — ce que dit l'agrégateur, ce que dit la paroisse — et une troisième qui ne contient un chiffre que lorsqu'elles diffèrent. Les lignes en écart remontent en haut du tableau, gardent un fond coloré et une bordure épaisse à gauche : elles ne se confondent jamais avec une ligne saine, même en lecture rapide.</p>
+
+    <div data-screen-label="02 Réconciliation des paiements" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-chart-pie-slice" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-scales" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Réconciliation</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#fff;background:#B3261E;border-radius:9px;padding:2px 7px">12</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-target" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Objectifs de collecte</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-certificate" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Attestations</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-file-arrow-down" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Export comptable</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-lock-simple" style="font-size:19px;color:#5C77A0"></i><span style="font-size:14.5px;color:#5C77A0">Secrétariat</span></div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#14713C;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">GS</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Gnahoré Séraphin</div><div style="font-size:12px;color:#8FA6C4">Trésorier</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px;display:flex;align-items:center;gap:16px">
+          <div><div style="font-size:20px;font-weight:700;color:#2E2925">Réconciliation des paiements</div><div style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">Mois d'août 2026 · 1 284 transactions · 12 en écart</div></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
+            <button style="min-height:38px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 13px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-arrows-clockwise" style="font-size:17px"></i>Relancer le rapprochement</button>
+            <button style="min-height:38px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;padding:0 14px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-upload-simple" style="font-size:17px"></i>Importer un relevé</button>
+          </div>
+        </div>
+
+        <div style="background:#fff;border-bottom:1px solid #EDE9E4;padding:10px 20px;display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+          <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px;width:232px"><i class="ph-duotone ph-magnifying-glass" style="font-size:17px;color:#6B655D"></i><span style="font-size:14px;color:#9A9289">Référence, numéro, nom…</span></div>
+          <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px"><i class="ph-duotone ph-calendar-dots" style="font-size:16px;color:#14345E"></i><span style="font-size:14px;color:#2E2925">1 – 31 août 2026</span><i class="ph-duotone ph-caret-down" style="font-size:14px;color:#6B655D"></i></div>
+          <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px"><span style="font-size:14px;color:#2E2925">Tous les opérateurs</span><i class="ph-duotone ph-caret-down" style="font-size:14px;color:#6B655D"></i></div>
+          <div style="min-height:36px;border:2px solid #B3261E;border-radius:5px;background:#FBE9E8;display:flex;align-items:center;gap:8px;padding:0 11px"><span style="font-size:14px;font-weight:700;color:#B3261E">Statut : en écart</span><i class="ph-duotone ph-x" style="font-size:14px;color:#B3261E"></i></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:14px">
+            <div style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;border-radius:2px;background:#14713C"></span><span style="font-size:13px;color:#4A443E">Réconcilié 1 253</span></div>
+            <div style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;border-radius:2px;background:#D99A2B"></span><span style="font-size:13px;color:#4A443E">En attente 19</span></div>
+            <div style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;border-radius:2px;background:#B3261E"></span><span style="font-size:13px;color:#4A443E">En écart 12</span></div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) 320px;align-items:stretch">
+
+          <div style="background:#fff;border-right:1px solid #EDE9E4;min-width:0">
+            <table class="table" style="width:100%;table-layout:fixed;font-family:'Noto Sans',sans-serif;font-size:14px">
+              <thead>
+                <tr>
+                  <th style="width:132px">Référence</th>
+                  <th style="width:78px">Date</th>
+                  <th style="width:92px">Opérateur</th>
+                  <th style="width:auto">Rattaché à</th>
+                  <th style="width:92px;text-align:right">Agrégateur</th>
+                  <th style="width:92px;text-align:right">Interne</th>
+                  <th style="width:88px;text-align:right">Écart</th>
+                  <th style="width:84px">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:#FBE9E8">
+                  <td style="border-left:4px solid #B3261E"><div style="display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-warning-circle" style="font-size:17px;color:#B3261E;flex:none"></i><span style="font-variant-numeric:tabular-nums;font-size:12.5px">WV-8841203</span></div></td>
+                  <td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px">19 août</td>
+                  <td style="font-size:13.5px">Wave</td>
+                  <td><div style="font-size:13.5px;color:#B3261E;font-weight:600">Aucun enregistrement interne</div><div style="font-size:12.5px;color:#6B655D">Référence de don absente du libellé</div></td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">50 000</td>
+                  <td style="text-align:right;color:#9A9289;font-variant-numeric:tabular-nums">—</td>
+                  <td style="text-align:right;font-weight:700;color:#B3261E;font-variant-numeric:tabular-nums">+50 000</td>
+                  <td><span style="font-size:13.5px;font-weight:700;color:#B3261E">Résoudre →</span></td>
+                </tr>
+                <tr style="background:#FBE9E8">
+                  <td style="border-left:4px solid #B3261E"><div style="display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-warning-circle" style="font-size:17px;color:#B3261E;flex:none"></i><span style="font-variant-numeric:tabular-nums;font-size:12.5px">OM-2270558</span></div></td>
+                  <td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px">23 août</td>
+                  <td style="font-size:13.5px">Orange Money</td>
+                  <td><div style="font-size:13.5px;font-weight:600;color:#2E2925">Denier du Culte · Kouassi Adjoua</div><div style="font-size:12.5px;color:#6B655D">Montant interne saisi à la main</div></td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">25 000</td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">30 000</td>
+                  <td style="text-align:right;font-weight:700;color:#B3261E;font-variant-numeric:tabular-nums">−5 000</td>
+                  <td><span style="font-size:13.5px;font-weight:700;color:#B3261E">Résoudre →</span></td>
+                </tr>
+                <tr style="background:#FBE9E8">
+                  <td style="border-left:4px solid #B3261E"><div style="display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-warning-circle" style="font-size:17px;color:#B3261E;flex:none"></i><span style="font-variant-numeric:tabular-nums;font-size:12.5px">MTN-770914</span></div></td>
+                  <td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px">26 août</td>
+                  <td style="font-size:13.5px">MTN MoMo</td>
+                  <td><div style="font-size:13.5px;font-weight:600;color:#2E2925">Intention de messe · reçu 4471</div><div style="font-size:12.5px;color:#6B655D">Deux intentions rattachées au même paiement</div></td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">2 000</td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">4 000</td>
+                  <td style="text-align:right;font-weight:700;color:#B3261E;font-variant-numeric:tabular-nums">−2 000</td>
+                  <td><span style="font-size:13.5px;font-weight:700;color:#B3261E">Résoudre →</span></td>
+                </tr>
+                <tr style="background:#FDF3DC">
+                  <td style="border-left:4px solid #D99A2B"><div style="display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-hourglass" style="font-size:17px;color:#8A5200;flex:none"></i><span style="font-variant-numeric:tabular-nums;font-size:12.5px">ESP-B0287</span></div></td>
+                  <td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px">31 août</td>
+                  <td style="font-size:13.5px">Espèces</td>
+                  <td><div style="font-size:13.5px;font-weight:600;color:#2E2925">Quête du dimanche 30 août</div><div style="font-size:12.5px;color:#8A5200">Bordereau de caisse non encore validé</div></td>
+                  <td style="text-align:right;color:#9A9289;font-variant-numeric:tabular-nums">—</td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">142 000</td>
+                  <td style="text-align:right;font-size:13px;font-weight:600;color:#8A5200">À valider</td>
+                  <td><span style="font-size:13.5px;font-weight:700;color:#A84A28">Vérifier →</span></td>
+                </tr>
+                <tr>
+                  <td style="border-left:4px solid transparent"><div style="display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-check-circle" style="font-size:17px;color:#14713C;flex:none"></i><span style="font-variant-numeric:tabular-nums;font-size:12.5px">WV-8846117</span></div></td>
+                  <td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px">31 août</td>
+                  <td style="font-size:13.5px">Wave</td>
+                  <td><div style="font-size:13.5px;font-weight:600;color:#2E2925">Toiture · contribution</div><div style="font-size:12.5px;color:#6B655D">Rapproché automatiquement à 20 h 14</div></td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">100 000</td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">100 000</td>
+                  <td style="text-align:right;font-size:13px;font-weight:600;color:#14713C">Néant</td>
+                  <td><span style="font-size:13.5px;color:#6B655D">Détail</span></td>
+                </tr>
+                <tr>
+                  <td style="border-left:4px solid transparent"><div style="display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-check-circle" style="font-size:17px;color:#14713C;flex:none"></i><span style="font-variant-numeric:tabular-nums;font-size:12.5px">OM-2274490</span></div></td>
+                  <td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px">31 août</td>
+                  <td style="font-size:13.5px">Orange Money</td>
+                  <td><div style="font-size:13.5px;font-weight:600;color:#2E2925">Cotisation CEB Saint-Paul</div><div style="font-size:12.5px;color:#6B655D">Rapproché automatiquement à 18 h 02</div></td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">15 000</td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">15 000</td>
+                  <td style="text-align:right;font-size:13px;font-weight:600;color:#14713C">Néant</td>
+                  <td><span style="font-size:13.5px;color:#6B655D">Détail</span></td>
+                </tr>
+                <tr>
+                  <td style="border-left:4px solid transparent"><div style="display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-check-circle" style="font-size:17px;color:#14713C;flex:none"></i><span style="font-variant-numeric:tabular-nums;font-size:12.5px">MOOV-31204</span></div></td>
+                  <td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px">30 août</td>
+                  <td style="font-size:13.5px">Moov Money</td>
+                  <td><div style="font-size:13.5px;font-weight:600;color:#2E2925">Denier du Culte · N'Guessan Paul</div><div style="font-size:12.5px;color:#6B655D">Rapproché automatiquement à 09 h 47</div></td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">20 000</td>
+                  <td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums">20 000</td>
+                  <td style="text-align:right;font-size:13px;font-weight:600;color:#14713C">Néant</td>
+                  <td><span style="font-size:13.5px;color:#6B655D">Détail</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="padding:11px 16px;display:flex;align-items:center;gap:12px;border-top:1px solid #EDE9E4">
+              <div style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">Lignes 1 – 7 sur 1 284</div>
+              <div style="margin-left:auto;display:flex;align-items:center;gap:7px">
+                <div style="min-height:34px;min-width:34px;border:1.5px solid #C2BAB0;border-radius:5px;display:grid;place-items:center;background:#fff"><i class="ph-duotone ph-caret-left" style="font-size:15px;color:#9A9289"></i></div>
+                <div style="min-height:34px;min-width:34px;border:1.5px solid #14345E;border-radius:5px;display:grid;place-items:center;background:#14345E;color:#fff;font-size:14px;font-weight:700">1</div>
+                <div style="min-height:34px;min-width:34px;border:1.5px solid #C2BAB0;border-radius:5px;display:grid;place-items:center;background:#fff;font-size:14px;color:#2E2925">2</div>
+                <div style="min-height:34px;min-width:34px;border:1.5px solid #C2BAB0;border-radius:5px;display:grid;place-items:center;background:#fff;font-size:14px;color:#2E2925">3</div>
+                <div style="min-height:34px;min-width:34px;border:1.5px solid #C2BAB0;border-radius:5px;display:grid;place-items:center;background:#fff"><i class="ph-duotone ph-caret-right" style="font-size:15px;color:#14345E"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#F7F5F2;padding:14px;display:flex;flex-direction:column;gap:12px">
+            <div style="background:#fff;border:1px solid #C2BAB0;border-radius:5px;overflow:hidden">
+              <div style="background:#14345E;padding:10px 13px">
+                <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#A8C0DD">Résolution guidée</div>
+                <div style="font-size:15.5px;font-weight:700;color:#fff;margin-top:2px;font-variant-numeric:tabular-nums">WV-8841203 · 50 000 FCFA</div>
+                <div style="font-size:13px;color:#C3D0E1;margin-top:2px">Wave · 19 août 2026, 11 h 26 · +225 07 •• •• 41 88</div>
+              </div>
+              <div style="padding:13px">
+
+                <div style="display:flex;gap:11px;padding-bottom:13px;border-bottom:1px solid #EDE9E4">
+                  <div style="width:26px;height:26px;border-radius:50%;background:#14713C;color:#fff;display:grid;place-items:center;font-size:13.5px;font-weight:700;flex:none">1</div>
+                  <div style="min-width:0">
+                    <div style="font-size:14.5px;font-weight:700;color:#2E2925">Identifier le payeur</div>
+                    <div style="font-size:13.5px;color:#4A443E;line-height:1.45;margin-top:3px">Le numéro correspond à une fiche de fidèle : <span style="font-weight:600;color:#2E2925">Traoré Aminata</span>, CEB Saint-Paul.</div>
+                    <div style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;background:#E4F1E8;border-radius:4px;padding:4px 9px"><i class="ph-duotone ph-check" style="font-size:14px;color:#14713C"></i><span style="font-size:13px;font-weight:600;color:#14713C">Confirmé</span></div>
+                  </div>
+                </div>
+
+                <div style="display:flex;gap:11px;padding:13px 0;border-bottom:1px solid #EDE9E4">
+                  <div style="width:26px;height:26px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:13.5px;font-weight:700;flex:none">2</div>
+                  <div style="min-width:0;width:100%">
+                    <div style="font-size:14.5px;font-weight:700;color:#2E2925">Choisir la nature de la recette</div>
+                    <div style="font-size:13px;color:#6B655D;line-height:1.4;margin-top:2px">Aucune référence dans le libellé Wave : le rattachement se fait à la main.</div>
+                    <div style="display:grid;gap:6px;margin-top:9px">
+                      <div style="min-height:40px;border:2px solid #14345E;background:#E8EDF5;border-radius:5px;display:flex;align-items:center;gap:9px;padding:0 11px;cursor:pointer"><i class="ph-duotone ph-hand-coins" style="font-size:18px;color:#14345E"></i><span style="font-size:14px;font-weight:700;color:#14345E">Denier du Culte 2026</span><i class="ph-duotone ph-check-circle" style="font-size:17px;color:#14345E;margin-left:auto"></i></div>
+                      <div style="min-height:40px;border:1.5px solid #C2BAB0;background:#fff;border-radius:5px;display:flex;align-items:center;gap:9px;padding:0 11px;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-target" style="font-size:18px;color:#6B655D"></i><span style="font-size:14px;color:#2E2925">Projet toiture</span></div>
+                      <div style="min-height:40px;border:1.5px solid #C2BAB0;background:#fff;border-radius:5px;display:flex;align-items:center;gap:9px;padding:0 11px;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-gift" style="font-size:18px;color:#6B655D"></i><span style="font-size:14px;color:#2E2925">Don ponctuel sans affectation</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display:flex;gap:11px;padding:13px 0 0">
+                  <div style="width:26px;height:26px;border-radius:50%;background:#fff;border:2px solid #C2BAB0;color:#9A9289;display:grid;place-items:center;font-size:13.5px;font-weight:700;flex:none">3</div>
+                  <div style="min-width:0;width:100%">
+                    <div style="font-size:14.5px;font-weight:700;color:#2E2925">Écrire le motif du rattachement</div>
+                    <div style="font-size:13px;color:#6B655D;line-height:1.4;margin-top:2px">Obligatoire. Ce texte reste attaché à l'opération et apparaît dans l'export.</div>
+                    <div style="min-height:64px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;padding:9px 11px;margin-top:8px;font-size:13.5px;color:#9A9289;line-height:1.4">Ex. : payeur identifié par son numéro, don confirmé par téléphone le 2 septembre.</div>
+                  </div>
+                </div>
+
+                <button style="min-height:44px;width:100%;margin-top:13px;background:#14713C;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px" style-hover="background:#0F5A2F"><i class="ph-duotone ph-seal-check" style="font-size:19px"></i>Rattacher et clore l'écart</button>
+                <div style="font-size:12.5px;color:#6B655D;line-height:1.45;margin-top:8px">Un écart clos ne peut plus être modifié : seule une écriture de correction, elle aussi tracée, permet de revenir dessus.</div>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:12px">
+              <div style="font-size:14.5px;font-weight:700;color:#2E2925;margin-bottom:8px">Écarts restants après celui-ci</div>
+              <div style="display:grid;gap:7px;font-size:13.5px;font-variant-numeric:tabular-nums">
+                <div style="display:flex;align-items:center;gap:8px"><span style="width:9px;height:9px;border-radius:50%;background:#B3261E;flex:none"></span><span style="color:#2E2925;flex:1">OM-2270558</span><span style="font-weight:600;color:#B3261E">−5 000</span></div>
+                <div style="display:flex;align-items:center;gap:8px"><span style="width:9px;height:9px;border-radius:50%;background:#B3261E;flex:none"></span><span style="color:#2E2925;flex:1">MTN-770914</span><span style="font-weight:600;color:#B3261E">−2 000</span></div>
+                <div style="display:flex;align-items:center;gap:8px"><span style="width:9px;height:9px;border-radius:50%;background:#B3261E;flex:none"></span><span style="color:#2E2925;flex:1">WV-8842910</span><span style="font-weight:600;color:#B3261E">+10 000</span></div>
+                <div style="font-size:13px;color:#6B655D;padding-top:3px">et 8 autres, pour 81 000 FCFA</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Le panneau de droite ne se referme pas tant que le motif n'est pas écrit. C'est la contrainte la plus impopulaire de l'interface et la plus utile : dans un an, personne ne se souviendra pourquoi ces 50 000 FCFA ont été rattachés au Denier.</div>
+  </div>
+
+  <!-- ============ 03 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">03</div>
+      <h2 style="font-size:40px;margin:0">Suivi des objectifs de collecte</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">C'est l'écran qui sera projeté au fond de l'église et repris sur l'application des fidèles : montant collecté, objectif, et la question qui compte vraiment — au rythme actuel, tiendra-t-on l'échéance ? La courbe réelle et la trajectoire nécessaire sont tracées ensemble, sans quoi un pourcentage rassurant peut masquer un retard.</p>
+
+    <div data-screen-label="03 Objectifs de collecte" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-chart-pie-slice" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-scales" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Réconciliation</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#fff;background:#B3261E;border-radius:9px;padding:2px 7px">12</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-target" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Objectifs de collecte</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-certificate" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Attestations</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-file-arrow-down" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Export comptable</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-lock-simple" style="font-size:19px;color:#5C77A0"></i><span style="font-size:14.5px;color:#5C77A0">Secrétariat</span></div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#14713C;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">GS</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Gnahoré Séraphin</div><div style="font-size:12px;color:#8FA6C4">Trésorier</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px;display:flex;align-items:center;gap:16px">
+          <div><div style="font-size:20px;font-weight:700;color:#2E2925">Objectifs de collecte</div><div style="font-size:13.5px;color:#6B655D">3 projets ouverts · situation au 2 septembre 2026</div></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
+            <button style="min-height:38px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 13px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-devices" style="font-size:17px"></i>Voir comme les fidèles</button>
+            <button style="min-height:38px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;padding:0 14px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-plus" style="font-size:17px"></i>Ouvrir un projet</button>
+          </div>
+        </div>
+
+        <div style="padding:16px 20px;display:flex;flex-direction:column;gap:14px">
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;align-items:start">
+
+            <div style="display:flex;flex-direction:column;gap:14px">
+
+              <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;overflow:hidden">
+                <div style="padding:14px 16px;border-bottom:1px solid #EDE9E4;display:flex;align-items:flex-start;gap:14px">
+                  <div style="width:44px;height:44px;border-radius:5px;background:#FBEDE6;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-house-line" style="font-size:24px;color:#A84A28"></i></div>
+                  <div style="min-width:0">
+                    <div style="font-size:19px;font-weight:700;color:#2E2925">Rénovation de la toiture</div>
+                    <div style="font-size:13.5px;color:#6B655D;margin-top:2px">Ouvert le 12 janvier 2026 · échéance annoncée : 31 décembre 2026</div>
+                  </div>
+                  <div style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:#FDF3DC;border:1px solid #8A5200;border-radius:14px;padding:4px 11px;flex:none"><i class="ph-duotone ph-warning" style="font-size:15px;color:#8A5200"></i><span style="font-size:13px;font-weight:700;color:#8A5200">Rythme insuffisant</span></div>
+                </div>
+
+                <div style="padding:16px">
+                  <div style="display:flex;align-items:flex-end;gap:32px">
+                    <div>
+                      <div style="font-size:12.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6B655D">Collecté au 2 septembre 2026</div>
+                      <div style="display:flex;align-items:baseline;gap:9px;margin-top:5px"><span style="font-size:46px;font-weight:700;color:#14345E;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-0.02em">18 400 000</span><span style="font-size:20px;font-weight:600;color:#6B655D">FCFA</span></div>
+                    </div>
+                    <div style="padding-bottom:6px">
+                      <div style="font-size:12.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6B655D">Objectif</div>
+                      <div style="font-size:22px;font-weight:700;color:#2E2925;margin-top:4px;font-variant-numeric:tabular-nums">25 000 000 FCFA</div>
+                    </div>
+                    <div style="margin-left:auto;text-align:right;padding-bottom:4px">
+                      <div style="font-size:42px;font-weight:700;color:#C25A34;line-height:1;font-variant-numeric:tabular-nums">73,6 %</div>
+                      <div style="font-size:13.5px;color:#6B655D;margin-top:4px;font-variant-numeric:tabular-nums">reste 6 600 000 FCFA</div>
+                    </div>
+                  </div>
+
+                  <div style="margin-top:14px;height:26px;background:#F2EFEA;border-radius:3px;position:relative;overflow:hidden">
+                    <div style="width:73.6%;height:100%;background:#C25A34"></div>
+                    <div style="position:absolute;top:0;bottom:0;left:66.7%;width:2px;background:#0B1F3A"></div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:18px;margin-top:8px">
+                    <div style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;border-radius:2px;background:#C25A34"></span><span style="font-size:13px;color:#4A443E">Collecté réel</span></div>
+                    <div style="display:flex;align-items:center;gap:7px"><span style="width:2px;height:13px;background:#0B1F3A"></span><span style="font-size:13px;color:#4A443E">Où l'on devrait être aujourd'hui (16 666 000 FCFA)</span></div>
+                    <div style="margin-left:auto;font-size:13px;font-weight:600;color:#14713C;font-variant-numeric:tabular-nums">Avance de 1 734 000 FCFA sur le linéaire</div>
+                  </div>
+
+                  <div style="border-top:1px solid #EDE9E4;margin-top:16px;padding-top:14px">
+                    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:10px">
+                      <div style="font-size:15px;font-weight:700;color:#2E2925">Cumul mois par mois</div>
+                      <div style="font-size:13px;color:#6B655D">Janvier – août 2026, en millions de FCFA</div>
+                    </div>
+                    <svg viewBox="0 0 740 190" style="width:100%;height:190px;display:block">
+                      <line x1="20" y1="10" x2="720" y2="10" stroke="#C2BAB0" stroke-width="1" stroke-dasharray="5 4"></line>
+                      <text x="724" y="14" font-family="Noto Sans, sans-serif" font-size="11" fill="#6B655D" text-anchor="end">25 M · objectif</text>
+                      <line x1="20" y1="90" x2="720" y2="90" stroke="#EDE9E4" stroke-width="1"></line>
+                      <line x1="20" y1="170" x2="720" y2="170" stroke="#C2BAB0" stroke-width="1"></line>
+                      <polyline points="20,162 112,150 204,135 296,107 388,92 480,77 572,62 664,52" fill="none" stroke="#C25A34" stroke-width="3" stroke-linejoin="round"></polyline>
+                      <polyline points="664,52 720,26" fill="none" stroke="#8A5200" stroke-width="2.5" stroke-dasharray="6 5"></polyline>
+                      <circle cx="20" cy="162" r="4" fill="#C25A34"></circle>
+                      <circle cx="112" cy="150" r="4" fill="#C25A34"></circle>
+                      <circle cx="204" cy="135" r="4" fill="#C25A34"></circle>
+                      <circle cx="296" cy="107" r="4" fill="#C25A34"></circle>
+                      <circle cx="388" cy="92" r="4" fill="#C25A34"></circle>
+                      <circle cx="480" cy="77" r="4" fill="#C25A34"></circle>
+                      <circle cx="572" cy="62" r="4" fill="#C25A34"></circle>
+                      <circle cx="664" cy="52" r="5.5" fill="#fff" stroke="#C25A34" stroke-width="3"></circle>
+                      <text x="664" y="40" font-family="Noto Sans, sans-serif" font-size="12" font-weight="700" fill="#14345E" text-anchor="middle">18,4 M</text>
+                      <text x="20" y="186" font-family="Noto Sans, sans-serif" font-size="12" fill="#6B655D" text-anchor="middle">Jan.</text>
+                      <text x="112" y="186" font-family="Noto Sans, sans-serif" font-size="12" fill="#6B655D" text-anchor="middle">Fév.</text>
+                      <text x="204" y="186" font-family="Noto Sans, sans-serif" font-size="12" fill="#6B655D" text-anchor="middle">Mars</text>
+                      <text x="296" y="186" font-family="Noto Sans, sans-serif" font-size="12" fill="#6B655D" text-anchor="middle">Avr.</text>
+                      <text x="388" y="186" font-family="Noto Sans, sans-serif" font-size="12" fill="#6B655D" text-anchor="middle">Mai</text>
+                      <text x="480" y="186" font-family="Noto Sans, sans-serif" font-size="12" fill="#6B655D" text-anchor="middle">Juin</text>
+                      <text x="572" y="186" font-family="Noto Sans, sans-serif" font-size="12" fill="#6B655D" text-anchor="middle">Juil.</text>
+                      <text x="664" y="186" font-family="Noto Sans, sans-serif" font-size="12" font-weight="700" fill="#14345E" text-anchor="middle">Août</text>
+                    </svg>
+                    <div style="display:flex;align-items:center;gap:9px;background:#FDF3DC;border-left:4px solid #8A5200;border-radius:3px;padding:10px 12px;margin-top:10px">
+                      <i class="ph-duotone ph-warning" style="font-size:19px;color:#8A5200;flex:none"></i>
+                      <div style="font-size:13.5px;color:#4A443E;line-height:1.45">Au rythme des trois derniers mois (1 900 000 FCFA/mois), l'objectif serait atteint fin <span style="font-weight:700;color:#2E2925">janvier 2027</span>, soit un mois après l'échéance annoncée. Il manque <span style="font-weight:700;color:#2E2925">250 000 FCFA</span> par mois d'ici décembre.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+                <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:14px">
+                  <div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:5px;background:#E8EDF5;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-bench" style="font-size:19px;color:#14345E"></i></div><div style="font-size:15.5px;font-weight:700;color:#2E2925">Bancs de la nef</div></div>
+                  <div style="display:flex;align-items:baseline;gap:8px;margin-top:11px"><span style="font-size:26px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums;line-height:1">3 250 000</span><span style="font-size:14px;color:#6B655D;font-variant-numeric:tabular-nums">/ 4 000 000 FCFA</span></div>
+                  <div style="margin-top:10px;height:14px;background:#F2EFEA;border-radius:2px;overflow:hidden"><div style="width:81.3%;height:100%;background:#14713C"></div></div>
+                  <div style="display:flex;align-items:center;gap:10px;margin-top:7px"><span style="font-size:14px;font-weight:700;color:#14713C;font-variant-numeric:tabular-nums">81,3 %</span><span style="font-size:13px;color:#6B655D">échéance novembre 2026 · en avance</span></div>
+                </div>
+                <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:14px">
+                  <div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:5px;background:#FDF3DC;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-graduation-cap" style="font-size:19px;color:#8A5200"></i></div><div style="font-size:15.5px;font-weight:700;color:#2E2925">Bourses des servants</div></div>
+                  <div style="display:flex;align-items:baseline;gap:8px;margin-top:11px"><span style="font-size:26px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums;line-height:1">420 000</span><span style="font-size:14px;color:#6B655D;font-variant-numeric:tabular-nums">/ 1 500 000 FCFA</span></div>
+                  <div style="margin-top:10px;height:14px;background:#F2EFEA;border-radius:2px;overflow:hidden"><div style="width:28%;height:100%;background:#D99A2B"></div></div>
+                  <div style="display:flex;align-items:center;gap:10px;margin-top:7px"><span style="font-size:14px;font-weight:700;color:#8A5200;font-variant-numeric:tabular-nums">28,0 %</span><span style="font-size:13px;color:#6B655D">échéance rentrée 2026 · en retard</span></div>
+                </div>
+              </div>
+
+            </div>
+
+            <div style="display:grid;gap:14px">
+
+              <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px">
+                <div style="padding:11px 13px;border-bottom:1px solid #EDE9E4">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <div style="font-size:15.5px;font-weight:700;color:#2E2925">Dernières contributions</div>
+                    <div style="margin-left:auto;font-size:13px;color:#6B655D">Toiture</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px;margin-top:9px;background:#F7F5F2;border-radius:4px;padding:7px 9px">
+                    <i class="ph-duotone ph-eye-slash" style="font-size:17px;color:#14345E;flex:none"></i>
+                    <div style="font-size:13px;color:#4A443E;line-height:1.35;flex:1">Masquer les noms pour l'affichage public</div>
+                    <div style="width:38px;height:22px;border-radius:11px;background:#C2BAB0;position:relative;flex:none;cursor:pointer"><div style="position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff"></div></div>
+                  </div>
+                </div>
+                <div style="padding:4px 13px 10px">
+                  <sc-if value="{{ nominatif }}" hint-placeholder-val="{{ true }}">
+                    <div>
+                      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F2EFEA">
+                        <div style="width:30px;height:30px;border-radius:50%;background:#E8EDF5;color:#14345E;display:grid;place-items:center;font-size:11.5px;font-weight:700;flex:none">TA</div>
+                        <div style="min-width:0;flex:1"><div style="font-size:14px;font-weight:600;color:#2E2925">Traoré Aminata</div><div style="font-size:12.5px;color:#6B655D">Wave · 31 août</div></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">100 000</div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F2EFEA">
+                        <div style="width:30px;height:30px;border-radius:50%;background:#E8EDF5;color:#14345E;display:grid;place-items:center;font-size:11.5px;font-weight:700;flex:none">CE</div>
+                        <div style="min-width:0;flex:1"><div style="font-size:14px;font-weight:600;color:#2E2925">CEB Saint-Paul</div><div style="font-size:12.5px;color:#6B655D">Espèces · 30 août</div></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">250 000</div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F2EFEA">
+                        <div style="width:30px;height:30px;border-radius:50%;background:#F2EFEA;color:#6B655D;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-user" style="font-size:16px"></i></div>
+                        <div style="min-width:0;flex:1"><div style="font-size:14px;font-weight:600;color:#2E2925">Don anonyme</div><div style="font-size:12.5px;color:#6B655D">Orange Money · 29 août</div></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">75 000</div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F2EFEA">
+                        <div style="width:30px;height:30px;border-radius:50%;background:#E8EDF5;color:#14345E;display:grid;place-items:center;font-size:11.5px;font-weight:700;flex:none">KY</div>
+                        <div style="min-width:0;flex:1"><div style="font-size:14px;font-weight:600;color:#2E2925">Koffi Yao</div><div style="font-size:12.5px;color:#6B655D">MTN MoMo · 28 août</div></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">20 000</div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:10px;padding:9px 0">
+                        <div style="width:30px;height:30px;border-radius:50%;background:#E8EDF5;color:#14345E;display:grid;place-items:center;font-size:11.5px;font-weight:700;flex:none">DF</div>
+                        <div style="min-width:0;flex:1"><div style="font-size:14px;font-weight:600;color:#2E2925">Diomandé Fatou</div><div style="font-size:12.5px;color:#6B655D">Wave · 28 août</div></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">15 000</div>
+                      </div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ anonymise }}">
+                    <div>
+                      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F2EFEA">
+                        <div style="width:30px;height:30px;border-radius:50%;background:#F2EFEA;color:#6B655D;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-user" style="font-size:16px"></i></div>
+                        <div style="min-width:0;flex:1"><div style="font-size:14px;font-weight:600;color:#2E2925">Un paroissien</div><div style="font-size:12.5px;color:#6B655D">Wave · 31 août</div></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">100 000</div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F2EFEA">
+                        <div style="width:30px;height:30px;border-radius:50%;background:#E8EDF5;color:#14345E;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-users-three" style="font-size:16px"></i></div>
+                        <div style="min-width:0;flex:1"><div style="font-size:14px;font-weight:600;color:#2E2925">Une communauté de base</div><div style="font-size:12.5px;color:#6B655D">Espèces · 30 août</div></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">250 000</div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F2EFEA">
+                        <div style="width:30px;height:30px;border-radius:50%;background:#F2EFEA;color:#6B655D;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-user" style="font-size:16px"></i></div>
+                        <div style="min-width:0;flex:1"><div style="font-size:14px;font-weight:600;color:#2E2925">Un paroissien</div><div style="font-size:12.5px;color:#6B655D">Orange Money · 29 août</div></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">75 000</div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F2EFEA">
+                        <div style="width:30px;height:30px;border-radius:50%;background:#F2EFEA;color:#6B655D;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-user" style="font-size:16px"></i></div>
+                        <div style="min-width:0;flex:1"><div style="font-size:14px;font-weight:600;color:#2E2925">Un paroissien</div><div style="font-size:12.5px;color:#6B655D">MTN MoMo · 28 août</div></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">20 000</div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:10px;padding:9px 0">
+                        <div style="width:30px;height:30px;border-radius:50%;background:#F2EFEA;color:#6B655D;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-user" style="font-size:16px"></i></div>
+                        <div style="min-width:0;flex:1"><div style="font-size:14px;font-weight:600;color:#2E2925">Un paroissien</div><div style="font-size:12.5px;color:#6B655D">Wave · 28 août</div></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">15 000</div>
+                      </div>
+                    </div>
+                  </sc-if>
+                  <div style="border-top:1px solid #EDE9E4;margin-top:4px;padding-top:9px;display:flex;align-items:center;gap:8px">
+                    <div style="font-size:13.5px;color:#A84A28;font-weight:600">Voir les 214 contributions</div>
+                    <div style="margin-left:auto;font-size:13px;color:#6B655D;font-variant-numeric:tabular-nums">Don médian 10 000 FCFA</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:13px">
+                <div style="font-size:15px;font-weight:700;color:#2E2925;margin-bottom:10px">Composition de la collecte</div>
+                <div style="display:grid;gap:10px">
+                  <div>
+                    <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:14px;color:#2E2925;flex:1">Dons individuels</span><span style="font-size:14px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">11 240 000</span></div>
+                    <div style="margin-top:5px;height:10px;background:#F2EFEA;border-radius:2px;overflow:hidden"><div style="width:61.1%;height:100%;background:#14345E"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:14px;color:#2E2925;flex:1">Communautés de base</span><span style="font-size:14px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">4 860 000</span></div>
+                    <div style="margin-top:5px;height:10px;background:#F2EFEA;border-radius:2px;overflow:hidden"><div style="width:26.4%;height:100%;background:#24548F"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:14px;color:#2E2925;flex:1">Quêtes affectées</span><span style="font-size:14px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">2 300 000</span></div>
+                    <div style="margin-top:5px;height:10px;background:#F2EFEA;border-radius:2px;overflow:hidden"><div style="width:12.5%;height:100%;background:#C25A34"></div></div>
+                  </div>
+                </div>
+                <div style="border-top:1px solid #EDE9E4;margin-top:11px;padding-top:9px;font-size:13px;color:#6B655D;line-height:1.45">Aucun montant du Denier du Culte n'est reversé au projet : les deux caisses restent séparées, et cela se lit ici.</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Le repère noir sur la barre de progression est la seule chose que le trésorier montre au conseil : « voilà où nous devrions être ». Un pourcentage seul aurait suffi à rassurer à tort.</div>
+  </div>
+
+  <!-- ============ 04 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">04</div>
+      <h2 style="font-size:40px;margin:0">Attestations de dons</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Un donateur, une année, un document. La recherche accepte un nom, un numéro de téléphone ou une référence de reçu, parce que c'est souvent le seul élément dont le fidèle se souvient au comptoir. L'aperçu de l'attestation est montré avant génération : le trésorier signe un document qu'il a lu.</p>
+
+    <div data-screen-label="04 Attestations de dons" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-chart-pie-slice" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-scales" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Réconciliation</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#fff;background:#B3261E;border-radius:9px;padding:2px 7px">12</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-target" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Objectifs de collecte</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-certificate" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Attestations</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-file-arrow-down" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Export comptable</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-lock-simple" style="font-size:19px;color:#5C77A0"></i><span style="font-size:14.5px;color:#5C77A0">Secrétariat</span></div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#14713C;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">GS</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Gnahoré Séraphin</div><div style="font-size:12px;color:#8FA6C4">Trésorier</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px;display:flex;align-items:center;gap:16px">
+          <div><div style="font-size:20px;font-weight:700;color:#2E2925">Attestations de dons</div><div style="font-size:13.5px;color:#6B655D">Exercice 2025 · 87 attestations émises · 3 en attente de signature</div></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
+            <button style="min-height:38px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 13px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-list-checks" style="font-size:17px"></i>Génération par lot</button>
+          </div>
+        </div>
+
+        <div style="padding:16px 20px;display:grid;grid-template-columns:356px minmax(0,1fr);gap:16px;align-items:start">
+
+          <div style="display:grid;gap:14px">
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:13px">
+              <div style="font-size:15.5px;font-weight:700;color:#2E2925;margin-bottom:9px">Rechercher un donateur</div>
+              <div style="min-height:44px;border:2px solid #14345E;border-radius:5px;background:#fff;display:flex;align-items:center;gap:9px;padding:0 12px">
+                <i class="ph-duotone ph-magnifying-glass" style="font-size:19px;color:#14345E"></i>
+                <span style="font-size:15px;color:#2E2925">Kouassi</span>
+              </div>
+              <div style="font-size:12.5px;color:#6B655D;line-height:1.4;margin-top:7px">Nom, prénom, numéro de téléphone ou référence de reçu.</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:11px">
+                <div style="min-height:34px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:7px;padding:0 10px"><span style="font-size:13.5px;color:#2E2925">Exercice 2025</span><i class="ph-duotone ph-caret-down" style="font-size:13px;color:#6B655D"></i></div>
+                <div style="min-height:34px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:7px;padding:0 10px"><span style="font-size:13.5px;color:#2E2925">Tous les dons</span><i class="ph-duotone ph-caret-down" style="font-size:13px;color:#6B655D"></i></div>
+              </div>
+              <div style="border-top:1px solid #EDE9E4;margin-top:12px;padding-top:10px">
+                <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D;margin-bottom:8px">4 résultats</div>
+                <div style="display:grid;gap:6px">
+                  <div style="border:2px solid #14345E;background:#E8EDF5;border-radius:5px;padding:10px 11px;display:flex;align-items:center;gap:10px;cursor:pointer">
+                    <div style="width:34px;height:34px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">KA</div>
+                    <div style="min-width:0;flex:1"><div style="font-size:14.5px;font-weight:700;color:#14345E">Kouassi Adjoua</div><div style="font-size:12.5px;color:#4A443E;font-variant-numeric:tabular-nums">+225 07 •• •• 41 88 · 9 dons en 2025</div></div>
+                    <i class="ph-duotone ph-check-circle" style="font-size:19px;color:#14345E;flex:none"></i>
+                  </div>
+                  <div style="border:1px solid #EDE9E4;background:#fff;border-radius:5px;padding:10px 11px;display:flex;align-items:center;gap:10px;cursor:pointer" style-hover="background:#F7F5F2">
+                    <div style="width:34px;height:34px;border-radius:50%;background:#F2EFEA;color:#4A443E;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">KB</div>
+                    <div style="min-width:0;flex:1"><div style="font-size:14.5px;font-weight:600;color:#2E2925">Kouassi Bertin</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">+225 05 •• •• 02 17 · 3 dons en 2025</div></div>
+                  </div>
+                  <div style="border:1px solid #EDE9E4;background:#fff;border-radius:5px;padding:10px 11px;display:flex;align-items:center;gap:10px;cursor:pointer" style-hover="background:#F7F5F2">
+                    <div style="width:34px;height:34px;border-radius:50%;background:#F2EFEA;color:#4A443E;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">KM</div>
+                    <div style="min-width:0;flex:1"><div style="font-size:14.5px;font-weight:600;color:#2E2925">Kouassi Marie-Chantal</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">+225 01 •• •• 77 30 · 12 dons en 2025</div></div>
+                  </div>
+                  <div style="border:1px solid #EDE9E4;background:#fff;border-radius:5px;padding:10px 11px;display:flex;align-items:center;gap:10px;cursor:pointer" style-hover="background:#F7F5F2">
+                    <div style="width:34px;height:34px;border-radius:50%;background:#F2EFEA;color:#4A443E;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">KS</div>
+                    <div style="min-width:0;flex:1"><div style="font-size:14.5px;font-weight:600;color:#2E2925">Kouassi Sylvain</div><div style="font-size:12.5px;color:#6B655D;font-variant-numeric:tabular-nums">+225 07 •• •• 63 04 · 1 don en 2025</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:13px">
+              <div style="font-size:15px;font-weight:700;color:#2E2925;margin-bottom:9px">Attestations récentes</div>
+              <div style="display:grid;gap:8px">
+                <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-file-pdf" style="font-size:19px;color:#B3261E;flex:none"></i><div style="min-width:0;flex:1"><div style="font-size:13.5px;font-weight:600;color:#2E2925">Diomandé Fatou · 2025</div><div style="font-size:12.5px;color:#6B655D">Émise le 28 août 2026</div></div><span style="font-size:13px;font-weight:600;color:#A84A28">Renvoyer</span></div>
+                <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-file-pdf" style="font-size:19px;color:#B3261E;flex:none"></i><div style="min-width:0;flex:1"><div style="font-size:13.5px;font-weight:600;color:#2E2925">CEB Saint-Paul · 2025</div><div style="font-size:12.5px;color:#6B655D">Émise le 26 août 2026</div></div><span style="font-size:13px;font-weight:600;color:#A84A28">Renvoyer</span></div>
+                <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-file-pdf" style="font-size:19px;color:#B3261E;flex:none"></i><div style="min-width:0;flex:1"><div style="font-size:13.5px;font-weight:600;color:#2E2925">Yao Bernard · 2025</div><div style="font-size:12.5px;color:#6B655D">Émise le 21 août 2026</div></div><span style="font-size:13px;font-weight:600;color:#A84A28">Renvoyer</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;overflow:hidden">
+            <div style="padding:13px 16px;border-bottom:1px solid #EDE9E4;display:flex;align-items:center;gap:14px">
+              <div style="width:42px;height:42px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:15px;font-weight:700;flex:none">KA</div>
+              <div style="min-width:0">
+                <div style="font-size:18.5px;font-weight:700;color:#2E2925">Kouassi Adjoua</div>
+                <div style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">CEB Saint-Paul · fidèle depuis 2011 · +225 07 •• •• 41 88</div>
+              </div>
+              <div style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:#E4F1E8;border:1px solid #14713C;border-radius:14px;padding:4px 11px;flex:none"><i class="ph-duotone ph-check-circle" style="font-size:15px;color:#14713C"></i><span style="font-size:13px;font-weight:700;color:#14713C">Tous les dons réconciliés</span></div>
+            </div>
+
+            <div style="padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) 316px;gap:18px;align-items:start">
+
+              <div>
+                <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:10px">
+                  <div style="font-size:15.5px;font-weight:700;color:#2E2925">Dons de l'exercice 2025</div>
+                  <div style="margin-left:auto;font-size:13px;color:#6B655D">1<sup>er</sup> janvier – 31 décembre 2025</div>
+                </div>
+
+                <div style="background:#F7F5F2;border:1px solid #EDE9E4;border-radius:5px;padding:13px 15px;margin-bottom:12px">
+                  <div style="font-size:12.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6B655D">Total attesté pour 2025</div>
+                  <div style="display:flex;align-items:baseline;gap:9px;margin-top:4px"><span style="font-size:38px;font-weight:700;color:#14345E;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-0.02em">195 000</span><span style="font-size:18px;font-weight:600;color:#6B655D">FCFA</span></div>
+                  <div style="font-size:13.5px;color:#4A443E;margin-top:6px;font-variant-numeric:tabular-nums">9 versements · Denier du Culte 120 000 · Projet toiture 60 000 · Dons ponctuels 15 000</div>
+                </div>
+
+                <table class="table" style="width:100%;table-layout:fixed;font-family:'Noto Sans',sans-serif;font-size:14px">
+                  <thead><tr><th style="width:96px">Date</th><th style="width:auto">Nature et paiement</th><th style="width:78px;text-align:right">Montant</th></tr></thead>
+                  <tbody>
+                    <tr><td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13.5px">14 déc. 2025</td><td><div style="font-size:13.5px;color:#2E2925">Denier du Culte</div><div style="font-size:12.5px;color:#6B655D">Wave</div></td><td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap">30 000</td></tr>
+                    <tr><td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13.5px">2 nov. 2025</td><td><div style="font-size:13.5px;color:#2E2925">Projet toiture</div><div style="font-size:12.5px;color:#6B655D">Wave</div></td><td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap">50 000</td></tr>
+                    <tr><td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13.5px">7 sept. 2025</td><td><div style="font-size:13.5px;color:#2E2925">Denier du Culte</div><div style="font-size:12.5px;color:#6B655D">Orange Money</div></td><td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap">25 000</td></tr>
+                    <tr><td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13.5px">15 juin 2025</td><td><div style="font-size:13.5px;color:#2E2925">Don ponctuel · Pentecôte</div><div style="font-size:12.5px;color:#6B655D">Espèces</div></td><td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap">15 000</td></tr>
+                    <tr><td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13.5px">4 mai 2025</td><td><div style="font-size:13.5px;color:#2E2925">Denier du Culte</div><div style="font-size:12.5px;color:#6B655D">Wave</div></td><td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap">25 000</td></tr>
+                    <tr><td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13.5px">9 mars 2025</td><td><div style="font-size:13.5px;color:#2E2925">Projet toiture</div><div style="font-size:12.5px;color:#6B655D">MTN MoMo</div></td><td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap">10 000</td></tr>
+                    <tr><td style="font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13.5px">2 févr. 2025</td><td><div style="font-size:13.5px;color:#2E2925">Denier du Culte</div><div style="font-size:12.5px;color:#6B655D">Wave</div></td><td style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap">20 000</td></tr>
+                  </tbody>
+                </table>
+                <div style="padding:9px 0;font-size:13.5px;color:#6B655D">2 versements plus anciens ne sont pas affichés · <span style="color:#A84A28;font-weight:600">tout dérouler</span></div>
+
+                <div style="display:flex;align-items:flex-start;gap:9px;background:#E8EDF5;border-left:4px solid #14345E;border-radius:3px;padding:10px 12px;margin-top:6px">
+                  <i class="ph-duotone ph-info" style="font-size:18px;color:#14345E;flex:none"></i>
+                  <div style="font-size:13px;color:#4A443E;line-height:1.45">Les intentions de messe et les cotisations de mouvement ne figurent pas sur l'attestation : ce sont des contreparties, non des dons. La règle est écrite au bas du document.</div>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-size:12.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6B655D;margin-bottom:9px">Aperçu avant génération</div>
+                <div style="border:1px solid #C2BAB0;background:#fff;border-radius:3px;padding:20px 22px;font-family:'Source Serif 4',serif;box-shadow:0 2px 10px rgba(46,41,37,0.07)">
+                  <div style="text-align:center;border-bottom:1.5px solid #2E2925;padding-bottom:11px">
+                    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-family:'Noto Sans',sans-serif;color:#6B655D">Archidiocèse d'Abidjan</div>
+                    <div style="font-size:17px;font-weight:600;color:#2E2925;margin-top:4px">Paroisse Saint-Jean de Cocody</div>
+                    <div style="font-size:12px;color:#6B655D;font-family:'Noto Sans',sans-serif;margin-top:3px">Boulevard Latrille, Cocody · Abidjan</div>
+                  </div>
+                  <div style="text-align:center;padding:15px 0 13px">
+                    <div style="font-size:19px;font-weight:600;color:#2E2925;letter-spacing:0.01em">Attestation de dons</div>
+                    <div style="font-size:13px;color:#4A443E;font-family:'Noto Sans',sans-serif;margin-top:3px;font-variant-numeric:tabular-nums">Exercice du 1<sup>er</sup> janvier au 31 décembre 2025</div>
+                  </div>
+                  <div style="font-size:13.5px;line-height:1.6;color:#2E2925;text-wrap:pretty">Le trésorier de la paroisse Saint-Jean de Cocody atteste que <span style="font-weight:600">Madame Kouassi Adjoua</span> a versé au cours de l'exercice 2025 la somme totale de :</div>
+                  <div style="text-align:center;background:#F7F5F2;border-top:1px solid #EDE9E4;border-bottom:1px solid #EDE9E4;padding:12px 0;margin:12px 0">
+                    <div style="font-size:26px;font-weight:600;color:#14345E;font-variant-numeric:tabular-nums">195 000 FCFA</div>
+                    <div style="font-size:12.5px;color:#4A443E;font-family:'Noto Sans',sans-serif;margin-top:3px">cent quatre-vingt-quinze mille francs CFA</div>
+                  </div>
+                  <div style="font-size:12.5px;line-height:1.55;color:#4A443E;font-family:'Noto Sans',sans-serif">Répartis en neuf versements dont le détail figure au verso. Sont exclues les sommes correspondant à une contrepartie (intentions de messe, cotisations).</div>
+                  <div style="display:flex;align-items:flex-end;gap:14px;margin-top:18px;padding-top:13px;border-top:1px solid #EDE9E4">
+                    <div style="font-size:12px;color:#6B655D;font-family:'Noto Sans',sans-serif;line-height:1.5">Fait à Abidjan,<br>le 2 septembre 2026</div>
+                    <div style="margin-left:auto;text-align:center">
+                      <div style="width:96px;height:40px;border-bottom:1px solid #C2BAB0"></div>
+                      <div style="font-size:11.5px;color:#6B655D;font-family:'Noto Sans',sans-serif;margin-top:4px">Le trésorier</div>
+                    </div>
+                  </div>
+                  <div style="font-size:10.5px;color:#9A9289;font-family:'Noto Sans',sans-serif;margin-top:12px;font-variant-numeric:tabular-nums">Réf. ATT-2025-0088 · vérifiable au secrétariat</div>
+                </div>
+
+                <button style="min-height:46px;width:100%;margin-top:12px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px" style-hover="background:#0E2A4E"><i class="ph-duotone ph-file-pdf" style="font-size:20px"></i>Générer l'attestation en PDF</button>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+                  <button style="min-height:40px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:13.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px" style-hover="background:#E8EDF5"><i class="ph-duotone ph-printer" style="font-size:16px"></i>Imprimer</button>
+                  <button style="min-height:40px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:13.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px" style-hover="background:#E8EDF5"><i class="ph-duotone ph-paper-plane-tilt" style="font-size:16px"></i>Envoyer</button>
+                </div>
+                <div style="font-size:12.5px;color:#6B655D;line-height:1.45;margin-top:9px">Chaque génération est numérotée et journalisée. Une attestation déjà émise pour 2025 ne peut être remplacée que par un duplicata portant la mention « annule et remplace ».</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">L'aperçu est en Source Serif, pas en Noto Sans : le document imprimé appartient à la famille des actes paroissiaux, pas à celle de l'interface.</div>
+  </div>
+
+  <!-- ============ 05 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">05</div>
+      <h2 style="font-size:40px;margin:0">Export comptable</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">L'écran le plus simple des cinq, et volontairement : une période, un format, une case à cocher pour les écarts non résolus, et le rappel de ce qui a déjà été exporté — parce que le risque ici n'est pas de mal exporter, c'est d'exporter deux fois le même mois sans le savoir.</p>
+
+    <div data-screen-label="05 Export comptable" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-chart-pie-slice" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-scales" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Réconciliation</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#fff;background:#B3261E;border-radius:9px;padding:2px 7px">12</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-target" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Objectifs de collecte</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-certificate" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Attestations</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-file-arrow-down" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Export comptable</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-lock-simple" style="font-size:19px;color:#5C77A0"></i><span style="font-size:14.5px;color:#5C77A0">Secrétariat</span></div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#14713C;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">GS</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Gnahoré Séraphin</div><div style="font-size:12px;color:#8FA6C4">Trésorier</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px">
+          <div style="font-size:20px;font-weight:700;color:#2E2925">Export comptable</div>
+          <div style="font-size:13.5px;color:#6B655D">Un fichier par période, remis au cabinet comptable du diocèse</div>
+        </div>
+
+        <div style="padding:20px;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:18px;align-items:start">
+
+          <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:18px 20px">
+
+            <div style="padding-bottom:18px;border-bottom:1px solid #EDE9E4">
+              <div style="display:flex;align-items:center;gap:11px;margin-bottom:11px"><div style="width:26px;height:26px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:13.5px;font-weight:700;flex:none">1</div><div style="font-size:16.5px;font-weight:700;color:#2E2925">Choisir la période</div></div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <div style="min-height:44px;border:2px solid #14345E;background:#E8EDF5;border-radius:5px;display:flex;align-items:center;padding:0 15px;font-size:14.5px;font-weight:700;color:#14345E;cursor:pointer">Août 2026</div>
+                <div style="min-height:44px;border:1.5px solid #C2BAB0;background:#fff;border-radius:5px;display:flex;align-items:center;padding:0 15px;font-size:14.5px;color:#2E2925;cursor:pointer" style-hover="background:#F7F5F2">Juillet 2026</div>
+                <div style="min-height:44px;border:1.5px solid #C2BAB0;background:#fff;border-radius:5px;display:flex;align-items:center;padding:0 15px;font-size:14.5px;color:#2E2925;cursor:pointer" style-hover="background:#F7F5F2">3<sup>e</sup> trimestre 2026</div>
+                <div style="min-height:44px;border:1.5px solid #C2BAB0;background:#fff;border-radius:5px;display:flex;align-items:center;padding:0 15px;font-size:14.5px;color:#2E2925;cursor:pointer" style-hover="background:#F7F5F2">Exercice 2026</div>
+                <div style="min-height:44px;border:1.5px solid #C2BAB0;background:#fff;border-radius:5px;display:flex;align-items:center;gap:8px;padding:0 15px;font-size:14.5px;color:#2E2925;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-calendar-dots" style="font-size:17px;color:#14345E"></i>Dates précises</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;margin-top:12px;background:#F7F5F2;border-radius:4px;padding:10px 12px">
+                <i class="ph-duotone ph-calendar-check" style="font-size:19px;color:#14345E;flex:none"></i>
+                <div style="font-size:14px;color:#2E2925;font-variant-numeric:tabular-nums">Du <span style="font-weight:700">samedi 1<sup>er</sup> août 2026</span> au <span style="font-weight:700">lundi 31 août 2026</span> inclus · 1 284 opérations · 5 461 500 FCFA</div>
+              </div>
+            </div>
+
+            <div style="padding:18px 0;border-bottom:1px solid #EDE9E4">
+              <div style="display:flex;align-items:center;gap:11px;margin-bottom:11px"><div style="width:26px;height:26px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:13.5px;font-weight:700;flex:none">2</div><div style="font-size:16.5px;font-weight:700;color:#2E2925">Choisir le format</div></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+                <div style="border:2px solid #14345E;background:#E8EDF5;border-radius:5px;padding:14px;cursor:pointer">
+                  <div style="display:flex;align-items:center;gap:10px"><i class="ph-duotone ph-file-csv" style="font-size:26px;color:#14345E"></i><div style="font-size:16px;font-weight:700;color:#14345E">CSV</div><i class="ph-duotone ph-check-circle" style="font-size:20px;color:#14345E;margin-left:auto"></i></div>
+                  <div style="font-size:13.5px;color:#4A443E;line-height:1.45;margin-top:8px">Une ligne par opération, séparateur point-virgule, encodage UTF-8. Le format attendu par le cabinet comptable.</div>
+                </div>
+                <div style="border:1.5px solid #C2BAB0;background:#fff;border-radius:5px;padding:14px;cursor:pointer" style-hover="background:#F7F5F2">
+                  <div style="display:flex;align-items:center;gap:10px"><i class="ph-duotone ph-file-xls" style="font-size:26px;color:#14713C"></i><div style="font-size:16px;font-weight:700;color:#2E2925">Excel</div></div>
+                  <div style="font-size:13.5px;color:#4A443E;line-height:1.45;margin-top:8px">Trois feuilles : opérations, synthèse par nature, synthèse par mode de paiement. Pour la lecture au conseil paroissial.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding:18px 0 0">
+              <div style="display:flex;align-items:center;gap:11px;margin-bottom:11px"><div style="width:26px;height:26px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:13.5px;font-weight:700;flex:none">3</div><div style="font-size:16.5px;font-weight:700;color:#2E2925">Vérifier ce qui part</div></div>
+              <div style="display:grid;gap:9px">
+                <div style="display:flex;align-items:center;gap:11px;min-height:40px"><span style="width:20px;height:20px;border-radius:3px;background:#14345E;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-check" style="font-size:14px;color:#fff"></i></span><span style="font-size:14.5px;color:#2E2925">Recettes réconciliées <span style="color:#6B655D;font-variant-numeric:tabular-nums">— 1 253 opérations</span></span></div>
+                <div style="display:flex;align-items:center;gap:11px;min-height:40px"><span style="width:20px;height:20px;border-radius:3px;background:#14345E;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-check" style="font-size:14px;color:#fff"></i></span><span style="font-size:14.5px;color:#2E2925">Bordereaux d'espèces validés <span style="color:#6B655D;font-variant-numeric:tabular-nums">— 171 bordereaux</span></span></div>
+                <div style="display:flex;align-items:flex-start;gap:11px;background:#FDF3DC;border-left:4px solid #8A5200;border-radius:3px;padding:11px 12px">
+                  <span style="width:20px;height:20px;border-radius:3px;border:2px solid #8A5200;background:#fff;flex:none;margin-top:1px"></span>
+                  <div>
+                    <div style="font-size:14.5px;font-weight:700;color:#2E2925">Inclure les 12 opérations en écart</div>
+                    <div style="font-size:13.5px;color:#4A443E;line-height:1.45;margin-top:2px;font-variant-numeric:tabular-nums">148 000 FCFA non rapprochés. Décoché par défaut : un export qui les contient doit être annoncé au comptable, sinon la balance ne tombera pas.</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:11px;min-height:40px"><span style="width:20px;height:20px;border-radius:3px;border:2px solid #C2BAB0;background:#fff;flex:none"></span><span style="font-size:14.5px;color:#2E2925">Joindre les motifs de rattachement saisis</span></div>
+                <div style="display:flex;align-items:center;gap:11px;min-height:40px"><span style="width:20px;height:20px;border-radius:3px;border:2px solid #C2BAB0;background:#fff;flex:none"></span><span style="font-size:14.5px;color:#2E2925">Anonymiser les noms des donateurs</span></div>
+              </div>
+
+              <button style="min-height:48px;width:100%;margin-top:16px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px" style-hover="background:#0E2A4E"><i class="ph-duotone ph-download-simple" style="font-size:20px"></i>Exporter août 2026 en CSV</button>
+              <div style="font-size:13px;color:#6B655D;line-height:1.45;margin-top:9px;text-align:center">Fichier <span style="font-variant-numeric:tabular-nums">SJC-2026-08-recettes.csv</span> · environ 210 Ko · l'export est journalisé au nom du trésorier.</div>
+            </div>
+          </div>
+
+          <div style="display:grid;gap:14px">
+
+            <div style="background:#fff;border:1px solid #C2BAB0;border-radius:5px;overflow:hidden">
+              <div style="background:#E4F1E8;padding:10px 13px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #14713C">
+                <i class="ph-duotone ph-check-circle" style="font-size:19px;color:#14713C"></i>
+                <div style="font-size:14px;font-weight:700;color:#14713C">Dernier export effectué</div>
+              </div>
+              <div style="padding:14px 13px">
+                <div style="font-size:19px;font-weight:700;color:#2E2925">Juillet 2026</div>
+                <div style="font-size:13.5px;color:#4A443E;margin-top:3px;font-variant-numeric:tabular-nums">Exporté le mercredi 5 août 2026 à 16 h 40 par Gnahoré Séraphin</div>
+                <div style="display:grid;gap:7px;margin-top:12px;padding-top:12px;border-top:1px solid #EDE9E4;font-size:13.5px">
+                  <div style="display:flex;gap:10px"><span style="color:#6B655D;width:96px;flex:none">Format</span><span style="color:#2E2925;font-weight:600">CSV · 1 197 lignes</span></div>
+                  <div style="display:flex;gap:10px"><span style="color:#6B655D;width:96px;flex:none">Total</span><span style="color:#2E2925;font-weight:600;font-variant-numeric:tabular-nums">4 890 000 FCFA</span></div>
+                  <div style="display:flex;gap:10px"><span style="color:#6B655D;width:96px;flex:none">Écarts inclus</span><span style="color:#2E2925;font-weight:600">Aucun</span></div>
+                  <div style="display:flex;gap:10px"><span style="color:#6B655D;width:96px;flex:none">Remis à</span><span style="color:#2E2925;font-weight:600">Cabinet Ekra & Associés</span></div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:13px">
+                  <button style="min-height:38px;flex:1;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:13.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px" style-hover="background:#E8EDF5"><i class="ph-duotone ph-download-simple" style="font-size:16px"></i>Retélécharger</button>
+                  <button style="min-height:38px;flex:1;background:#fff;color:#4A443E;border:1.5px solid #C2BAB0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:13.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px" style-hover="background:#F7F5F2"><i class="ph-duotone ph-clock-counter-clockwise" style="font-size:16px"></i>Historique</button>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:13px">
+              <div style="font-size:15px;font-weight:700;color:#2E2925;margin-bottom:10px">Périodes déjà exportées</div>
+              <div style="display:grid;gap:8px;font-size:13.5px">
+                <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-check-circle" style="font-size:17px;color:#14713C;flex:none"></i><span style="color:#2E2925;flex:1">Juillet 2026</span><span style="color:#6B655D;font-variant-numeric:tabular-nums">5 août</span></div>
+                <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-check-circle" style="font-size:17px;color:#14713C;flex:none"></i><span style="color:#2E2925;flex:1">Juin 2026</span><span style="color:#6B655D;font-variant-numeric:tabular-nums">3 juillet</span></div>
+                <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-check-circle" style="font-size:17px;color:#14713C;flex:none"></i><span style="color:#2E2925;flex:1">Mai 2026</span><span style="color:#6B655D;font-variant-numeric:tabular-nums">4 juin</span></div>
+                <div style="display:flex;align-items:center;gap:9px;background:#FDF3DC;border-radius:3px;padding:7px 8px"><i class="ph-duotone ph-warning" style="font-size:17px;color:#8A5200;flex:none"></i><span style="color:#2E2925;flex:1;font-weight:600">Août 2026</span><span style="color:#8A5200;font-weight:600">jamais exporté</span></div>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:13px">
+              <div style="display:flex;align-items:flex-start;gap:9px">
+                <i class="ph-duotone ph-shield-check" style="font-size:19px;color:#14345E;flex:none;margin-top:1px"></i>
+                <div>
+                  <div style="font-size:14.5px;font-weight:700;color:#2E2925">Ce que contient le fichier</div>
+                  <div style="font-size:13px;color:#4A443E;line-height:1.5;margin-top:4px">Date, référence agrégateur, opérateur, nature de la recette, montant, statut de réconciliation et — sauf anonymisation — nom du donateur. Aucun numéro de téléphone complet n'est jamais exporté.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">« Août 2026 · jamais exporté » en jaune est l'élément le plus utile de l'écran : il répond à la seule question que le trésorier se pose vraiment en arrivant ici.</div>
+  </div>
+
+  <div style="padding-top:96px">
+    <div style="height:1px;background:var(--color-text)"></div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;padding-top:28px">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Accès et séparation des rôles</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Le trésorier ne voit ni les registres sacramentels, ni les intentions nominatives, ni les alertes de protection. L'entrée « Secrétariat » reste visible mais verrouillée : masquer une section ferait croire à un bug, la montrer close dit clairement qui fait quoi.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Ce qui n'est pas encore dessiné</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">La saisie du bordereau d'espèces (aujourd'hui faite au secrétariat), le versement diocésain trimestriel, et la vue consolidée multi-paroisses pour l'économat diocésain — qui reprendra ces cinq écrans avec un sélecteur de paroisse en tête de coquille.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Lecture des montants</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Tous les chiffres sont en chiffres tabulaires, espace insécable comme séparateur de milliers, jamais de décimale : le franc CFA n'a pas de subdivision en usage. Le sigle FCFA suit toujours le montant, en plus petit et en gris, pour ne pas concurrencer le nombre.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;anonymiserContributions&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Objectifs de collecte&quot;},&quot;seuilReconciliation&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:98,&quot;min&quot;:90,&quot;max&quot;:100,&quot;step&quot;:1,&quot;unit&quot;:&quot; %&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tableau de bord&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const seuil = this.props.seuilReconciliation ?? 98;
+    const anon = this.props.anonymiserContributions ?? false;
+    return {
+      seuilAffiche: seuil.toFixed(0) + ' %',
+      tauxAffiche: '94,2 %',
+      nominatif: !anon,
+      anonymise: anon
+    };
+  }
+}
+</script>
+</body>
+</html>

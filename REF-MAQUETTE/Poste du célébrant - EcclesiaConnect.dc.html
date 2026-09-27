@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/styles.css">
+<script src="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Noto+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-700); text-decoration: underline; }
+</style>
+</helmet>
+
+<div style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:0 0 120px">
+<div style="width:1440px;min-width:1440px;margin:0 auto;padding:0 56px">
+
+  <div style="padding-top:64px">
+    <div style="height:6px;background:var(--color-text)"></div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:10px 0 9px">
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">EcclesiaConnect · Paroisse Mobile</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-accent-700)">Poste du célébrant</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Tablette 1280 · lecture au lutrin</div>
+    </div>
+    <div style="height:1px;background:var(--color-text)"></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:64px;padding:52px 0 0;align-items:end">
+    <div>
+      <h1 style="font-size:84px;line-height:0.95;letter-spacing:-0.03em;margin:0 0 20px">Lu de <span style="font-style:italic;font-weight:400">loin</span></h1>
+      <p style="font-size:19px;line-height:1.5;max-width:58ch;margin:0;text-wrap:pretty">Cette interface est consultée debout, à un mètre de l'écran, souvent sans lunettes, parfois dix secondes avant d'entrer en procession. Tout y est plus grand que dans le reste du système : corps de base 19 px, noms à annoncer en 31 px, quatre onglets et jamais plus de deux niveaux de profondeur. Rien ne s'y saisit — on lit, on valide.</p>
+    </div>
+    <div style="padding-bottom:6px">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:14px">Écrans</div>
+      <div style="display:grid;gap:7px;font-size:15px">
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">01</span>Vue du jour</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">02</span>Mon agenda</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">03</span>Bans de mariage à valider</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">04</span>Registres sacramentels</div>
+      </div>
+      <div style="margin-top:20px;border-top:1px solid var(--color-neutral-300);padding-top:14px;font-size:13.5px;line-height:1.5;color:var(--color-neutral-700)">Les noms à prononcer sont composés en Source Serif : ce sont des mots destinés à la voix, pas des libellés d'interface. Tout le reste — onglets, statuts, boutons — reste en Noto Sans.</div>
+    </div>
+  </div>
+
+  <!-- ============ 01 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">01</div>
+      <h2 style="font-size:40px;margin:0">Vue du jour</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">L'écran d'accueil, et le seul qui compte à 5 h 55. Les trois messes du jour à gauche, les intentions validées de la messe choisie à droite, en très grands caractères. Rien d'autre : pas de compteurs, pas de graphique, pas de notification. Une intention non validée par le secrétariat n'apparaît pas ici — le prêtre ne lit que ce qui est confirmé et payé.</p>
+
+    <div data-screen-label="01 Vue du jour" style="width:1280px;height:800px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+
+      <div style="background:#0B1F3A;padding:14px 24px;display:flex;align-items:center;gap:20px;flex:none">
+        <div style="min-width:0">
+          <div style="font-size:24px;font-weight:700;color:#fff;line-height:1.15">Mardi 1er septembre 2026</div>
+          <div style="font-size:16px;color:#C3D0E1;margin-top:2px">Saint-Jean de Cocody · {{ nomCelebrant }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:11px;background:#14713C;border-radius:6px;padding:8px 14px;flex:none">
+          <span style="width:18px;height:18px;border-radius:50%;background:#7ED99C;flex:none"></span>
+          <div style="font-size:17px;font-weight:700;color:#fff">Temps ordinaire · vert</div>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex:none">
+          <div style="font-size:15px;color:#8FA6C4">Taille du texte</div>
+          <div style="display:flex;border:2px solid #24548F;border-radius:6px;overflow:hidden">
+            <div style="min-width:52px;min-height:48px;display:grid;place-items:center;font-size:16px;color:#C3D0E1;cursor:pointer">A</div>
+            <div style="min-width:52px;min-height:48px;display:grid;place-items:center;font-size:20px;font-weight:700;color:#0B1F3A;background:#F2C14E;cursor:pointer">A</div>
+            <div style="min-width:52px;min-height:48px;display:grid;place-items:center;font-size:25px;color:#C3D0E1;cursor:pointer">A</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-bottom:2px solid #C2BAB0;display:flex;flex:none">
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid #C25A34;background:#FBEDE6;cursor:pointer">
+          <i class="ph-duotone ph-sun-horizon" style="font-size:26px;color:#A84A28"></i><span style="font-size:20px;font-weight:700;color:#A84A28">Aujourd'hui</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-calendar-dots" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Mon agenda</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-heart" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Bans de mariage</span>
+          <span style="font-size:16px;font-weight:700;color:#fff;background:#B3261E;border-radius:12px;padding:2px 10px">3</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-book-bookmark" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Registres</span>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;display:grid;grid-template-columns:340px minmax(0,1fr);gap:20px;padding:20px 24px">
+
+        <div style="display:flex;flex-direction:column;gap:12px;min-height:0">
+          <div style="font-size:15px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B655D">Mes messes du jour</div>
+          <div style="background:#14345E;border-radius:6px;padding:16px 18px;cursor:pointer">
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:38px;font-weight:700;color:#fff;line-height:1;font-variant-numeric:tabular-nums">6 h 00</span><span style="font-size:17px;color:#A8C0DD">Église</span></div>
+            <div style="font-size:19px;font-weight:600;color:#fff;margin-top:9px">6 intentions à annoncer</div>
+            <div style="font-size:16px;color:#C3D0E1;margin-top:2px">Vous célébrez</div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:16px 18px;cursor:pointer" style-hover="background:#F2EFEA">
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:38px;font-weight:700;color:#14345E;line-height:1;font-variant-numeric:tabular-nums">12 h 30</span><span style="font-size:17px;color:#6B655D">Chapelle</span></div>
+            <div style="font-size:19px;font-weight:600;color:#2E2925;margin-top:9px">5 intentions à annoncer</div>
+            <div style="font-size:16px;color:#6B655D;margin-top:2px">P. Kouamé célèbre</div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:16px 18px;cursor:pointer" style-hover="background:#F2EFEA">
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:38px;font-weight:700;color:#14345E;line-height:1;font-variant-numeric:tabular-nums">18 h 30</span><span style="font-size:17px;color:#6B655D">Église</span></div>
+            <div style="font-size:19px;font-weight:600;color:#2E2925;margin-top:9px">4 intentions à annoncer</div>
+            <div style="font-size:16px;color:#6B655D;margin-top:2px">Vous célébrez</div>
+          </div>
+          <div style="margin-top:auto;background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:14px 16px">
+            <div style="display:flex;align-items:center;gap:10px"><i class="ph-duotone ph-users-three" style="font-size:24px;color:#8A5200"></i><div style="font-size:17px;font-weight:600;color:#2E2925">Après la messe de 18 h 30</div></div>
+            <div style="font-size:17px;color:#4A443E;line-height:1.4;margin-top:5px">Rencontre de préparation au baptême — 3 familles, salle Saint-Paul.</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;display:flex;flex-direction:column;min-height:0;overflow:hidden">
+          <div style="padding:15px 22px;border-bottom:1.5px solid #DDD7CF;display:flex;align-items:center;gap:16px;flex:none">
+            <div>
+              <div style="font-size:24px;font-weight:700;color:#2E2925">Intentions de la messe de 6 h 00</div>
+              <div style="font-size:16px;color:#6B655D;margin-top:1px">6 intentions validées · à lire après l'homélie</div>
+            </div>
+            <button style="margin-left:auto;min-height:52px;background:#14345E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:18px;font-weight:700;padding:0 20px;display:flex;align-items:center;gap:10px;cursor:pointer;flex:none" style-hover="background:#0E2A4E"><i class="ph-duotone ph-printer" style="font-size:22px"></i>Imprimer la feuille</button>
+          </div>
+
+          <div style="flex:1;min-height:0;overflow:hidden;padding:6px 22px 0">
+            <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid #EDE9E4">
+              <div style="font-size:22px;font-weight:700;color:#C25A34;width:32px;flex:none;font-variant-numeric:tabular-nums">1</div>
+              <div style="min-width:0;flex:1">
+                <div style="font-family:'Source Serif 4',serif;font-size:31px;font-weight:600;color:#2E2925;line-height:1.15">Feu Kouassi Bernard</div>
+                <sc-if value="{{ avecDemandeur }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-size:17px;color:#6B655D;margin-top:3px">Demandée par Kouassi Adjoua, sa fille</div>
+                </sc-if>
+              </div>
+              <div style="font-size:18px;font-weight:600;color:#14345E;flex:none">Repos de l'Âme</div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid #EDE9E4">
+              <div style="font-size:22px;font-weight:700;color:#C25A34;width:32px;flex:none;font-variant-numeric:tabular-nums">2</div>
+              <div style="min-width:0;flex:1">
+                <div style="font-family:'Source Serif 4',serif;font-size:31px;font-weight:600;color:#2E2925;line-height:1.15">Feue Yao Marguerite</div>
+                <sc-if value="{{ avecDemandeur }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-size:17px;color:#6B655D;margin-top:3px">Demandée par la CEB Saint-Paul</div>
+                </sc-if>
+              </div>
+              <div style="font-size:18px;font-weight:600;color:#14345E;flex:none">Repos de l'Âme</div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid #EDE9E4">
+              <div style="font-size:22px;font-weight:700;color:#C25A34;width:32px;flex:none;font-variant-numeric:tabular-nums">3</div>
+              <div style="min-width:0;flex:1">
+                <div style="font-family:'Source Serif 4',serif;font-size:31px;font-weight:600;color:#2E2925;line-height:1.15">La famille N'Guessan</div>
+                <sc-if value="{{ avecDemandeur }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-size:17px;color:#6B655D;margin-top:3px">Demandée par N'Guessan Paul</div>
+                </sc-if>
+              </div>
+              <div style="font-size:18px;font-weight:600;color:#14345E;flex:none">Action de Grâce</div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid #EDE9E4">
+              <div style="font-size:22px;font-weight:700;color:#C25A34;width:32px;flex:none;font-variant-numeric:tabular-nums">4</div>
+              <div style="min-width:0;flex:1">
+                <div style="font-family:'Source Serif 4',serif;font-size:31px;font-weight:600;color:#2E2925;line-height:1.15">Diomandé Fatou, malade</div>
+                <sc-if value="{{ avecDemandeur }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-size:17px;color:#6B655D;margin-top:3px">Demandée par sa mère</div>
+                </sc-if>
+              </div>
+              <div style="font-size:18px;font-weight:600;color:#14345E;flex:none">Santé</div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid #EDE9E4">
+              <div style="font-size:22px;font-weight:700;color:#C25A34;width:32px;flex:none;font-variant-numeric:tabular-nums">5</div>
+              <div style="min-width:0;flex:1">
+                <div style="font-family:'Source Serif 4',serif;font-size:31px;font-weight:600;color:#2E2925;line-height:1.15">Les époux Traoré</div>
+                <sc-if value="{{ avecDemandeur }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-size:17px;color:#6B655D;margin-top:3px">Vingt ans de mariage · demandée par leurs enfants</div>
+                </sc-if>
+              </div>
+              <div style="font-size:18px;font-weight:600;color:#14345E;flex:none">Action de Grâce</div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0">
+              <div style="font-size:22px;font-weight:700;color:#C25A34;width:32px;flex:none;font-variant-numeric:tabular-nums">6</div>
+              <div style="min-width:0;flex:1">
+                <div style="font-family:'Source Serif 4',serif;font-size:31px;font-weight:600;color:#2E2925;line-height:1.15">Une intention particulière</div>
+                <sc-if value="{{ avecDemandeur }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-size:17px;color:#6B655D;margin-top:3px">Le demandeur souhaite rester discret</div>
+                </sc-if>
+              </div>
+              <div style="font-size:18px;font-weight:600;color:#14345E;flex:none">Demande particulière</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Le sélecteur de taille de texte est dans la barre supérieure, pas dans un menu de réglages : c'est un geste qu'on fait au lutrin, une fois, et l'interface s'en souvient.</div>
+  </div>
+
+  <!-- ============ 02 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">02</div>
+      <h2 style="font-size:40px;margin:0">Mon agenda</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Une semaine sur un écran, découpée en quatre moments de journée plutôt qu'en créneaux horaires : à l'échelle d'un prêtre de paroisse, savoir qu'un mardi après-midi est libre compte plus que de savoir s'il l'est à 14 h 15. Un seul geste d'écriture existe sur cet écran — rendre un moment indisponible au secrétariat.</p>
+
+    <div data-screen-label="02 Mon agenda" style="width:1280px;height:800px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+
+      <div style="background:#0B1F3A;padding:14px 24px;display:flex;align-items:center;gap:20px;flex:none">
+        <div><div style="font-size:24px;font-weight:700;color:#fff;line-height:1.15">Semaine du 31 août au 6 septembre</div><div style="font-size:16px;color:#C3D0E1;margin-top:2px">{{ nomCelebrant }} · 19 engagements</div></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex:none">
+          <div style="min-width:52px;min-height:48px;border:2px solid #24548F;border-radius:6px;display:grid;place-items:center;cursor:pointer"><i class="ph-duotone ph-caret-left" style="font-size:22px;color:#fff"></i></div>
+          <div style="min-height:48px;border:2px solid #24548F;border-radius:6px;display:flex;align-items:center;padding:0 18px;font-size:17px;font-weight:700;color:#fff;cursor:pointer">Cette semaine</div>
+          <div style="min-width:52px;min-height:48px;border:2px solid #24548F;border-radius:6px;display:grid;place-items:center;cursor:pointer"><i class="ph-duotone ph-caret-right" style="font-size:22px;color:#fff"></i></div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-bottom:2px solid #C2BAB0;display:flex;flex:none">
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-sun-horizon" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Aujourd'hui</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid #C25A34;background:#FBEDE6;cursor:pointer">
+          <i class="ph-duotone ph-calendar-dots" style="font-size:26px;color:#A84A28"></i><span style="font-size:20px;font-weight:700;color:#A84A28">Mon agenda</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-heart" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Bans de mariage</span>
+          <span style="font-size:16px;font-weight:700;color:#fff;background:#B3261E;border-radius:12px;padding:2px 10px">3</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-book-bookmark" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Registres</span>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;display:flex;flex-direction:column;padding:16px 24px 0">
+
+        <div style="display:grid;grid-template-columns:96px repeat(7,minmax(0,1fr));gap:6px;flex:none;margin-bottom:6px">
+          <div></div>
+          <div style="text-align:center;padding:5px 0"><div style="font-size:16px;line-height:1.3;color:#6B655D">Lun.</div><div style="font-size:22px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">31</div></div>
+          <div style="text-align:center;padding:5px 0;background:#FBEDE6;border-radius:5px"><div style="font-size:16px;color:#A84A28">Mar.</div><div style="font-size:22px;font-weight:700;color:#A84A28;font-variant-numeric:tabular-nums">1</div></div>
+          <div style="text-align:center;padding:5px 0"><div style="font-size:16px;line-height:1.3;color:#6B655D">Mer.</div><div style="font-size:22px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">2</div></div>
+          <div style="text-align:center;padding:5px 0"><div style="font-size:16px;line-height:1.3;color:#6B655D">Jeu.</div><div style="font-size:22px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">3</div></div>
+          <div style="text-align:center;padding:5px 0"><div style="font-size:16px;line-height:1.3;color:#6B655D">Ven.</div><div style="font-size:22px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">4</div></div>
+          <div style="text-align:center;padding:5px 0"><div style="font-size:16px;line-height:1.3;color:#6B655D">Sam.</div><div style="font-size:22px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">5</div></div>
+          <div style="text-align:center;padding:5px 0"><div style="font-size:16px;line-height:1.3;color:#6B655D">Dim.</div><div style="font-size:22px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">6</div></div>
+        </div>
+
+        <div style="flex:1;min-height:0;display:grid;grid-template-rows:repeat(4,minmax(0,1fr));gap:6px">
+
+          <div style="display:grid;grid-template-columns:96px repeat(7,minmax(0,1fr));gap:6px">
+            <div style="display:flex;align-items:center;font-size:17px;font-weight:700;color:#6B655D">Matin</div>
+            <div style="background:#14345E;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">6 h 00</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe</div></div>
+            <div style="background:#14345E;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">6 h 00</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe</div></div>
+            <div style="background:#14345E;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">6 h 00</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe</div></div>
+            <div style="background:#14345E;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">6 h 00</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe</div></div>
+            <div style="background:#14345E;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">6 h 00</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe</div></div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:5px;display:grid;place-items:center"><span style="font-size:16px;color:#6B655D">Libre</span></div>
+            <div style="background:#14345E;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">7 h 00</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe · 9 h 30</div></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:96px repeat(7,minmax(0,1fr));gap:6px">
+            <div style="display:flex;align-items:center;font-size:17px;font-weight:700;color:#6B655D">Midi</div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:5px;display:grid;place-items:center"><span style="font-size:16px;color:#6B655D">Libre</span></div>
+            <div style="background:#24548F;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">12 h 30</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe · chapelle</div></div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:5px;display:grid;place-items:center"><span style="font-size:16px;color:#6B655D">Libre</span></div>
+            <div style="background:#24548F;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">12 h 30</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe · chapelle</div></div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:5px;display:grid;place-items:center"><span style="font-size:16px;color:#6B655D">Libre</span></div>
+            <div style="background:#8A5200;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">11 h 00</div><div style="font-size:16px;color:#F7E4B8;line-height:1.25">Mariage Koffi–Bamba</div></div>
+            <div style="background:#24548F;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">11 h 00</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe des familles</div></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:96px repeat(7,minmax(0,1fr));gap:6px">
+            <div style="display:flex;align-items:center;font-size:17px;font-weight:700;color:#6B655D">Après-midi</div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:5px;display:grid;place-items:center"><span style="font-size:16px;color:#6B655D">Libre</span></div>
+            <div style="background:#4A443E;border-radius:5px;padding:9px 11px;position:relative;overflow:hidden">
+              <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,0.14) 0 7px,transparent 7px 14px)"></div>
+              <div style="position:relative"><div style="display:flex;align-items:center;gap:6px"><i class="ph-duotone ph-prohibit" style="font-size:18px;color:#fff"></i><span style="font-size:17px;font-weight:700;color:#fff">Indisponible</span></div><div style="font-size:15px;color:#DDD7CF;line-height:1.25;margin-top:2px">Retraite mensuelle</div></div>
+            </div>
+            <div style="background:#C25A34;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">16 h 00</div><div style="font-size:16px;color:#FBEDE6;line-height:1.25">Préparation mariage</div></div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:5px;display:grid;place-items:center"><span style="font-size:16px;color:#6B655D">Libre</span></div>
+            <div style="background:#14713C;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">15 h 00</div><div style="font-size:16px;color:#CDEBD8;line-height:1.25">Confessions</div></div>
+            <div style="background:#14713C;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">15 h 00</div><div style="font-size:16px;color:#CDEBD8;line-height:1.25">Confessions</div></div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:5px;display:grid;place-items:center"><span style="font-size:16px;color:#6B655D">Libre</span></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:96px repeat(7,minmax(0,1fr));gap:6px">
+            <div style="display:flex;align-items:center;font-size:17px;font-weight:700;color:#6B655D">Soir</div>
+            <div style="background:#24548F;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">18 h 30</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe</div></div>
+            <div style="background:#fff;border:3px solid #C25A34;border-radius:5px;padding:9px 11px;position:relative">
+              <div style="font-size:19px;font-weight:700;color:#A84A28;font-variant-numeric:tabular-nums">18 h 30</div>
+              <div style="font-size:16px;color:#4A443E;line-height:1.25">Messe · puis baptêmes</div>
+            </div>
+            <div style="background:#24548F;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">18 h 30</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe</div></div>
+            <div style="background:#D99A2B;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">19 h 30</div><div style="font-size:16px;color:#4A443E;line-height:1.25">Adoration</div></div>
+            <div style="background:#24548F;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">18 h 30</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe</div></div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:5px;display:grid;place-items:center"><span style="font-size:16px;color:#6B655D">Libre</span></div>
+            <div style="background:#24548F;border-radius:5px;padding:9px 11px"><div style="font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">18 h 30</div><div style="font-size:16px;color:#C3D0E1;line-height:1.25">Messe</div></div>
+          </div>
+
+        </div>
+
+        <div style="flex:none;background:#fff;border-top:2px solid #C2BAB0;margin:14px -24px 0;padding:14px 24px;display:flex;align-items:center;gap:20px">
+          <div style="display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:8px"><span style="display:flex;gap:3px"><span style="width:16px;height:16px;border-radius:3px;background:#14345E"></span><span style="width:16px;height:16px;border-radius:3px;background:#24548F"></span></span><span style="font-size:16px;color:#2E2925">Messe · vous / autre célébrant</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;background:#14713C"></span><span style="font-size:16px;color:#2E2925">Confessions</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;background:#D99A2B"></span><span style="font-size:16px;color:#2E2925">Adoration</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;background:#C25A34"></span><span style="font-size:16px;color:#2E2925">Préparation</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;background:#8A5200"></span><span style="font-size:16px;color:#2E2925">Mariage</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;background:#4A443E"></span><span style="font-size:16px;color:#2E2925">Indisponible</span></div>
+          </div>
+          <button style="margin-left:auto;min-height:56px;background:#4A443E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:19px;font-weight:700;padding:0 22px;display:flex;align-items:center;gap:11px;cursor:pointer;flex:none" style-hover="background:#2E2925"><i class="ph-duotone ph-prohibit" style="font-size:24px"></i>Rendre ce moment indisponible</button>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Bloquer un créneau est une action grise, pas rouge : ce n'est pas une alerte, c'est un droit. Le secrétariat voit aussitôt le moment barré et ne peut plus y placer de rendez-vous, sans jamais connaître le motif — la retraite mensuelle n'a pas à s'afficher au comptoir.</div>
+  </div>
+
+  <!-- ============ 03 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">03</div>
+      <h2 style="font-size:40px;margin:0">Bans de mariage à valider</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Trois dossiers, un à la fois. La liste de gauche ne montre que ce qui décide : les deux noms, la date envisagée, et si les pièces sont complètes. À droite, la pièce par pièce — et la validation canonique, qui est un acte du célébrant seul et se signe donc en deux temps.</p>
+
+    <div data-screen-label="03 Bans de mariage" style="width:1280px;height:800px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+
+      <div style="background:#0B1F3A;padding:14px 24px;display:flex;align-items:center;gap:20px;flex:none">
+        <div><div style="font-size:24px;font-weight:700;color:#fff;line-height:1.15">Bans de mariage</div><div style="font-size:16px;color:#C3D0E1;margin-top:2px">3 dossiers attendent votre validation canonique</div></div>
+      </div>
+
+      <div style="background:#fff;border-bottom:2px solid #C2BAB0;display:flex;flex:none">
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-sun-horizon" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Aujourd'hui</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-calendar-dots" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Mon agenda</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid #C25A34;background:#FBEDE6;cursor:pointer">
+          <i class="ph-duotone ph-heart" style="font-size:26px;color:#A84A28"></i><span style="font-size:20px;font-weight:700;color:#A84A28">Bans de mariage</span>
+          <span style="font-size:16px;font-weight:700;color:#fff;background:#B3261E;border-radius:12px;padding:2px 10px">3</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-book-bookmark" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Registres</span>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;display:grid;grid-template-columns:412px minmax(0,1fr);gap:20px;padding:20px 24px">
+
+        <div style="display:flex;flex-direction:column;gap:12px;min-height:0">
+          <div style="background:#fff;border:3px solid #14345E;border-radius:6px;padding:16px 18px;cursor:pointer">
+            <div style="font-family:'Source Serif 4',serif;font-size:27px;font-weight:600;color:#14345E;line-height:1.2">Koffi Yao &amp; Bamba Adjara</div>
+            <div style="font-size:18px;color:#2E2925;margin-top:7px;font-variant-numeric:tabular-nums">Mariage prévu le samedi 5 septembre 2026</div>
+            <div style="display:inline-flex;align-items:center;gap:8px;margin-top:11px;background:#E4F1E8;border:1.5px solid #14713C;border-radius:16px;padding:5px 13px">
+              <i class="ph-duotone ph-check-circle" style="font-size:19px;color:#14713C"></i><span style="font-size:16px;font-weight:700;color:#14713C">Dossier complet</span>
+            </div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:16px 18px;cursor:pointer" style-hover="background:#F2EFEA">
+            <div style="font-family:'Source Serif 4',serif;font-size:27px;font-weight:600;color:#2E2925;line-height:1.2">Assouman Éric &amp; Traoré Mariam</div>
+            <div style="font-size:18px;color:#2E2925;margin-top:7px;font-variant-numeric:tabular-nums">Mariage prévu le samedi 17 octobre 2026</div>
+            <div style="display:inline-flex;align-items:center;gap:8px;margin-top:11px;background:#FBE9E8;border:1.5px solid #B3261E;border-radius:16px;padding:5px 13px">
+              <i class="ph-duotone ph-warning-circle" style="font-size:19px;color:#B3261E"></i><span style="font-size:16px;font-weight:700;color:#B3261E">1 pièce manquante</span>
+            </div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:16px 18px;cursor:pointer" style-hover="background:#F2EFEA">
+            <div style="font-family:'Source Serif 4',serif;font-size:27px;font-weight:600;color:#2E2925;line-height:1.2">Gnahoré Séraphin &amp; Kouamé Estelle</div>
+            <div style="font-size:18px;color:#2E2925;margin-top:7px;font-variant-numeric:tabular-nums">Mariage prévu le samedi 7 novembre 2026</div>
+            <div style="display:inline-flex;align-items:center;gap:8px;margin-top:11px;background:#FDF3DC;border:1.5px solid #8A5200;border-radius:16px;padding:5px 13px">
+              <i class="ph-duotone ph-hourglass" style="font-size:19px;color:#8A5200"></i><span style="font-size:16px;font-weight:700;color:#8A5200">Bans en cours de publication</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;display:flex;flex-direction:column;min-height:0;overflow:hidden">
+          <div style="padding:16px 22px;border-bottom:1.5px solid #DDD7CF;flex:none">
+            <div style="font-family:'Source Serif 4',serif;font-size:31px;font-weight:600;color:#2E2925;line-height:1.15">Koffi Yao &amp; Bamba Adjara</div>
+            <div style="font-size:18px;color:#4A443E;margin-top:4px;font-variant-numeric:tabular-nums">Samedi 5 septembre 2026, 11 h 00 · église Saint-Jean · dossier ouvert le 2 juin 2026</div>
+          </div>
+
+          <div style="flex:1;min-height:0;padding:10px 22px 8px">
+            <div style="display:grid;gap:6px">
+              <div style="display:flex;align-items:center;gap:14px;background:#F7F5F2;border-radius:5px;padding:8px 14px">
+                <i class="ph-duotone ph-check-circle" style="font-size:26px;color:#14713C;flex:none"></i>
+                <div style="min-width:0;flex:1"><div style="font-size:19px;font-weight:600;color:#2E2925">Actes de baptême des deux époux</div><div style="font-size:16px;line-height:1.3;color:#6B655D">Délivrés le 14 juin 2026 · Saint-Michel de Bouaké et Saint-Jean</div></div>
+                <span style="font-size:17px;font-weight:700;color:#A84A28;flex:none">Consulter</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;background:#F7F5F2;border-radius:5px;padding:8px 14px">
+                <i class="ph-duotone ph-check-circle" style="font-size:26px;color:#14713C;flex:none"></i>
+                <div style="min-width:0;flex:1"><div style="font-size:19px;font-weight:600;color:#2E2925">Enquête prénuptiale signée</div><div style="font-size:16px;line-height:1.3;color:#6B655D">Menée par P. Kouamé le 28 juin 2026</div></div>
+                <span style="font-size:17px;font-weight:700;color:#A84A28;flex:none">Consulter</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;background:#F7F5F2;border-radius:5px;padding:8px 14px">
+                <i class="ph-duotone ph-check-circle" style="font-size:26px;color:#14713C;flex:none"></i>
+                <div style="min-width:0;flex:1"><div style="font-size:19px;font-weight:600;color:#2E2925">Attestation de préparation au mariage</div><div style="font-size:16px;line-height:1.3;color:#6B655D">Six séances suivies, achevées le 23 août 2026</div></div>
+                <span style="font-size:17px;font-weight:700;color:#A84A28;flex:none">Consulter</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;background:#F7F5F2;border-radius:5px;padding:8px 14px">
+                <i class="ph-duotone ph-check-circle" style="font-size:26px;color:#14713C;flex:none"></i>
+                <div style="min-width:0;flex:1"><div style="font-size:19px;font-weight:600;color:#2E2925">Publication des bans</div><div style="font-size:16px;line-height:1.3;color:#6B655D">Trois dimanches consécutifs · aucune opposition reçue</div></div>
+                <span style="font-size:17px;font-weight:700;color:#A84A28;flex:none">Consulter</span>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:12px;background:#E8EDF5;border-left:5px solid #14345E;border-radius:4px;padding:9px 16px;margin-top:9px">
+              <i class="ph-duotone ph-scroll" style="font-size:24px;color:#14345E;flex:none"></i>
+              <div style="font-size:17px;color:#2E2925;line-height:1.4">Aucun empêchement déclaré : le dossier peut être validé.</div>
+            </div>
+          </div>
+
+          <div style="flex:none;border-top:1.5px solid #DDD7CF;padding:16px 22px;display:flex;align-items:center;gap:14px">
+            <button style="min-height:60px;background:#fff;color:#4A443E;border:2px solid #C2BAB0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:18px;font-weight:600;padding:0 20px;display:flex;align-items:center;gap:10px;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-chat-circle-text" style="font-size:23px"></i>Demander une précision</button>
+            <button style="margin-left:auto;min-height:60px;background:#14713C;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:20px;font-weight:700;padding:0 26px;display:flex;align-items:center;gap:11px;cursor:pointer" style-hover="background:#0F5A2F"><i class="ph-duotone ph-seal-check" style="font-size:26px"></i>Valider canoniquement</button>
+          </div>
+          <div style="flex:none;background:#FDF3DC;border-top:1.5px solid #D99A2B;padding:11px 22px;font-size:16px;color:#4A443E;line-height:1.4">La validation est nominative et définitive : elle sera enregistrée au nom de {{ nomCelebrant }} et un écran de confirmation rappellera la date du mariage avant l'enregistrement.</div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">« Demander une précision » est volontairement à gauche, loin du pouce qui valide : c'est la sortie de secours, elle ne doit jamais être touchée par erreur.</div>
+  </div>
+
+  <!-- ============ 04 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">04</div>
+      <h2 style="font-size:40px;margin:0">Registres sacramentels</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Un champ de recherche de 64 px de haut, et c'est tout : le prêtre arrive ici avec un nom en tête, prononcé au comptoir par une personne qui attend. L'acte s'affiche comme un extrait de registre, en lecture seule — aucun champ n'est modifiable, et la mention le dit avant qu'on ait essayé.</p>
+
+    <div data-screen-label="04 Registres sacramentels" style="width:1280px;height:800px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+
+      <div style="background:#0B1F3A;padding:14px 24px;display:flex;align-items:center;gap:20px;flex:none">
+        <div><div style="font-size:24px;font-weight:700;color:#fff;line-height:1.15">Registres sacramentels</div><div style="font-size:16px;color:#C3D0E1;margin-top:2px">Saint-Jean de Cocody · consultation en lecture seule</div></div>
+      </div>
+
+      <div style="background:#fff;border-bottom:2px solid #C2BAB0;display:flex;flex:none">
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-sun-horizon" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Aujourd'hui</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-calendar-dots" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Mon agenda</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid transparent;cursor:pointer" style-hover="background:#F7F5F2">
+          <i class="ph-duotone ph-heart" style="font-size:26px;color:#4A443E"></i><span style="font-size:20px;color:#2E2925">Bans de mariage</span>
+          <span style="font-size:16px;font-weight:700;color:#fff;background:#B3261E;border-radius:12px;padding:2px 10px">3</span>
+        </div>
+        <div style="flex:1;min-height:66px;display:flex;align-items:center;justify-content:center;gap:11px;border-bottom:5px solid #C25A34;background:#FBEDE6;cursor:pointer">
+          <i class="ph-duotone ph-book-bookmark" style="font-size:26px;color:#A84A28"></i><span style="font-size:20px;font-weight:700;color:#A84A28">Registres</span>
+        </div>
+      </div>
+
+      <div style="flex:none;padding:18px 24px 0">
+        <div style="min-height:64px;background:#fff;border:3px solid #14345E;border-radius:6px;display:flex;align-items:center;gap:14px;padding:0 18px">
+          <i class="ph-duotone ph-magnifying-glass" style="font-size:28px;color:#14345E;flex:none"></i>
+          <span style="font-size:24px;color:#2E2925">Kouassi Adjoua</span>
+          <i class="ph-duotone ph-x-circle" style="font-size:26px;color:#6B655D;margin-left:auto;flex:none"></i>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap">
+          <div style="min-height:48px;border:2px solid #14345E;background:#E8EDF5;border-radius:6px;display:flex;align-items:center;padding:0 16px;font-size:17px;font-weight:700;color:#14345E;cursor:pointer">Tous les registres</div>
+          <div style="min-height:48px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;padding:0 16px;font-size:17px;color:#2E2925;cursor:pointer" style-hover="background:#F2EFEA">Baptêmes</div>
+          <div style="min-height:48px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;padding:0 16px;font-size:17px;color:#2E2925;cursor:pointer" style-hover="background:#F2EFEA">Mariages</div>
+          <div style="min-height:48px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;padding:0 16px;font-size:17px;color:#2E2925;cursor:pointer" style-hover="background:#F2EFEA">Confirmations</div>
+          <div style="margin-left:auto;font-size:17px;color:#6B655D;font-variant-numeric:tabular-nums">3 actes trouvés</div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;display:grid;grid-template-columns:396px minmax(0,1fr);gap:20px;padding:16px 24px 20px">
+
+        <div style="display:flex;flex-direction:column;gap:10px;min-height:0">
+          <div style="background:#14345E;border-radius:6px;padding:15px 17px;cursor:pointer">
+            <div style="font-size:20px;font-weight:700;color:#fff">Baptême</div>
+            <div style="font-family:'Source Serif 4',serif;font-size:25px;color:#fff;line-height:1.2;margin-top:4px">Kouassi Adjoua Léontine</div>
+            <div style="font-size:17px;color:#C3D0E1;margin-top:5px;font-variant-numeric:tabular-nums">24 juillet 1988 · registre B-1988, f. 112 n° 41</div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:15px 17px;cursor:pointer" style-hover="background:#F2EFEA">
+            <div style="font-size:20px;font-weight:700;color:#14345E">Confirmation</div>
+            <div style="font-family:'Source Serif 4',serif;font-size:25px;color:#2E2925;line-height:1.2;margin-top:4px">Kouassi Adjoua Léontine</div>
+            <div style="font-size:17px;color:#6B655D;margin-top:5px;font-variant-numeric:tabular-nums">3 juin 2001 · registre CF-2001, f. 8 n° 96</div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:15px 17px;cursor:pointer" style-hover="background:#F2EFEA">
+            <div style="font-size:20px;font-weight:700;color:#14345E">Mariage</div>
+            <div style="font-family:'Source Serif 4',serif;font-size:25px;color:#2E2925;line-height:1.2;margin-top:4px">Kouassi Adjoua &amp; Diomandé Célestin</div>
+            <div style="font-size:17px;color:#6B655D;margin-top:5px;font-variant-numeric:tabular-nums">18 décembre 2010 · registre M-2010, f. 21 n° 7</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;display:flex;flex-direction:column;min-height:0;overflow:hidden">
+          <div style="flex:none;background:#F2EFEA;border-bottom:1.5px solid #DDD7CF;padding:11px 22px;display:flex;align-items:center;gap:11px">
+            <i class="ph-duotone ph-lock-simple" style="font-size:22px;color:#4A443E"></i>
+            <div style="font-size:17px;font-weight:600;color:#4A443E">Lecture seule · toute correction passe par le secrétariat</div>
+          </div>
+
+          <div style="flex:1;min-height:0;padding:16px 26px 14px;font-family:'Source Serif 4',serif">
+            <div style="text-align:center;border-bottom:2px solid #2E2925;padding-bottom:6px">
+              <div style="font-family:'Noto Sans',sans-serif;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;color:#6B655D">Extrait du registre des baptêmes</div>
+              <div style="font-size:24px;font-weight:600;color:#2E2925;margin-top:2px">Paroisse Saint-Michel de Bouaké</div>
+              <div style="font-family:'Noto Sans',sans-serif;font-size:15px;color:#4A443E;margin-top:1px;font-variant-numeric:tabular-nums">Registre B-1988 · folio 112 · acte n° 41</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:0 36px;padding-top:12px;font-family:'Noto Sans',sans-serif;font-size:17px">
+              <div style="display:grid;grid-template-columns:104px minmax(0,1fr);gap:6px 14px;align-content:start">
+                <div style="color:#6B655D">Baptisée</div>
+                <div style="font-family:'Source Serif 4',serif;font-size:24px;font-weight:600;color:#2E2925;line-height:1.2">Kouassi Adjoua Léontine</div>
+                <div style="color:#6B655D">Née le</div>
+                <div style="color:#2E2925;font-variant-numeric:tabular-nums">2 mai 1988, à Bouaké</div>
+                <div style="color:#6B655D">Baptisée le</div>
+                <div style="color:#2E2925;font-weight:600;font-variant-numeric:tabular-nums">24 juillet 1988</div>
+              </div>
+              <div style="display:grid;grid-template-columns:146px minmax(0,1fr);gap:6px 14px;align-content:start">
+                <div style="color:#6B655D">Père</div>
+                <div style="color:#2E2925">Kouassi Bernard</div>
+                <div style="color:#6B655D">Mère</div>
+                <div style="color:#2E2925">Yao Marguerite</div>
+                <div style="color:#6B655D">Parrain, marraine</div>
+                <div style="color:#2E2925">N'Guessan Paul · Traoré Aminata</div>
+                <div style="color:#6B655D">Ministre</div>
+                <div style="color:#2E2925">P. Assouman Jean-Baptiste</div>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:12px;background:#FDF3DC;border-left:5px solid #8A5200;border-radius:4px;padding:8px 16px;margin-top:12px;font-family:'Noto Sans',sans-serif">
+              <i class="ph-duotone ph-note-pencil" style="font-size:22px;color:#8A5200;flex:none"></i>
+              <div style="font-size:16px;color:#4A443E;line-height:1.35">Mention marginale : mariage célébré le 18 décembre 2010, M-2010 f. 21 n° 7.</div>
+            </div>
+          </div>
+
+          <div style="flex:none;border-top:1.5px solid #DDD7CF;padding:15px 22px;display:flex;align-items:center;gap:14px">
+            <div style="font-size:17px;color:#6B655D;line-height:1.4">La délivrance du certificat se fait au secrétariat.</div>
+            <button style="margin-left:auto;min-height:56px;background:#14345E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:18px;font-weight:700;padding:0 22px;display:flex;align-items:center;gap:10px;cursor:pointer;flex:none" style-hover="background:#0E2A4E"><i class="ph-duotone ph-paper-plane-tilt" style="font-size:23px"></i>Transmettre au secrétariat</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">L'acte est mis en page comme un extrait de registre, en Source Serif et sur deux colonnes tabulaires, pour que le prêtre puisse le lire à voix haute au demandeur sans transposer mentalement une grille d'interface.</div>
+  </div>
+
+  <div style="padding-top:96px">
+    <div style="height:1px;background:var(--color-text)"></div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;padding-top:28px">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Échelle de lisibilité</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Corps de base 19 px au lieu de 14 px, cibles tactiles à 48 px minimum et 60 px pour les boutons de validation, contrastes au moins 4,5:1 partout et au-delà de 7:1 pour tout ce qui est lu à voix haute. Le sélecteur de taille de texte agit sur trois paliers — 100 %, 115 %, 135 % — et sur toute l'interface, jamais sur un seul bloc.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Même système, autre densité</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Mêmes couleurs, mêmes badges de statut, mêmes mots que le secrétariat et le trésorier — mais quatre onglets au lieu d'une colonne de navigation, et jamais plus de six éléments par écran. Le prêtre et la secrétaire regardent les mêmes dossiers ; ils ne les regardent pas au même rythme.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Ce qui n'est pas encore dessiné</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">L'écran de confirmation de la validation canonique, la vue jour de l'agenda pour les tablettes en portrait, et le mode hors-ligne : la feuille d'intentions du jour doit rester lisible si le réseau tombe à 5 h 50, ce qui suppose de décider ce qui est mis en cache et ce qui ne l'est pas.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;nomCelebrant&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;P. Konan Michel&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;masquerNomsDemandeurs&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Vue du jour&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const masquer = this.props.masquerNomsDemandeurs ?? false;
+    return {
+      nomCelebrant: this.props.nomCelebrant ?? 'P. Konan Michel',
+      avecDemandeur: !masquer
+    };
+  }
+}
+</script>
+</body>
+</html>

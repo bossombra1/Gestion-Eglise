@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/styles.css">
+<script src="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Noto+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-700); text-decoration: underline; }
+</style>
+</helmet>
+
+<div style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:0 0 120px">
+<div style="width:1440px;min-width:1440px;margin:0 auto;padding:0 56px">
+
+  <div style="padding-top:64px">
+    <div style="height:6px;background:var(--color-text)"></div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:10px 0 9px">
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">EcclesiaConnect · Paroisse Mobile</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-accent-700)">Console d'administration</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Poste 1280 · usage restreint</div>
+    </div>
+    <div style="height:1px;background:var(--color-text)"></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:64px;padding:52px 0 0;align-items:end">
+    <div>
+      <h1 style="font-size:84px;line-height:0.95;letter-spacing:-0.03em;margin:0 0 20px">Deux métiers, <span style="font-style:italic;font-weight:400">une console</span></h1>
+      <p style="font-size:19px;line-height:1.5;max-width:58ch;margin:0;text-wrap:pretty">L'administrateur système branche des passerelles de paiement et distribue des rôles. Le responsable diocésain regarde une carte d'adoption et écrit à quarante mille personnes. Ils partagent une coquille de navigation et rien d'autre : chaque univers a sa bande de couleur, sa densité et son vocabulaire. Deux écrans sortent des deux univers — le journal d'audit et la file des signalements — et portent une signalétique qui ne ressemble à rien d'autre dans tout le système.</p>
+    </div>
+    <div style="padding-bottom:6px">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:14px">Écrans</div>
+      <div style="display:grid;gap:7px;font-size:15px">
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">01</span>Système · paroisses du réseau</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">02</span>Système · accès et journal d'audit</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">03</span>Diocèse · tableau de bord</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">04</span>Diocèse · communications</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">05</span>Protection des mineurs</div>
+      </div>
+      <div style="margin-top:20px;border-top:1px solid var(--color-neutral-300);padding-top:14px;font-size:13.5px;line-height:1.5;color:var(--color-neutral-700)">Trois codes de bande : bleu de nuit pour le système, ocre pour le diocèse, hachures sombres et badge rouge pour les écrans à accès très restreint. La couleur de la bande dit où l'on est avant qu'on ait lu un titre.</div>
+    </div>
+  </div>
+
+  <!-- ============ 01 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">01</div>
+      <h2 style="font-size:40px;margin:0">Système · paroisses du réseau</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Quatorze paroisses, dont deux en cours d'intégration. La table dit d'un coup d'œil ce qui marche et ce qui ne marche pas : l'agrégateur de paiement, le code USSD, l'expéditeur SMS, le numéro WhatsApp. Les paramètres d'intégration ne s'ouvrent pas dans une autre page mais sous la ligne, parce qu'on les règle en regardant la paroisse voisine qui, elle, fonctionne.</p>
+
+    <div data-screen-label="01 Paroisses du réseau" style="width:1280px;min-height:800px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:236px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:16px 0">
+        <div style="padding:0 16px 16px">
+          <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.2">EcclesiaConnect</div>
+          <div style="font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8FA6C4;margin-top:2px">Console</div>
+        </div>
+        <div style="padding:0 16px;display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="width:14px;height:3px;background:#24548F"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8FA6C4">Administration système</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;background:#24548F;cursor:pointer"><i class="ph-duotone ph-buildings" style="font-size:20px;color:#fff"></i><span style="font-size:15px;font-weight:700;color:#fff">Paroisses</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-plugs" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Intégrations</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-users-four" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Accès et audit</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-terminal-window" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Journaux techniques</span></div>
+        </div>
+        <div style="padding:20px 16px 8px;display:flex;align-items:center;gap:8px"><span style="width:14px;height:3px;background:#D99A2B"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8FA6C4">Diocèse</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-chart-line-up" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-megaphone" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Communications</span></div>
+        </div>
+        <div style="padding:20px 16px 8px;display:flex;align-items:center;gap:8px"><span style="width:14px;height:3px;background:#B3261E"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#E5A8A4">Accès restreint</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-shield-warning" style="font-size:20px;color:#E5A8A4"></i><span style="font-size:15px;color:#C3D0E1">Signalements</span></div>
+        </div>
+        <div style="margin-top:auto;padding:16px 16px 0;border-top:1px solid #1C3A63">
+          <div style="font-size:14px;font-weight:600;color:#fff;line-height:1.3">admin.systeme</div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:1px">Administrateur · {{ nomDiocese }}</div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#14345E;padding:15px 24px;display:flex;align-items:center;gap:18px;flex:none">
+          <div style="min-width:0">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#8FA6C4">Administration système</div>
+            <div style="font-size:23px;font-weight:700;color:#fff;line-height:1.2;margin-top:2px">Paroisses du réseau</div>
+          </div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:12px;flex:none">
+            <div style="font-size:15px;color:#C3D0E1;font-variant-numeric:tabular-nums">14 paroisses · 12 actives</div>
+            <button style="min-height:46px;background:#fff;color:#14345E;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15.5px;font-weight:700;padding:0 18px;display:flex;align-items:center;gap:9px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-plus-circle" style="font-size:20px"></i>Ajouter une paroisse</button>
+          </div>
+        </div>
+
+        <div style="flex:1;min-width:0;padding:18px 24px 24px;display:flex;flex-direction:column;gap:14px">
+
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <div style="min-height:44px;background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;display:flex;align-items:center;gap:10px;padding:0 13px;min-width:260px">
+              <i class="ph-duotone ph-magnifying-glass" style="font-size:19px;color:#6B655D;flex:none"></i>
+              <span style="font-size:15px;color:#6B655D">Filtrer par nom ou commune</span>
+            </div>
+            <div style="min-height:44px;border:2px solid #14345E;background:#E8EDF5;border-radius:6px;display:flex;align-items:center;padding:0 14px;font-size:14.5px;font-weight:700;color:#14345E;cursor:pointer">Toutes</div>
+            <div style="min-height:44px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:14.5px;color:#2E2925;cursor:pointer" style-hover="background:#F2EFEA"><span style="width:11px;height:11px;border-radius:3px;background:#8A5200"></span>En intégration · 2</div>
+            <div style="min-height:44px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:14.5px;color:#2E2925;cursor:pointer" style-hover="background:#F2EFEA"><span style="width:11px;height:11px;border-radius:3px;background:#B3261E"></span>Passerelle en panne · 1</div>
+          </div>
+
+          <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;overflow:hidden">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 190px 210px 190px 108px;gap:14px;padding:10px 18px;background:#F2EFEA;border-bottom:1.5px solid #DDD7CF;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">
+              <div>Paroisse</div><div>Statut</div><div>Paiement</div><div>Notification</div><div></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 190px 210px 190px 108px;gap:14px;padding:11px 18px;align-items:center;border-bottom:1px solid #EDE9E4;background:#E8EDF5">
+              <div><div style="font-size:17px;font-weight:600;color:#2E2925">Saint-Jean de Cocody</div><div style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">CIV-ABJ-014 · 2 480 fidèles</div></div>
+              <div><span style="display:inline-flex;align-items:center;gap:6px;background:#E4F1E8;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-check-circle" style="font-size:16px"></i>Active</span></div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.4">Wave · Orange Money<div style="color:#6B655D;font-variant-numeric:tabular-nums">USSD *144*81#</div></div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.4">SMS + WhatsApp<div style="color:#6B655D">Expéditeur ECCLESIA</div></div>
+              <div><button style="min-height:40px;width:100%;background:#14345E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer" style-hover="background:#0E2A4E">Fermer</button></div>
+            </div>
+
+            <div style="background:#E8EDF5;border-bottom:1px solid #EDE9E4;padding:14px 18px 16px">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#14345E;margin-bottom:11px">Paramètres d'intégration · Saint-Jean de Cocody</div>
+              <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+                <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;padding:12px">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><i class="ph-duotone ph-hand-coins" style="font-size:19px;color:#14345E"></i><div style="font-size:14px;font-weight:700;color:#2E2925">Agrégateur</div></div>
+                  <div style="font-size:14px;color:#2E2925;line-height:1.5">Clé marchande active<div style="color:#6B655D;font-variant-numeric:tabular-nums">SJC-PAY-2026 · rotation le 1er déc.</div></div>
+                  <div style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:700;color:#0F5A2F"><span style="width:9px;height:9px;border-radius:50%;background:#14713C"></span>Dernier appel réussi il y a 4 min</div>
+                </div>
+                <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;padding:12px">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><i class="ph-duotone ph-hash" style="font-size:19px;color:#14345E"></i><div style="font-size:14px;font-weight:700;color:#2E2925">Menu USSD</div></div>
+                  <div style="font-size:14px;color:#2E2925;line-height:1.5;font-variant-numeric:tabular-nums">*144*81# · 6 entrées<div style="color:#6B655D">Arbre publié le 12 août</div></div>
+                  <div style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:700;color:#0F5A2F"><span style="width:9px;height:9px;border-radius:50%;background:#14713C"></span>Opérateur joignable</div>
+                </div>
+                <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;padding:12px">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><i class="ph-duotone ph-chat-dots" style="font-size:19px;color:#14345E"></i><div style="font-size:14px;font-weight:700;color:#2E2925">SMS</div></div>
+                  <div style="font-size:14px;color:#2E2925;line-height:1.5">Expéditeur ECCLESIA<div style="color:#6B655D;font-variant-numeric:tabular-nums">Quota 12 000 / mois · 41 % utilisé</div></div>
+                  <div style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:700;color:#0F5A2F"><span style="width:9px;height:9px;border-radius:50%;background:#14713C"></span>Route principale</div>
+                </div>
+                <div style="background:#fff;border:1px solid #D99A2B;border-radius:6px;padding:12px">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><i class="ph-duotone ph-whatsapp-logo" style="font-size:19px;color:#8A5200"></i><div style="font-size:14px;font-weight:700;color:#2E2925">WhatsApp</div></div>
+                  <div style="font-size:14px;color:#2E2925;line-height:1.5">Compte vérifié<div style="color:#6B655D">2 gabarits en attente de Meta</div></div>
+                  <div style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:700;color:#6B4200"><span style="width:9px;height:9px;border-radius:50%;background:#D99A2B"></span>Validation en cours</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 190px 210px 190px 108px;gap:14px;padding:11px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+              <div><div style="font-size:17px;font-weight:600;color:#2E2925">Notre-Dame d'Adjamé</div><div style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">CIV-ABJ-003 · 3 910 fidèles</div></div>
+              <div><span style="display:inline-flex;align-items:center;gap:6px;background:#E4F1E8;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-check-circle" style="font-size:16px"></i>Active</span></div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.4">Wave · MTN MoMo<div style="color:#6B655D;font-variant-numeric:tabular-nums">USSD *144*12#</div></div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.4">SMS + WhatsApp<div style="color:#6B655D">Expéditeur NDADJAME</div></div>
+              <div><button style="min-height:40px;width:100%;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#E8EDF5">Ouvrir</button></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 190px 210px 190px 108px;gap:14px;padding:11px 18px;align-items:center;border-bottom:1px solid #EDE9E4;background:#FEF6F5">
+              <div><div style="font-size:17px;font-weight:600;color:#2E2925">Saint-Pierre de Yopougon</div><div style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">CIV-ABJ-007 · 5 240 fidèles</div></div>
+              <div><span style="display:inline-flex;align-items:center;gap:6px;background:#FBE9E8;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#8E1F19"><i class="ph-duotone ph-warning-circle" style="font-size:16px"></i>Passerelle KO</span></div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.4">Wave<div style="color:#8E1F19;font-weight:600">Échecs depuis 14 h 02</div></div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.4">SMS seul<div style="color:#6B655D">Expéditeur ECCLESIA</div></div>
+              <div><button style="min-height:40px;width:100%;background:#fff;color:#8E1F19;border:1.5px solid #B3261E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer" style-hover="background:#FBE9E8">Ouvrir</button></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 190px 210px 190px 108px;gap:14px;padding:11px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+              <div><div style="font-size:17px;font-weight:600;color:#2E2925">Sainte-Thérèse d'Abobo</div><div style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">CIV-ABJ-011 · 4 620 fidèles</div></div>
+              <div><span style="display:inline-flex;align-items:center;gap:6px;background:#E4F1E8;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-check-circle" style="font-size:16px"></i>Active</span></div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.4">Orange Money<div style="color:#6B655D;font-variant-numeric:tabular-nums">USSD *144*33#</div></div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.4">SMS seul<div style="color:#6B655D">WhatsApp non demandé</div></div>
+              <div><button style="min-height:40px;width:100%;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#E8EDF5">Ouvrir</button></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 190px 210px 190px 108px;gap:14px;padding:11px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+              <div><div style="font-size:17px;font-weight:600;color:#2E2925">Saint-André de Marcory</div><div style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">CIV-ABJ-009 · 1 870 fidèles</div></div>
+              <div><span style="display:inline-flex;align-items:center;gap:6px;background:#FDF3DC;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#6B4200"><i class="ph-duotone ph-hourglass" style="font-size:16px"></i>En intégration</span></div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.4">Wave · à tester<div style="color:#6B655D">USSD non attribué</div></div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.4">SMS en recette<div style="color:#6B655D">Expéditeur à déclarer</div></div>
+              <div><button style="min-height:40px;width:100%;background:#fff;color:#6B4200;border:1.5px solid #8A5200;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer" style-hover="background:#FDF3DC">Ouvrir</button></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 190px 210px 190px 108px;gap:14px;padding:11px 18px;align-items:center">
+              <div><div style="font-size:17px;font-weight:600;color:#2E2925">Saint-Joseph de Treichville</div><div style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">CIV-ABJ-012 · dossier en cours</div></div>
+              <div><span style="display:inline-flex;align-items:center;gap:6px;background:#FDF3DC;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#6B4200"><i class="ph-duotone ph-hourglass" style="font-size:16px"></i>En intégration</span></div>
+              <div style="font-size:14px;color:#6B655D;line-height:1.4">Aucun moyen actif</div>
+              <div style="font-size:14px;color:#6B655D;line-height:1.4">Aucun canal actif</div>
+              <div><button style="min-height:40px;width:100%;background:#fff;color:#6B4200;border:1.5px solid #8A5200;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer" style-hover="background:#FDF3DC">Ouvrir</button></div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+            <div style="font-size:15px;color:#6B655D">6 paroisses sur 14</div>
+            <div style="margin-left:auto;font-size:15px;color:#4A443E">Une paroisse en intégration n'apparaît dans aucune statistique diocésaine tant que sa première messe n'est pas publiée.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Chaque intégration porte un voyant d'état et une date de dernier échange réussi, pas un simple « configuré ». Sur ce réseau, une passerelle qui répondait hier ne répond pas forcément aujourd'hui, et c'est le seul renseignement qui compte à 14 h 02.</div>
+  </div>
+
+  <!-- ============ 02 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">02</div>
+      <h2 style="font-size:40px;margin:0">Système · accès et journal d'audit</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Les rôles se distribuent en haut, les conséquences se lisent en bas. Le journal d'audit est le miroir des écrans précédents : chaque fiche d'urgence ouverte par un chef scout, chaque validation canonique, chaque export de liste y laisse une ligne datée et nominative. C'est un écran à hachures : le consulter est lui-même un événement journalisé.</p>
+
+    <div data-screen-label="02 Accès et journal d'audit" style="width:1280px;min-height:900px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:236px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:16px 0">
+        <div style="padding:0 16px 16px">
+          <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.2">EcclesiaConnect</div>
+          <div style="font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8FA6C4;margin-top:2px">Console</div>
+        </div>
+        <div style="padding:0 16px;display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="width:14px;height:3px;background:#24548F"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8FA6C4">Administration système</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-buildings" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Paroisses</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-plugs" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Intégrations</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;background:#24548F;cursor:pointer"><i class="ph-duotone ph-users-four" style="font-size:20px;color:#fff"></i><span style="font-size:15px;font-weight:700;color:#fff">Accès et audit</span><i class="ph-duotone ph-lock-key" style="font-size:17px;color:#F2C14E;margin-left:auto"></i></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-terminal-window" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Journaux techniques</span></div>
+        </div>
+        <div style="padding:20px 16px 8px;display:flex;align-items:center;gap:8px"><span style="width:14px;height:3px;background:#D99A2B"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8FA6C4">Diocèse</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-chart-line-up" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-megaphone" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Communications</span></div>
+        </div>
+        <div style="padding:20px 16px 8px;display:flex;align-items:center;gap:8px"><span style="width:14px;height:3px;background:#B3261E"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#E5A8A4">Accès restreint</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-shield-warning" style="font-size:20px;color:#E5A8A4"></i><span style="font-size:15px;color:#C3D0E1">Signalements</span></div>
+        </div>
+        <div style="margin-top:auto;padding:16px 16px 0;border-top:1px solid #1C3A63">
+          <div style="font-size:14px;font-weight:600;color:#fff;line-height:1.3">admin.systeme</div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:1px">Administrateur · {{ nomDiocese }}</div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#14345E;padding:15px 24px;display:flex;align-items:center;gap:18px;flex:none">
+          <div style="min-width:0">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#8FA6C4">Administration système</div>
+            <div style="font-size:23px;font-weight:700;color:#fff;line-height:1.2;margin-top:2px">Accès et journal d'audit</div>
+          </div>
+          <div style="margin-left:auto;font-size:15px;color:#C3D0E1;font-variant-numeric:tabular-nums;flex:none">38 comptes · 6 rôles</div>
+        </div>
+
+        <div style="background:#4A443E;padding:11px 24px;display:flex;align-items:center;gap:13px;flex:none;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,0.10) 0 8px,transparent 8px 16px)"></div>
+          <i class="ph-duotone ph-lock-key" style="font-size:23px;color:#F2C14E;position:relative;flex:none"></i>
+          <div style="position:relative;font-size:15px;color:#fff;line-height:1.4"><strong style="font-weight:700">Accès très restreint.</strong> Le journal contient des traces de consultation de données sensibles. Votre venue sur cet écran est elle-même journalisée.</div>
+          <span style="position:relative;margin-left:auto;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#fff;background:#B3261E;border-radius:4px;padding:6px 11px;flex:none">Niveau 3</span>
+        </div>
+
+        <div style="flex:1;min-width:0;padding:18px 24px 24px;display:flex;flex-direction:column;gap:18px">
+
+          <div>
+            <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:10px">
+              <div style="font-size:18px;font-weight:700;color:#2E2925">Comptes et rôles</div>
+              <div style="font-size:14.5px;color:#6B655D">Un rôle donne accès à des écrans, jamais à des données d'une autre paroisse.</div>
+              <button style="margin-left:auto;min-height:42px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:600;padding:0 15px;display:flex;align-items:center;gap:8px;cursor:pointer;flex:none" style-hover="background:#E8EDF5"><i class="ph-duotone ph-user-plus" style="font-size:18px"></i>Inviter un compte</button>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;overflow:hidden">
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) 236px 178px 178px 96px;gap:12px;padding:9px 18px;background:#F2EFEA;border-bottom:1.5px solid #DDD7CF;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">
+                <div>Compte</div><div>Rôle</div><div>Paroisse</div><div>Dernier accès</div><div>2FA</div>
+              </div>
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) 236px 178px 178px 96px;gap:12px;padding:10px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+                <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925">P. Konan Michel</div>
+                <div><span style="display:inline-flex;align-items:center;gap:6px;background:#E8EDF5;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#14345E">Curé</span></div>
+                <div style="font-size:14.5px;color:#2E2925">Saint-Jean</div>
+                <div style="font-size:14.5px;color:#4A443E;font-variant-numeric:tabular-nums">Aujourd'hui, 11 h 42</div>
+                <div><i class="ph-duotone ph-shield-check" style="font-size:21px;color:#14713C"></i></div>
+              </div>
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) 236px 178px 178px 96px;gap:12px;padding:10px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+                <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925">P. Assouman Jean-Baptiste</div>
+                <div><span style="display:inline-flex;align-items:center;gap:6px;background:#FBE9E8;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#8E1F19"><i class="ph-duotone ph-shield-warning" style="font-size:16px"></i>Référent mineurs</span></div>
+                <div style="font-size:14.5px;color:#2E2925">Diocèse</div>
+                <div style="font-size:14.5px;color:#4A443E;font-variant-numeric:tabular-nums">Aujourd'hui, 07 h 30</div>
+                <div><i class="ph-duotone ph-shield-check" style="font-size:21px;color:#14713C"></i></div>
+              </div>
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) 236px 178px 178px 96px;gap:12px;padding:10px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+                <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925">Mme Kouassi Adjoua</div>
+                <div><span style="display:inline-flex;align-items:center;gap:6px;background:#E8EDF5;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#14345E">Secrétariat</span></div>
+                <div style="font-size:14.5px;color:#2E2925">Saint-Jean</div>
+                <div style="font-size:14.5px;color:#4A443E;font-variant-numeric:tabular-nums">Aujourd'hui, 09 h 18</div>
+                <div><i class="ph-duotone ph-shield-check" style="font-size:21px;color:#14713C"></i></div>
+              </div>
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) 236px 178px 178px 96px;gap:12px;padding:10px 18px;align-items:center;border-bottom:1px solid #EDE9E4;background:#FEFAF3">
+                <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925">M. Diomandé Célestin</div>
+                <div><span style="display:inline-flex;align-items:center;gap:6px;background:#FDF3DC;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#6B4200">Trésorier</span></div>
+                <div style="font-size:14.5px;color:#2E2925">Saint-Jean</div>
+                <div style="font-size:14.5px;color:#4A443E;font-variant-numeric:tabular-nums">Hier, 19 h 55</div>
+                <div><i class="ph-duotone ph-shield-warning" style="font-size:21px;color:#B3261E"></i></div>
+              </div>
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) 236px 178px 178px 96px;gap:12px;padding:10px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+                <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925">Mme Bamba Solange</div>
+                <div><span style="display:inline-flex;align-items:center;gap:6px;background:#E8EDF5;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#14345E">Responsable de mouvement</span></div>
+                <div style="font-size:14.5px;color:#2E2925">Saint-Jean</div>
+                <div style="font-size:14.5px;color:#4A443E;font-variant-numeric:tabular-nums">Samedi, 21 h 04</div>
+                <div><i class="ph-duotone ph-shield-check" style="font-size:21px;color:#14713C"></i></div>
+              </div>
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) 236px 178px 178px 96px;gap:12px;padding:10px 18px;align-items:center">
+                <div style="font-size:17px;font-weight:600;color:#2E2925;font-variant-numeric:tabular-nums">admin.systeme</div>
+                <div><span style="display:inline-flex;align-items:center;gap:6px;background:#0B1F3A;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#fff"><i class="ph-duotone ph-terminal-window" style="font-size:16px"></i>Administrateur</span></div>
+                <div style="font-size:14.5px;color:#2E2925">Toutes</div>
+                <div style="font-size:14.5px;color:#4A443E;font-variant-numeric:tabular-nums">Aujourd'hui, 08 h 55</div>
+                <div><i class="ph-duotone ph-shield-check" style="font-size:21px;color:#14713C"></i></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:9px;margin-top:9px">
+              <i class="ph-duotone ph-shield-warning" style="font-size:19px;color:#B3261E;flex:none"></i>
+              <div style="font-size:14.5px;color:#4A443E">Un compte sans double authentification ne peut ni exporter une liste ni consulter une fiche d'urgence.</div>
+            </div>
+          </div>
+
+          <div style="border:2px solid #4A443E;border-radius:6px;overflow:hidden">
+            <div style="background:#4A443E;padding:11px 18px;display:flex;align-items:center;gap:12px">
+              <i class="ph-duotone ph-scroll" style="font-size:22px;color:#F2C14E;flex:none"></i>
+              <div style="font-size:17px;font-weight:700;color:#fff">Journal d'audit</div>
+              <div style="font-size:14.5px;color:#DDD7CF">Conservation 3 ans · lecture seule, y compris pour l'administrateur</div>
+              <button style="margin-left:auto;min-height:40px;background:transparent;color:#fff;border:1.5px solid #8A8279;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 14px;display:flex;align-items:center;gap:8px;cursor:pointer;flex:none" style-hover="background:#2E2925"><i class="ph-duotone ph-download-simple" style="font-size:17px"></i>Extraire (motif requis)</button>
+            </div>
+            <div style="background:#F2EFEA;padding:11px 18px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;border-bottom:1.5px solid #DDD7CF">
+              <div style="min-height:40px;border:2px solid #4A443E;background:#fff;border-radius:6px;display:flex;align-items:center;padding:0 13px;font-size:14px;font-weight:700;color:#2E2925;cursor:pointer">Tous · 1 284</div>
+              <div style="min-height:40px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:7px;padding:0 13px;font-size:14px;color:#2E2925;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-first-aid-kit" style="font-size:17px;color:#B3261E"></i>Fiches d'urgence · 46</div>
+              <div style="min-height:40px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:7px;padding:0 13px;font-size:14px;color:#2E2925;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-seal-check" style="font-size:17px;color:#14713C"></i>Validations · 112</div>
+              <div style="min-height:40px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:7px;padding:0 13px;font-size:14px;color:#2E2925;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-export" style="font-size:17px;color:#8A5200"></i>Exports · 23</div>
+              <div style="min-height:40px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:7px;padding:0 13px;font-size:14px;color:#2E2925;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-user-gear" style="font-size:17px;color:#14345E"></i>Rôles · 9</div>
+              <div style="margin-left:auto;font-size:14px;color:#4A443E;font-variant-numeric:tabular-nums">5 septembre 2026</div>
+            </div>
+            <div style="background:#fff">
+              <div style="display:grid;grid-template-columns:156px 200px 268px minmax(0,1fr) 112px;gap:12px;padding:9px 18px;background:#F7F5F2;border-bottom:1px solid #DDD7CF;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">
+                <div>Horodatage</div><div>Acteur</div><div>Événement</div><div>Objet</div><div>Origine</div>
+              </div>
+              <div style="display:grid;grid-template-columns:156px 200px 268px minmax(0,1fr) 112px;gap:12px;padding:10px 18px;align-items:center;border-bottom:1px solid #EDE9E4;background:#FEF6F5">
+                <div style="font-size:14px;color:#2E2925;font-variant-numeric:tabular-nums">15 h 05 min 12</div>
+                <div style="font-size:14.5px;color:#2E2925">Mme Bamba Solange</div>
+                <div style="display:flex;align-items:center;gap:8px"><i class="ph-duotone ph-first-aid-kit" style="font-size:19px;color:#B3261E;flex:none"></i><span style="font-size:14.5px;font-weight:700;color:#8E1F19">Consultation fiche d'urgence</span></div>
+                <div style="font-size:14.5px;color:#2E2925;line-height:1.35">Enfant Diomandé A. · Saint-Jean<div style="font-size:13.5px;color:#6B655D">Motif : urgence pendant la séance</div></div>
+                <div style="font-size:14px;color:#4A443E">Android</div>
+              </div>
+              <div style="display:grid;grid-template-columns:156px 200px 268px minmax(0,1fr) 112px;gap:12px;padding:10px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+                <div style="font-size:14px;color:#2E2925;font-variant-numeric:tabular-nums">11 h 42 min 03</div>
+                <div style="font-size:14.5px;color:#2E2925">P. Konan Michel</div>
+                <div style="display:flex;align-items:center;gap:8px"><i class="ph-duotone ph-seal-check" style="font-size:19px;color:#14713C;flex:none"></i><span style="font-size:14.5px;color:#2E2925">Validation canonique</span></div>
+                <div style="font-size:14.5px;color:#2E2925;line-height:1.35">Bans Koffi–Bamba · mariage du 5 sept.</div>
+                <div style="font-size:14px;color:#4A443E">Tablette</div>
+              </div>
+              <div style="display:grid;grid-template-columns:156px 200px 268px minmax(0,1fr) 112px;gap:12px;padding:10px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+                <div style="font-size:14px;color:#2E2925;font-variant-numeric:tabular-nums">09 h 18 min 47</div>
+                <div style="font-size:14.5px;color:#2E2925">Mme Kouassi Adjoua</div>
+                <div style="display:flex;align-items:center;gap:8px"><i class="ph-duotone ph-export" style="font-size:19px;color:#8A5200;flex:none"></i><span style="font-size:14.5px;color:#2E2925">Export de liste</span></div>
+                <div style="font-size:14.5px;color:#2E2925;line-height:1.35">Inscrits catéchèse CE2 · 18 lignes<div style="font-size:13.5px;color:#6B655D">Sans données de santé</div></div>
+                <div style="font-size:14px;color:#4A443E">Poste 1280</div>
+              </div>
+              <div style="display:grid;grid-template-columns:156px 200px 268px minmax(0,1fr) 112px;gap:12px;padding:10px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+                <div style="font-size:14px;color:#2E2925;font-variant-numeric:tabular-nums">08 h 55 min 21</div>
+                <div style="font-size:14.5px;color:#2E2925;font-variant-numeric:tabular-nums">admin.systeme</div>
+                <div style="display:flex;align-items:center;gap:8px"><i class="ph-duotone ph-user-gear" style="font-size:19px;color:#14345E;flex:none"></i><span style="font-size:14.5px;color:#2E2925">Modification de rôle</span></div>
+                <div style="font-size:14.5px;color:#2E2925;line-height:1.35">M. Diomandé C. · Trésorier + Secrétariat<div style="font-size:13.5px;color:#6B655D">Demandé par le curé, ticket 812</div></div>
+                <div style="font-size:14px;color:#4A443E">Console</div>
+              </div>
+              <div style="display:grid;grid-template-columns:156px 200px 268px minmax(0,1fr) 112px;gap:12px;padding:10px 18px;align-items:center;border-bottom:1px solid #EDE9E4;background:#FEF6F5">
+                <div style="font-size:14px;color:#2E2925;font-variant-numeric:tabular-nums">07 h 30 min 09</div>
+                <div style="font-size:14.5px;color:#2E2925">P. Assouman J.-B.</div>
+                <div style="display:flex;align-items:center;gap:8px"><i class="ph-duotone ph-shield-warning" style="font-size:19px;color:#B3261E;flex:none"></i><span style="font-size:14.5px;font-weight:700;color:#8E1F19">Ouverture de signalement</span></div>
+                <div style="font-size:14.5px;color:#2E2925;line-height:1.35;font-variant-numeric:tabular-nums">Dossier 2026-014<div style="font-size:13.5px;color:#6B655D">Contenu non journalisé</div></div>
+                <div style="font-size:14px;color:#4A443E">Console</div>
+              </div>
+              <div style="display:grid;grid-template-columns:156px 200px 268px minmax(0,1fr) 112px;gap:12px;padding:10px 18px;align-items:center">
+                <div style="font-size:14px;color:#2E2925;font-variant-numeric:tabular-nums">Hier · 21 h 04 min 38</div>
+                <div style="font-size:14.5px;color:#2E2925">Mme Bamba Solange</div>
+                <div style="display:flex;align-items:center;gap:8px"><i class="ph-duotone ph-megaphone" style="font-size:19px;color:#14345E;flex:none"></i><span style="font-size:14.5px;color:#2E2925">Message de groupe</span></div>
+                <div style="font-size:14.5px;color:#2E2925;line-height:1.35">26 parents · Louveteaux</div>
+                <div style="font-size:14px;color:#4A443E">Android</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Le journal enregistre qu'un signalement a été ouvert, jamais ce qu'il contient : la traçabilité s'arrête au seuil du dossier de protection, sinon l'audit deviendrait la fuite qu'il est censé prévenir. Le nom des enfants y est abrégé pour la même raison.</div>
+  </div>
+
+  <!-- ============ 03 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">03</div>
+      <h2 style="font-size:40px;margin:0">Diocèse · tableau de bord</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">On change d'univers : bande ocre, titres en Source Serif, chiffres agrégés. Le responsable diocésain ne voit jamais un fidèle, il voit des paroisses — et il peut descendre dans l'une d'elles, où il retrouve les mêmes trois indicateurs à l'échelle locale. Le taux d'adoption est le seul chiffre qui compte vraiment ici : il dit où l'accompagnement manque.</p>
+
+    <div data-screen-label="03 Tableau de bord diocésain" style="width:1280px;min-height:800px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:236px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:16px 0">
+        <div style="padding:0 16px 16px">
+          <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.2">EcclesiaConnect</div>
+          <div style="font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8FA6C4;margin-top:2px">Console</div>
+        </div>
+        <div style="padding:0 16px;display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="width:14px;height:3px;background:#24548F"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8FA6C4">Administration système</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;opacity:0.5"><i class="ph-duotone ph-buildings" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Paroisses</span><i class="ph-duotone ph-lock-simple" style="font-size:16px;color:#8FA6C4;margin-left:auto"></i></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;opacity:0.5"><i class="ph-duotone ph-plugs" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Intégrations</span><i class="ph-duotone ph-lock-simple" style="font-size:16px;color:#8FA6C4;margin-left:auto"></i></div>
+        </div>
+        <div style="padding:20px 16px 8px;display:flex;align-items:center;gap:8px"><span style="width:14px;height:3px;background:#D99A2B"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#F2C14E">Diocèse</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;background:#8A5200;cursor:pointer"><i class="ph-duotone ph-chart-line-up" style="font-size:20px;color:#fff"></i><span style="font-size:15px;font-weight:700;color:#fff">Tableau de bord</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-megaphone" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Communications</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-file-text" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Rapports annuels</span></div>
+        </div>
+        <div style="margin-top:auto;padding:16px 16px 0;border-top:1px solid #1C3A63">
+          <div style="font-size:14px;font-weight:600;color:#fff;line-height:1.3">Mgr Kouadio Bernard</div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:1px">Supervision · {{ nomDiocese }}</div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#8A5200;padding:15px 24px;display:flex;align-items:center;gap:18px;flex:none">
+          <div style="min-width:0">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#F7E4B8">Supervision diocésaine</div>
+            <div style="font-family:'Source Serif 4',serif;font-size:26px;font-weight:600;color:#fff;line-height:1.2;margin-top:2px">{{ nomDiocese }}</div>
+          </div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex:none">
+            <div style="min-height:46px;border:2px solid #B07A20;border-radius:6px;display:flex;align-items:center;padding:0 15px;font-size:15px;font-weight:700;color:#fff;cursor:pointer">Août 2026</div>
+            <button style="min-height:46px;background:#fff;color:#6B4200;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15.5px;font-weight:700;padding:0 18px;display:flex;align-items:center;gap:9px;cursor:pointer" style-hover="background:#FDF3DC"><i class="ph-duotone ph-download-simple" style="font-size:20px"></i>Rapport mensuel</button>
+          </div>
+        </div>
+
+        <div style="flex:1;min-width:0;padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px">
+
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+            <div style="background:#fff;border:1px solid #EDE9E4;border-top:4px solid #8A5200;border-radius:6px;padding:15px 16px">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#8A5200">Fidèles actifs</div>
+              <div style="font-size:38px;font-weight:700;color:#2E2925;line-height:1.05;margin-top:7px;font-variant-numeric:tabular-nums">24 810</div>
+              <div style="font-size:14.5px;color:#4A443E;margin-top:4px">sur 39 700 inscrits</div>
+              <div style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:14px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-trend-up" style="font-size:17px"></i>+ 1 240 ce mois</div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-top:4px solid #8A5200;border-radius:6px;padding:15px 16px">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#8A5200">Dons et offrandes</div>
+              <div style="font-size:38px;font-weight:700;color:#2E2925;line-height:1.05;margin-top:7px;font-variant-numeric:tabular-nums">18,4 M</div>
+              <div style="font-size:14.5px;color:#4A443E;margin-top:4px">F CFA, mois d'août</div>
+              <div style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:14px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-trend-up" style="font-size:17px"></i>+ 9 % sur juillet</div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-top:4px solid #8A5200;border-radius:6px;padding:15px 16px">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#8A5200">Taux d'adoption</div>
+              <div style="font-size:38px;font-weight:700;color:#2E2925;line-height:1.05;margin-top:7px;font-variant-numeric:tabular-nums">62 %</div>
+              <div style="font-size:14.5px;color:#4A443E;margin-top:4px">des fidèles recensés</div>
+              <div style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:14px;font-weight:700;color:#6B4200"><i class="ph-duotone ph-warning-circle" style="font-size:17px"></i>3 paroisses sous 40 %</div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-top:4px solid #8A5200;border-radius:6px;padding:15px 16px">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#8A5200">Intentions de messe</div>
+              <div style="font-size:38px;font-weight:700;color:#2E2925;line-height:1.05;margin-top:7px;font-variant-numeric:tabular-nums">1 204</div>
+              <div style="font-size:14.5px;color:#4A443E;margin-top:4px">déposées en août</div>
+              <div style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:14px;font-weight:700;color:#14345E"><i class="ph-duotone ph-devices" style="font-size:17px"></i>34 % par USSD</div>
+            </div>
+          </div>
+
+          <div style="background:#FDF3DC;border-left:5px solid #8A5200;border-radius:4px;padding:12px 16px;display:flex;align-items:center;gap:12px">
+            <i class="ph-duotone ph-eye-slash" style="font-size:23px;color:#8A5200;flex:none"></i>
+            <div style="font-size:15.5px;color:#2E2925;line-height:1.4">Cette vue est agrégée par construction : aucun nom de fidèle, aucun montant individuel, aucune intention n'y est accessible, même en descendant au niveau d'une paroisse.</div>
+          </div>
+
+          <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;overflow:hidden">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 150px 176px 232px 128px;gap:14px;padding:10px 18px;background:#F2EFEA;border-bottom:1.5px solid #DDD7CF;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">
+              <div>Paroisse</div><div style="text-align:right">Fidèles actifs</div><div style="text-align:right">Dons du mois</div><div>Adoption</div><div></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 150px 176px 232px 128px;gap:14px;padding:11px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Saint-Pierre de Yopougon</div>
+              <div style="text-align:right;font-size:16px;color:#2E2925;font-variant-numeric:tabular-nums">4 180</div>
+              <div style="text-align:right;font-size:16px;color:#2E2925;font-variant-numeric:tabular-nums">3 240 000</div>
+              <div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:10px;background:#EDE9E4;border-radius:5px;overflow:hidden"><div style="width:80%;height:100%;background:#14713C"></div></div><span style="font-size:15px;font-weight:700;color:#0F5A2F;font-variant-numeric:tabular-nums;flex:none">80 %</span></div>
+              <div><button style="min-height:40px;width:100%;background:#fff;color:#6B4200;border:1.5px solid #8A5200;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer" style-hover="background:#FDF3DC">Descendre<i class="ph-duotone ph-arrow-right" style="font-size:16px"></i></button></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 150px 176px 232px 128px;gap:14px;padding:11px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Notre-Dame d'Adjamé</div>
+              <div style="text-align:right;font-size:16px;color:#2E2925;font-variant-numeric:tabular-nums">2 940</div>
+              <div style="text-align:right;font-size:16px;color:#2E2925;font-variant-numeric:tabular-nums">2 880 000</div>
+              <div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:10px;background:#EDE9E4;border-radius:5px;overflow:hidden"><div style="width:75%;height:100%;background:#14713C"></div></div><span style="font-size:15px;font-weight:700;color:#0F5A2F;font-variant-numeric:tabular-nums;flex:none">75 %</span></div>
+              <div><button style="min-height:40px;width:100%;background:#fff;color:#6B4200;border:1.5px solid #8A5200;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer" style-hover="background:#FDF3DC">Descendre<i class="ph-duotone ph-arrow-right" style="font-size:16px"></i></button></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 150px 176px 232px 128px;gap:14px;padding:11px 18px;align-items:center;border-bottom:1px solid #EDE9E4;background:#FEFAF3">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Saint-Jean de Cocody</div>
+              <div style="text-align:right;font-size:16px;color:#2E2925;font-variant-numeric:tabular-nums">1 980</div>
+              <div style="text-align:right;font-size:16px;color:#2E2925;font-variant-numeric:tabular-nums">2 410 000</div>
+              <div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:10px;background:#EDE9E4;border-radius:5px;overflow:hidden"><div style="width:68%;height:100%;background:#14713C"></div></div><span style="font-size:15px;font-weight:700;color:#0F5A2F;font-variant-numeric:tabular-nums;flex:none">68 %</span></div>
+              <div><button style="min-height:40px;width:100%;background:#8A5200;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer" style-hover="background:#6B4200">Ouverte<i class="ph-duotone ph-arrow-right" style="font-size:16px"></i></button></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 150px 176px 232px 128px;gap:14px;padding:11px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Sainte-Thérèse d'Abobo</div>
+              <div style="text-align:right;font-size:16px;color:#2E2925;font-variant-numeric:tabular-nums">2 310</div>
+              <div style="text-align:right;font-size:16px;color:#2E2925;font-variant-numeric:tabular-nums">1 640 000</div>
+              <div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:10px;background:#EDE9E4;border-radius:5px;overflow:hidden"><div style="width:50%;height:100%;background:#D99A2B"></div></div><span style="font-size:15px;font-weight:700;color:#6B4200;font-variant-numeric:tabular-nums;flex:none">50 %</span></div>
+              <div><button style="min-height:40px;width:100%;background:#fff;color:#6B4200;border:1.5px solid #8A5200;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer" style-hover="background:#FDF3DC">Descendre<i class="ph-duotone ph-arrow-right" style="font-size:16px"></i></button></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 150px 176px 232px 128px;gap:14px;padding:11px 18px;align-items:center;border-bottom:1px solid #EDE9E4">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Saint-Ambroise de Koumassi</div>
+              <div style="text-align:right;font-size:16px;color:#2E2925;font-variant-numeric:tabular-nums">1 120</div>
+              <div style="text-align:right;font-size:16px;color:#2E2925;font-variant-numeric:tabular-nums">720 000</div>
+              <div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:10px;background:#EDE9E4;border-radius:5px;overflow:hidden"><div style="width:34%;height:100%;background:#B3261E"></div></div><span style="font-size:15px;font-weight:700;color:#8E1F19;font-variant-numeric:tabular-nums;flex:none">34 %</span></div>
+              <div><button style="min-height:40px;width:100%;background:#fff;color:#6B4200;border:1.5px solid #8A5200;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer" style-hover="background:#FDF3DC">Descendre<i class="ph-duotone ph-arrow-right" style="font-size:16px"></i></button></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 150px 176px 232px 128px;gap:14px;padding:11px 18px;align-items:center">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Saint-André de Marcory</div>
+              <div style="text-align:right;font-size:16px;color:#6B655D">—</div>
+              <div style="text-align:right;font-size:16px;color:#6B655D">—</div>
+              <div style="font-size:14.5px;color:#6B4200">En cours d'intégration</div>
+              <div><button style="min-height:40px;width:100%;background:#F2EFEA;color:#6B655D;border:1.5px solid #C2BAB0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;cursor:default">Indisponible</button></div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+            <div style="font-size:15px;color:#6B655D">6 paroisses sur 12 actives · classées par taux d'adoption</div>
+            <div style="margin-left:auto;font-size:15px;color:#4A443E">Koumassi à 34 % : la visite pastorale de septembre y est déjà programmée.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Le classement par adoption, et non par volume de dons, est un choix de gouvernance : la première colonne que lit un évêque doit être celle où l'accompagnement manque, pas celle où l'argent rentre.</div>
+  </div>
+
+  <!-- ============ 04 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">04</div>
+      <h2 style="font-size:40px;margin:0">Diocèse · communications</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Un message diocésain touche vingt-quatre mille personnes en trois canaux : il ne s'envoie pas sans voir sa portée et son coût. La colonne de droite est un compteur qui se met à jour à chaque case cochée, avec l'aperçu tel qu'un fidèle le recevra sur son téléphone — le même écran d'accueil que dans le canal principal.</p>
+
+    <div data-screen-label="04 Communications diocésaines" style="width:1280px;min-height:800px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:236px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:16px 0">
+        <div style="padding:0 16px 16px">
+          <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.2">EcclesiaConnect</div>
+          <div style="font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8FA6C4;margin-top:2px">Console</div>
+        </div>
+        <div style="padding:0 16px;display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="width:14px;height:3px;background:#24548F"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8FA6C4">Administration système</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;opacity:0.5"><i class="ph-duotone ph-buildings" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Paroisses</span><i class="ph-duotone ph-lock-simple" style="font-size:16px;color:#8FA6C4;margin-left:auto"></i></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;opacity:0.5"><i class="ph-duotone ph-plugs" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Intégrations</span><i class="ph-duotone ph-lock-simple" style="font-size:16px;color:#8FA6C4;margin-left:auto"></i></div>
+        </div>
+        <div style="padding:20px 16px 8px;display:flex;align-items:center;gap:8px"><span style="width:14px;height:3px;background:#D99A2B"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#F2C14E">Diocèse</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-chart-line-up" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;background:#8A5200;cursor:pointer"><i class="ph-duotone ph-megaphone" style="font-size:20px;color:#fff"></i><span style="font-size:15px;font-weight:700;color:#fff">Communications</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-file-text" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Rapports annuels</span></div>
+        </div>
+        <div style="margin-top:auto;padding:16px 16px 0;border-top:1px solid #1C3A63">
+          <div style="font-size:14px;font-weight:600;color:#fff;line-height:1.3">Mgr Kouadio Bernard</div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:1px">Supervision · {{ nomDiocese }}</div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#8A5200;padding:15px 24px;display:flex;align-items:center;gap:18px;flex:none">
+          <div style="min-width:0">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#F7E4B8">Supervision diocésaine</div>
+            <div style="font-family:'Source Serif 4',serif;font-size:26px;font-weight:600;color:#fff;line-height:1.2;margin-top:2px">Message à tout le diocèse</div>
+          </div>
+          <div style="margin-left:auto;font-size:15px;color:#F7E4B8;flex:none">Brouillon · non envoyé</div>
+        </div>
+
+        <div style="flex:1;min-width:0;padding:20px 24px 24px;display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:20px;align-items:start">
+
+          <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#8A5200;margin-bottom:11px">Destinataires</div>
+              <div style="display:grid;gap:9px">
+                <div style="min-height:48px;border:2px solid #8A5200;background:#FDF3DC;border-radius:6px;display:flex;align-items:center;gap:11px;padding:0 14px;cursor:pointer">
+                  <i class="ph-duotone ph-check-square" style="font-size:22px;color:#8A5200;flex:none"></i>
+                  <div style="min-width:0"><span style="font-size:16px;font-weight:700;color:#2E2925">Les 12 paroisses actives</span><span style="font-size:15px;color:#4A443E"> · 24 810 fidèles</span></div>
+                </div>
+                <div style="min-height:48px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:11px;padding:0 14px;cursor:pointer" style-hover="background:#F7F5F2">
+                  <i class="ph-duotone ph-square" style="font-size:22px;color:#6B655D;flex:none"></i>
+                  <div style="font-size:16px;color:#2E2925">Une sélection de paroisses</div>
+                </div>
+                <div style="min-height:48px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:11px;padding:0 14px;cursor:pointer" style-hover="background:#F7F5F2">
+                  <i class="ph-duotone ph-square" style="font-size:22px;color:#6B655D;flex:none"></i>
+                  <div style="font-size:16px;color:#2E2925">Les curés et le personnel paroissial seuls · 214 comptes</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#8A5200;margin-bottom:11px">Message</div>
+              <div style="border:2px solid #8A5200;border-radius:6px;overflow:hidden">
+                <div style="background:#FDF3DC;padding:10px 14px;border-bottom:1px solid #D99A2B">
+                  <div style="font-size:13px;color:#6B4200;margin-bottom:2px">Titre · 42 caractères</div>
+                  <div style="font-family:'Source Serif 4',serif;font-size:21px;font-weight:600;color:#2E2925">Ouverture de l'année jubilaire diocésaine</div>
+                </div>
+                <div style="padding:14px">
+                  <div style="font-size:16px;color:#2E2925;line-height:1.55">Chers frères et sœurs, l'année jubilaire du diocèse s'ouvrira le dimanche 4 octobre par une messe unique à la cathédrale, à 9 h 00. Chaque paroisse est invitée à s'y rendre en délégation. Les horaires locaux de ce dimanche sont maintenus.</div>
+                  <div style="display:flex;align-items:center;gap:12px;margin-top:12px;border-top:1px solid #EDE9E4;padding-top:10px">
+                    <div style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">238 caractères · 2 SMS par destinataire SMS</div>
+                    <div style="margin-left:auto;display:flex;gap:8px">
+                      <span style="min-height:38px;display:inline-flex;align-items:center;font-size:13.5px;color:#14345E;background:#E8EDF5;border:1.5px solid #14345E;border-radius:19px;padding:0 12px;cursor:pointer">Traduction dioula</span>
+                      <span style="min-height:38px;display:inline-flex;align-items:center;font-size:13.5px;color:#14345E;background:#fff;border:1.5px solid #C2BAB0;border-radius:19px;padding:0 12px;cursor:pointer" style-hover="background:#E8EDF5">Traduction baoulé</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:16px">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#8A5200;margin-bottom:11px">Envoi</div>
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                <div style="min-height:48px;border:2px solid #8A5200;background:#FDF3DC;border-radius:6px;display:flex;align-items:center;gap:9px;padding:0 15px;font-size:15.5px;font-weight:700;color:#2E2925;cursor:pointer"><i class="ph-duotone ph-clock" style="font-size:20px;color:#8A5200"></i>Lundi 7 septembre, 6 h 00</div>
+                <div style="min-height:48px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;padding:0 15px;font-size:15.5px;color:#2E2925;cursor:pointer" style-hover="background:#F7F5F2">Envoyer maintenant</div>
+                <div style="font-size:14.5px;color:#4A443E;line-height:1.4;flex:1;min-width:200px">Un envoi diocésain est différé par défaut au petit matin : c'est l'heure où les notifications sont lues et où le réseau est le moins chargé.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+            <div style="background:#0B1F3A;border-radius:6px;padding:16px">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#F2C14E">Portée estimée</div>
+              <div style="font-size:36px;font-weight:700;color:#fff;line-height:1.05;margin-top:8px;font-variant-numeric:tabular-nums">24 810</div>
+              <div style="font-size:15px;color:#C3D0E1;margin-top:3px">fidèles joignables · 12 paroisses</div>
+              <div style="display:grid;gap:9px;margin-top:14px">
+                <div style="display:flex;align-items:center;gap:10px"><i class="ph-duotone ph-bell" style="font-size:20px;color:#8FA6C4;flex:none"></i><div style="font-size:15px;color:#fff;flex:1">Notification</div><div style="font-size:15px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">18 240</div></div>
+                <div style="display:flex;align-items:center;gap:10px"><i class="ph-duotone ph-whatsapp-logo" style="font-size:20px;color:#8FA6C4;flex:none"></i><div style="font-size:15px;color:#fff;flex:1">WhatsApp</div><div style="font-size:15px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">4 320</div></div>
+                <div style="display:flex;align-items:center;gap:10px"><i class="ph-duotone ph-chat-dots" style="font-size:20px;color:#8FA6C4;flex:none"></i><div style="font-size:15px;color:#fff;flex:1">SMS</div><div style="font-size:15px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">2 250</div></div>
+              </div>
+              <div style="border-top:1px solid #1C3A63;margin-top:13px;padding-top:11px;display:flex;align-items:baseline;gap:8px">
+                <div style="font-size:14.5px;color:#C3D0E1;flex:1">Coût SMS estimé</div>
+                <div style="font-size:17px;font-weight:700;color:#F2C14E;font-variant-numeric:tabular-nums">198 000 F</div>
+              </div>
+              <div style="font-size:13.5px;color:#8FA6C4;line-height:1.45;margin-top:7px">4 500 fidèles ne sont joignables par aucun canal : leur paroisse recevra une affichette à imprimer.</div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:14px">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#8A5200;margin-bottom:10px">Aperçu sur le téléphone</div>
+              <div style="width:300px;max-width:100%;margin:0 auto;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:9px;overflow:hidden">
+                <div style="height:22px;background:#0B1F3A;color:#C3D0E1;font-size:10px;display:flex;align-items:center;justify-content:space-between;padding:0 10px"><span>06:00</span><span style="display:flex;gap:5px;align-items:center"><i class="ph-duotone ph-cell-signal-medium" style="font-size:11px"></i><i class="ph-duotone ph-battery-medium" style="font-size:11px"></i></span></div>
+                <div style="background:#14345E;padding:10px 12px;display:flex;align-items:center;gap:10px">
+                  <div style="width:32px;height:32px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none">KA</div>
+                  <div style="min-width:0"><div style="font-size:11.5px;color:#C3D0E1">Bonjour,</div><div style="font-size:15px;font-weight:700;color:#fff;line-height:1.2">Adjoua</div></div>
+                </div>
+                <div style="padding:11px">
+                  <div style="background:#FDF3DC;border:1px solid #D99A2B;border-radius:6px;padding:11px">
+                    <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><i class="ph-duotone ph-megaphone" style="font-size:16px;color:#8A5200"></i><div style="font-size:11.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B4200">Message du diocèse</div></div>
+                    <div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;color:#2E2925;line-height:1.25">Ouverture de l'année jubilaire diocésaine</div>
+                    <div style="font-size:13px;color:#4A443E;line-height:1.45;margin-top:4px">Dimanche 4 octobre, messe unique à la cathédrale à 9 h 00. Chaque paroisse est invitée en délégation.</div>
+                    <div style="font-size:12.5px;color:#6B655D;margin-top:6px">Lire en entier</div>
+                  </div>
+                  <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:10px;margin-top:9px">
+                    <div style="font-size:11.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28">Prochaine messe</div>
+                    <div style="font-size:15px;font-weight:700;color:#2E2925;margin-top:3px">Aujourd'hui à 6 h 00</div>
+                  </div>
+                </div>
+              </div>
+              <div style="font-size:13.5px;color:#4A443E;line-height:1.45;margin-top:11px">Le message diocésain se place au-dessus de la prochaine messe, une seule fois, et disparaît de l'accueil après lecture.</div>
+            </div>
+
+            <button style="min-height:56px;width:100%;background:#8A5200;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer" style-hover="background:#6B4200"><i class="ph-duotone ph-paper-plane-tilt" style="font-size:22px"></i>Programmer la diffusion</button>
+            <div style="font-size:13.5px;color:#4A443E;line-height:1.45;text-align:center">Les curés reçoivent le message une heure avant leurs fidèles, pour pouvoir répondre aux questions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Le coût SMS est affiché à côté de la portée, non pour dissuader mais pour arbitrer : un message qui vaut deux cents mille francs mérite d'être relu une fois de plus.</div>
+  </div>
+
+  <!-- ============ 05 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">05</div>
+      <h2 style="font-size:40px;margin:0">Référent protection des mineurs</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">L'écran le plus grave du système, et le plus sobre. La coquille de navigation se réduit à deux entrées, la bande devient hachurée, et la file des signalements n'affiche que des références : ouvrir un dossier est un geste séparé, journalisé, qui ne se fait pas en passant. À droite, la contrepartie ordinaire du même mandat — les habilitations d'encadrants à valider, celles qui conditionnent l'accès aux listes d'enfants.</p>
+
+    <div data-screen-label="05 Protection des mineurs" style="width:1280px;min-height:800px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:236px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:16px 0">
+        <div style="padding:0 16px 16px">
+          <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.2">EcclesiaConnect</div>
+          <div style="font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8FA6C4;margin-top:2px">Console</div>
+        </div>
+        <div style="padding:0 16px 8px;display:flex;align-items:center;gap:8px"><span style="width:14px;height:3px;background:#B3261E"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#E5A8A4">Protection des mineurs</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;background:#8E1F19;cursor:pointer"><i class="ph-duotone ph-shield-warning" style="font-size:20px;color:#fff"></i><span style="font-size:15px;font-weight:700;color:#fff">Signalements</span><span style="margin-left:auto;font-size:13px;font-weight:700;color:#8E1F19;background:#fff;border-radius:10px;padding:1px 8px">1</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-shield-check" style="font-size:20px;color:#E5A8A4"></i><span style="font-size:15px;color:#C3D0E1">Habilitations</span><span style="margin-left:auto;font-size:13px;font-weight:700;color:#fff;background:#B3261E;border-radius:10px;padding:1px 8px">5</span></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;cursor:pointer" style-hover="background:#14345E"><i class="ph-duotone ph-book-bookmark" style="font-size:20px;color:#E5A8A4"></i><span style="font-size:15px;color:#C3D0E1">Cadre et procédure</span></div>
+        </div>
+        <div style="padding:20px 16px 8px;display:flex;align-items:center;gap:8px"><span style="width:14px;height:3px;background:#4A443E"></span><span style="font-size:11.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8FA6C4">Autres univers</span></div>
+        <div style="display:grid">
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;opacity:0.5"><i class="ph-duotone ph-terminal-window" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Système</span><i class="ph-duotone ph-lock-simple" style="font-size:16px;color:#8FA6C4;margin-left:auto"></i></div>
+          <div style="min-height:44px;display:flex;align-items:center;gap:11px;padding:0 16px;opacity:0.5"><i class="ph-duotone ph-chart-line-up" style="font-size:20px;color:#8FA6C4"></i><span style="font-size:15px;color:#C3D0E1">Diocèse</span><i class="ph-duotone ph-lock-simple" style="font-size:16px;color:#8FA6C4;margin-left:auto"></i></div>
+        </div>
+        <div style="margin-top:auto;padding:16px 16px 0;border-top:1px solid #1C3A63">
+          <div style="font-size:14px;font-weight:600;color:#fff;line-height:1.3">P. Assouman Jean-Baptiste</div>
+          <div style="font-size:12.5px;color:#E5A8A4;margin-top:1px">Référent · mandat jusqu'en 2028</div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#4A443E;padding:15px 24px;display:flex;align-items:center;gap:16px;flex:none;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,0.10) 0 8px,transparent 8px 16px)"></div>
+          <div style="position:relative;min-width:0">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#F2C14E">Accès très restreint · niveau 3</div>
+            <div style="font-size:23px;font-weight:700;color:#fff;line-height:1.2;margin-top:2px">Protection des mineurs</div>
+          </div>
+          <div style="position:relative;margin-left:auto;display:flex;align-items:center;gap:12px;flex:none">
+            <div style="font-size:14.5px;color:#fff;line-height:1.4;max-width:340px;text-align:right">Deux personnes dans le diocèse ouvrent cet écran. Votre session est journalisée de bout en bout.</div>
+            <i class="ph-duotone ph-lock-key" style="font-size:30px;color:#F2C14E;flex:none"></i>
+          </div>
+        </div>
+
+        <div style="flex:1;min-width:0;padding:20px 24px 24px;display:grid;grid-template-columns:minmax(0,1fr) 392px;gap:20px;align-items:start">
+
+          <div style="border:2px solid #B3261E;border-radius:6px;overflow:hidden;min-width:0">
+            <div style="background:#FBE9E8;padding:13px 18px;border-bottom:1.5px solid #B3261E">
+              <div style="display:flex;align-items:center;gap:11px">
+                <i class="ph-duotone ph-shield-warning" style="font-size:23px;color:#B3261E;flex:none"></i>
+                <div style="font-size:18px;font-weight:700;color:#8E1F19">File des signalements</div>
+                <div style="margin-left:auto;font-size:14.5px;color:#4A443E;font-variant-numeric:tabular-nums">4 dossiers ouverts · 1 nouveau</div>
+              </div>
+              <sc-if value="{{ identitesMasquees }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;align-items:center;gap:9px;margin-top:9px">
+                  <i class="ph-duotone ph-eye-slash" style="font-size:19px;color:#8E1F19;flex:none"></i>
+                  <div style="font-size:14.5px;color:#2E2925;line-height:1.4">Identités masquées dans la file. Elles n'apparaissent qu'à l'ouverture d'un dossier, écran par écran.</div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ identitesVisibles }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;align-items:center;gap:9px;margin-top:9px">
+                  <i class="ph-duotone ph-eye" style="font-size:19px;color:#8E1F19;flex:none"></i>
+                  <div style="font-size:14.5px;color:#2E2925;line-height:1.4">Identités visibles : mode réservé à l'examen en présence de l'évêque. La session entière est marquée dans le journal.</div>
+                </div>
+              </sc-if>
+            </div>
+
+            <div style="background:#fff">
+              <div style="padding:13px 18px;border-bottom:1px solid #EDE9E4;background:#FEF6F5">
+                <div style="display:flex;align-items:baseline;gap:12px">
+                  <div style="font-size:19px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">Dossier 2026-014</div>
+                  <span style="font-size:13.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#fff;background:#B3261E;border-radius:4px;padding:3px 9px">Nouveau</span>
+                  <span style="font-size:13.5px;font-weight:700;color:#8E1F19">Gravité élevée</span>
+                  <div style="margin-left:auto;font-size:14px;color:#4A443E;font-variant-numeric:tabular-nums">Reçu le 2 septembre, 18 h 40</div>
+                </div>
+                <div style="font-size:15px;color:#2E2925;line-height:1.45;margin-top:7px">Saint-Jean de Cocody · mouvement scout · signalement déposé par un encadrant.</div>
+                <sc-if value="{{ identitesMasquees }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:inline-flex;align-items:center;gap:7px;margin-top:8px;background:#F2EFEA;border:1px dashed #8A8279;border-radius:4px;padding:5px 10px;font-size:14px;color:#4A443E"><i class="ph-duotone ph-eye-slash" style="font-size:17px"></i>Personnes concernées masquées · 3 identités au dossier</div>
+                </sc-if>
+                <sc-if value="{{ identitesVisibles }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:inline-flex;align-items:center;gap:7px;margin-top:8px;background:#FBE9E8;border:1px solid #B3261E;border-radius:4px;padding:5px 10px;font-size:14px;color:#8E1F19"><i class="ph-duotone ph-eye" style="font-size:17px"></i>3 identités visibles dans ce dossier</div>
+                </sc-if>
+                <div style="display:flex;align-items:center;gap:11px;margin-top:12px">
+                  <button style="min-height:48px;background:#B3261E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15.5px;font-weight:700;padding:0 18px;display:flex;align-items:center;gap:9px;cursor:pointer" style-hover="background:#8E1F19"><i class="ph-duotone ph-lock-key" style="font-size:20px"></i>Ouvrir le dossier</button>
+                  <button style="min-height:48px;background:#fff;color:#4A443E;border:1.5px solid #C2BAB0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;padding:0 16px;cursor:pointer" style-hover="background:#F7F5F2">Confier à l'évêque</button>
+                  <div style="margin-left:auto;font-size:14px;color:#8E1F19;font-weight:600">À examiner sous 48 h</div>
+                </div>
+              </div>
+
+              <div style="padding:12px 18px;border-bottom:1px solid #EDE9E4;display:flex;align-items:center;gap:14px">
+                <div style="min-width:0;flex:1">
+                  <div style="display:flex;align-items:baseline;gap:11px">
+                    <div style="font-size:17px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">Dossier 2026-013</div>
+                    <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B4200;background:#FDF3DC;border-radius:4px;padding:3px 9px">En cours d'examen</span>
+                  </div>
+                  <div style="font-size:14.5px;color:#4A443E;line-height:1.4;margin-top:3px">Saint-Pierre de Yopougon · reçu le 28 août · entretien tenu le 1er septembre</div>
+                </div>
+                <button style="min-height:44px;background:#fff;color:#8E1F19;border:1.5px solid #B3261E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:700;padding:0 15px;cursor:pointer;flex:none" style-hover="background:#FBE9E8">Ouvrir</button>
+              </div>
+
+              <div style="padding:12px 18px;border-bottom:1px solid #EDE9E4;display:flex;align-items:center;gap:14px">
+                <div style="min-width:0;flex:1">
+                  <div style="display:flex;align-items:baseline;gap:11px">
+                    <div style="font-size:17px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">Dossier 2026-011</div>
+                    <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#fff;background:#14345E;border-radius:4px;padding:3px 9px">Transmis à l'autorité civile</span>
+                  </div>
+                  <div style="font-size:14.5px;color:#4A443E;line-height:1.4;margin-top:3px">Notre-Dame d'Adjamé · transmis le 21 août · suivi judiciaire en cours</div>
+                </div>
+                <button style="min-height:44px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:600;padding:0 15px;cursor:pointer;flex:none" style-hover="background:#E8EDF5">Ouvrir</button>
+              </div>
+
+              <div style="padding:12px 18px;display:flex;align-items:center;gap:14px">
+                <div style="min-width:0;flex:1">
+                  <div style="display:flex;align-items:baseline;gap:11px">
+                    <div style="font-size:17px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">Dossier 2026-009</div>
+                    <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#0F5A2F;background:#E4F1E8;border-radius:4px;padding:3px 9px">Clos</span>
+                  </div>
+                  <div style="font-size:14.5px;color:#4A443E;line-height:1.4;margin-top:3px">Sainte-Thérèse d'Abobo · clos le 26 août · mesures d'accompagnement en place</div>
+                </div>
+                <button style="min-height:44px;background:#fff;color:#4A443E;border:1.5px solid #C2BAB0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:600;padding:0 15px;cursor:pointer;flex:none" style-hover="background:#F7F5F2">Ouvrir</button>
+              </div>
+            </div>
+
+            <div style="background:#F2EFEA;border-top:1px solid #DDD7CF;padding:12px 18px;display:flex;align-items:center;gap:11px">
+              <i class="ph-duotone ph-phone-call" style="font-size:21px;color:#8E1F19;flex:none"></i>
+              <div style="font-size:14.5px;color:#2E2925;line-height:1.4">Un signalement urgent ne passe jamais par cet écran : il passe par le numéro d'urgence diocésain, affiché dans toutes les sacristies.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;overflow:hidden">
+              <div style="background:#F2EFEA;padding:12px 16px;border-bottom:1.5px solid #DDD7CF;display:flex;align-items:center;gap:10px">
+                <i class="ph-duotone ph-shield-check" style="font-size:22px;color:#14345E;flex:none"></i>
+                <div style="font-size:17px;font-weight:700;color:#2E2925">Habilitations en attente</div>
+                <div style="margin-left:auto;font-size:14.5px;font-weight:700;color:#8E1F19;font-variant-numeric:tabular-nums">5</div>
+              </div>
+
+              <div style="padding:12px 16px;border-bottom:1px solid #EDE9E4">
+                <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925;line-height:1.25">Mme Bamba Solange</div>
+                <div style="font-size:14.5px;color:#4A443E;margin-top:2px">Scouts · Unité Saint-Michel · Saint-Jean</div>
+                <div style="display:inline-flex;align-items:center;gap:7px;margin-top:8px;background:#E4F1E8;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-check-circle" style="font-size:16px"></i>Pièces complètes · entretien tenu</div>
+                <div style="display:flex;gap:9px;margin-top:11px">
+                  <button style="min-height:46px;flex:1;background:#14713C;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#0F5A2F"><i class="ph-duotone ph-seal-check" style="font-size:19px"></i>Habiliter</button>
+                  <button style="min-height:46px;background:#fff;color:#4A443E;border:1.5px solid #C2BAB0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;padding:0 14px;cursor:pointer;flex:none" style-hover="background:#F7F5F2">Refuser</button>
+                </div>
+              </div>
+
+              <div style="padding:12px 16px;border-bottom:1px solid #EDE9E4">
+                <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925;line-height:1.25">M. Yao Théodore</div>
+                <div style="font-size:14.5px;color:#4A443E;margin-top:2px">Catéchèse CE2 · Sainte-Thérèse d'Abobo</div>
+                <div style="display:inline-flex;align-items:center;gap:7px;margin-top:8px;background:#FBE9E8;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#8E1F19"><i class="ph-duotone ph-warning-circle" style="font-size:16px"></i>Attestation d'honorabilité manquante</div>
+                <button style="min-height:46px;width:100%;margin-top:11px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-chat-circle-text" style="font-size:19px"></i>Demander la pièce</button>
+              </div>
+
+              <div style="padding:12px 16px;border-bottom:1px solid #EDE9E4">
+                <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925;line-height:1.25">Mlle Traoré Aminata</div>
+                <div style="font-size:14.5px;color:#4A443E;margin-top:2px">CV-AV · Saint-Pierre de Yopougon</div>
+                <div style="display:inline-flex;align-items:center;gap:7px;margin-top:8px;background:#FDF3DC;border-radius:13px;padding:3px 10px;font-size:14px;font-weight:700;color:#6B4200"><i class="ph-duotone ph-hourglass" style="font-size:16px"></i>Entretien à fixer</div>
+              </div>
+
+              <div style="padding:12px 16px;display:flex;align-items:center;gap:12px">
+                <div style="min-width:0;flex:1">
+                  <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925;line-height:1.25">2 autres dossiers</div>
+                  <div style="font-size:14px;color:#6B655D;margin-top:1px">Chorale des jeunes · catéchèse CM1</div>
+                </div>
+                <i class="ph-duotone ph-caret-right" style="font-size:22px;color:#14345E;flex:none"></i>
+              </div>
+            </div>
+
+            <div style="background:#E8EDF5;border-left:5px solid #14345E;border-radius:4px;padding:13px 16px">
+              <div style="font-size:14.5px;color:#2E2925;line-height:1.45">Tant qu'une habilitation reste en attente, l'encadrant voit l'écran « vérification en cours » et n'a accès à aucune liste d'enfants. Trois refus sont motivés par écrit chaque année, et le motif ne sort pas de cet écran.</div>
+            </div>
+
+            <sc-if value="{{ tracabilite }}" hint-placeholder-val="{{ true }}">
+              <div style="background:#F2EFEA;border:1px dashed #8A8279;border-radius:6px;padding:13px 16px;display:flex;gap:11px;align-items:flex-start">
+                <i class="ph-duotone ph-archive" style="font-size:21px;color:#4A443E;flex:none"></i>
+                <div style="font-size:14px;color:#4A443E;line-height:1.45">Session en cours : P. Assouman Jean-Baptiste, 5 septembre à 07 h 30. Ouvertures de dossier journalisées ; le contenu des dossiers ne l'est pas.</div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Les deux moitiés de l'écran disent la même mission : à gauche ce qui s'est produit, à droite ce qui l'empêche. Mettre les habilitations à valider à côté des signalements n'est pas une économie de place — c'est le rappel que l'une des deux colonnes réduit l'autre.</div>
+  </div>
+
+  <div style="padding-top:96px">
+    <div style="height:1px;background:var(--color-text)"></div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;padding-top:28px">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Deux univers, une coquille</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Le rail de navigation ne change jamais de place ni de largeur : seuls le groupe actif, la couleur de la bande de titre et la densité changent. Bleu de nuit et chiffres tabulaires pour le système, ocre et Source Serif pour le diocèse. Ce qu'un rôle n'a pas le droit de voir reste affiché, verrouillé et grisé, plutôt que retiré du rail — une console qui change de forme selon qui regarde est une console qu'on n'apprend jamais.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">La signalétique de niveau 3</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Deux écrans portent des hachures sombres, un badge rouge et une phrase à la première personne : « votre venue sur cet écran est journalisée ». Ce traitement n'existe nulle part ailleurs dans les six fichiers du système, précisément pour qu'il ne s'use pas. Il dit aussi sa limite : le journal enregistre l'ouverture d'un dossier de protection, jamais son contenu.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Ce qui n'est pas encore dessiné</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Le dossier de signalement lui-même, le parcours d'ajout d'une paroisse pas à pas, l'éditeur d'arbre USSD, et la descente au niveau paroissial du tableau de bord diocésain — l'écran qui montre à l'évêque les trois indicateurs d'une seule paroisse, sans jamais lui donner un nom de fidèle.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;nomDiocese&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Diocèse d'Abidjan&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;masquerIdentitesSignalements&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Accès restreint&quot;},&quot;afficherJournalisation&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Accès restreint&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const masquer = this.props.masquerIdentitesSignalements ?? true;
+    return {
+      nomDiocese: this.props.nomDiocese ?? "Diocèse d'Abidjan",
+      tracabilite: this.props.afficherJournalisation ?? true,
+      identitesMasquees: masquer,
+      identitesVisibles: !masquer
+    };
+  }
+}
+</script>
+</body>
+</html>

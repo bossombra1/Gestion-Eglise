@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/styles.css">
+<script src="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Noto+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-700); text-decoration: underline; }
+  @keyframes ec-pulse { 0%,100% { opacity: 1 } 50% { opacity: .45 } }
+</style>
+</helmet>
+
+<div style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:0 0 120px">
+<div style="width:1560px;min-width:1560px;margin:0 auto;padding:0 56px">
+
+  <div style="padding-top:64px">
+    <div style="height:6px;background:var(--color-text)"></div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:10px 0 9px">
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">EcclesiaConnect · Paroisse Mobile</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-accent-700)">Back-office du secrétariat</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Bureau 1440 · Tablette 1024</div>
+    </div>
+    <div style="height:1px;background:var(--color-text)"></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:64px;padding:52px 0 0;align-items:end">
+    <div>
+      <h1 style="font-size:84px;line-height:0.95;letter-spacing:-0.03em;margin:0 0 20px">Le poste du <span style="font-style:italic;font-weight:400">secrétariat</span></h1>
+      <p style="font-size:19px;line-height:1.5;max-width:58ch;margin:0;text-wrap:pretty">Même palette, même typographie, densité renversée : ici on traite quarante dossiers dans la matinée. Les lignes de tableau passent à 44 px, les actions se font par lot, et tout ce qui est irréversible demande une confirmation qui nomme la conséquence.</p>
+    </div>
+    <div style="padding-bottom:6px">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:14px">Sections</div>
+      <div style="display:grid;gap:7px;font-size:15px">
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">01</span>Tableau de bord</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">02</span>File de validation des intentions</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">03</span>Registre sacramentel</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">04</span>Inscriptions aux mouvements</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">05</span>Bans de mariage</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">06</span>Communication</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">07</span>Mode tablette</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">01</div>
+      <h2 style="font-size:40px;margin:0">Tableau de bord</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Ce qui attend le secrétariat ce matin, en quatre compteurs cliquables et deux files. Les alertes de protection des mineurs n'apparaissent que pour les comptes qui en ont le droit — pour les autres, le bloc n'existe pas, il n'est pas grisé.</p>
+
+    <div data-screen-label="01 Tableau de bord" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-squares-four" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-microphone-stage" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Intentions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">18</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-book-bookmark" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Registres</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-users-three" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Inscriptions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">7</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-heart" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Bans de mariage</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-megaphone" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Communication</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-chart-line-up" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Finances</span><i class="ph-duotone ph-arrow-square-out" style="font-size:15px;color:#8FA6C4;margin-left:auto"></i></div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">SB</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Sœur Brigitte</div><div style="font-size:12px;color:#8FA6C4">Secrétariat</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px;display:flex;align-items:center;gap:16px">
+          <div><div style="font-size:20px;font-weight:700;color:#2E2925">Mardi 2 septembre 2026</div><div style="font-size:13.5px;color:#6B655D">Dernière synchronisation à 07 h 58</div></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
+            <div style="min-height:36px;display:flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:5px;padding:0 11px"><i class="ph-duotone ph-cloud-check" style="font-size:17px;color:#14713C"></i><span style="font-size:13.5px;font-weight:600;color:#14713C">À jour</span></div>
+            <button style="min-height:38px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;padding:0 14px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-printer" style="font-size:17px"></i>Feuille d'intentions du jour</button>
+          </div>
+        </div>
+
+        <div style="padding:16px 20px;display:flex;flex-direction:column;gap:14px">
+
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+            <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #8A5200;border-radius:5px;padding:13px 14px">
+              <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">Intentions à valider</div>
+              <div style="display:flex;align-items:baseline;gap:9px;margin-top:5px"><span style="font-size:34px;font-weight:700;color:#2E2925;line-height:1;font-variant-numeric:tabular-nums">18</span><span style="font-size:13.5px;color:#8A5200;font-weight:600">dont 4 pour demain</span></div>
+              <div style="font-size:13.5px;color:#A84A28;font-weight:600;margin-top:8px">Ouvrir la file →</div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #14713C;border-radius:5px;padding:13px 14px">
+              <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">Encaissé aujourd'hui</div>
+              <div style="display:flex;align-items:baseline;gap:9px;margin-top:5px"><span style="font-size:34px;font-weight:700;color:#14345E;line-height:1;font-variant-numeric:tabular-nums">86 500</span><span style="font-size:15px;font-weight:600;color:#6B655D">FCFA</span></div>
+              <div style="font-size:13.5px;color:#4A443E;margin-top:8px;font-variant-numeric:tabular-nums">Mobile 71 500 · Espèces 15 000</div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #14345E;border-radius:5px;padding:13px 14px">
+              <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">Dossiers d'inscription</div>
+              <div style="display:flex;align-items:baseline;gap:9px;margin-top:5px"><span style="font-size:34px;font-weight:700;color:#2E2925;line-height:1;font-variant-numeric:tabular-nums">7</span><span style="font-size:13.5px;color:#6B655D">à traiter</span></div>
+              <div style="font-size:13.5px;color:#A84A28;font-weight:600;margin-top:8px">3 pièces manquantes →</div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #C25A34;border-radius:5px;padding:13px 14px">
+              <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">Bans en cours</div>
+              <div style="display:flex;align-items:baseline;gap:9px;margin-top:5px"><span style="font-size:34px;font-weight:700;color:#2E2925;line-height:1;font-variant-numeric:tabular-nums">5</span><span style="font-size:13.5px;color:#6B655D">dossiers</span></div>
+              <div style="font-size:13.5px;color:#4A443E;margin-top:8px">2 publications à afficher</div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:14px;align-items:start">
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px">
+              <div style="padding:11px 14px;border-bottom:1px solid #EDE9E4;display:flex;align-items:center;gap:12px">
+                <div style="font-size:15.5px;font-weight:700;color:#2E2925">Dernières demandes reçues</div>
+                <div style="margin-left:auto;font-size:13.5px;color:#A84A28;font-weight:600">Tout voir (18)</div>
+              </div>
+              <table class="table" style="width:100%;font-family:'Noto Sans',sans-serif;font-size:14px">
+                <thead><tr><th>Heure</th><th>Demandeur</th><th>Type</th><th>Messe</th><th>Montant</th><th>Statut</th></tr></thead>
+                <tbody>
+                  <tr><td style="font-variant-numeric:tabular-nums">07:42</td><td>Kouassi Adjoua</td><td>Action de Grâce</td><td>Lun. 14 · 12 h 30</td><td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td><td><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé</span></td></tr>
+                  <tr><td style="font-variant-numeric:tabular-nums">07:31</td><td>Yao Bernard</td><td>Repos de l'Âme</td><td>Mer. 3 · 6 h 00</td><td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td><td><span style="display:inline-flex;align-items:center;gap:5px;background:#FDF3DC;color:#8A5200;border:1px dashed #8A5200;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-clock" style="font-size:14px"></i>Espèces attendues</span></td></tr>
+                  <tr><td style="font-variant-numeric:tabular-nums">06:58</td><td>Diomandé Fatou</td><td>Santé</td><td>Mer. 3 · 18 h 30</td><td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td><td><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé</span></td></tr>
+                  <tr><td style="font-variant-numeric:tabular-nums">06:20</td><td>N'Guessan Paul</td><td>Demande Particulière</td><td>Jeu. 4 · 6 h 00</td><td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td><td><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé</span></td></tr>
+                  <tr><td style="font-variant-numeric:tabular-nums">05:47</td><td>Traoré Aminata</td><td>Repos de l'Âme</td><td>Ven. 5 · 12 h 30</td><td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td><td><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="display:grid;gap:12px">
+              <div style="background:#fff;border:2px solid #B3261E;border-radius:5px;overflow:hidden">
+                <div style="background:#FBE9E8;padding:9px 13px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #B3261E">
+                  <i class="ph-duotone ph-shield-warning" style="font-size:19px;color:#B3261E"></i>
+                  <div style="font-size:14px;font-weight:700;color:#B3261E">Alertes</div>
+                  <div style="margin-left:auto;font-size:12px;font-weight:600;color:#B3261E;background:#fff;border-radius:10px;padding:2px 8px">Droits restreints</div>
+                </div>
+                <div style="padding:12px 13px;display:grid;gap:12px">
+                  <div>
+                    <div style="display:flex;gap:9px;align-items:flex-start"><i class="ph-duotone ph-shield-check" style="font-size:19px;color:#B3261E;flex:none;margin-top:1px"></i><div><div style="font-size:14.5px;font-weight:700;color:#2E2925;line-height:1.35">Signalement protection des mineurs</div><div style="font-size:13.5px;color:#4A443E;line-height:1.45;margin-top:2px">1 signalement reçu le 31 août, non ouvert. Délai de traitement : 48 h.</div></div></div>
+                    <button style="min-height:38px;width:100%;margin-top:9px;background:#B3261E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer">Ouvrir le signalement</button>
+                    <div style="font-size:12.5px;color:#6B655D;line-height:1.4;margin-top:6px">Visible par le curé et la personne référente uniquement. Chaque ouverture est journalisée.</div>
+                  </div>
+                  <div style="border-top:1px solid #EDE9E4;padding-top:11px">
+                    <div style="display:flex;gap:9px;align-items:flex-start"><i class="ph-duotone ph-scales" style="font-size:19px;color:#8A5200;flex:none;margin-top:1px"></i><div><div style="font-size:14.5px;font-weight:700;color:#2E2925;line-height:1.35">Écart de réconciliation</div><div style="font-size:13.5px;color:#4A443E;line-height:1.45;margin-top:2px;font-variant-numeric:tabular-nums">Caisse du 1ᵉʳ sept. : 3 000 FCFA de moins que les reçus émis.</div></div></div>
+                    <button style="min-height:38px;width:100%;margin-top:9px;background:#fff;color:#8A5200;border:1.5px solid #8A5200;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#FDF3DC">Comparer avec le trésorier</button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:13px">
+                <div style="font-size:15px;font-weight:700;color:#2E2925;margin-bottom:9px">Messes du jour</div>
+                <div style="display:grid;gap:7px">
+                  <div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="font-weight:700;color:#14345E;width:52px;flex:none;font-variant-numeric:tabular-nums">6 h 00</span><span style="color:#2E2925;flex:1">P. Konan · 3 intentions</span><i class="ph-duotone ph-check-circle" style="font-size:17px;color:#14713C"></i></div>
+                  <div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="font-weight:700;color:#14345E;width:52px;flex:none;font-variant-numeric:tabular-nums">12 h 30</span><span style="color:#2E2925;flex:1">P. Kouamé · 5 intentions</span><span style="font-size:12.5px;font-weight:600;color:#8A5200">2 à valider</span></div>
+                  <div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="font-weight:700;color:#14345E;width:52px;flex:none;font-variant-numeric:tabular-nums">18 h 30</span><span style="color:#2E2925;flex:1">P. Konan · 4 intentions</span><span style="font-size:12.5px;font-weight:600;color:#8A5200">1 à valider</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Le bloc d'alertes est bordé de rouge et porte la mention « Droits restreints » : c'est le seul endroit de l'interface où une information n'est pas visible de tous, et cela se voit.</div>
+  </div>
+
+  <!-- 02 -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">02</div>
+      <h2 style="font-size:40px;margin:0">File de validation des intentions</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">L'écran le plus fréquenté : filtres en une ligne, sélection multiple, barre d'actions groupées qui n'apparaît qu'une fois une ligne cochée. Valider est irréversible — le prêtre lira ces noms à voix haute — donc la confirmation nomme le nombre, la messe et ce qui partira aux fidèles.</p>
+
+    <div data-screen-label="02 File des intentions" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-squares-four" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-microphone-stage" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Intentions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">18</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-book-bookmark" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Registres</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-users-three" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Inscriptions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">7</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-heart" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Bans de mariage</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-megaphone" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Communication</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-chart-line-up" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Finances</span><i class="ph-duotone ph-arrow-square-out" style="font-size:15px;color:#8FA6C4;margin-left:auto"></i></div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">SB</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Sœur Brigitte</div><div style="font-size:12px;color:#8FA6C4">Secrétariat</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px;display:flex;align-items:center;gap:16px">
+          <div><div style="font-size:20px;font-weight:700;color:#2E2925">Intentions de messe</div><div style="font-size:13.5px;color:#6B655D">18 en attente · 142 validées ce mois</div></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
+            <button style="min-height:38px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 13px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-money" style="font-size:17px"></i>Encaisser des espèces</button>
+            <button style="min-height:38px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;padding:0 14px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-printer" style="font-size:17px"></i>Générer la feuille du jour</button>
+          </div>
+        </div>
+
+        <div style="background:#fff;border-bottom:1px solid #EDE9E4;padding:10px 20px;display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+          <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px;width:250px"><i class="ph-duotone ph-magnifying-glass" style="font-size:17px;color:#6B655D"></i><span style="font-size:14px;color:#9A9289">Rechercher un nom, un reçu…</span></div>
+          <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px"><i class="ph-duotone ph-calendar-dots" style="font-size:16px;color:#14345E"></i><span style="font-size:14px;color:#2E2925">2 – 8 septembre</span><i class="ph-duotone ph-caret-down" style="font-size:14px;color:#6B655D"></i></div>
+          <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px"><span style="font-size:14px;color:#2E2925">Toutes les messes</span><i class="ph-duotone ph-caret-down" style="font-size:14px;color:#6B655D"></i></div>
+          <div style="min-height:36px;border:2px solid #14345E;border-radius:5px;background:#E8EDF5;display:flex;align-items:center;gap:8px;padding:0 11px"><span style="font-size:14px;font-weight:700;color:#14345E">Statut : en attente</span><i class="ph-duotone ph-x" style="font-size:14px;color:#14345E"></i></div>
+          <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px"><span style="font-size:14px;color:#2E2925">Tous les types</span><i class="ph-duotone ph-caret-down" style="font-size:14px;color:#6B655D"></i></div>
+          <div style="margin-left:auto;font-size:13.5px;color:#A84A28;font-weight:600">Réinitialiser les filtres</div>
+        </div>
+
+        <div style="background:#14345E;padding:9px 20px;display:flex;align-items:center;gap:12px">
+          <i class="ph-duotone ph-check-square" style="font-size:19px;color:#fff"></i>
+          <div style="font-size:14.5px;font-weight:700;color:#fff">3 intentions sélectionnées</div>
+          <div style="font-size:13.5px;color:#C3D0E1">Total 6 000 FCFA · toutes payées</div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+            <button style="min-height:36px;background:rgba(255,255,255,0.12);color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:13.5px;font-weight:600;padding:0 12px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:rgba(255,255,255,0.22)"><i class="ph-duotone ph-arrows-left-right" style="font-size:16px"></i>Déplacer vers une autre messe</button>
+            <button style="min-height:36px;background:rgba(255,255,255,0.12);color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:13.5px;font-weight:600;padding:0 12px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:rgba(255,255,255,0.22)"><i class="ph-duotone ph-x-circle" style="font-size:16px"></i>Refuser</button>
+            <button style="min-height:36px;background:#14713C;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:13.5px;font-weight:700;padding:0 13px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0F5A2F"><i class="ph-duotone ph-seal-check" style="font-size:16px"></i>Valider les 3</button>
+          </div>
+        </div>
+
+        <div style="padding:0;background:#fff">
+          <table class="table" style="width:100%;font-family:'Noto Sans',sans-serif;font-size:14px">
+            <thead>
+              <tr>
+                <th style="width:38px"><span style="display:inline-block;width:17px;height:17px;border:2px solid #14345E;border-radius:3px;background:#14345E;position:relative"></span></th>
+                <th style="width:96px">Reçu <i class="ph-duotone ph-caret-up-down" style="font-size:13px;color:#9A9289"></i></th>
+                <th>Demandeur</th>
+                <th>Type</th>
+                <th>Bénéficiaire</th>
+                <th style="width:150px">Messe <i class="ph-duotone ph-caret-up" style="font-size:13px;color:#14345E"></i></th>
+                <th style="width:118px">Montant</th>
+                <th style="width:118px">Paiement</th>
+                <th style="width:150px">Statut</th>
+                <th style="width:104px">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#E8EDF5">
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #14345E;border-radius:3px;background:#14345E"></span></td>
+                <td style="font-variant-numeric:tabular-nums">2026-0431</td>
+                <td style="font-weight:600">Kouassi Adjoua</td>
+                <td>Action de Grâce</td>
+                <td>Famille Kouassi</td>
+                <td style="font-variant-numeric:tabular-nums">Lun. 14 · 12 h 30</td>
+                <td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td>
+                <td>Wave</td>
+                <td><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé</span></td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Ouvrir</span></td>
+              </tr>
+              <tr style="background:#E8EDF5">
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #14345E;border-radius:3px;background:#14345E"></span></td>
+                <td style="font-variant-numeric:tabular-nums">2026-0430</td>
+                <td style="font-weight:600">Diomandé Fatou</td>
+                <td>Santé</td>
+                <td>Diomandé Sékou</td>
+                <td style="font-variant-numeric:tabular-nums">Mer. 3 · 18 h 30</td>
+                <td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td>
+                <td>Orange Money</td>
+                <td><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé</span></td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Ouvrir</span></td>
+              </tr>
+              <tr style="background:#E8EDF5">
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #14345E;border-radius:3px;background:#14345E"></span></td>
+                <td style="font-variant-numeric:tabular-nums">2026-0429</td>
+                <td style="font-weight:600">N'Guessan Paul</td>
+                <td>Demande Particulière</td>
+                <td>Examens de Junior</td>
+                <td style="font-variant-numeric:tabular-nums">Jeu. 4 · 6 h 00</td>
+                <td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td>
+                <td>MTN MoMo</td>
+                <td><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé</span></td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Ouvrir</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">2026-0428</td>
+                <td style="font-weight:600">Yao Bernard</td>
+                <td>Repos de l'Âme</td>
+                <td>Yao Marcelline †</td>
+                <td style="font-variant-numeric:tabular-nums">Mer. 3 · 6 h 00</td>
+                <td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td>
+                <td>Espèces</td>
+                <td><span style="display:inline-flex;align-items:center;gap:5px;background:#FDF3DC;color:#8A5200;border:1px dashed #8A5200;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-clock" style="font-size:14px"></i>En attente</span></td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Encaisser</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">2026-0427</td>
+                <td style="font-weight:600">Traoré Aminata</td>
+                <td>Repos de l'Âme</td>
+                <td>Traoré Ibrahim †</td>
+                <td style="font-variant-numeric:tabular-nums">Ven. 5 · 12 h 30</td>
+                <td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td>
+                <td>Wave</td>
+                <td><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé</span></td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Ouvrir</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">2026-0426</td>
+                <td style="font-weight:600">Koffi Serge</td>
+                <td>Action de Grâce</td>
+                <td>Naissance d'Emmanuel</td>
+                <td style="font-variant-numeric:tabular-nums">Ven. 5 · 18 h 30</td>
+                <td style="font-variant-numeric:tabular-nums;font-weight:600">5 000 FCFA</td>
+                <td>Moov Money</td>
+                <td><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé</span></td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Ouvrir</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">2026-0425</td>
+                <td style="font-weight:600">Bamba Rachelle</td>
+                <td>Santé</td>
+                <td>Bamba Awa</td>
+                <td style="font-variant-numeric:tabular-nums">Sam. 6 · 6 h 00</td>
+                <td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td>
+                <td>Espèces</td>
+                <td><span style="display:inline-flex;align-items:center;gap:5px;background:#FDF3DC;color:#8A5200;border:1px dashed #8A5200;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-clock" style="font-size:14px"></i>En attente</span></td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Encaisser</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">2026-0424</td>
+                <td style="font-weight:600">Assamoi Léa</td>
+                <td>Demande Particulière</td>
+                <td>Voyage de Kader</td>
+                <td style="font-variant-numeric:tabular-nums">Dim. 7 · 8 h 00</td>
+                <td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td>
+                <td>Wave</td>
+                <td><span style="display:inline-flex;align-items:center;gap:5px;background:#FBE9E8;color:#B3261E;border:1px solid #B3261E;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-x-circle" style="font-size:14px"></i>Refusé</span></td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Motif</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">2026-0423</td>
+                <td style="font-weight:600">Gnahoré Émile</td>
+                <td>Repos de l'Âme</td>
+                <td>Gnahoré Thérèse †</td>
+                <td style="font-variant-numeric:tabular-nums">Dim. 7 · 10 h 00</td>
+                <td style="font-variant-numeric:tabular-nums;font-weight:600">2 000 FCFA</td>
+                <td>Orange Money</td>
+                <td><span style="display:inline-flex;align-items:center;gap:5px;background:#E8EDF5;color:#14345E;border:1px solid #14345E;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600"><i class="ph-duotone ph-seal-check" style="font-size:14px"></i>Validé</span></td>
+                <td><span style="font-size:13.5px;color:#9A9289">Verrouillé</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="background:#fff;border-top:1px solid #EDE9E4;padding:11px 20px;display:flex;align-items:center;gap:14px">
+          <div style="font-size:13.5px;color:#4A443E">Lignes 1 à 9 sur 18</div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:13.5px;color:#4A443E">Afficher <span style="min-height:32px;border:1.5px solid #C2BAB0;border-radius:5px;display:inline-flex;align-items:center;gap:6px;padding:0 9px;color:#2E2925">25<i class="ph-duotone ph-caret-down" style="font-size:13px;color:#6B655D"></i></span> par page</div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:5px">
+            <span style="min-width:34px;min-height:34px;border:1.5px solid #DDD7CF;border-radius:5px;display:inline-grid;place-items:center;color:#9A9289"><i class="ph-duotone ph-caret-left" style="font-size:16px"></i></span>
+            <span style="min-width:34px;min-height:34px;border:2px solid #14345E;background:#14345E;border-radius:5px;display:inline-grid;place-items:center;color:#fff;font-size:14px;font-weight:700">1</span>
+            <span style="min-width:34px;min-height:34px;border:1.5px solid #DDD7CF;border-radius:5px;display:inline-grid;place-items:center;color:#2E2925;font-size:14px">2</span>
+            <span style="min-width:34px;min-height:34px;border:1.5px solid #DDD7CF;border-radius:5px;display:inline-grid;place-items:center;color:#14345E"><i class="ph-duotone ph-caret-right" style="font-size:16px"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Une intention validée devient « Verrouillé » : la ligne reste lisible mais n'offre plus d'action, car la feuille est déjà partie à la sacristie.</div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:40px">
+      <div style="width:520px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">2.1 · Confirmation de validation</div>
+        <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;box-shadow:0 8px 24px rgba(26,23,20,0.12)">
+          <div style="padding:16px 18px;border-bottom:1px solid #EDE9E4;display:flex;align-items:flex-start;gap:12px">
+            <div style="width:38px;height:38px;border-radius:6px;background:#E8EDF5;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-seal-check" style="font-size:22px;color:#14345E"></i></div>
+            <div><div style="font-size:19px;font-weight:700;color:#2E2925;line-height:1.25">Valider 3 intentions ?</div><div style="font-size:14.5px;color:#4A443E;line-height:1.5;margin-top:3px">Une fois validées, elles entrent dans la feuille du prêtre et ne peuvent plus être modifiées ni supprimées — seulement annulées avec un motif écrit.</div></div>
+          </div>
+          <div style="padding:14px 18px;display:grid;gap:9px">
+            <div style="background:#F7F5F2;border-radius:5px;padding:11px 13px;display:grid;gap:7px">
+              <div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:#4A443E">Kouassi Adjoua · Action de Grâce</span><span style="color:#2E2925;font-weight:600">Lun. 14 · 12 h 30</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:#4A443E">Diomandé Fatou · Santé</span><span style="color:#2E2925;font-weight:600">Mer. 3 · 18 h 30</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:#4A443E">N'Guessan Paul · Demande Particulière</span><span style="color:#2E2925;font-weight:600">Jeu. 4 · 6 h 00</span></div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;background:#E8EDF5;border-radius:5px;padding:11px 13px">
+              <i class="ph-duotone ph-chat-circle-text" style="font-size:19px;color:#14345E;flex:none"></i>
+              <div style="font-size:14px;color:#14345E;line-height:1.45">Un SMS de confirmation part immédiatement aux 3 demandeurs, avec la date et l'heure de leur messe.</div>
+            </div>
+          </div>
+          <div style="padding:0 18px 16px;display:flex;gap:10px;justify-content:flex-end">
+            <button style="min-height:42px;background:#fff;color:#2E2925;border:1.5px solid #C2BAB0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;padding:0 16px;cursor:pointer" style-hover="background:#F7F5F2">Annuler</button>
+            <button style="min-height:42px;background:#14713C;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;padding:0 18px;display:flex;align-items:center;gap:8px;cursor:pointer" style-hover="background:#0F5A2F"><i class="ph-duotone ph-seal-check" style="font-size:19px"></i>Oui, valider les 3</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">La confirmation liste ce qui va être validé et annonce le SMS : on ne valide jamais un nombre abstrait.</div>
+      </div>
+
+      <div style="width:520px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">2.2 · Encaissement d'espèces au guichet</div>
+        <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;box-shadow:0 8px 24px rgba(26,23,20,0.12)">
+          <div style="padding:16px 18px;border-bottom:1px solid #EDE9E4;display:flex;align-items:center;gap:12px">
+            <div style="width:38px;height:38px;border-radius:6px;background:#FBEDE6;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-money" style="font-size:22px;color:#A84A28"></i></div>
+            <div><div style="font-size:19px;font-weight:700;color:#2E2925;line-height:1.25">Encaisser des espèces</div><div style="font-size:14px;color:#6B655D">Reçu n° 2026-0428 · Yao Bernard</div></div>
+          </div>
+          <div style="padding:14px 18px;display:grid;gap:13px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Montant dû</div><div style="min-height:44px;border:1.5px solid #DDD7CF;border-radius:5px;background:#F7F5F2;display:flex;align-items:center;padding:0 12px;font-size:17px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">2 000 FCFA</div></div>
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Montant reçu</div><div style="min-height:44px;border:2px solid #14345E;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:17px;font-weight:700;color:#14345E;box-shadow:0 0 0 3px rgba(20,52,94,0.15);font-variant-numeric:tabular-nums">2 000 FCFA</div></div>
+            </div>
+            <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Encaissé par</div><div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925">Sœur Brigitte · guichet 1</div></div>
+            <div style="background:#FDF3DC;border-radius:5px;padding:11px 13px;display:flex;gap:10px;align-items:flex-start">
+              <i class="ph-duotone ph-qr-code" style="font-size:19px;color:#8A5200;flex:none"></i>
+              <div style="font-size:14px;color:#2E2925;line-height:1.45">Le même reçu à QR code qu'un paiement mobile sera généré, imprimé au guichet et envoyé par SMS. L'écriture est transmise au trésorier dans la caisse du jour.</div>
+            </div>
+          </div>
+          <div style="padding:0 18px 16px;display:flex;gap:10px;justify-content:flex-end">
+            <button style="min-height:42px;background:#fff;color:#2E2925;border:1.5px solid #C2BAB0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;padding:0 16px;cursor:pointer" style-hover="background:#F7F5F2">Annuler</button>
+            <button style="min-height:42px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;padding:0 18px;display:flex;align-items:center;gap:8px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-printer" style="font-size:19px"></i>Encaisser et imprimer le reçu</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Espèces et mobile produisent le même reçu numéroté : une seule série, une seule vérification par QR.</div>
+      </div>
+
+      <div style="width:400px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">2.3 · Feuille d'intentions · aperçu PDF</div>
+        <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif">
+          <div style="background:#2E2925;padding:9px 13px;display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-file-pdf" style="font-size:18px;color:#fff"></i><div style="font-size:13.5px;font-weight:600;color:#fff">feuille-intentions-2026-09-02.pdf</div><div style="margin-left:auto;font-size:12.5px;color:#C2BAB0">1 / 1</div></div>
+          <div style="padding:20px 22px;background:#F7F5F2">
+            <div style="background:#fff;padding:22px 20px;box-shadow:0 1px 3px rgba(26,23,20,0.14)">
+              <div style="text-align:center;border-bottom:2px solid #14345E;padding-bottom:10px;margin-bottom:12px">
+                <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#6B655D">Paroisse Saint-Jean de Cocody</div>
+                <div style="font-size:17px;font-weight:700;color:#2E2925;margin-top:3px">Intentions du mardi 2 septembre 2026</div>
+              </div>
+              <div style="font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28;margin-bottom:6px">Messe de 6 h 00 · P. Konan</div>
+              <div style="display:grid;gap:4px;font-size:13px;color:#2E2925;margin-bottom:13px">
+                <div>1. Repos de l'âme de Yao Marcelline †</div>
+                <div>2. Action de grâce — Famille Kouadio</div>
+                <div>3. Santé de Bamba Awa</div>
+              </div>
+              <div style="font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28;margin-bottom:6px">Messe de 12 h 30 · P. Kouamé</div>
+              <div style="display:grid;gap:4px;font-size:13px;color:#2E2925;margin-bottom:13px">
+                <div>1. Action de grâce — Famille Kouassi</div>
+                <div>2. Repos de l'âme de Traoré Ibrahim †</div>
+                <div>3. Examens de Junior N'Guessan</div>
+                <div>4. Santé de Diomandé Sékou</div>
+                <div>5. Voyage de Kader Assamoi</div>
+              </div>
+              <div style="font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28;margin-bottom:6px">Messe de 18 h 30 · P. Konan</div>
+              <div style="display:grid;gap:4px;font-size:13px;color:#2E2925">
+                <div>1. Repos de l'âme de Gnahoré Thérèse †</div>
+                <div>2. Naissance d'Emmanuel Koffi</div>
+              </div>
+              <div style="border-top:1px solid #DDD7CF;margin-top:14px;padding-top:8px;font-size:11px;color:#6B655D;display:flex;justify-content:space-between"><span>Éditée le 2 sept. à 08 h 04 par Sœur Brigitte</span><span>10 intentions</span></div>
+            </div>
+          </div>
+          <div style="padding:11px 13px;border-top:1px solid #EDE9E4;display:flex;gap:9px;justify-content:flex-end">
+            <button style="min-height:40px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 13px;cursor:pointer" style-hover="background:#E8EDF5">Télécharger</button>
+            <button style="min-height:40px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;padding:0 15px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-printer" style="font-size:17px"></i>Imprimer</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Classée par horaire et par célébrant, numérotée, avec l'heure d'édition : la feuille se lit à la sacristie sans écran.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">03</div>
+      <h2 style="font-size:40px;margin:0">Registre sacramentel</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Le registre est un document canonique : on n'y efface rien. L'interface le dit avant la saisie, pas après — un acte erroné se corrige par annotation datée et signée, visible sous l'acte d'origine.</p>
+
+    <div data-screen-label="03 Registre sacramentel" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-squares-four" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-microphone-stage" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Intentions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">18</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-book-bookmark" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Registres</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-users-three" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Inscriptions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">7</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-heart" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Bans de mariage</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-megaphone" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Communication</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-chart-line-up" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Finances</span><i class="ph-duotone ph-arrow-square-out" style="font-size:15px;color:#8FA6C4;margin-left:auto"></i></div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">SB</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Sœur Brigitte</div><div style="font-size:12px;color:#8FA6C4">Secrétariat</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px;display:flex;align-items:center;gap:16px">
+          <div><div style="font-size:20px;font-weight:700;color:#2E2925">Registre sacramentel</div><div style="font-size:13.5px;color:#6B655D">4 218 actes · dernier ajout hier</div></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
+            <div style="min-height:38px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px;width:300px"><i class="ph-duotone ph-magnifying-glass" style="font-size:17px;color:#6B655D"></i><span style="font-size:14px;color:#2E2925">Kouassi</span><i class="ph-duotone ph-x" style="font-size:15px;color:#6B655D;margin-left:auto"></i></div>
+            <button style="min-height:38px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;padding:0 14px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-plus" style="font-size:17px"></i>Nouvel acte</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:296px minmax(0,1fr) 400px;gap:0;align-items:stretch">
+          <div style="background:#fff;border-right:1px solid #EDE9E4">
+            <div style="padding:10px 14px;border-bottom:1px solid #EDE9E4;font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">7 résultats pour « Kouassi »</div>
+            <div style="min-height:56px;padding:10px 14px;border-bottom:1px solid #EDE9E4;background:#E8EDF5;border-left:3px solid #14345E">
+              <div style="font-size:15px;font-weight:700;color:#14345E">Kouassi Adjoua</div>
+              <div style="font-size:13px;color:#4A443E">Née le 8 juin 1988 · 4 actes</div>
+            </div>
+            <div style="min-height:56px;padding:10px 14px;border-bottom:1px solid #EDE9E4">
+              <div style="font-size:15px;font-weight:600;color:#2E2925">Kouassi Marie-Estelle</div>
+              <div style="font-size:13px;color:#6B655D">Née le 4 mars 2015 · 2 actes</div>
+            </div>
+            <div style="min-height:56px;padding:10px 14px;border-bottom:1px solid #EDE9E4">
+              <div style="font-size:15px;font-weight:600;color:#2E2925">Kouassi Jean-Baptiste</div>
+              <div style="font-size:13px;color:#6B655D">Né le 19 juillet 2018 · 1 acte</div>
+            </div>
+            <div style="min-height:56px;padding:10px 14px;border-bottom:1px solid #EDE9E4">
+              <div style="font-size:15px;font-weight:600;color:#2E2925">Kouassi Grâce</div>
+              <div style="font-size:13px;color:#6B655D">Née le 12 mai 2023 · 1 acte</div>
+            </div>
+            <div style="min-height:56px;padding:10px 14px;border-bottom:1px solid #EDE9E4">
+              <div style="font-size:15px;font-weight:600;color:#2E2925">Kouassi Michel</div>
+              <div style="font-size:13px;color:#6B655D">Né le 2 janvier 1984 · 3 actes</div>
+            </div>
+            <div style="min-height:56px;padding:10px 14px;border-bottom:1px solid #EDE9E4">
+              <div style="font-size:15px;font-weight:600;color:#2E2925">Kouassi Bernadette</div>
+              <div style="font-size:13px;color:#6B655D">Née le 30 octobre 1961 · 4 actes</div>
+            </div>
+            <div style="min-height:56px;padding:10px 14px">
+              <div style="font-size:15px;font-weight:600;color:#2E2925">Kouassi Éliane</div>
+              <div style="font-size:13px;color:#6B655D">Née le 17 avril 1996 · 3 actes</div>
+            </div>
+          </div>
+
+          <div style="padding:16px 18px;display:flex;flex-direction:column;gap:13px">
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:14px;display:flex;gap:14px;align-items:center">
+              <div style="width:52px;height:52px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:18px;font-weight:700;flex:none">KA</div>
+              <div style="min-width:0;flex:1">
+                <div style="font-size:20px;font-weight:700;color:#2E2925">Kouassi Adjoua</div>
+                <div style="font-size:14px;color:#4A443E">Née le 8 juin 1988 à Bouaké · fille de Kouassi Étienne et Aya Marguerite</div>
+              </div>
+              <div style="text-align:right"><div style="font-size:12.5px;color:#6B655D">Dossier</div><div style="font-size:14px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">F-1988-0412</div></div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px">
+              <div style="padding:10px 14px;border-bottom:1px solid #EDE9E4;display:flex;align-items:center"><div style="font-size:15px;font-weight:700;color:#2E2925">Sacrements reçus</div><div style="margin-left:auto;font-size:13px;color:#6B655D">Registre de la paroisse et actes transcrits</div></div>
+              <table class="table" style="width:100%;table-layout:fixed;font-family:'Noto Sans',sans-serif;font-size:14px">
+                <thead><tr><th style="width:auto">Sacrement</th><th style="width:108px">Date</th><th style="width:104px">Registre</th><th style="width:88px">Certificat</th></tr></thead>
+                <tbody>
+                  <tr><td><div style="font-weight:600;color:#2E2925">Baptême</div><div style="font-size:13px;color:#6B655D;line-height:1.35">Bouaké, St-Michel · P. Assouman</div></td><td style="font-variant-numeric:tabular-nums;white-space:nowrap">24 juil. 1988</td><td style="font-variant-numeric:tabular-nums;font-size:13px;line-height:1.35">B-1988<br>f. 112 n° 41</td><td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Générer</span></td></tr>
+                  <tr><td><div style="font-weight:600;color:#2E2925">Première communion</div><div style="font-size:13px;color:#6B655D;line-height:1.35">Bouaké, St-Michel · P. Assouman</div></td><td style="font-variant-numeric:tabular-nums;white-space:nowrap">12 mai 1996</td><td style="font-variant-numeric:tabular-nums;font-size:13px;line-height:1.35">C-1996<br>f. 34 n° 18</td><td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Générer</span></td></tr>
+                  <tr><td><div style="font-weight:600;color:#2E2925">Confirmation</div><div style="font-size:13px;color:#6B655D;line-height:1.35">Bouaké, cathédrale · Mgr Kouadio</div></td><td style="font-variant-numeric:tabular-nums;white-space:nowrap">3 juin 2001</td><td style="font-variant-numeric:tabular-nums;font-size:13px;line-height:1.35">CF-2001<br>f. 8 n° 96</td><td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Générer</span></td></tr>
+                  <tr><td><div style="font-weight:600;color:#2E2925">Mariage</div><div style="font-size:13px;color:#6B655D;line-height:1.35">Cocody, St-Jean · P. Konan</div></td><td style="font-variant-numeric:tabular-nums;white-space:nowrap">18 déc. 2010</td><td style="font-variant-numeric:tabular-nums;font-size:13px;line-height:1.35">M-2010<br>f. 21 n° 7</td><td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Générer</span></td></tr>
+                </tbody>
+              </table>
+              <div style="padding:11px 14px;border-top:1px solid #EDE9E4;background:#FDF3DC;display:flex;gap:10px;align-items:flex-start">
+                <i class="ph-duotone ph-note-pencil" style="font-size:18px;color:#8A5200;flex:none"></i>
+                <div style="font-size:13.5px;color:#2E2925;line-height:1.45"><strong>Annotation du 4 février 2019</strong> — acte de mariage : rectification du prénom de l'épouse, « Adjoua » et non « Adjoa ». Portée par P. Konan, sur pièce d'état civil. L'acte d'origine reste lisible.</div>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:13px 14px">
+              <div style="font-size:15px;font-weight:700;color:#2E2925;margin-bottom:9px">Historique du dossier</div>
+              <div style="display:grid;gap:7px;font-size:13.5px;color:#4A443E">
+                <div style="display:flex;gap:12px"><span style="color:#6B655D;width:96px;flex:none;font-variant-numeric:tabular-nums">14 mars 2026</span><span>Certificat de baptême généré par Sœur Brigitte</span></div>
+                <div style="display:flex;gap:12px"><span style="color:#6B655D;width:96px;flex:none;font-variant-numeric:tabular-nums">4 févr. 2019</span><span>Annotation portée sur l'acte de mariage par P. Konan</span></div>
+                <div style="display:flex;gap:12px"><span style="color:#6B655D;width:96px;flex:none;font-variant-numeric:tabular-nums">18 déc. 2010</span><span>Acte de mariage inscrit au registre M-2010</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border-left:1px solid #EDE9E4;padding:16px 16px;display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28">Aperçu avant impression</div>
+            <div style="background:#F7F5F2;padding:14px;border-radius:5px">
+              <div style="background:#fff;padding:20px 18px;box-shadow:0 1px 3px rgba(26,23,20,0.14)">
+                <div style="text-align:center;border-bottom:1px solid #DDD7CF;padding-bottom:9px">
+                  <i class="ph-duotone ph-cross" style="font-size:19px;color:#14345E"></i>
+                  <div style="font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#6B655D;margin-top:4px">Archidiocèse d'Abidjan</div>
+                  <div style="font-size:12.5px;font-weight:600;color:#2E2925">Paroisse Saint-Jean de Cocody</div>
+                </div>
+                <div style="text-align:center;padding:14px 0 12px">
+                  <div style="font-size:16px;font-weight:700;color:#14345E;letter-spacing:0.02em">CERTIFICAT DE BAPTÊME</div>
+                </div>
+                <div style="font-size:12.5px;line-height:1.7;color:#2E2925">
+                  Je soussigné, curé de la paroisse, certifie qu'il résulte du registre des baptêmes, registre <strong>B-1988</strong>, folio <strong>112</strong>, numéro <strong>41</strong>, que&nbsp;:
+                  <div style="margin:9px 0;padding-left:10px;border-left:2px solid #C25A34">
+                    <strong>KOUASSI Adjoua</strong><br>née le 8 juin 1988 à Bouaké,<br>fille de Kouassi Étienne et de Aya Marguerite,<br>a été baptisée le 24 juillet 1988<br>par le Père Assouman,<br>parrain&nbsp;: Kouadio Félix · marraine&nbsp;: Aka Thérèse.
+                  </div>
+                  Mention marginale&nbsp;: mariage célébré le 18 décembre 2010 en cette paroisse.
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:18px">
+                  <div style="font-size:11px;color:#6B655D">Cocody, le 2 septembre 2026</div>
+                  <div style="text-align:center"><div style="width:56px;height:56px;border:1px dashed #C2BAB0;border-radius:50%;display:grid;place-items:center;color:#9A9289;font-size:9px">Sceau</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="background:#FBE9E8;border:1px solid #B3261E;border-radius:5px;padding:11px 12px;display:flex;gap:9px;align-items:flex-start">
+              <i class="ph-duotone ph-warning-circle" style="font-size:18px;color:#B3261E;flex:none"></i>
+              <div style="font-size:13.5px;color:#2E2925;line-height:1.45">Document officiel numéroté. Chaque génération est enregistrée au nom de l'agent et compte dans le registre des délivrances.</div>
+            </div>
+            <div style="display:grid;gap:8px">
+              <button style="min-height:42px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-seal-check" style="font-size:19px"></i>Confirmer et générer</button>
+              <button style="min-height:40px;background:#fff;color:#2E2925;border:1.5px solid #C2BAB0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#F7F5F2">Fermer l'aperçu</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Recherche à gauche, fiche au centre, aperçu du certificat à droite : aucun aller-retour entre écrans pour la demande la plus fréquente du guichet.</div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:40px">
+      <div style="width:620px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">3.1 · Ajout d'un acte au registre</div>
+        <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;box-shadow:0 8px 24px rgba(26,23,20,0.12)">
+          <div style="padding:14px 18px;border-bottom:1px solid #EDE9E4;display:flex;align-items:center;gap:12px">
+            <div style="width:38px;height:38px;border-radius:6px;background:#E8EDF5;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-book-bookmark" style="font-size:22px;color:#14345E"></i></div>
+            <div><div style="font-size:19px;font-weight:700;color:#2E2925;line-height:1.25">Inscrire un acte de baptême</div><div style="font-size:14px;color:#6B655D">Registre B-2026 · prochain numéro 0087</div></div>
+          </div>
+          <div style="background:#FBE9E8;border-bottom:1px solid #B3261E;padding:12px 18px;display:flex;gap:11px;align-items:flex-start">
+            <i class="ph-duotone ph-lock-key" style="font-size:21px;color:#B3261E;flex:none"></i>
+            <div><div style="font-size:15px;font-weight:700;color:#B3261E;line-height:1.3">Un acte inscrit ne peut plus être supprimé</div><div style="font-size:14px;color:#2E2925;line-height:1.5;margin-top:2px">Le registre sacramentel est un document canonique permanent. Une erreur se corrige uniquement par une annotation datée et signée, ajoutée sous l'acte d'origine qui reste lisible. Vérifiez chaque champ avant d'inscrire.</div></div>
+          </div>
+          <div style="padding:14px 18px;display:grid;gap:12px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Nom</div><div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925">KOUASSI</div></div>
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Prénoms</div><div style="min-height:44px;border:2px solid #14345E;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925;box-shadow:0 0 0 3px rgba(20,52,94,0.15)">Emmanuel Yao</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Date de naissance</div><div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925;font-variant-numeric:tabular-nums">14 / 06 / 2026</div></div>
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Date du baptême</div><div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925;font-variant-numeric:tabular-nums">30 / 08 / 2026</div></div>
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Ministre</div><div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925">P. Konan<i class="ph-duotone ph-caret-down" style="font-size:15px;color:#6B655D;margin-left:auto"></i></div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Père</div><div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925">Koffi Serge</div></div>
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Mère</div><div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925">Kouassi Éliane</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Parrain</div><div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925">Kouassi Michel</div></div>
+              <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Marraine</div><div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#9A9289">Facultatif</div></div>
+            </div>
+            <div style="background:#F7F5F2;border-radius:5px;padding:11px 13px;display:flex;gap:10px;align-items:flex-start">
+              <span style="display:inline-block;width:18px;height:18px;border:2px solid #14345E;border-radius:3px;background:#14345E;flex:none;margin-top:1px"></span>
+              <div style="font-size:14px;color:#2E2925;line-height:1.45">J'ai relu les noms, dates et lieux avec la personne présente au guichet, et je confirme leur exactitude.</div>
+            </div>
+          </div>
+          <div style="padding:0 18px 16px;display:flex;gap:10px;justify-content:flex-end">
+            <button style="min-height:42px;background:#fff;color:#2E2925;border:1.5px solid #C2BAB0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;padding:0 16px;cursor:pointer" style-hover="background:#F7F5F2">Annuler</button>
+            <button style="min-height:42px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;padding:0 18px;display:flex;align-items:center;gap:8px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-lock-key" style="font-size:19px"></i>Inscrire définitivement au registre</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">L'avertissement est en haut du formulaire, pas dans la boîte de confirmation : on le lit avant de saisir, quand cela sert encore.</div>
+      </div>
+
+      <div style="width:420px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">3.2 · Correction par annotation</div>
+        <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif">
+          <div style="padding:14px 16px;border-bottom:1px solid #EDE9E4">
+            <div style="font-size:17px;font-weight:700;color:#2E2925">Annoter l'acte B-2026 n° 0087</div>
+            <div style="font-size:14px;color:#6B655D;margin-top:2px">Kouassi Emmanuel Yao · baptême du 30 août 2026</div>
+          </div>
+          <div style="padding:14px 16px;display:grid;gap:12px">
+            <div style="background:#F7F5F2;border-left:3px solid #C2BAB0;border-radius:0 5px 5px 0;padding:11px 13px">
+              <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D;margin-bottom:4px">Acte d'origine · inchangé</div>
+              <div style="font-size:14px;color:#4A443E;line-height:1.5">Parrain : Kouassi Michel · Marraine : —</div>
+            </div>
+            <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Nature de l'annotation</div><div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925">Ajout de marraine<i class="ph-duotone ph-caret-down" style="font-size:15px;color:#6B655D;margin-left:auto"></i></div></div>
+            <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Texte porté en marge</div><div style="min-height:78px;border:2px solid #14345E;border-radius:5px;background:#fff;padding:11px 12px;font-size:14.5px;color:#2E2925;line-height:1.5;box-shadow:0 0 0 3px rgba(20,52,94,0.15)">Marraine : Aka Thérèse, ajoutée sur attestation du curé du 2 septembre 2026.</div></div>
+            <div><div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:5px">Portée par</div><div style="min-height:44px;border:1.5px solid #DDD7CF;border-radius:5px;background:#F7F5F2;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925">P. Konan · signature électronique</div></div>
+            <div style="background:#E8EDF5;border-radius:5px;padding:11px 13px;font-size:13.5px;color:#14345E;line-height:1.45">L'annotation apparaîtra sous l'acte et sur tous les certificats délivrés à partir d'aujourd'hui.</div>
+          </div>
+          <div style="padding:0 16px 16px;display:flex;gap:10px;justify-content:flex-end">
+            <button style="min-height:42px;background:#fff;color:#2E2925;border:1.5px solid #C2BAB0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;padding:0 16px;cursor:pointer" style-hover="background:#F7F5F2">Annuler</button>
+            <button style="min-height:42px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;padding:0 16px;cursor:pointer" style-hover="background:#0E2A4E">Porter l'annotation</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">L'acte d'origine est montré au-dessus du champ de correction : on annote en le voyant, jamais à l'aveugle.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">04</div>
+      <h2 style="font-size:40px;margin:0">Inscriptions aux mouvements</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Un dossier se lit d'un coup d'œil grâce à trois pastilles de complétude — pièces, cotisation, autorisations. Le tri par défaut remonte les dossiers complets : ce sont ceux qu'on peut valider tout de suite, en lot.</p>
+
+    <div data-screen-label="04 Inscriptions" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-squares-four" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-microphone-stage" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Intentions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">18</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-book-bookmark" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Registres</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-users-three" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Inscriptions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">7</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-heart" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Bans de mariage</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-megaphone" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Communication</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-chart-line-up" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Finances</span><i class="ph-duotone ph-arrow-square-out" style="font-size:15px;color:#8FA6C4;margin-left:auto"></i></div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">SB</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Sœur Brigitte</div><div style="font-size:12px;color:#8FA6C4">Secrétariat</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px;display:flex;align-items:center;gap:16px">
+          <div><div style="font-size:20px;font-weight:700;color:#2E2925">Inscriptions aux mouvements</div><div style="font-size:13.5px;color:#6B655D">Année pastorale 2026-2027 · 142 dossiers · 7 à traiter</div></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
+            <button style="min-height:38px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 13px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-chat-circle-text" style="font-size:17px"></i>Relancer les incomplets (3)</button>
+            <button style="min-height:38px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 13px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-export" style="font-size:17px"></i>Exporter la liste</button>
+          </div>
+        </div>
+
+        <div style="background:#fff;border-bottom:1px solid #EDE9E4;padding:10px 20px;display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+          <div style="min-height:36px;border:2px solid #14345E;border-radius:5px;background:#E8EDF5;display:flex;align-items:center;gap:8px;padding:0 11px"><i class="ph-duotone ph-tent" style="font-size:16px;color:#14345E"></i><span style="font-size:14px;font-weight:700;color:#14345E">Scouts et Guides</span><i class="ph-duotone ph-caret-down" style="font-size:14px;color:#14345E"></i></div>
+          <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px"><span style="font-size:14px;color:#2E2925">Complétude : toutes</span><i class="ph-duotone ph-caret-down" style="font-size:14px;color:#6B655D"></i></div>
+          <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px"><span style="font-size:14px;color:#2E2925">Tranche d'âge</span><i class="ph-duotone ph-caret-down" style="font-size:14px;color:#6B655D"></i></div>
+          <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 11px;width:220px"><i class="ph-duotone ph-magnifying-glass" style="font-size:16px;color:#6B655D"></i><span style="font-size:14px;color:#9A9289">Nom de l'enfant…</span></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:14px;font-size:13px">
+            <span style="display:inline-flex;align-items:center;gap:6px;color:#4A443E"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>Complet</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;color:#4A443E"><span style="width:10px;height:10px;border-radius:50%;background:#8A5200"></span>En attente</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;color:#4A443E"><span style="width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #C2BAB0"></span>Manquant</span>
+          </div>
+        </div>
+
+        <div style="background:#14345E;padding:9px 20px;display:flex;align-items:center;gap:12px">
+          <i class="ph-duotone ph-check-square" style="font-size:19px;color:#fff"></i>
+          <div style="font-size:14.5px;font-weight:700;color:#fff">2 dossiers complets sélectionnés</div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+            <button style="min-height:36px;background:rgba(255,255,255,0.12);color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:13.5px;font-weight:600;padding:0 12px;cursor:pointer" style-hover="background:rgba(255,255,255,0.22)">Affecter à une équipe</button>
+            <button style="min-height:36px;background:#14713C;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:13.5px;font-weight:700;padding:0 13px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0F5A2F"><i class="ph-duotone ph-seal-check" style="font-size:16px"></i>Valider les 2 inscriptions</button>
+          </div>
+        </div>
+
+        <div style="background:#fff">
+          <table class="table" style="width:100%;font-family:'Noto Sans',sans-serif;font-size:14px">
+            <thead>
+              <tr>
+                <th style="width:38px"><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></th>
+                <th style="width:104px">Dossier</th>
+                <th>Enfant</th>
+                <th style="width:66px">Âge</th>
+                <th>Parent responsable</th>
+                <th style="width:118px">Pièces</th>
+                <th style="width:150px">Cotisation</th>
+                <th style="width:132px">Autorisations</th>
+                <th style="width:120px">Reçu le</th>
+                <th style="width:118px">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#E8EDF5">
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #14345E;border-radius:3px;background:#14345E"></span></td>
+                <td style="font-variant-numeric:tabular-nums">SG-2026-118</td>
+                <td style="font-weight:600">Kouassi Marie-Estelle</td>
+                <td style="font-variant-numeric:tabular-nums">11</td>
+                <td>Kouassi Adjoua</td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>2 / 2</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600;font-variant-numeric:tabular-nums"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>15 000 FCFA</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>Sortie · Image</span></td>
+                <td style="font-variant-numeric:tabular-nums">31 août</td>
+                <td><span style="font-size:13.5px;font-weight:700;color:#14713C">Valider</span></td>
+              </tr>
+              <tr style="background:#E8EDF5">
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #14345E;border-radius:3px;background:#14345E"></span></td>
+                <td style="font-variant-numeric:tabular-nums">SG-2026-117</td>
+                <td style="font-weight:600">Bamba Ismaël</td>
+                <td style="font-variant-numeric:tabular-nums">13</td>
+                <td>Bamba Rachelle</td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>2 / 2</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600;font-variant-numeric:tabular-nums"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>15 000 FCFA</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>Sortie · Image</span></td>
+                <td style="font-variant-numeric:tabular-nums">30 août</td>
+                <td><span style="font-size:13.5px;font-weight:700;color:#14713C">Valider</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">SG-2026-116</td>
+                <td style="font-weight:600">N'Guessan Junior</td>
+                <td style="font-variant-numeric:tabular-nums">9</td>
+                <td>N'Guessan Paul</td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#8A5200;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #C2BAB0"></span>1 / 2 · baptême</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600;font-variant-numeric:tabular-nums"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>15 000 FCFA</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>Sortie · Image</span></td>
+                <td style="font-variant-numeric:tabular-nums">29 août</td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Relancer</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">SG-2026-115</td>
+                <td style="font-weight:600">Diomandé Awa</td>
+                <td style="font-variant-numeric:tabular-nums">10</td>
+                <td>Diomandé Fatou</td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>2 / 2</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#8A5200;font-weight:600;font-variant-numeric:tabular-nums"><span style="width:10px;height:10px;border-radius:50%;background:#8A5200"></span>5 000 / 15 000</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>Sortie · Image</span></td>
+                <td style="font-variant-numeric:tabular-nums">28 août</td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Encaisser</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">SG-2026-114</td>
+                <td style="font-weight:600">Yao Prisca</td>
+                <td style="font-variant-numeric:tabular-nums">14</td>
+                <td>Yao Bernard</td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>2 / 2</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600;font-variant-numeric:tabular-nums"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>15 000 FCFA</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#8A5200;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #C2BAB0"></span>Image manquante</span></td>
+                <td style="font-variant-numeric:tabular-nums">27 août</td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Relancer</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">SG-2026-113</td>
+                <td style="font-weight:600">Koffi Emmanuel</td>
+                <td style="font-variant-numeric:tabular-nums">8</td>
+                <td>Koffi Serge</td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#8A5200;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #C2BAB0"></span>0 / 2</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#8A5200;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#8A5200"></span>Espèces annoncées</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>Sortie · Image</span></td>
+                <td style="font-variant-numeric:tabular-nums">26 août</td>
+                <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Relancer</span></td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:17px;height:17px;border:2px solid #C2BAB0;border-radius:3px;background:#fff"></span></td>
+                <td style="font-variant-numeric:tabular-nums">SG-2026-112</td>
+                <td style="font-weight:600">Traoré Salif</td>
+                <td style="font-variant-numeric:tabular-nums">16</td>
+                <td>Traoré Aminata</td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>2 / 2</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600;font-variant-numeric:tabular-nums"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>15 000 FCFA</span></td>
+                <td><span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#14713C;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:#14713C"></span>Sortie seule</span></td>
+                <td style="font-variant-numeric:tabular-nums">25 août</td>
+                <td><span style="font-size:13.5px;font-weight:700;color:#14713C">Valider</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="background:#fff;border-top:1px solid #EDE9E4;padding:11px 20px;display:flex;align-items:center;gap:14px">
+          <div style="font-size:13.5px;color:#4A443E">7 dossiers en attente · 135 validés cette année</div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:5px">
+            <span style="min-width:34px;min-height:34px;border:1.5px solid #DDD7CF;border-radius:5px;display:inline-grid;place-items:center;color:#9A9289"><i class="ph-duotone ph-caret-left" style="font-size:16px"></i></span>
+            <span style="min-width:34px;min-height:34px;border:2px solid #14345E;background:#14345E;border-radius:5px;display:inline-grid;place-items:center;color:#fff;font-size:14px;font-weight:700">1</span>
+            <span style="min-width:34px;min-height:34px;border:1.5px solid #DDD7CF;border-radius:5px;display:inline-grid;place-items:center;color:#9A9289"><i class="ph-duotone ph-caret-right" style="font-size:16px"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Chaque pastille est doublée d'un texte — « 1 / 2 · baptême », « Image manquante » — pour qu'on sache quoi réclamer sans ouvrir le dossier.</div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:40px">
+      <div style="width:560px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">4.1 · Dossier ouvert</div>
+        <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif">
+          <div style="padding:13px 16px;border-bottom:1px solid #EDE9E4;display:flex;align-items:center;gap:12px">
+            <div style="width:44px;height:44px;border-radius:50%;background:#14345E;color:#fff;display:grid;place-items:center;font-size:15px;font-weight:700;flex:none">MK</div>
+            <div><div style="font-size:18px;font-weight:700;color:#2E2925">Kouassi Marie-Estelle · 11 ans</div><div style="font-size:13.5px;color:#6B655D">Dossier SG-2026-118 · Scouts et Guides · reçu le 31 août</div></div>
+            <span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:#FDF3DC;color:#8A5200;border:1px dashed #8A5200;border-radius:16px;padding:4px 11px;font-size:13.5px;font-weight:600"><i class="ph-duotone ph-clock" style="font-size:15px"></i>En attente</span>
+          </div>
+          <div style="padding:13px 16px;display:grid;gap:11px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+              <div style="background:#F7F5F2;border-radius:5px;padding:11px 12px">
+                <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D;margin-bottom:6px">Pièces jointes</div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#2E2925;margin-bottom:5px"><i class="ph-duotone ph-file-text" style="font-size:18px;color:#14713C"></i>Acte de baptême<span style="margin-left:auto;font-size:13px;color:#A84A28;font-weight:600">Voir</span></div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#2E2925"><i class="ph-duotone ph-image" style="font-size:18px;color:#14713C"></i>Photo d'identité<span style="margin-left:auto;font-size:13px;color:#A84A28;font-weight:600">Voir</span></div>
+              </div>
+              <div style="background:#F7F5F2;border-radius:5px;padding:11px 12px">
+                <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D;margin-bottom:6px">Cotisation</div>
+                <div style="font-size:19px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">15 000 FCFA</div>
+                <div style="font-size:13.5px;color:#4A443E;margin-top:2px">Orange Money · reçu n° 2026-0432 · 31 août</div>
+              </div>
+            </div>
+            <div style="background:#F7F5F2;border-radius:5px;padding:11px 12px">
+              <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D;margin-bottom:7px">Autorisations parentales</div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#2E2925;margin-bottom:5px"><i class="ph-duotone ph-check-circle" style="font-size:18px;color:#14713C"></i>Sorties et déplacements — accordée le 31 août par Kouassi Adjoua</div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#2E2925"><i class="ph-duotone ph-check-circle" style="font-size:18px;color:#14713C"></i>Photos et vidéos — accordée le 31 août</div>
+            </div>
+            <div style="background:#FBEDE6;border-radius:5px;padding:11px 12px;display:flex;gap:10px;align-items:flex-start">
+              <i class="ph-duotone ph-first-aid-kit" style="font-size:19px;color:#A84A28;flex:none"></i>
+              <div><div style="font-size:14px;font-weight:700;color:#A84A28">Information de santé confidentielle</div><div style="font-size:13.5px;color:#2E2925;line-height:1.45;margin-top:2px">Asthme léger — inhalateur dans le sac. Contact d'urgence : Kouassi Adjoua, +225 07 07 12 34 56.</div><div style="font-size:12.5px;color:#6B655D;margin-top:4px">Transmise au seul responsable de l'équipe. Consultation journalisée.</div></div>
+            </div>
+          </div>
+          <div style="padding:0 16px 14px;display:flex;gap:10px;justify-content:flex-end">
+            <button style="min-height:42px;background:#fff;color:#B3261E;border:1.5px solid #B3261E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;padding:0 15px;cursor:pointer" style-hover="background:#FBE9E8">Refuser avec motif</button>
+            <button style="min-height:42px;background:#14713C;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;padding:0 17px;display:flex;align-items:center;gap:8px;cursor:pointer" style-hover="background:#0F5A2F"><i class="ph-duotone ph-seal-check" style="font-size:19px"></i>Valider l'inscription</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">La santé de l'enfant est encadrée en terre cuite et rappelle qui peut la lire — la donnée la plus sensible du dossier.</div>
+      </div>
+
+      <div style="width:460px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">4.2 · Relance groupée</div>
+        <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;box-shadow:0 8px 24px rgba(26,23,20,0.12)">
+          <div style="padding:14px 16px;border-bottom:1px solid #EDE9E4">
+            <div style="font-size:18px;font-weight:700;color:#2E2925">Relancer 3 familles</div>
+            <div style="font-size:14px;color:#6B655D;margin-top:2px">Chaque parent reçoit uniquement ce qui lui manque.</div>
+          </div>
+          <div style="padding:13px 16px;display:grid;gap:9px">
+            <div style="background:#F7F5F2;border-radius:5px;padding:10px 12px;font-size:14px;color:#2E2925">N'Guessan Paul — <span style="color:#8A5200;font-weight:600">acte de baptême</span></div>
+            <div style="background:#F7F5F2;border-radius:5px;padding:10px 12px;font-size:14px;color:#2E2925">Yao Bernard — <span style="color:#8A5200;font-weight:600">autorisation image</span></div>
+            <div style="background:#F7F5F2;border-radius:5px;padding:10px 12px;font-size:14px;color:#2E2925">Koffi Serge — <span style="color:#8A5200;font-weight:600">2 pièces et cotisation</span></div>
+            <div style="border:1.5px solid #C2BAB0;border-radius:5px;padding:11px 12px">
+              <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D;margin-bottom:6px">Aperçu du SMS</div>
+              <div style="font-size:14px;color:#2E2925;line-height:1.5">Paroisse St-Jean : il manque l'acte de baptême de Junior pour finaliser son inscription aux Scouts. Ajoutez-le dans l'application ou passez au secrétariat avant le 12 septembre.</div>
+              <div style="font-size:12.5px;color:#6B655D;margin-top:6px">154 caractères · 1 SMS par famille</div>
+            </div>
+          </div>
+          <div style="padding:0 16px 14px;display:flex;gap:10px;justify-content:flex-end">
+            <button style="min-height:42px;background:#fff;color:#2E2925;border:1.5px solid #C2BAB0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;padding:0 15px;cursor:pointer" style-hover="background:#F7F5F2">Annuler</button>
+            <button style="min-height:42px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;padding:0 16px;cursor:pointer" style-hover="background:#0E2A4E">Envoyer les 3 relances</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Une relance personnalisée par famille, générée depuis la colonne manquante — pas un message général à tout le mouvement.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">05</div>
+      <h2 style="font-size:40px;margin:0">Bans de mariage</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Un dossier de mariage se joue sur des délais : pièces à réunir, trois publications à afficher, et un célébrant disponible le jour dit. Les trois vivent sur le même écran, le calendrier à droite montrant ce que le prêtre a déjà pris.</p>
+
+    <div data-screen-label="05 Bans de mariage" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-squares-four" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-microphone-stage" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Intentions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">18</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-book-bookmark" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Registres</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-users-three" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Inscriptions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">7</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-heart" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Bans de mariage</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-megaphone" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Communication</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-chart-line-up" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Finances</span><i class="ph-duotone ph-arrow-square-out" style="font-size:15px;color:#8FA6C4;margin-left:auto"></i></div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">SB</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Sœur Brigitte</div><div style="font-size:12px;color:#8FA6C4">Secrétariat</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px;display:flex;align-items:center;gap:16px">
+          <div><div style="font-size:20px;font-weight:700;color:#2E2925">Bans de mariage</div><div style="font-size:13.5px;color:#6B655D">5 dossiers en cours · 2 publications à afficher dimanche</div></div>
+          <button style="margin-left:auto;min-height:38px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;padding:0 14px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-plus" style="font-size:17px"></i>Ouvrir un dossier</button>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) 396px;align-items:stretch">
+          <div style="background:#fff;border-right:1px solid #EDE9E4">
+            <table class="table" style="width:100%;font-family:'Noto Sans',sans-serif;font-size:14px">
+              <thead>
+                <tr><th>Fiancés</th><th style="width:124px">Célébration</th><th style="width:180px">Pièces requises</th><th style="width:188px">Publication des bans</th><th style="width:120px">Célébrant</th><th style="width:96px">Action</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div style="font-weight:600;color:#2E2925">Kouamé Éric</div><div style="color:#6B655D;font-size:13.5px">et Assamoi Léa</div></td>
+                  <td style="font-variant-numeric:tabular-nums">Sam. 24 oct.<div style="font-size:13px;color:#6B655D">10 h 00</div></td>
+                  <td>
+                    <div style="display:flex;gap:5px;flex-wrap:wrap">
+                      <span style="font-size:12.5px;font-weight:600;color:#14713C;background:#E4F1E8;border-radius:12px;padding:2px 8px">Baptêmes</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#14713C;background:#E4F1E8;border-radius:12px;padding:2px 8px">Confirmations</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#14713C;background:#E4F1E8;border-radius:12px;padding:2px 8px">Préparation</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#14713C;background:#E4F1E8;border-radius:12px;padding:2px 8px">État civil</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px"><span style="width:22px;height:8px;border-radius:4px;background:#14713C"></span><span style="width:22px;height:8px;border-radius:4px;background:#14713C"></span><span style="width:22px;height:8px;border-radius:4px;background:#14713C"></span></div>
+                    <div style="font-size:13px;color:#14713C;font-weight:600">3 / 3 publiées · aucune opposition</div>
+                  </td>
+                  <td>P. Konan</td>
+                  <td><span style="font-size:13.5px;font-weight:700;color:#14713C">Confirmer</span></td>
+                </tr>
+                <tr>
+                  <td><div style="font-weight:600;color:#2E2925">Gnahoré Franck</div><div style="color:#6B655D;font-size:13.5px">et Bamba Rachelle</div></td>
+                  <td style="font-variant-numeric:tabular-nums">Sam. 7 nov.<div style="font-size:13px;color:#6B655D">10 h 00</div></td>
+                  <td>
+                    <div style="display:flex;gap:5px;flex-wrap:wrap">
+                      <span style="font-size:12.5px;font-weight:600;color:#14713C;background:#E4F1E8;border-radius:12px;padding:2px 8px">Baptêmes</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#8A5200;background:#FDF3DC;border-radius:12px;padding:2px 8px">Confirmation ép.</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#14713C;background:#E4F1E8;border-radius:12px;padding:2px 8px">Préparation</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#14713C;background:#E4F1E8;border-radius:12px;padding:2px 8px">État civil</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px"><span style="width:22px;height:8px;border-radius:4px;background:#14713C"></span><span style="width:22px;height:8px;border-radius:4px;background:#14713C"></span><span style="width:22px;height:8px;border-radius:4px;background:#EDE9E4"></span></div>
+                    <div style="font-size:13px;color:#8A5200;font-weight:600">2 / 3 · 3ᵉ le dim. 7 sept.</div>
+                  </td>
+                  <td>P. Kouamé</td>
+                  <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Ouvrir</span></td>
+                </tr>
+                <tr>
+                  <td><div style="font-weight:600;color:#2E2925">Yao Christian</div><div style="color:#6B655D;font-size:13.5px">et Diomandé Nadia</div></td>
+                  <td style="font-variant-numeric:tabular-nums">Sam. 21 nov.<div style="font-size:13px;color:#6B655D">10 h 00</div></td>
+                  <td>
+                    <div style="display:flex;gap:5px;flex-wrap:wrap">
+                      <span style="font-size:12.5px;font-weight:600;color:#14713C;background:#E4F1E8;border-radius:12px;padding:2px 8px">Baptêmes</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#14713C;background:#E4F1E8;border-radius:12px;padding:2px 8px">Confirmations</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#B3261E;background:#FBE9E8;border-radius:12px;padding:2px 8px">Préparation à faire</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#8A5200;background:#FDF3DC;border-radius:12px;padding:2px 8px">État civil</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px"><span style="width:22px;height:8px;border-radius:4px;background:#14713C"></span><span style="width:22px;height:8px;border-radius:4px;background:#EDE9E4"></span><span style="width:22px;height:8px;border-radius:4px;background:#EDE9E4"></span></div>
+                    <div style="font-size:13px;color:#8A5200;font-weight:600">1 / 3 · à publier dim. 7 sept.</div>
+                  </td>
+                  <td>P. Konan</td>
+                  <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Ouvrir</span></td>
+                </tr>
+                <tr>
+                  <td><div style="font-weight:600;color:#2E2925">Koffi Landry</div><div style="color:#6B655D;font-size:13.5px">et Traoré Estelle</div></td>
+                  <td style="font-variant-numeric:tabular-nums">Sam. 12 déc.<div style="font-size:13px;color:#6B655D">10 h 00</div></td>
+                  <td>
+                    <div style="display:flex;gap:5px;flex-wrap:wrap">
+                      <span style="font-size:12.5px;font-weight:600;color:#14713C;background:#E4F1E8;border-radius:12px;padding:2px 8px">Baptêmes</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#8A5200;background:#FDF3DC;border-radius:12px;padding:2px 8px">Confirmations</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#8A5200;background:#FDF3DC;border-radius:12px;padding:2px 8px">Préparation</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#B3261E;background:#FBE9E8;border-radius:12px;padding:2px 8px">État civil manquant</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px"><span style="width:22px;height:8px;border-radius:4px;background:#EDE9E4"></span><span style="width:22px;height:8px;border-radius:4px;background:#EDE9E4"></span><span style="width:22px;height:8px;border-radius:4px;background:#EDE9E4"></span></div>
+                    <div style="font-size:13px;color:#6B655D">Non commencée</div>
+                  </td>
+                  <td><span style="color:#8A5200;font-weight:600">À définir</span></td>
+                  <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Ouvrir</span></td>
+                </tr>
+                <tr>
+                  <td><div style="font-weight:600;color:#2E2925">N'Da Wilfried</div><div style="color:#6B655D;font-size:13.5px">et Aka Sylvie</div></td>
+                  <td style="font-variant-numeric:tabular-nums">Sam. 9 janv.<div style="font-size:13px;color:#6B655D">10 h 00</div></td>
+                  <td>
+                    <div style="display:flex;gap:5px;flex-wrap:wrap">
+                      <span style="font-size:12.5px;font-weight:600;color:#8A5200;background:#FDF3DC;border-radius:12px;padding:2px 8px">Baptême époux</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#8A5200;background:#FDF3DC;border-radius:12px;padding:2px 8px">Confirmations</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#8A5200;background:#FDF3DC;border-radius:12px;padding:2px 8px">Préparation</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#8A5200;background:#FDF3DC;border-radius:12px;padding:2px 8px">État civil</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px"><span style="width:22px;height:8px;border-radius:4px;background:#EDE9E4"></span><span style="width:22px;height:8px;border-radius:4px;background:#EDE9E4"></span><span style="width:22px;height:8px;border-radius:4px;background:#EDE9E4"></span></div>
+                    <div style="font-size:13px;color:#6B655D">Non commencée</div>
+                  </td>
+                  <td><span style="color:#8A5200;font-weight:600">À définir</span></td>
+                  <td><span style="font-size:13.5px;font-weight:600;color:#A84A28">Ouvrir</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="padding:12px 16px;background:#FDF3DC;border-top:1px solid #EDE9E4;display:flex;gap:10px;align-items:flex-start">
+              <i class="ph-duotone ph-megaphone" style="font-size:19px;color:#8A5200;flex:none"></i>
+              <div style="font-size:13.5px;color:#2E2925;line-height:1.45"><strong>Dimanche 7 septembre :</strong> 2 bans à lire aux trois messes. La feuille de lecture s'imprime avec la feuille d'intentions.</div>
+            </div>
+          </div>
+
+          <div style="background:#fff;padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+            <div>
+              <div style="font-size:15.5px;font-weight:700;color:#2E2925">Disponibilité des célébrants</div>
+              <div style="font-size:13.5px;color:#6B655D">Octobre 2026 · samedis de célébration</div>
+            </div>
+            <div style="display:flex;gap:14px;font-size:12.5px;color:#4A443E">
+              <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:2px;background:#14345E"></span>Mariage retenu</span>
+              <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:2px;background:#C25A34"></span>Autre engagement</span>
+              <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:2px;background:#E4F1E8;border:1px solid #14713C"></span>Libre</span>
+            </div>
+            <div style="border:1px solid #EDE9E4;border-radius:5px;padding:12px">
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:11.5px;color:#6B655D;text-align:center;margin-bottom:6px"><div>L</div><div>M</div><div>M</div><div>J</div><div>V</div><div>S</div><div>D</div></div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:13px;color:#2E2925">
+                <div style="padding:7px 0;color:#C2BAB0">28</div><div style="padding:7px 0;color:#C2BAB0">29</div><div style="padding:7px 0;color:#C2BAB0">30</div><div style="padding:7px 0">1</div><div style="padding:7px 0">2</div><div style="padding:7px 0;background:#C25A34;color:#fff;border-radius:4px;font-weight:700">3</div><div style="padding:7px 0">4</div>
+                <div style="padding:7px 0">5</div><div style="padding:7px 0">6</div><div style="padding:7px 0">7</div><div style="padding:7px 0">8</div><div style="padding:7px 0">9</div><div style="padding:7px 0;background:#E4F1E8;border:1px solid #14713C;border-radius:4px;font-weight:600;color:#14713C">10</div><div style="padding:7px 0">11</div>
+                <div style="padding:7px 0">12</div><div style="padding:7px 0">13</div><div style="padding:7px 0">14</div><div style="padding:7px 0">15</div><div style="padding:7px 0">16</div><div style="padding:7px 0;background:#14345E;color:#fff;border-radius:4px;font-weight:700">17</div><div style="padding:7px 0">18</div>
+                <div style="padding:7px 0">19</div><div style="padding:7px 0">20</div><div style="padding:7px 0">21</div><div style="padding:7px 0">22</div><div style="padding:7px 0">23</div><div style="padding:7px 0;background:#14345E;color:#fff;border-radius:4px;font-weight:700">24</div><div style="padding:7px 0">25</div>
+                <div style="padding:7px 0">26</div><div style="padding:7px 0">27</div><div style="padding:7px 0">28</div><div style="padding:7px 0">29</div><div style="padding:7px 0">30</div><div style="padding:7px 0;background:#E4F1E8;border:1px solid #14713C;border-radius:4px;font-weight:600;color:#14713C">31</div><div style="padding:7px 0;color:#C2BAB0">1</div>
+              </div>
+            </div>
+            <div style="display:grid;gap:8px">
+              <div style="border:1px solid #EDE9E4;border-radius:5px;padding:10px 12px;border-left:3px solid #C25A34">
+                <div style="font-size:14px;font-weight:600;color:#2E2925">Sam. 3 octobre · toute la journée</div>
+                <div style="font-size:13.5px;color:#4A443E">Pèlerinage diocésain — les deux prêtres absents</div>
+              </div>
+              <div style="border:1px solid #EDE9E4;border-radius:5px;padding:10px 12px;border-left:3px solid #14345E">
+                <div style="font-size:14px;font-weight:600;color:#2E2925">Sam. 17 octobre · 10 h 00</div>
+                <div style="font-size:13.5px;color:#4A443E">Mariage Ouattara – Sanogo · P. Konan</div>
+              </div>
+              <div style="border:1px solid #EDE9E4;border-radius:5px;padding:10px 12px;border-left:3px solid #14345E">
+                <div style="font-size:14px;font-weight:600;color:#2E2925">Sam. 24 octobre · 10 h 00</div>
+                <div style="font-size:13.5px;color:#4A443E">Mariage Kouamé – Assamoi · P. Konan</div>
+              </div>
+            </div>
+            <div style="background:#FBE9E8;border:1px solid #B3261E;border-radius:5px;padding:11px 12px;display:flex;gap:9px;align-items:flex-start">
+              <i class="ph-duotone ph-warning-circle" style="font-size:18px;color:#B3261E;flex:none"></i>
+              <div style="font-size:13.5px;color:#2E2925;line-height:1.45">Deux mariages le même samedi demandent deux célébrants. Le 24 octobre n'en a qu'un de libre.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Les trois bans sont figurés par trois barres : publié, à venir, non commencé. On voit l'avancement d'une colonne à l'autre sans lire une date.</div>
+  </div>
+
+  <!-- 06 -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">06</div>
+      <h2 style="font-size:40px;margin:0">Communication</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Un message écrit une fois, rendu dans les trois canaux côte à côte : le SMS compte ses caractères et son coût en FCFA, WhatsApp montre la mise en forme, le push montre ce qui tient sur un écran verrouillé. L'audience est chiffrée avant l'envoi, jamais après.</p>
+
+    <div data-screen-label="06 Communication" style="width:1440px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+      <div style="width:232px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;padding:0 0 14px">
+        <div style="padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1)">
+          <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-cross" style="font-size:20px;color:#E8A98F"></i><div style="font-size:15px;font-weight:700;color:#fff">EcclesiaConnect</div></div>
+          <div style="font-size:12.5px;color:#8FA6C4;margin-top:3px">Saint-Jean de Cocody</div>
+        </div>
+        <div style="padding:10px 10px 0;display:grid;gap:2px">
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-squares-four" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Tableau de bord</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-microphone-stage" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Intentions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">18</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-book-bookmark" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Registres</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-users-three" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Inscriptions</span><span style="margin-left:auto;font-size:12px;font-weight:700;color:#0B1F3A;background:#F2C14E;border-radius:9px;padding:2px 7px">7</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px"><i class="ph-duotone ph-heart" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Bans de mariage</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;background:#24548F"><i class="ph-duotone ph-megaphone" style="font-size:19px;color:#fff"></i><span style="font-size:14.5px;font-weight:700;color:#fff">Communication</span></div>
+          <div style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border-radius:5px;border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:8px"><i class="ph-duotone ph-chart-line-up" style="font-size:19px;color:#8FA6C4"></i><span style="font-size:14.5px;color:#C3D0E1">Finances</span><i class="ph-duotone ph-arrow-square-out" style="font-size:15px;color:#8FA6C4;margin-left:auto"></i></div>
+        </div>
+        <div style="margin-top:auto;padding:12px 14px 0;border-top:1px solid rgba(255,255,255,0.1);margin-left:10px;margin-right:10px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700;flex:none">SB</div><div style="min-width:0"><div style="font-size:13.5px;font-weight:600;color:#fff">Sœur Brigitte</div><div style="font-size:12px;color:#8FA6C4">Secrétariat</div></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:12px 20px;display:flex;align-items:center;gap:16px">
+          <div><div style="font-size:20px;font-weight:700;color:#2E2925">Nouveau message</div><div style="font-size:13.5px;color:#6B655D">Brouillon enregistré à 09 h 12</div></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:9px">
+            <button style="min-height:38px;background:#fff;color:#2E2925;border:1.5px solid #C2BAB0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 13px;cursor:pointer" style-hover="background:#F7F5F2">Enregistrer le brouillon</button>
+            <button style="min-height:38px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 13px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-clock" style="font-size:17px"></i>Programmer</button>
+            <button style="min-height:38px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;padding:0 14px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-paper-plane-tilt" style="font-size:17px"></i>Vérifier et envoyer</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:300px minmax(0,1fr) 380px;align-items:stretch">
+
+          <div style="background:#fff;border-right:1px solid #EDE9E4;padding:14px;display:flex;flex-direction:column;gap:13px">
+            <div style="font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28">Audience</div>
+            <div style="display:grid;gap:7px">
+              <div style="min-height:44px;border:1.5px solid #DDD7CF;border-radius:5px;display:flex;align-items:center;gap:10px;padding:0 12px"><span style="width:17px;height:17px;border:2px solid #C2BAB0;border-radius:50%;flex:none"></span><div style="min-width:0;flex:1"><div style="font-size:14.5px;color:#2E2925">Tous les fidèles inscrits</div></div><span style="font-size:13px;color:#6B655D;font-variant-numeric:tabular-nums">1 842</span></div>
+              <div style="min-height:44px;border:2px solid #14345E;background:#E8EDF5;border-radius:5px;display:flex;align-items:center;gap:10px;padding:0 12px"><span style="width:17px;height:17px;border:5px solid #14345E;border-radius:50%;flex:none;background:#fff"></span><div style="min-width:0;flex:1"><div style="font-size:14.5px;font-weight:700;color:#14345E">Parents d'un mouvement</div></div><span style="font-size:13px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">96</span></div>
+              <div style="min-height:44px;border:1.5px solid #DDD7CF;border-radius:5px;display:flex;align-items:center;gap:10px;padding:0 12px"><span style="width:17px;height:17px;border:2px solid #C2BAB0;border-radius:50%;flex:none"></span><div style="min-width:0;flex:1"><div style="font-size:14.5px;color:#2E2925">Membres d'un mouvement</div></div><span style="font-size:13px;color:#6B655D;font-variant-numeric:tabular-nums">412</span></div>
+              <div style="min-height:44px;border:1.5px solid #DDD7CF;border-radius:5px;display:flex;align-items:center;gap:10px;padding:0 12px"><span style="width:17px;height:17px;border:2px solid #C2BAB0;border-radius:50%;flex:none"></span><div style="min-width:0;flex:1"><div style="font-size:14.5px;color:#2E2925">Donateurs d'un projet</div></div><span style="font-size:13px;color:#6B655D;font-variant-numeric:tabular-nums">214</span></div>
+            </div>
+            <div>
+              <div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:6px">Mouvement concerné</div>
+              <div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:14.5px;color:#2E2925">Scouts et Guides<i class="ph-duotone ph-caret-down" style="font-size:15px;color:#6B655D;margin-left:auto"></i></div>
+            </div>
+            <div style="background:#F7F5F2;border-radius:5px;padding:12px">
+              <div style="font-size:14px;font-weight:700;color:#2E2925;margin-bottom:8px">96 destinataires</div>
+              <div style="display:grid;gap:6px;font-size:13.5px;color:#4A443E">
+                <div style="display:flex;justify-content:space-between"><span>Push dans l'app</span><span style="font-variant-numeric:tabular-nums;font-weight:600;color:#2E2925">71</span></div>
+                <div style="display:flex;justify-content:space-between"><span>SMS</span><span style="font-variant-numeric:tabular-nums;font-weight:600;color:#2E2925">96</span></div>
+                <div style="display:flex;justify-content:space-between"><span>WhatsApp</span><span style="font-variant-numeric:tabular-nums;font-weight:600;color:#2E2925">83</span></div>
+                <div style="display:flex;justify-content:space-between;border-top:1px solid #DDD7CF;padding-top:6px;margin-top:2px"><span>Coût SMS estimé</span><span style="font-variant-numeric:tabular-nums;font-weight:700;color:#14345E">2 880 FCFA</span></div>
+              </div>
+              <div style="font-size:12.5px;color:#6B655D;line-height:1.45;margin-top:8px">25 familles n'ont pas l'application : elles recevront le SMS, qui reste le canal de secours.</div>
+            </div>
+            <div style="background:#FDF3DC;border-radius:5px;padding:11px 12px;display:flex;gap:9px;align-items:flex-start">
+              <i class="ph-duotone ph-moon" style="font-size:18px;color:#8A5200;flex:none"></i>
+              <div style="font-size:13px;color:#2E2925;line-height:1.45">Message informatif : l'envoi sera différé après 6 h si vous validez la nuit.</div>
+            </div>
+          </div>
+
+          <div style="padding:14px 18px;display:flex;flex-direction:column;gap:13px">
+            <div style="display:flex;gap:9px;align-items:center">
+              <div style="font-size:13.5px;font-weight:600;color:#2E2925">Nature :</div>
+              <div style="min-height:36px;border:2px solid #14345E;background:#E8EDF5;border-radius:5px;display:flex;align-items:center;gap:7px;padding:0 12px"><i class="ph-duotone ph-info" style="font-size:16px;color:#14345E"></i><span style="font-size:14px;font-weight:700;color:#14345E">Informatif</span></div>
+              <div style="min-height:36px;border:1.5px solid #C2BAB0;border-radius:5px;display:flex;align-items:center;gap:7px;padding:0 12px;background:#fff"><i class="ph-duotone ph-warning" style="font-size:16px;color:#6B655D"></i><span style="font-size:14px;color:#2E2925">Urgent</span></div>
+              <div style="font-size:13px;color:#6B655D;margin-left:4px">L'urgent ignore les préférences de canal et part sur les trois.</div>
+            </div>
+            <div>
+              <div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:6px">Objet</div>
+              <div style="min-height:44px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:15px;color:#2E2925">Première rencontre des Scouts — samedi 12 septembre</div>
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:6px">
+                <div style="font-size:13.5px;font-weight:600;color:#2E2925">Message</div>
+                <div style="margin-left:auto;display:flex;gap:6px">
+                  <span style="min-height:28px;border:1px solid #DDD7CF;border-radius:4px;display:inline-flex;align-items:center;padding:0 9px;font-size:12.5px;color:#4A443E">Insérer : prénom de l'enfant</span>
+                  <span style="min-height:28px;border:1px solid #DDD7CF;border-radius:4px;display:inline-flex;align-items:center;padding:0 9px;font-size:12.5px;color:#4A443E">date</span>
+                </div>
+              </div>
+              <div style="min-height:168px;border:2px solid #14345E;border-radius:5px;background:#fff;padding:13px;font-size:15px;color:#2E2925;line-height:1.6;box-shadow:0 0 0 3px rgba(20,52,94,0.15)">Chers parents,<br><br>La première rencontre des Scouts et Guides aura lieu <strong>samedi 12 septembre à 15 h</strong>, dans la cour de la paroisse. Prévoyez une tenue simple et une gourde d'eau. La rencontre se termine à 18 h.<br><br>Les inscriptions restent ouvertes jusqu'au 30 septembre.<br><br>Le secrétariat paroissial</div>
+              <div style="display:flex;gap:16px;margin-top:7px;font-size:13px;color:#6B655D">
+                <span>318 caractères</span>
+                <span style="color:#8A5200;font-weight:600">SMS : 3 messages par destinataire</span>
+                <span style="margin-left:auto;color:#A84A28;font-weight:600">Raccourcir pour un seul SMS</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:13.5px;font-weight:600;color:#2E2925;margin-bottom:6px">Pièce jointe (WhatsApp et app uniquement)</div>
+              <div style="min-height:48px;border:1.5px dashed #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:10px;padding:0 12px"><i class="ph-duotone ph-paperclip" style="font-size:19px;color:#6B655D"></i><span style="font-size:14px;color:#6B655D">Déposer une affiche ou un PDF · 2 Mo maximum</span></div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border-left:1px solid #EDE9E4;padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28">Aperçu par canal</div>
+
+            <div>
+              <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><i class="ph-duotone ph-bell" style="font-size:17px;color:#14345E"></i><div style="font-size:13.5px;font-weight:600;color:#2E2925">Notification push · 71 personnes</div></div>
+              <div style="background:#0B1F3A;border-radius:8px;padding:11px 12px">
+                <div style="background:rgba(255,255,255,0.14);border-radius:6px;padding:10px 11px">
+                  <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><i class="ph-duotone ph-cross" style="font-size:13px;color:#E8A98F"></i><span style="font-size:11.5px;color:#C3D0E1">EcclesiaConnect · maintenant</span></div>
+                  <div style="font-size:13.5px;font-weight:700;color:#fff;line-height:1.3">Première rencontre des Scouts</div>
+                  <div style="font-size:13px;color:#C3D0E1;line-height:1.4">Samedi 12 septembre à 15 h, cour de la paroisse.</div>
+                </div>
+              </div>
+              <div style="font-size:12.5px;color:#6B655D;margin-top:5px">Écran verrouillé : ni nom d'enfant, ni montant, ni donnée de santé.</div>
+            </div>
+
+            <div>
+              <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><i class="ph-duotone ph-chat-circle-text" style="font-size:17px;color:#14345E"></i><div style="font-size:13.5px;font-weight:600;color:#2E2925">SMS · 96 personnes</div></div>
+              <div style="background:#F7F5F2;border:1px solid #DDD7CF;border-radius:6px;padding:11px 12px">
+                <div style="font-size:13.5px;color:#2E2925;line-height:1.5;font-family:'Noto Sans',sans-serif">Paroisse St-Jean : 1ʳᵉ rencontre des Scouts samedi 12 sept. à 15 h, cour de la paroisse. Tenue simple + gourde. Fin à 18 h. Inscriptions ouvertes jusqu'au 30 sept.</div>
+                <div style="font-size:12px;color:#6B655D;margin-top:7px;display:flex;justify-content:space-between"><span>159 caractères · 1 SMS</span><span style="font-variant-numeric:tabular-nums">960 FCFA au total</span></div>
+              </div>
+              <div style="font-size:12.5px;color:#A84A28;font-weight:600;margin-top:5px">Version courte proposée automatiquement · modifier</div>
+            </div>
+
+            <div>
+              <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><i class="ph-duotone ph-whatsapp-logo" style="font-size:17px;color:#14345E"></i><div style="font-size:13.5px;font-weight:600;color:#2E2925">WhatsApp · 83 personnes</div></div>
+              <div style="background:#E4F1E8;border-radius:8px;padding:11px 12px">
+                <div style="font-size:13.5px;color:#2E2925;line-height:1.55">Chers parents,<br><br>La première rencontre des Scouts et Guides aura lieu <strong>samedi 12 septembre à 15 h</strong>, dans la cour de la paroisse. Tenue simple et gourde d'eau. Fin à 18 h.<br><br><em>Le secrétariat paroissial</em></div>
+                <div style="font-size:11.5px;color:#4A443E;margin-top:6px;text-align:right">09:14 ✓✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Le coût en FCFA est affiché avant l'envoi : le secrétariat sait ce que coûte un message de trois SMS à 96 familles, et peut le raccourcir en un clic.</div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:40px">
+      <div style="width:560px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">6.1 · Confirmation d'envoi</div>
+        <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;box-shadow:0 8px 24px rgba(26,23,20,0.12)">
+          <div style="padding:15px 18px;border-bottom:1px solid #EDE9E4;display:flex;align-items:flex-start;gap:12px">
+            <div style="width:38px;height:38px;border-radius:6px;background:#E8EDF5;display:grid;place-items:center;flex:none"><i class="ph-duotone ph-paper-plane-tilt" style="font-size:22px;color:#14345E"></i></div>
+            <div><div style="font-size:19px;font-weight:700;color:#2E2925;line-height:1.25">Envoyer à 96 destinataires ?</div><div style="font-size:14.5px;color:#4A443E;line-height:1.5;margin-top:3px">Un message parti ne peut pas être rappelé. Vérifiez la date et le lieu une dernière fois.</div></div>
+          </div>
+          <div style="padding:14px 18px;display:grid;gap:10px">
+            <div style="background:#F7F5F2;border-radius:5px;padding:12px 13px;display:grid;gap:7px;font-size:14px">
+              <div style="display:flex;justify-content:space-between"><span style="color:#6B655D">Audience</span><span style="color:#2E2925;font-weight:600">Parents · Scouts et Guides</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#6B655D">Canaux</span><span style="color:#2E2925;font-weight:600">Push 71 · SMS 96 · WhatsApp 83</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#6B655D">Nature</span><span style="color:#2E2925;font-weight:600">Informatif · envoi immédiat</span></div>
+              <div style="display:flex;justify-content:space-between;border-top:1px solid #DDD7CF;padding-top:7px"><span style="color:#6B655D">Coût SMS</span><span style="color:#14345E;font-weight:700;font-variant-numeric:tabular-nums">960 FCFA</span></div>
+            </div>
+            <div style="background:#FDF3DC;border-radius:5px;padding:11px 13px;display:flex;gap:10px;align-items:flex-start">
+              <i class="ph-duotone ph-eye" style="font-size:19px;color:#8A5200;flex:none"></i>
+              <div style="font-size:14px;color:#2E2925;line-height:1.45">Aucune donnée personnelle détectée dans le texte. Les prénoms d'enfants et les montants ne doivent jamais figurer dans un message de groupe.</div>
+            </div>
+          </div>
+          <div style="padding:0 18px 16px;display:flex;gap:10px;justify-content:flex-end">
+            <button style="min-height:42px;background:#fff;color:#2E2925;border:1.5px solid #C2BAB0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;padding:0 16px;cursor:pointer" style-hover="background:#F7F5F2">Revenir au brouillon</button>
+            <button style="min-height:42px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;padding:0 18px;display:flex;align-items:center;gap:8px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-paper-plane-tilt" style="font-size:19px"></i>Envoyer maintenant</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">La confirmation rappelle le coût et vérifie l'absence de données personnelles avant la diffusion.</div>
+      </div>
+
+      <div style="width:460px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">6.2 · Historique des envois</div>
+        <div style="background:#fff;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif">
+          <table class="table" style="width:100%;font-family:'Noto Sans',sans-serif;font-size:13.5px">
+            <thead><tr><th>Message</th><th style="width:78px">Envoyé</th><th style="width:78px">Reçus</th><th style="width:66px">Lus</th></tr></thead>
+            <tbody>
+              <tr><td><div style="font-weight:600;color:#2E2925">Kermesse : appel aux volontaires</div><div style="color:#6B655D">Tous les fidèles · informatif</div></td><td style="font-variant-numeric:tabular-nums">28 août</td><td style="font-variant-numeric:tabular-nums">1 838</td><td style="font-variant-numeric:tabular-nums">62 %</td></tr>
+              <tr><td><div style="font-weight:600;color:#2E2925">Messe de 6 h déplacée à 6 h 30</div><div style="color:#B3261E;font-weight:600">Tous les fidèles · urgent</div></td><td style="font-variant-numeric:tabular-nums">26 août</td><td style="font-variant-numeric:tabular-nums">1 842</td><td style="font-variant-numeric:tabular-nums">88 %</td></tr>
+              <tr><td><div style="font-weight:600;color:#2E2925">Reprise de la catéchèse</div><div style="color:#6B655D">Parents · Catéchèse</div></td><td style="font-variant-numeric:tabular-nums">22 août</td><td style="font-variant-numeric:tabular-nums">124</td><td style="font-variant-numeric:tabular-nums">74 %</td></tr>
+              <tr><td><div style="font-weight:600;color:#2E2925">Merci aux donateurs de la toiture</div><div style="color:#6B655D">Donateurs · projet toiture</div></td><td style="font-variant-numeric:tabular-nums">15 août</td><td style="font-variant-numeric:tabular-nums">214</td><td style="font-variant-numeric:tabular-nums">81 %</td></tr>
+            </tbody>
+          </table>
+          <div style="padding:11px 14px;border-top:1px solid #EDE9E4;font-size:13px;color:#6B655D;line-height:1.45">Le taux de lecture ne couvre que l'app et WhatsApp. Un SMS est compté comme reçu, jamais comme lu.</div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Chaque envoi garde son audience et sa nature : on retrouve qui a été prévenu de quoi, et par quel canal.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">07</div>
+      <h2 style="font-size:40px;margin:0">Mode tablette · 1024 px</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">À l'accueil de la paroisse, la même interface est tenue debout, à bout de bras. La navigation se replie en icônes libellées, les colonnes secondaires disparaissent au profit d'une ligne de résumé, et toutes les cibles repassent à 48 px : c'est une densité intermédiaire, pas l'app mobile.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:28px">
+
+      <div style="width:1024px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">7.1 · File des intentions en tablette</div>
+        <div data-screen-label="07 Tablette intentions" style="width:1024px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+          <div style="width:88px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;align-items:stretch;padding:12px 8px">
+            <div style="display:grid;place-items:center;padding:6px 0 12px;border-bottom:1px solid rgba(255,255,255,0.1)"><i class="ph-duotone ph-cross" style="font-size:22px;color:#E8A98F"></i></div>
+            <div style="display:grid;gap:4px;padding-top:10px">
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px"><i class="ph-duotone ph-squares-four" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Bord</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px;background:#24548F;position:relative"><i class="ph-duotone ph-microphone-stage" style="font-size:22px;color:#fff"></i><span style="font-size:11px;font-weight:700;color:#fff;text-align:center">Intentions</span><span style="position:absolute;top:5px;right:9px;min-width:17px;height:17px;border-radius:9px;background:#F2C14E;color:#0B1F3A;font-size:10.5px;font-weight:700;display:grid;place-items:center;padding:0 4px">18</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px"><i class="ph-duotone ph-book-bookmark" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Registres</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px;position:relative"><i class="ph-duotone ph-users-three" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Inscrip.</span><span style="position:absolute;top:5px;right:11px;min-width:17px;height:17px;border-radius:9px;background:#F2C14E;color:#0B1F3A;font-size:10.5px;font-weight:700;display:grid;place-items:center;padding:0 4px">7</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px"><i class="ph-duotone ph-heart" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Bans</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px"><i class="ph-duotone ph-megaphone" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Comm.</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px;border-top:1px solid rgba(255,255,255,0.1);margin-top:6px"><i class="ph-duotone ph-chart-line-up" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Finances</span></div>
+            </div>
+            <div style="margin-top:auto;display:grid;place-items:center;padding-top:12px"><div style="width:36px;height:36px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700">SB</div></div>
+          </div>
+
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+            <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:11px 16px;display:flex;align-items:center;gap:12px">
+              <div><div style="font-size:19px;font-weight:700;color:#2E2925">Intentions</div><div style="font-size:13.5px;color:#6B655D">18 en attente</div></div>
+              <button style="margin-left:auto;min-height:48px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;padding:0 15px;display:flex;align-items:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-money" style="font-size:19px"></i>Espèces</button>
+              <button style="min-height:48px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;padding:0 15px;display:flex;align-items:center;gap:8px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-printer" style="font-size:19px"></i>Feuille du jour</button>
+            </div>
+            <div style="background:#fff;border-bottom:1px solid #EDE9E4;padding:10px 16px;display:flex;align-items:center;gap:9px">
+              <div style="min-height:48px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 12px;flex:1"><i class="ph-duotone ph-magnifying-glass" style="font-size:18px;color:#6B655D"></i><span style="font-size:15px;color:#9A9289">Rechercher un nom…</span></div>
+              <div style="min-height:48px;border:2px solid #14345E;border-radius:5px;background:#E8EDF5;display:flex;align-items:center;gap:8px;padding:0 13px"><span style="font-size:14.5px;font-weight:700;color:#14345E">En attente</span><i class="ph-duotone ph-x" style="font-size:15px;color:#14345E"></i></div>
+              <div style="min-height:48px;border:1.5px solid #C2BAB0;border-radius:5px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 13px"><i class="ph-duotone ph-funnel" style="font-size:18px;color:#14345E"></i><span style="font-size:14.5px;color:#2E2925">Filtres</span></div>
+            </div>
+            <div style="background:#14345E;padding:10px 16px;display:flex;align-items:center;gap:12px">
+              <div style="font-size:14.5px;font-weight:700;color:#fff">2 sélectionnées</div>
+              <button style="margin-left:auto;min-height:44px;background:#14713C;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:700;padding:0 15px;display:flex;align-items:center;gap:7px;cursor:pointer" style-hover="background:#0F5A2F"><i class="ph-duotone ph-seal-check" style="font-size:18px"></i>Valider les 2</button>
+            </div>
+            <div style="background:#fff">
+              <div style="min-height:76px;border-bottom:1px solid #EDE9E4;padding:12px 16px;display:flex;align-items:center;gap:13px;background:#E8EDF5">
+                <span style="display:inline-block;width:22px;height:22px;border:2px solid #14345E;border-radius:4px;background:#14345E;flex:none"></span>
+                <div style="min-width:0;flex:1">
+                  <div style="display:flex;align-items:baseline;gap:9px"><span style="font-size:16px;font-weight:700;color:#2E2925">Kouassi Adjoua</span><span style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">Reçu 2026-0431</span></div>
+                  <div style="font-size:14.5px;color:#4A443E">Action de Grâce · Famille Kouassi · Lun. 14 sept. 12 h 30</div>
+                </div>
+                <div style="text-align:right;flex:none"><div style="font-size:16px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">2 000 FCFA</div><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600;margin-top:3px"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé · Wave</span></div>
+              </div>
+              <div style="min-height:76px;border-bottom:1px solid #EDE9E4;padding:12px 16px;display:flex;align-items:center;gap:13px;background:#E8EDF5">
+                <span style="display:inline-block;width:22px;height:22px;border:2px solid #14345E;border-radius:4px;background:#14345E;flex:none"></span>
+                <div style="min-width:0;flex:1">
+                  <div style="display:flex;align-items:baseline;gap:9px"><span style="font-size:16px;font-weight:700;color:#2E2925">Diomandé Fatou</span><span style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">Reçu 2026-0430</span></div>
+                  <div style="font-size:14.5px;color:#4A443E">Santé · Diomandé Sékou · Mer. 3 sept. 18 h 30</div>
+                </div>
+                <div style="text-align:right;flex:none"><div style="font-size:16px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">2 000 FCFA</div><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600;margin-top:3px"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé · Orange</span></div>
+              </div>
+              <div style="min-height:76px;border-bottom:1px solid #EDE9E4;padding:12px 16px;display:flex;align-items:center;gap:13px">
+                <span style="display:inline-block;width:22px;height:22px;border:2px solid #C2BAB0;border-radius:4px;background:#fff;flex:none"></span>
+                <div style="min-width:0;flex:1">
+                  <div style="display:flex;align-items:baseline;gap:9px"><span style="font-size:16px;font-weight:700;color:#2E2925">Yao Bernard</span><span style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">Reçu 2026-0428</span></div>
+                  <div style="font-size:14.5px;color:#4A443E">Repos de l'Âme · Yao Marcelline † · Mer. 3 sept. 6 h 00</div>
+                </div>
+                <div style="text-align:right;flex:none"><div style="font-size:16px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">2 000 FCFA</div><span style="display:inline-flex;align-items:center;gap:5px;background:#FDF3DC;color:#8A5200;border:1px dashed #8A5200;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600;margin-top:3px"><i class="ph-duotone ph-clock" style="font-size:14px"></i>Espèces attendues</span></div>
+              </div>
+              <div style="min-height:76px;border-bottom:1px solid #EDE9E4;padding:12px 16px;display:flex;align-items:center;gap:13px">
+                <span style="display:inline-block;width:22px;height:22px;border:2px solid #C2BAB0;border-radius:4px;background:#fff;flex:none"></span>
+                <div style="min-width:0;flex:1">
+                  <div style="display:flex;align-items:baseline;gap:9px"><span style="font-size:16px;font-weight:700;color:#2E2925">N'Guessan Paul</span><span style="font-size:13.5px;color:#6B655D;font-variant-numeric:tabular-nums">Reçu 2026-0429</span></div>
+                  <div style="font-size:14.5px;color:#4A443E">Demande Particulière · Examens de Junior · Jeu. 4 sept. 6 h 00</div>
+                </div>
+                <div style="text-align:right;flex:none"><div style="font-size:16px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">2 000 FCFA</div><span style="display:inline-flex;align-items:center;gap:5px;background:#E4F1E8;color:#14713C;border:1px solid #14713C;border-radius:14px;padding:2px 9px;font-size:12.5px;font-weight:600;margin-top:3px"><i class="ph-duotone ph-check-circle" style="font-size:14px"></i>Payé · MTN</span></div>
+              </div>
+            </div>
+            <div style="background:#fff;border-top:1px solid #EDE9E4;padding:11px 16px;display:flex;align-items:center;gap:12px">
+              <div style="font-size:13.5px;color:#4A443E">1 à 4 sur 18</div>
+              <div style="margin-left:auto;display:flex;align-items:center;gap:6px">
+                <span style="min-width:44px;min-height:44px;border:1.5px solid #DDD7CF;border-radius:5px;display:inline-grid;place-items:center;color:#9A9289"><i class="ph-duotone ph-caret-left" style="font-size:18px"></i></span>
+                <span style="min-width:44px;min-height:44px;border:2px solid #14345E;background:#14345E;border-radius:5px;display:inline-grid;place-items:center;color:#fff;font-size:15px;font-weight:700">1</span>
+                <span style="min-width:44px;min-height:44px;border:1.5px solid #DDD7CF;border-radius:5px;display:inline-grid;place-items:center;color:#2E2925;font-size:15px">2</span>
+                <span style="min-width:44px;min-height:44px;border:1.5px solid #DDD7CF;border-radius:5px;display:inline-grid;place-items:center;color:#14345E"><i class="ph-duotone ph-caret-right" style="font-size:18px"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px;max-width:80ch">Le tableau devient une liste de rangées de 76 px : même information, une ligne de moins à balayer des yeux, et des cibles utilisables debout au comptoir.</div>
+      </div>
+
+      <div style="width:1024px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">7.2 · Tableau de bord en tablette</div>
+        <div data-screen-label="07 Tablette tableau de bord" style="width:1024px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex">
+          <div style="width:88px;flex:none;background:#0B1F3A;display:flex;flex-direction:column;align-items:stretch;padding:12px 8px">
+            <div style="display:grid;place-items:center;padding:6px 0 12px;border-bottom:1px solid rgba(255,255,255,0.1)"><i class="ph-duotone ph-cross" style="font-size:22px;color:#E8A98F"></i></div>
+            <div style="display:grid;gap:4px;padding-top:10px">
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px;background:#24548F"><i class="ph-duotone ph-squares-four" style="font-size:22px;color:#fff"></i><span style="font-size:11px;font-weight:700;color:#fff;text-align:center">Bord</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px;position:relative"><i class="ph-duotone ph-microphone-stage" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Intentions</span><span style="position:absolute;top:5px;right:9px;min-width:17px;height:17px;border-radius:9px;background:#F2C14E;color:#0B1F3A;font-size:10.5px;font-weight:700;display:grid;place-items:center;padding:0 4px">18</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px"><i class="ph-duotone ph-book-bookmark" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Registres</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px;position:relative"><i class="ph-duotone ph-users-three" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Inscrip.</span><span style="position:absolute;top:5px;right:11px;min-width:17px;height:17px;border-radius:9px;background:#F2C14E;color:#0B1F3A;font-size:10.5px;font-weight:700;display:grid;place-items:center;padding:0 4px">7</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px"><i class="ph-duotone ph-heart" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Bans</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px"><i class="ph-duotone ph-megaphone" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Comm.</span></div>
+              <div style="min-height:60px;border-radius:5px;display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 2px;border-top:1px solid rgba(255,255,255,0.1);margin-top:6px"><i class="ph-duotone ph-chart-line-up" style="font-size:22px;color:#8FA6C4"></i><span style="font-size:11px;color:#C3D0E1;text-align:center">Finances</span></div>
+            </div>
+            <div style="margin-top:auto;display:grid;place-items:center;padding-top:12px"><div style="width:36px;height:36px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700">SB</div></div>
+          </div>
+
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+            <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:11px 16px;display:flex;align-items:center;gap:12px">
+              <div><div style="font-size:19px;font-weight:700;color:#2E2925">Mardi 2 septembre</div><div style="font-size:13.5px;color:#6B655D">Accueil de la paroisse</div></div>
+              <div style="margin-left:auto;min-height:44px;display:flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:5px;padding:0 12px"><i class="ph-duotone ph-cloud-check" style="font-size:18px;color:#14713C"></i><span style="font-size:14px;font-weight:600;color:#14713C">À jour</span></div>
+            </div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+              <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:11px">
+                <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #8A5200;border-radius:5px;padding:13px 14px">
+                  <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">Intentions à valider</div>
+                  <div style="display:flex;align-items:baseline;gap:9px;margin-top:5px"><span style="font-size:32px;font-weight:700;color:#2E2925;line-height:1;font-variant-numeric:tabular-nums">18</span><span style="font-size:13.5px;color:#8A5200;font-weight:600">dont 4 pour demain</span></div>
+                </div>
+                <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #14713C;border-radius:5px;padding:13px 14px">
+                  <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">Encaissé aujourd'hui</div>
+                  <div style="display:flex;align-items:baseline;gap:8px;margin-top:5px"><span style="font-size:32px;font-weight:700;color:#14345E;line-height:1;font-variant-numeric:tabular-nums">86 500</span><span style="font-size:15px;font-weight:600;color:#6B655D">FCFA</span></div>
+                </div>
+                <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #14345E;border-radius:5px;padding:13px 14px">
+                  <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">Dossiers d'inscription</div>
+                  <div style="display:flex;align-items:baseline;gap:9px;margin-top:5px"><span style="font-size:32px;font-weight:700;color:#2E2925;line-height:1;font-variant-numeric:tabular-nums">7</span><span style="font-size:13.5px;color:#6B655D">à traiter</span></div>
+                </div>
+                <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #C25A34;border-radius:5px;padding:13px 14px">
+                  <div style="font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">Bans en cours</div>
+                  <div style="display:flex;align-items:baseline;gap:9px;margin-top:5px"><span style="font-size:32px;font-weight:700;color:#2E2925;line-height:1;font-variant-numeric:tabular-nums">5</span><span style="font-size:13.5px;color:#6B655D">dossiers</span></div>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #EDE9E4;border-radius:5px;padding:13px 14px">
+                <div style="font-size:15.5px;font-weight:700;color:#2E2925;margin-bottom:10px">Messes du jour</div>
+                <div style="display:grid;gap:9px">
+                  <div style="display:flex;align-items:center;gap:12px;min-height:44px"><span style="font-size:15px;font-weight:700;color:#14345E;width:60px;flex:none;font-variant-numeric:tabular-nums">6 h 00</span><span style="font-size:15px;color:#2E2925;flex:1">P. Konan · 3 intentions</span><i class="ph-duotone ph-check-circle" style="font-size:20px;color:#14713C"></i></div>
+                  <div style="display:flex;align-items:center;gap:12px;min-height:44px;border-top:1px solid #EDE9E4;padding-top:9px"><span style="font-size:15px;font-weight:700;color:#14345E;width:60px;flex:none;font-variant-numeric:tabular-nums">12 h 30</span><span style="font-size:15px;color:#2E2925;flex:1">P. Kouamé · 5 intentions</span><span style="font-size:13.5px;font-weight:600;color:#8A5200">2 à valider</span></div>
+                  <div style="display:flex;align-items:center;gap:12px;min-height:44px;border-top:1px solid #EDE9E4;padding-top:9px"><span style="font-size:15px;font-weight:700;color:#14345E;width:60px;flex:none;font-variant-numeric:tabular-nums">18 h 30</span><span style="font-size:15px;color:#2E2925;flex:1">P. Konan · 4 intentions</span><span style="font-size:13.5px;font-weight:600;color:#8A5200">1 à valider</span></div>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:11px">
+                <button style="min-height:64px;background:#14345E;color:#fff;border:0;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15.5px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-money" style="font-size:22px"></i>Encaisser des espèces</button>
+                <button style="min-height:64px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-magnifying-glass" style="font-size:22px"></i>Chercher un fidèle</button>
+                <button style="min-height:64px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:5px;font-family:'Noto Sans',sans-serif;font-size:15.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-printer" style="font-size:22px"></i>Feuille du jour</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px;max-width:80ch">Au comptoir, trois gros boutons couvrent 90 % des demandes spontanées : encaisser, chercher un fidèle, imprimer la feuille. Le bloc d'alertes n'apparaît pas sur la tablette d'accueil, exposée au regard des visiteurs.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--SUITE-->
+
+  <div style="padding-top:96px">
+    <div style="height:1px;background:var(--color-text);margin-bottom:10px"></div>
+    <div style="display:flex;justify-content:space-between;gap:24px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase">
+      <div>EcclesiaConnect · Paroisse Mobile</div>
+      <div style="color:var(--color-accent-700)">Back-office secrétariat · v1.0</div>
+      <div>Paroisse pilote · Abidjan</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+</x-dc>
+</body>
+</html>

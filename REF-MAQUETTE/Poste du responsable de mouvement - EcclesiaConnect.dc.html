@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/styles.css">
+<script src="_ds/broadsheet-cabb45d2-85fa-47d6-b2b6-ccd880dfabdc/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Noto+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-700); text-decoration: underline; }
+</style>
+</helmet>
+
+<div style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:0 0 120px">
+<div style="width:1440px;min-width:1440px;margin:0 auto;padding:0 56px">
+
+  <div style="padding-top:64px">
+    <div style="height:6px;background:var(--color-text)"></div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:10px 0 9px">
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">EcclesiaConnect · Paroisse Mobile</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-accent-700)">Responsables de mouvements</div>
+      <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Android 360 · Poste 1280</div>
+    </div>
+    <div style="height:1px;background:var(--color-text)"></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:64px;padding:52px 0 0;align-items:end">
+    <div>
+      <h1 style="font-size:84px;line-height:0.95;letter-spacing:-0.03em;margin:0 0 20px">Confiés à des <span style="font-style:italic;font-weight:400">bénévoles</span></h1>
+      <p style="font-size:19px;line-height:1.5;max-width:58ch;margin:0;text-wrap:pretty">Un chef scout, une catéchiste, une cheftaine CV-AV : ni informaticiens, ni salariés, et responsables d'enfants qui ne sont pas les leurs. Deux principes tiennent tout cet ensemble. On n'accède à la liste des enfants qu'une fois habilité par le Référent Protection des Mineurs. Et rien de sensible — santé, allergie, contact d'urgence — ne s'affiche jamais dans une liste : il faut le demander, et la demande est enregistrée.</p>
+    </div>
+    <div style="padding-bottom:6px">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:14px">Écrans</div>
+      <div style="display:grid;gap:7px;font-size:15px">
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">01</span>Mon habilitation</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">02</span>Liste des inscrits</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">03</span>Suivi de présence</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">04</span>Planning des ministères</div>
+        <div><span style="display:inline-block;width:34px;color:var(--color-accent)">05</span>Communication au groupe</div>
+      </div>
+      <div style="margin-top:20px;border-top:1px solid var(--color-neutral-300);padding-top:14px;font-size:13.5px;line-height:1.5;color:var(--color-neutral-700)">Le téléphone est l'outil du terrain — émargement sous un arbre, message aux parents depuis la sortie. Le poste 1280 sert aux vues d'ensemble que le bénévole ouvre le dimanche soir : liste, historique, planning.</div>
+    </div>
+  </div>
+
+  <!-- ============ 01 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">01</div>
+      <h2 style="font-size:40px;margin:0">Mon habilitation</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 40px;color:var(--color-neutral-800)">C'est le premier écran de tout encadrant, et le seul accessible tant qu'il n'est pas validé. Trois états possibles, avec chaque fois la même structure : où en est mon dossier, ce que cela veut dire, ce que je peux faire maintenant. Le mot « habilitation » est expliqué à chaque fois — personne n'est censé le connaître.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px">
+
+      <!-- 1.1 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">1.1 · En attente de validation</div>
+        <div data-screen-label="1.1 Habilitation en attente" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>19:04</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-cell-signal-medium" style="font-size:13px"></i><i class="ph-duotone ph-battery-medium" style="font-size:13px"></i></span></div>
+          <div style="background:#14345E;padding:12px 14px;min-height:56px;display:flex;align-items:center;gap:12px;flex:none">
+            <div style="width:40px;height:40px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:15px;font-weight:700;flex:none">BS</div>
+            <div style="min-width:0"><div style="font-size:14px;color:#C3D0E1">Encadrante</div><div style="font-size:18px;font-weight:700;color:#fff;line-height:1.2">{{ nomResponsable }}</div></div>
+          </div>
+
+          <div style="flex:1;padding:14px;display:flex;flex-direction:column;gap:12px">
+            <div style="background:#FDF3DC;border:1px solid #D99A2B;border-radius:6px;padding:15px">
+              <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-hourglass-high" style="font-size:26px;color:#8A5200;flex:none"></i><div style="font-size:19px;font-weight:700;color:#6B4200;line-height:1.25">Vérification en cours</div></div>
+              <div style="font-size:15px;color:#4A443E;line-height:1.5;margin-top:8px">Votre dossier est entre les mains du Référent Protection des Mineurs de la paroisse. Réponse annoncée sous quinze jours.</div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:14px">
+              <div style="font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28;margin-bottom:11px">Où en est mon dossier</div>
+              <div style="display:grid;gap:11px">
+                <div style="display:flex;gap:11px;align-items:flex-start">
+                  <i class="ph-duotone ph-check-circle" style="font-size:22px;color:#14713C;flex:none"></i>
+                  <div><div style="font-size:15px;font-weight:600;color:#2E2925">Pièces déposées</div><div style="font-size:14px;color:#6B655D;line-height:1.4">Le 22 août, au secrétariat</div></div>
+                </div>
+                <div style="display:flex;gap:11px;align-items:flex-start">
+                  <i class="ph-duotone ph-circle-dashed" style="font-size:22px;color:#8A5200;flex:none"></i>
+                  <div><div style="font-size:15px;font-weight:700;color:#6B4200">Entretien avec le référent</div><div style="font-size:14px;color:#4A443E;line-height:1.4">À fixer — le référent vous appellera</div></div>
+                </div>
+                <div style="display:flex;gap:11px;align-items:flex-start">
+                  <i class="ph-duotone ph-circle" style="font-size:22px;color:#C2BAB0;flex:none"></i>
+                  <div><div style="font-size:15px;color:#6B655D">Décision d'habilitation</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:14px">
+              <div style="font-size:15px;font-weight:700;color:#2E2925;line-height:1.35">Pourquoi cette étape ?</div>
+              <div style="font-size:14.5px;color:#4A443E;line-height:1.5;margin-top:5px">Aucun adulte n'encadre des mineurs dans la paroisse sans cette vérification. Elle protège les enfants, et elle vous protège aussi : elle atteste que vous encadrez avec l'accord du curé et du référent.</div>
+            </div>
+
+            <div style="background:#F2EFEA;border:1px dashed #C2BAB0;border-radius:6px;padding:14px;display:flex;gap:11px;align-items:flex-start">
+              <i class="ph-duotone ph-lock-simple" style="font-size:22px;color:#6B655D;flex:none"></i>
+              <div><div style="font-size:15px;font-weight:600;color:#4A443E;line-height:1.35">La liste des enfants reste fermée</div><div style="font-size:14px;color:#6B655D;line-height:1.45;margin-top:2px">Vous y aurez accès dès la validation. Vous pouvez déjà consulter le planning des célébrations.</div></div>
+            </div>
+
+            <button style="min-height:48px;width:100%;margin-top:auto;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-phone" style="font-size:19px"></i>Joindre le référent protection</button>
+          </div>
+
+          <div style="background:#fff;border-top:1px solid #DDD7CF;display:grid;grid-template-columns:repeat(5,1fr);flex:none">
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid #14345E;background:#E8EDF5"><i class="ph-duotone ph-shield-check" style="font-size:24px;color:#14345E"></i><div style="font-size:12px;font-weight:700;color:#14345E">Habilitation</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent;opacity:0.45"><i class="ph-duotone ph-users-three" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Inscrits</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent;opacity:0.45"><i class="ph-duotone ph-list-checks" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Présence</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-calendar-dots" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Planning</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent;opacity:0.45"><i class="ph-duotone ph-chat-circle-text" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Messages</div></div>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Les onglets inaccessibles restent visibles, en gris : le bénévole comprend ce qui l'attend plutôt que de découvrir une navigation qui change de forme après validation.</div>
+      </div>
+
+      <!-- 1.2 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">1.2 · Habilitation validée</div>
+        <div data-screen-label="1.2 Habilitation validée" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>07:38</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-cell-signal-medium" style="font-size:13px"></i><i class="ph-duotone ph-battery-medium" style="font-size:13px"></i></span></div>
+          <div style="background:#14345E;padding:12px 14px;min-height:56px;display:flex;align-items:center;gap:12px;flex:none">
+            <div style="width:40px;height:40px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:15px;font-weight:700;flex:none">BS</div>
+            <div style="min-width:0"><div style="font-size:14px;color:#C3D0E1">Encadrante</div><div style="font-size:18px;font-weight:700;color:#fff;line-height:1.2">{{ nomResponsable }}</div></div>
+            <i class="ph-duotone ph-shield-check" style="font-size:26px;color:#7ED99C;margin-left:auto;flex:none"></i>
+          </div>
+
+          <div style="flex:1;padding:14px;display:flex;flex-direction:column;gap:12px">
+            <div style="background:#E4F1E8;border:1px solid #14713C;border-radius:6px;padding:15px">
+              <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-shield-check" style="font-size:26px;color:#14713C;flex:none"></i><div style="font-size:19px;font-weight:700;color:#0F5A2F;line-height:1.25">Habilitation valide</div></div>
+              <div style="font-size:15px;color:#2E2925;line-height:1.5;margin-top:8px">Validée le 29 août 2026 par le Référent Protection des Mineurs, P. Assouman Jean-Baptiste.</div>
+              <div style="font-size:15px;font-weight:700;color:#0F5A2F;margin-top:7px;font-variant-numeric:tabular-nums">Jusqu'au 31 août 2027</div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #14345E;border-radius:6px;padding:14px">
+              <div style="font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28;margin-bottom:6px">Ce que vous encadrez</div>
+              <div style="font-family:'Source Serif 4',serif;font-size:21px;font-weight:600;color:#2E2925;line-height:1.25">{{ uniteMouvement }}</div>
+              <div style="font-size:14.5px;color:#4A443E;line-height:1.45;margin-top:4px">18 enfants de 8 à 11 ans · réunion le samedi, 15 h 00</div>
+            </div>
+
+            <div style="display:grid;gap:9px">
+              <button style="min-height:56px;width:100%;background:#14345E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:16px;font-weight:700;display:flex;align-items:center;gap:11px;padding:0 15px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-users-three" style="font-size:23px"></i>Voir la liste des 18 inscrits</button>
+              <button style="min-height:56px;width:100%;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:16px;font-weight:600;display:flex;align-items:center;gap:11px;padding:0 15px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-list-checks" style="font-size:23px"></i>Émarger la séance de samedi</button>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:14px">
+              <div style="font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28;margin-bottom:9px">Vos engagements signés</div>
+              <div style="display:grid;gap:8px;font-size:14.5px;color:#2E2925">
+                <div style="display:flex;gap:9px;align-items:center"><i class="ph-duotone ph-file-text" style="font-size:19px;color:#14345E;flex:none"></i>Charte de l'encadrant, 22 août 2026</div>
+                <div style="display:flex;gap:9px;align-items:center"><i class="ph-duotone ph-file-text" style="font-size:19px;color:#14345E;flex:none"></i>Attestation d'honorabilité, 14 août 2026</div>
+              </div>
+            </div>
+
+            <div style="font-size:13.5px;color:#6B655D;line-height:1.5;margin-top:auto">Une habilitation ne se prête pas : elle vous est nominative et suit votre nom, pas votre fonction dans le mouvement.</div>
+          </div>
+
+          <div style="background:#fff;border-top:1px solid #DDD7CF;display:grid;grid-template-columns:repeat(5,1fr);flex:none">
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid #14345E;background:#E8EDF5"><i class="ph-duotone ph-shield-check" style="font-size:24px;color:#14345E"></i><div style="font-size:12px;font-weight:700;color:#14345E">Habilitation</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-users-three" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Inscrits</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-list-checks" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Présence</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-calendar-dots" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Planning</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-chat-circle-text" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Messages</div></div>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">L'écran validé ne se contente pas d'annoncer un statut : il ouvre les deux gestes de la semaine, la liste et l'émargement.</div>
+      </div>
+
+      <!-- 1.3 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">1.3 · À renouveler</div>
+        <div data-screen-label="1.3 Habilitation à renouveler" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>21:12</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-cell-signal-medium" style="font-size:13px"></i><i class="ph-duotone ph-battery-low" style="font-size:13px"></i></span></div>
+          <div style="background:#14345E;padding:12px 14px;min-height:56px;display:flex;align-items:center;gap:12px;flex:none">
+            <div style="width:40px;height:40px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:15px;font-weight:700;flex:none">BS</div>
+            <div style="min-width:0"><div style="font-size:14px;color:#C3D0E1">Encadrante</div><div style="font-size:18px;font-weight:700;color:#fff;line-height:1.2">{{ nomResponsable }}</div></div>
+          </div>
+
+          <div style="flex:1;padding:14px;display:flex;flex-direction:column;gap:12px">
+            <div style="background:#FBEDE6;border:1px solid #C25A34;border-radius:6px;padding:15px">
+              <div style="display:flex;align-items:center;gap:9px"><i class="ph-duotone ph-clock-countdown" style="font-size:26px;color:#A84A28;flex:none"></i><div style="font-size:19px;font-weight:700;color:#8F3E20;line-height:1.25">À renouveler avant 25 jours</div></div>
+              <div style="font-size:15px;color:#2E2925;line-height:1.5;margin-top:8px">Votre habilitation expire le 30 septembre 2026. Passé cette date, la liste des enfants et l'émargement se ferment automatiquement.</div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:14px">
+              <div style="font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28;margin-bottom:11px">Il vous reste deux pièces</div>
+              <div style="display:grid;gap:11px">
+                <div style="display:flex;gap:11px;align-items:flex-start">
+                  <i class="ph-duotone ph-warning-circle" style="font-size:22px;color:#B3261E;flex:none"></i>
+                  <div><div style="font-size:15px;font-weight:700;color:#8E1F19">Attestation d'honorabilité</div><div style="font-size:14px;color:#4A443E;line-height:1.4">Demande à faire, délai courant : 10 jours</div></div>
+                </div>
+                <div style="display:flex;gap:11px;align-items:flex-start">
+                  <i class="ph-duotone ph-warning-circle" style="font-size:22px;color:#B3261E;flex:none"></i>
+                  <div><div style="font-size:15px;font-weight:700;color:#8E1F19">Charte de l'encadrant à re-signer</div><div style="font-size:14px;color:#4A443E;line-height:1.4">Signature en ligne, deux minutes</div></div>
+                </div>
+                <div style="display:flex;gap:11px;align-items:flex-start">
+                  <i class="ph-duotone ph-check-circle" style="font-size:22px;color:#14713C;flex:none"></i>
+                  <div><div style="font-size:15px;color:#2E2925">Pièce d'identité — toujours valide</div></div>
+                </div>
+              </div>
+            </div>
+
+            <button style="min-height:60px;width:100%;background:#C25A34;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:11px;cursor:pointer" style-hover="background:#A84A28"><i class="ph-duotone ph-arrow-clockwise" style="font-size:23px"></i>Commencer le renouvellement</button>
+
+            <div style="background:#E8EDF5;border-radius:6px;padding:13px;display:flex;gap:11px;align-items:flex-start">
+              <i class="ph-duotone ph-info" style="font-size:22px;color:#14345E;flex:none"></i>
+              <div style="font-size:14.5px;color:#2E2925;line-height:1.45">Le secrétariat et le référent reçoivent le même rappel que vous. Si vous ne pouvez pas renouveler, dites-le : un autre encadrant sera désigné pour la suite de l'année.</div>
+            </div>
+
+            <div style="font-size:13.5px;color:#6B655D;line-height:1.5;margin-top:auto">Trois rappels sont envoyés : à 60, 30 et 7 jours. Le dernier passe aussi par SMS.</div>
+          </div>
+
+          <div style="background:#fff;border-top:1px solid #DDD7CF;display:grid;grid-template-columns:repeat(5,1fr);flex:none">
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid #C25A34;background:#FBEDE6"><i class="ph-duotone ph-shield-warning" style="font-size:24px;color:#A84A28"></i><div style="font-size:12px;font-weight:700;color:#A84A28">Habilitation</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-users-three" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Inscrits</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-list-checks" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Présence</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-calendar-dots" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Planning</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-chat-circle-text" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Messages</div></div>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">L'échéance est dite en jours restants, pas seulement en date : « 24 jours » se comprend d'un coup d'œil, « 31 août » demande un calcul.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ 02 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">02</div>
+      <h2 style="font-size:40px;margin:0">Liste des inscrits</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">La liste montre trois choses et pas une de plus : le nom de l'enfant, où en est sa cotisation, où en est son dossier. Pas de date de naissance, pas d'adresse, pas de téléphone, aucune mention de santé. Les informations d'urgence existent, mais elles se demandent — et cette demande laisse une trace.</p>
+
+    <div data-screen-label="2.1 Liste des inscrits (poste)" style="width:1280px;min-height:800px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+
+      <div style="background:#0B1F3A;padding:14px 24px;display:flex;align-items:center;gap:20px;flex:none">
+        <div style="min-width:0">
+          <div style="font-size:23px;font-weight:700;color:#fff;line-height:1.15">Scouts · {{ uniteMouvement }}</div>
+          <div style="font-size:16px;color:#C3D0E1;margin-top:2px">Saint-Jean de Cocody · 18 enfants inscrits</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:11px;background:#14713C;border-radius:6px;padding:8px 14px;flex:none">
+          <i class="ph-duotone ph-shield-check" style="font-size:20px;color:#7ED99C"></i>
+          <div style="font-size:16px;font-weight:700;color:#fff">Habilitée jusqu'au 31 août 2027</div>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:11px;flex:none">
+          <div style="font-size:16px;color:#C3D0E1">{{ nomResponsable }}</div>
+          <div style="width:40px;height:40px;border-radius:50%;background:#C25A34;color:#fff;display:grid;place-items:center;font-size:15px;font-weight:700">BS</div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-bottom:2px solid #C2BAB0;display:flex;flex:none">
+        <div style="min-height:62px;display:flex;align-items:center;gap:10px;padding:0 26px;border-bottom:4px solid transparent;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-shield-check" style="font-size:23px;color:#4A443E"></i><span style="font-size:18px;color:#2E2925">Mon habilitation</span></div>
+        <div style="min-height:62px;display:flex;align-items:center;gap:10px;padding:0 26px;border-bottom:4px solid #C25A34;background:#FBEDE6;cursor:pointer"><i class="ph-duotone ph-users-three" style="font-size:23px;color:#A84A28"></i><span style="font-size:18px;font-weight:700;color:#A84A28">Inscrits</span></div>
+        <div style="min-height:62px;display:flex;align-items:center;gap:10px;padding:0 26px;border-bottom:4px solid transparent;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-list-checks" style="font-size:23px;color:#4A443E"></i><span style="font-size:18px;color:#2E2925">Présence</span></div>
+        <div style="min-height:62px;display:flex;align-items:center;gap:10px;padding:0 26px;border-bottom:4px solid transparent;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-calendar-dots" style="font-size:23px;color:#4A443E"></i><span style="font-size:18px;color:#2E2925">Planning</span></div>
+        <div style="min-height:62px;display:flex;align-items:center;gap:10px;padding:0 26px;border-bottom:4px solid transparent;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-chat-circle-text" style="font-size:23px;color:#4A443E"></i><span style="font-size:18px;color:#2E2925">Messages</span></div>
+      </div>
+
+      <div style="flex:1;min-height:0;padding:18px 24px 22px;display:flex;flex-direction:column;gap:14px">
+
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <div style="min-height:52px;background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;display:flex;align-items:center;gap:11px;padding:0 15px;min-width:320px">
+            <i class="ph-duotone ph-magnifying-glass" style="font-size:22px;color:#6B655D;flex:none"></i>
+            <span style="font-size:17px;color:#6B655D">Chercher un enfant</span>
+          </div>
+          <div style="min-height:52px;border:2px solid #14345E;background:#E8EDF5;border-radius:6px;display:flex;align-items:center;padding:0 16px;font-size:16px;font-weight:700;color:#14345E;cursor:pointer">Les 18</div>
+          <div style="min-height:52px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:9px;padding:0 16px;font-size:16px;color:#2E2925;cursor:pointer" style-hover="background:#F2EFEA"><span style="width:12px;height:12px;border-radius:3px;background:#B3261E"></span>Cotisation en retard · 3</div>
+          <div style="min-height:52px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:9px;padding:0 16px;font-size:16px;color:#2E2925;cursor:pointer" style-hover="background:#F2EFEA"><span style="width:12px;height:12px;border-radius:3px;background:#8A5200"></span>Pièce manquante · 4</div>
+          <div style="margin-left:auto;font-size:16px;color:#6B655D">Mise à jour par le secrétariat</div>
+        </div>
+
+        <div style="background:#E8EDF5;border-left:5px solid #14345E;border-radius:4px;padding:12px 16px;display:flex;align-items:center;gap:12px;flex:none">
+          <i class="ph-duotone ph-lock-simple" style="font-size:24px;color:#14345E;flex:none"></i>
+          <div style="font-size:16px;color:#2E2925;line-height:1.4">Cette liste ne contient aucune donnée de santé ni coordonnée de parent. Pour joindre une famille en urgence, ouvrez la fiche d'urgence de l'enfant : la consultation est enregistrée au nom de l'encadrant.</div>
+        </div>
+
+        <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;overflow:hidden;flex:none">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 104px 188px 200px 250px;gap:16px;padding:11px 20px;background:#F2EFEA;border-bottom:1.5px solid #DDD7CF;font-size:14px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D">
+            <div>Enfant</div>
+            <div>Classe</div>
+            <div>Cotisation</div>
+            <div>Dossier</div>
+            <div></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 104px 188px 200px 250px;gap:16px;padding:12px 20px;align-items:center;border-bottom:1px solid #EDE9E4">
+            <div style="font-family:'Source Serif 4',serif;font-size:21px;font-weight:600;color:#2E2925">Diomandé Awa</div>
+            <div style="font-size:16px;color:#4A443E">CM1</div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-check-circle" style="font-size:17px"></i>À jour</span></div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-folder-simple" style="font-size:17px"></i>Complet</span></div>
+            <div><button style="min-height:46px;width:100%;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-key" style="font-size:19px"></i>Fiche d'urgence</button></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 104px 188px 200px 250px;gap:16px;padding:12px 20px;align-items:center;border-bottom:1px solid #EDE9E4">
+            <div style="font-family:'Source Serif 4',serif;font-size:21px;font-weight:600;color:#2E2925">Kouassi Jean-Marc</div>
+            <div style="font-size:16px;color:#4A443E">CE2</div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#FDF3DC;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#6B4200"><i class="ph-duotone ph-hourglass" style="font-size:17px"></i>En attente</span></div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-folder-simple" style="font-size:17px"></i>Complet</span></div>
+            <div><button style="min-height:46px;width:100%;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-key" style="font-size:19px"></i>Fiche d'urgence</button></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 104px 188px 200px 250px;gap:16px;padding:12px 20px;align-items:center;border-bottom:1px solid #EDE9E4;background:#FEFAF3">
+            <div style="font-family:'Source Serif 4',serif;font-size:21px;font-weight:600;color:#2E2925">N'Guessan Prisca</div>
+            <div style="font-size:16px;color:#4A443E">CM2</div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#FBE9E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#8E1F19"><i class="ph-duotone ph-warning-circle" style="font-size:17px"></i>En retard · 2 mois</span></div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#FDF3DC;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#6B4200"><i class="ph-duotone ph-folder-open" style="font-size:17px"></i>Certificat médical</span></div>
+            <div><button style="min-height:46px;width:100%;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-key" style="font-size:19px"></i>Fiche d'urgence</button></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 104px 188px 200px 250px;gap:16px;padding:12px 20px;align-items:center;border-bottom:1px solid #EDE9E4">
+            <div style="font-family:'Source Serif 4',serif;font-size:21px;font-weight:600;color:#2E2925">Traoré Ibrahim</div>
+            <div style="font-size:16px;color:#4A443E">CE2</div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-check-circle" style="font-size:17px"></i>À jour</span></div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-folder-simple" style="font-size:17px"></i>Complet</span></div>
+            <div><button style="min-height:46px;width:100%;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-key" style="font-size:19px"></i>Fiche d'urgence</button></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 104px 188px 200px 250px;gap:16px;padding:12px 20px;align-items:center;border-bottom:1px solid #EDE9E4">
+            <div style="font-family:'Source Serif 4',serif;font-size:21px;font-weight:600;color:#2E2925">Yao Solange</div>
+            <div style="font-size:16px;color:#4A443E">CM1</div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-check-circle" style="font-size:17px"></i>À jour</span></div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#FDF3DC;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#6B4200"><i class="ph-duotone ph-folder-open" style="font-size:17px"></i>Autorisation parentale</span></div>
+            <div><button style="min-height:46px;width:100%;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-key" style="font-size:19px"></i>Fiche d'urgence</button></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 104px 188px 200px 250px;gap:16px;padding:12px 20px;align-items:center;border-bottom:1px solid #EDE9E4">
+            <div style="font-family:'Source Serif 4',serif;font-size:21px;font-weight:600;color:#2E2925">Bamba Rachelle</div>
+            <div style="font-size:16px;color:#4A443E">CM2</div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-check-circle" style="font-size:17px"></i>À jour</span></div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-folder-simple" style="font-size:17px"></i>Complet</span></div>
+            <div><button style="min-height:46px;width:100%;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-key" style="font-size:19px"></i>Fiche d'urgence</button></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 104px 188px 200px 250px;gap:16px;padding:12px 20px;align-items:center">
+            <div style="font-family:'Source Serif 4',serif;font-size:21px;font-weight:600;color:#2E2925">Gnahoré Emmanuel</div>
+            <div style="font-size:16px;color:#4A443E">CE2</div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#FBE9E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#8E1F19"><i class="ph-duotone ph-warning-circle" style="font-size:17px"></i>En retard · 1 mois</span></div>
+            <div><span style="display:inline-flex;align-items:center;gap:7px;background:#E4F1E8;border-radius:14px;padding:4px 11px;font-size:15px;font-weight:700;color:#0F5A2F"><i class="ph-duotone ph-folder-simple" style="font-size:17px"></i>Complet</span></div>
+            <div><button style="min-height:46px;width:100%;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-key" style="font-size:19px"></i>Fiche d'urgence</button></div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:16px;flex:none">
+          <div style="font-size:16px;color:#6B655D">7 enfants sur 18 · faites défiler pour la suite</div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+            <div style="font-size:16px;color:#4A443E">Une cotisation en retard n'exclut jamais un enfant de la séance.</div>
+            <button style="min-height:50px;background:#fff;color:#4A443E;border:1.5px solid #C2BAB0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:16px;font-weight:600;padding:0 18px;display:flex;align-items:center;gap:9px;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-chat-circle-text" style="font-size:21px"></i>Écrire aux parents concernés</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">La cotisation apparaît parce qu'un responsable de mouvement en répond devant le trésorier, mais aucun montant n'est affiché : le statut suffit, la somme ne concerne que la famille et le trésorier.</div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:40px">
+
+      <!-- 2.2 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">2.2 · La même liste sur le terrain</div>
+        <div data-screen-label="2.2 Liste des inscrits (mobile)" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>15:02</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-cell-signal-low" style="font-size:13px"></i><i class="ph-duotone ph-battery-medium" style="font-size:13px"></i></span></div>
+          <div style="background:#fff;min-height:56px;display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid #EDE9E4;flex:none">
+            <i class="ph-duotone ph-arrow-left" style="font-size:24px;color:#14345E"></i>
+            <div style="min-width:0"><div style="font-size:17px;font-weight:700;color:#2E2925;line-height:1.2">Les 18 inscrits</div><div style="font-size:13px;color:#6B655D">Louveteaux · samedi 15 h 00</div></div>
+            <i class="ph-duotone ph-magnifying-glass" style="font-size:24px;color:#14345E;margin-left:auto"></i>
+          </div>
+
+          <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:9px">
+            <div style="background:#E8EDF5;border-radius:6px;padding:11px;display:flex;gap:9px;align-items:flex-start">
+              <i class="ph-duotone ph-lock-simple" style="font-size:20px;color:#14345E;flex:none"></i>
+              <div style="font-size:13.5px;color:#2E2925;line-height:1.45">Santé, allergies et téléphones des parents ne sont pas dans cette liste.</div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:12px">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925;line-height:1.2">Diomandé Awa</div>
+              <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:8px">
+                <span style="font-size:13.5px;font-weight:700;color:#0F5A2F;background:#E4F1E8;border-radius:12px;padding:4px 10px">Cotisation à jour</span>
+                <span style="font-size:13.5px;font-weight:700;color:#0F5A2F;background:#E4F1E8;border-radius:12px;padding:4px 10px">Dossier complet</span>
+              </div>
+              <button style="min-height:44px;width:100%;margin-top:10px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-key" style="font-size:18px"></i>Voir les informations d'urgence</button>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:12px">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925;line-height:1.2">N'Guessan Prisca</div>
+              <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:8px">
+                <span style="font-size:13.5px;font-weight:700;color:#8E1F19;background:#FBE9E8;border-radius:12px;padding:4px 10px">Cotisation en retard</span>
+                <span style="font-size:13.5px;font-weight:700;color:#6B4200;background:#FDF3DC;border-radius:12px;padding:4px 10px">Certificat médical manquant</span>
+              </div>
+              <button style="min-height:44px;width:100%;margin-top:10px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-key" style="font-size:18px"></i>Voir les informations d'urgence</button>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:12px">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925;line-height:1.2">Traoré Ibrahim</div>
+              <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:8px">
+                <span style="font-size:13.5px;font-weight:700;color:#0F5A2F;background:#E4F1E8;border-radius:12px;padding:4px 10px">Cotisation à jour</span>
+                <span style="font-size:13.5px;font-weight:700;color:#0F5A2F;background:#E4F1E8;border-radius:12px;padding:4px 10px">Dossier complet</span>
+              </div>
+              <button style="min-height:44px;width:100%;margin-top:10px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-key" style="font-size:18px"></i>Voir les informations d'urgence</button>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:12px;opacity:0.6">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925;line-height:1.2">Yao Solange</div>
+              <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:8px">
+                <span style="font-size:13.5px;font-weight:700;color:#0F5A2F;background:#E4F1E8;border-radius:12px;padding:4px 10px">Cotisation à jour</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border-top:1px solid #DDD7CF;display:grid;grid-template-columns:repeat(5,1fr);flex:none">
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-shield-check" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Habilitation</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid #14345E;background:#E8EDF5"><i class="ph-duotone ph-users-three" style="font-size:24px;color:#14345E"></i><div style="font-size:12px;font-weight:700;color:#14345E">Inscrits</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-list-checks" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Présence</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-calendar-dots" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Planning</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-chat-circle-text" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Messages</div></div>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Une carte par enfant, deux pastilles au plus, et le bouton d'urgence toujours au même endroit — on le trouve sans lire, ce qui compte quand un enfant s'est blessé.</div>
+      </div>
+
+      <!-- 2.3 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">2.3 · Avant d'ouvrir la fiche</div>
+        <div data-screen-label="2.3 Confirmation avant fiche d'urgence" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column;position:relative;overflow:hidden">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>15:04</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-cell-signal-low" style="font-size:13px"></i><i class="ph-duotone ph-battery-medium" style="font-size:13px"></i></span></div>
+          <div style="background:#fff;min-height:56px;display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid #EDE9E4;flex:none;opacity:0.4">
+            <i class="ph-duotone ph-arrow-left" style="font-size:24px;color:#14345E"></i>
+            <div style="min-width:0"><div style="font-size:17px;font-weight:700;color:#2E2925;line-height:1.2">Les 18 inscrits</div></div>
+          </div>
+          <div style="flex:1;background:rgba(11,31,58,0.55);display:flex;flex-direction:column;justify-content:flex-end;padding:14px">
+            <div style="background:#fff;border-radius:10px;overflow:hidden">
+              <div style="background:#14345E;padding:14px 16px;display:flex;align-items:center;gap:11px">
+                <i class="ph-duotone ph-lock-key" style="font-size:26px;color:#F2C14E;flex:none"></i>
+                <div style="font-size:17px;font-weight:700;color:#fff;line-height:1.25">Informations confidentielles</div>
+              </div>
+              <div style="padding:16px">
+                <div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:600;color:#2E2925;line-height:1.2">Diomandé Awa</div>
+                <div style="font-size:14.5px;color:#4A443E;line-height:1.5;margin-top:8px">Vous allez voir le téléphone des parents, la personne autorisée à venir chercher l'enfant et ses informations de santé.</div>
+                <div style="background:#FDF3DC;border-left:4px solid #8A5200;border-radius:4px;padding:11px 13px;margin-top:12px">
+                  <div style="font-size:14px;color:#4A443E;line-height:1.45">Votre consultation sera enregistrée : votre nom, la date et l'heure, visibles du curé et du secrétariat. Ces informations ne servent qu'à protéger l'enfant.</div>
+                </div>
+                <div style="font-size:14px;font-weight:600;color:#2E2925;margin-top:14px">Pourquoi ouvrez-vous cette fiche ?</div>
+                <div style="display:grid;gap:8px;margin-top:8px">
+                  <div style="min-height:48px;border:2px solid #14345E;background:#E8EDF5;border-radius:6px;display:flex;align-items:center;gap:10px;padding:0 13px;cursor:pointer"><i class="ph-duotone ph-first-aid-kit" style="font-size:21px;color:#14345E"></i><span style="font-size:15px;font-weight:700;color:#14345E">Urgence pendant la séance</span></div>
+                  <div style="min-height:48px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:10px;padding:0 13px;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-hand-waving" style="font-size:21px;color:#4A443E"></i><span style="font-size:15px;color:#2E2925">Enfant non récupéré</span></div>
+                  <div style="min-height:48px;border:1.5px solid #C2BAB0;background:#fff;border-radius:6px;display:flex;align-items:center;gap:10px;padding:0 13px;cursor:pointer" style-hover="background:#F7F5F2"><i class="ph-duotone ph-notebook" style="font-size:21px;color:#4A443E"></i><span style="font-size:15px;color:#2E2925">Préparation d'une sortie</span></div>
+                </div>
+                <div style="display:grid;gap:9px;margin-top:16px">
+                  <button style="min-height:52px;width:100%;background:#14345E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-eye" style="font-size:21px"></i>Voir les informations</button>
+                  <button style="min-height:48px;width:100%;background:#fff;color:#4A443E;border:1.5px solid #C2BAB0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#F7F5F2">Annuler</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Le motif est demandé avant, pas après, et en trois choix seulement. Il transforme une curiosité possible en geste assumé, sans transformer un bénévole en suspect.</div>
+      </div>
+
+      <!-- 2.4 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">2.4 · Fiche d'urgence ouverte</div>
+        <div data-screen-label="2.4 Fiche d'urgence" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>15:05</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-cell-signal-low" style="font-size:13px"></i><i class="ph-duotone ph-battery-medium" style="font-size:13px"></i></span></div>
+          <div style="background:#14345E;padding:12px 14px;flex:none;display:flex;align-items:center;gap:11px">
+            <i class="ph-duotone ph-lock-key" style="font-size:24px;color:#F2C14E;flex:none"></i>
+            <div style="min-width:0"><div style="font-size:16px;font-weight:700;color:#fff;line-height:1.2">Fiche d'urgence</div><div style="font-size:13px;color:#C3D0E1">Confidentiel · se referme dans 5 min</div></div>
+            <i class="ph-duotone ph-x" style="font-size:24px;color:#fff;margin-left:auto;flex:none"></i>
+          </div>
+
+          <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:10px">
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:600;color:#2E2925;line-height:1.2">Diomandé Awa</div>
+              <div style="font-size:14px;color:#6B655D;margin-top:2px">CM1 · Louveteaux</div>
+            </div>
+
+            <div style="background:#FBE9E8;border:1px solid #B3261E;border-radius:6px;padding:13px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><i class="ph-duotone ph-first-aid" style="font-size:21px;color:#B3261E;flex:none"></i><div style="font-size:14px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8E1F19">Santé</div></div>
+              <div style="font-size:16px;font-weight:700;color:#2E2925;line-height:1.35">Allergie à l'arachide</div>
+              <div style="font-size:14.5px;color:#4A443E;line-height:1.5;margin-top:4px">Trousse d'urgence dans son sac, poche avant. En cas de réaction : appeler les parents puis le 185.</div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:13px">
+              <div style="font-size:14px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28;margin-bottom:9px">À appeler, dans cet ordre</div>
+              <div style="display:grid;gap:9px">
+                <div style="display:flex;align-items:center;gap:11px">
+                  <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">Diomandé Fatou · mère</div><div style="font-size:14px;color:#4A443E;font-variant-numeric:tabular-nums">07 08 12 44 51</div></div>
+                  <button style="min-height:44px;min-width:44px;background:#14713C;border:0;border-radius:6px;color:#fff;display:grid;place-items:center;cursor:pointer;flex:none" style-hover="background:#0F5A2F"><i class="ph-duotone ph-phone-call" style="font-size:21px"></i></button>
+                </div>
+                <div style="display:flex;align-items:center;gap:11px;border-top:1px solid #EDE9E4;padding-top:9px">
+                  <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">Diomandé Célestin · père</div><div style="font-size:14px;color:#4A443E;font-variant-numeric:tabular-nums">05 44 90 17 02</div></div>
+                  <button style="min-height:44px;min-width:44px;background:#14713C;border:0;border-radius:6px;color:#fff;display:grid;place-items:center;cursor:pointer;flex:none" style-hover="background:#0F5A2F"><i class="ph-duotone ph-phone-call" style="font-size:21px"></i></button>
+                </div>
+                <div style="display:flex;align-items:center;gap:11px;border-top:1px solid #EDE9E4;padding-top:9px">
+                  <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">Kouassi Adjoua · tante</div><div style="font-size:14px;color:#4A443E;line-height:1.35">Autorisée à venir la chercher</div></div>
+                  <button style="min-height:44px;min-width:44px;background:#14713C;border:0;border-radius:6px;color:#fff;display:grid;place-items:center;cursor:pointer;flex:none" style-hover="background:#0F5A2F"><i class="ph-duotone ph-phone-call" style="font-size:21px"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <sc-if value="{{ tracabilite }}" hint-placeholder-val="{{ true }}">
+              <div style="background:#F2EFEA;border:1px dashed #C2BAB0;border-radius:6px;padding:12px;display:flex;gap:10px;align-items:flex-start">
+                <i class="ph-duotone ph-eye" style="font-size:20px;color:#6B655D;flex:none"></i>
+                <div style="font-size:13.5px;color:#4A443E;line-height:1.45">Consultation enregistrée : {{ nomResponsable }}, samedi 5 septembre à 15 h 05, motif « urgence pendant la séance ».</div>
+              </div>
+            </sc-if>
+
+            <button style="min-height:52px;width:100%;margin-top:auto;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-lock-simple" style="font-size:20px"></i>Refermer la fiche</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">La fiche n'a ni onglets ni navigation : c'est un cul-de-sac volontaire, qui se referme seul au bout de cinq minutes pour qu'un téléphone posé sur une table ne devienne pas une fuite de données.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ 03 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">03</div>
+      <h2 style="font-size:40px;margin:0">Suivi de présence</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 40px;color:var(--color-neutral-800)">L'émargement se fait debout, en trois minutes, souvent sans réseau : la liste est en cache, les coches partent quand le réseau revient. Sur le poste, la même donnée devient une grille de suivi — celle qu'on regarde quand un enfant a manqué trois séances de suite.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px">
+
+      <!-- 3.1 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">3.1 · Feuille d'émargement</div>
+        <div data-screen-label="3.1 Émargement" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>15:06</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-cell-signal-none" style="font-size:13px"></i><i class="ph-duotone ph-battery-medium" style="font-size:13px"></i></span></div>
+          <div style="background:#14345E;padding:11px 14px;flex:none">
+            <div style="font-size:17px;font-weight:700;color:#fff;line-height:1.2">Séance du samedi 5 septembre</div>
+            <div style="font-size:14px;color:#C3D0E1;margin-top:2px">Louveteaux · 15 h 00 · cour de la paroisse</div>
+          </div>
+          <div style="background:#FDF3DC;border-bottom:1px solid #D99A2B;padding:9px 14px;display:flex;align-items:center;gap:9px;flex:none">
+            <i class="ph-duotone ph-cloud-slash" style="font-size:19px;color:#8A5200;flex:none"></i>
+            <div style="font-size:13.5px;color:#4A443E;line-height:1.4">Hors réseau — vos coches sont gardées et partiront seules.</div>
+          </div>
+
+          <div style="background:#fff;border-bottom:1px solid #DDD7CF;padding:11px 14px;display:flex;align-items:center;gap:12px;flex:none">
+            <div><div style="font-size:26px;font-weight:700;color:#14345E;line-height:1;font-variant-numeric:tabular-nums">14 / 18</div><div style="font-size:13.5px;color:#6B655D;margin-top:2px">présents</div></div>
+            <button style="margin-left:auto;min-height:44px;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;padding:0 12px;cursor:pointer;flex:none" style-hover="background:#E8EDF5">Tout marquer présent</button>
+          </div>
+
+          <div style="flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:8px">
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:9px 11px;display:flex;align-items:center;gap:11px">
+              <div style="min-width:0;flex:1;font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925">Bamba Rachelle</div>
+              <div style="display:flex;gap:6px;flex:none">
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#14713C;display:grid;place-items:center;cursor:pointer"><i class="ph-duotone ph-check" style="font-size:24px;color:#fff"></i></div>
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#fff;border:1.5px solid #C2BAB0;display:grid;place-items:center;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-x" style="font-size:22px;color:#6B655D"></i></div>
+              </div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:9px 11px;display:flex;align-items:center;gap:11px">
+              <div style="min-width:0;flex:1;font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925">Diomandé Awa</div>
+              <div style="display:flex;gap:6px;flex:none">
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#14713C;display:grid;place-items:center;cursor:pointer"><i class="ph-duotone ph-check" style="font-size:24px;color:#fff"></i></div>
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#fff;border:1.5px solid #C2BAB0;display:grid;place-items:center;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-x" style="font-size:22px;color:#6B655D"></i></div>
+              </div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:9px 11px;display:flex;align-items:center;gap:11px">
+              <div style="min-width:0;flex:1"><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925">Gnahoré Emmanuel</div><div style="font-size:13px;color:#8E1F19;font-weight:600;margin-top:1px">3ᵉ absence de suite</div></div>
+              <div style="display:flex;gap:6px;flex:none">
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#fff;border:1.5px solid #C2BAB0;display:grid;place-items:center;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-check" style="font-size:24px;color:#6B655D"></i></div>
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#B3261E;display:grid;place-items:center;cursor:pointer"><i class="ph-duotone ph-x" style="font-size:22px;color:#fff"></i></div>
+              </div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:9px 11px;display:flex;align-items:center;gap:11px">
+              <div style="min-width:0;flex:1;font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925">Kouassi Jean-Marc</div>
+              <div style="display:flex;gap:6px;flex:none">
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#14713C;display:grid;place-items:center;cursor:pointer"><i class="ph-duotone ph-check" style="font-size:24px;color:#fff"></i></div>
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#fff;border:1.5px solid #C2BAB0;display:grid;place-items:center;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-x" style="font-size:22px;color:#6B655D"></i></div>
+              </div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:9px 11px;display:flex;align-items:center;gap:11px">
+              <div style="min-width:0;flex:1;font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#2E2925">N'Guessan Prisca</div>
+              <div style="display:flex;gap:6px;flex:none">
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#14713C;display:grid;place-items:center;cursor:pointer"><i class="ph-duotone ph-check" style="font-size:24px;color:#fff"></i></div>
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#fff;border:1.5px solid #C2BAB0;display:grid;place-items:center;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-x" style="font-size:22px;color:#6B655D"></i></div>
+              </div>
+            </div>
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:9px 11px;display:flex;align-items:center;gap:11px">
+              <div style="min-width:0;flex:1;font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;color:#6B655D">Traoré Ibrahim</div>
+              <div style="display:flex;gap:6px;flex:none">
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#fff;border:1.5px solid #C2BAB0;display:grid;place-items:center;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-check" style="font-size:24px;color:#6B655D"></i></div>
+                <div style="min-width:52px;min-height:48px;border-radius:6px;background:#fff;border:1.5px solid #C2BAB0;display:grid;place-items:center;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-x" style="font-size:22px;color:#6B655D"></i></div>
+              </div>
+            </div>
+            <div style="font-size:13px;color:#6B655D;text-align:center;padding:2px 0">12 enfants suivants…</div>
+          </div>
+
+          <div style="background:#fff;border-top:1px solid #DDD7CF;padding:12px;flex:none">
+            <button style="min-height:56px;width:100%;background:#14345E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-floppy-disk" style="font-size:22px"></i>Enregistrer l'émargement</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Deux boutons de 52 × 48 px par enfant plutôt qu'une case à cocher : on émarge avec le pouce, parfois d'une seule main, l'autre tenant un carnet.</div>
+      </div>
+
+      <!-- 3.2 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">3.2 · Historique des séances</div>
+        <div data-screen-label="3.2 Historique de présence" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>21:40</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-wifi-high" style="font-size:13px"></i><i class="ph-duotone ph-battery-high" style="font-size:13px"></i></span></div>
+          <div style="background:#fff;min-height:56px;display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid #EDE9E4;flex:none">
+            <i class="ph-duotone ph-arrow-left" style="font-size:24px;color:#14345E"></i>
+            <div style="font-size:17px;font-weight:700;color:#2E2925">Historique</div>
+          </div>
+
+          <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:10px">
+            <div style="background:#E4F1E8;border-radius:6px;padding:11px;display:flex;gap:9px;align-items:center">
+              <i class="ph-duotone ph-cloud-check" style="font-size:20px;color:#14713C;flex:none"></i>
+              <div style="font-size:13.5px;color:#2E2925;line-height:1.45">Émargement du 5 septembre synchronisé à 18 h 22.</div>
+            </div>
+
+            <div style="background:#FBE9E8;border:1px solid #B3261E;border-radius:6px;padding:13px">
+              <div style="display:flex;gap:9px;align-items:flex-start">
+                <i class="ph-duotone ph-user-focus" style="font-size:22px;color:#B3261E;flex:none"></i>
+                <div><div style="font-size:15.5px;font-weight:700;color:#8E1F19;line-height:1.3">Gnahoré Emmanuel : 3 absences de suite</div><div style="font-size:14px;color:#4A443E;line-height:1.45;margin-top:3px">Un mot aux parents est peut-être utile avant que l'enfant ne décroche.</div></div>
+              </div>
+              <button style="min-height:44px;width:100%;margin-top:10px;background:#fff;color:#8E1F19;border:1.5px solid #B3261E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#FBE9E8"><i class="ph-duotone ph-chat-circle-text" style="font-size:18px"></i>Écrire à ses parents</button>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;overflow:hidden">
+              <div style="padding:10px 13px;border-bottom:1px solid #EDE9E4;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28">Cinq dernières séances</div>
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 13px;border-bottom:1px solid #EDE9E4">
+                <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">Samedi 5 septembre</div><div style="font-size:13.5px;color:#6B655D">Cour de la paroisse</div></div>
+                <div style="text-align:right;flex:none"><div style="font-size:19px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">14/18</div><div style="font-size:13px;color:#6B655D">78 %</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 13px;border-bottom:1px solid #EDE9E4">
+                <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">Samedi 29 août</div><div style="font-size:13.5px;color:#6B655D">Salle Saint-Paul</div></div>
+                <div style="text-align:right;flex:none"><div style="font-size:19px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">17/18</div><div style="font-size:13px;color:#6B655D">94 %</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 13px;border-bottom:1px solid #EDE9E4">
+                <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">Samedi 22 août</div><div style="font-size:13.5px;color:#6B655D">Sortie · Bingerville</div></div>
+                <div style="text-align:right;flex:none"><div style="font-size:19px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">16/18</div><div style="font-size:13px;color:#6B655D">89 %</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 13px;border-bottom:1px solid #EDE9E4">
+                <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">Samedi 15 août</div><div style="font-size:13.5px;color:#6B655D">Séance annulée · pluie</div></div>
+                <div style="text-align:right;flex:none"><div style="font-size:15px;font-weight:600;color:#6B655D">—</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 13px">
+                <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">Samedi 8 août</div><div style="font-size:13.5px;color:#6B655D">Cour de la paroisse</div></div>
+                <div style="text-align:right;flex:none"><div style="font-size:19px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">15/18</div><div style="font-size:13px;color:#6B655D">83 %</div></div>
+              </div>
+            </div>
+
+            <div style="font-size:13.5px;color:#6B655D;line-height:1.5;margin-top:auto">Les taux servent au bilan d'année remis au curé. Ils ne sont jamais montrés aux parents enfant par enfant.</div>
+          </div>
+
+          <div style="background:#fff;border-top:1px solid #DDD7CF;display:grid;grid-template-columns:repeat(5,1fr);flex:none">
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-shield-check" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Habilitation</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-users-three" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Inscrits</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid #14345E;background:#E8EDF5"><i class="ph-duotone ph-list-checks" style="font-size:24px;color:#14345E"></i><div style="font-size:12px;font-weight:700;color:#14345E">Présence</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-calendar-dots" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Planning</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-chat-circle-text" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Messages</div></div>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Une séance annulée reste dans l'historique avec un tiret, pas un taux de 0 % : le motif compte autant que le chiffre.</div>
+      </div>
+
+    </div>
+
+    <div style="padding-top:40px">
+      <div data-screen-label="3.3 Grille de suivi (poste)" style="width:1280px;min-height:560px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+        <div style="background:#0B1F3A;padding:14px 24px;display:flex;align-items:center;gap:20px;flex:none">
+          <div><div style="font-size:23px;font-weight:700;color:#fff;line-height:1.15">Suivi de présence · trimestre en cours</div><div style="font-size:16px;color:#C3D0E1;margin-top:2px">Louveteaux · 18 enfants · 4 séances tenues, 1 annulée</div></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex:none">
+            <button style="min-height:48px;background:#fff;color:#14345E;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:16px;font-weight:700;padding:0 18px;display:flex;align-items:center;gap:9px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-download-simple" style="font-size:20px"></i>Bilan pour le curé</button>
+          </div>
+        </div>
+
+        <div style="flex:1;min-height:0;padding:20px 24px 24px;display:flex;flex-direction:column;gap:14px">
+          <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;overflow:hidden">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5,92px) 132px;gap:0;background:#F2EFEA;border-bottom:1.5px solid #DDD7CF;padding:10px 20px;font-size:14px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#6B655D">
+              <div>Enfant</div>
+              <div style="text-align:center">8 août</div>
+              <div style="text-align:center">15 août</div>
+              <div style="text-align:center">22 août</div>
+              <div style="text-align:center">29 août</div>
+              <div style="text-align:center">5 sept.</div>
+              <div style="text-align:right">Présence</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5,92px) 132px;align-items:center;padding:9px 20px;border-bottom:1px solid #EDE9E4">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Bamba Rachelle</div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center;font-size:17px;color:#6B655D">—</div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:right;font-size:17px;font-weight:700;color:#0F5A2F;font-variant-numeric:tabular-nums">4 / 4</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5,92px) 132px;align-items:center;padding:9px 20px;border-bottom:1px solid #EDE9E4">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Diomandé Awa</div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center;font-size:17px;color:#6B655D">—</div>
+              <div style="text-align:center"><i class="ph-duotone ph-x-circle" style="font-size:24px;color:#B3261E"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:right;font-size:17px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">3 / 4</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5,92px) 132px;align-items:center;padding:9px 20px;border-bottom:1px solid #EDE9E4;background:#FEF6F5">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Gnahoré Emmanuel</div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center;font-size:17px;color:#6B655D">—</div>
+              <div style="text-align:center"><i class="ph-duotone ph-x-circle" style="font-size:24px;color:#B3261E"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-x-circle" style="font-size:24px;color:#B3261E"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-x-circle" style="font-size:24px;color:#B3261E"></i></div>
+              <div style="text-align:right;font-size:17px;font-weight:700;color:#8E1F19;font-variant-numeric:tabular-nums">1 / 4</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5,92px) 132px;align-items:center;padding:9px 20px;border-bottom:1px solid #EDE9E4">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Kouassi Jean-Marc</div>
+              <div style="text-align:center"><i class="ph-duotone ph-x-circle" style="font-size:24px;color:#B3261E"></i></div>
+              <div style="text-align:center;font-size:17px;color:#6B655D">—</div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:right;font-size:17px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">3 / 4</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5,92px) 132px;align-items:center;padding:9px 20px;border-bottom:1px solid #EDE9E4">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">N'Guessan Prisca</div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center;font-size:17px;color:#6B655D">—</div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:right;font-size:17px;font-weight:700;color:#0F5A2F;font-variant-numeric:tabular-nums">4 / 4</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5,92px) 132px;align-items:center;padding:9px 20px">
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;font-weight:600;color:#2E2925">Traoré Ibrahim</div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center;font-size:17px;color:#6B655D">—</div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-check-circle" style="font-size:24px;color:#14713C"></i></div>
+              <div style="text-align:center"><i class="ph-duotone ph-x-circle" style="font-size:24px;color:#B3261E"></i></div>
+              <div style="text-align:right;font-size:17px;font-weight:700;color:#14345E;font-variant-numeric:tabular-nums">3 / 4</div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:8px"><i class="ph-duotone ph-check-circle" style="font-size:21px;color:#14713C"></i><span style="font-size:16px;color:#2E2925">Présent</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><i class="ph-duotone ph-x-circle" style="font-size:21px;color:#B3261E"></i><span style="font-size:16px;color:#2E2925">Absent</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="font-size:19px;color:#6B655D">—</span><span style="font-size:16px;color:#2E2925">Séance annulée</span></div>
+            <div style="margin-left:auto;font-size:16px;color:#6B655D">6 enfants sur 18 · la grille se lit aussi en imprimé pour le classeur du mouvement</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Le poste ne sert pas à émarger — il sert à voir la ligne qui décroche. La séance annulée du 15 août reste une colonne visible : la retirer donnerait un faux taux d'absence à toute la troupe.</div>
+    </div>
+  </div>
+
+  <!-- ============ 04 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">04</div>
+      <h2 style="font-size:40px;margin:0">Planning des ministères</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 32px;color:var(--color-neutral-800)">Pour les mouvements qui servent la célébration — servants d'autel, chorale, lecteurs, accueil. Le planning est ouvert à tous les responsables concernés : un créneau libre se prend soi-même, une indisponibilité déclenche une recherche de remplaçant visible par tous. Personne n'a besoin d'appeler le secrétariat pour cela.</p>
+
+    <div data-screen-label="4.1 Planning des ministères (poste)" style="width:1280px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:6px;overflow:hidden;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+
+      <div style="background:#0B1F3A;padding:14px 24px;display:flex;align-items:center;gap:20px;flex:none">
+        <div><div style="font-size:23px;font-weight:700;color:#fff;line-height:1.15">Week-end du 5 et 6 septembre</div><div style="font-size:16px;color:#C3D0E1;margin-top:2px">Servants d'autel · chorale · lecteurs · accueil</div></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex:none">
+          <div style="min-width:48px;min-height:48px;border:2px solid #24548F;border-radius:6px;display:grid;place-items:center;cursor:pointer"><i class="ph-duotone ph-caret-left" style="font-size:21px;color:#fff"></i></div>
+          <div style="min-height:48px;border:2px solid #24548F;border-radius:6px;display:flex;align-items:center;padding:0 16px;font-size:16px;font-weight:700;color:#fff;cursor:pointer">Ce week-end</div>
+          <div style="min-width:48px;min-height:48px;border:2px solid #24548F;border-radius:6px;display:grid;place-items:center;cursor:pointer"><i class="ph-duotone ph-caret-right" style="font-size:21px;color:#fff"></i></div>
+        </div>
+      </div>
+
+      <div style="background:#FBE9E8;border-bottom:1.5px solid #B3261E;padding:11px 24px;display:flex;align-items:center;gap:12px;flex:none">
+        <i class="ph-duotone ph-hand-waving" style="font-size:23px;color:#B3261E;flex:none"></i>
+        <div style="font-size:16px;color:#2E2925;line-height:1.4"><strong style="font-weight:700">Un remplaçant est recherché</strong> pour la chorale de dimanche 9 h 30 — Yao Solange s'est déclarée indisponible hier soir.</div>
+        <button style="margin-left:auto;min-height:46px;background:#B3261E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:16px;font-weight:700;padding:0 18px;cursor:pointer;flex:none" style-hover="background:#8E1F19">Je prends ce créneau</button>
+      </div>
+
+      <div style="flex:1;min-height:0;padding:20px 24px 24px;display:flex;flex-direction:column;gap:12px">
+
+        <div style="display:grid;grid-template-columns:210px repeat(4,minmax(0,1fr));gap:10px;flex:none">
+          <div></div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D;padding:0 2px">Servants d'autel</div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D;padding:0 2px">Chorale</div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D;padding:0 2px">Lecteurs</div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B655D;padding:0 2px">Accueil</div>
+        </div>
+
+        <div style="flex:1;min-height:0;display:grid;grid-template-rows:repeat(4,minmax(0,1fr));gap:10px">
+
+          <div style="display:grid;grid-template-columns:210px repeat(4,minmax(0,1fr));gap:10px">
+            <div style="background:#14345E;border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;justify-content:center">
+              <div style="font-size:20px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">Samedi 18 h 30</div>
+              <div style="font-size:15px;color:#C3D0E1;margin-top:2px">Messe anticipée · église</div>
+            </div>
+            <div style="background:#E4F1E8;border:2px solid #14713C;border-radius:6px;padding:11px 13px">
+              <div style="display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-user-check" style="font-size:19px;color:#14713C;flex:none"></i><div style="font-size:15px;font-weight:700;color:#0F5A2F">Vous encadrez</div></div>
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3;margin-top:4px">Traoré Ibrahim · Kouassi Jean-Marc</div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:11px 13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">Chorale Sainte-Cécile</div>
+              <div style="font-size:14px;color:#6B655D;margin-top:4px">Bamba Rachelle · cheffe</div>
+            </div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:6px;padding:9px;display:grid;place-items:center">
+              <button style="min-height:48px;width:100%;background:#E8EDF5;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#D6E1F0"><i class="ph-duotone ph-plus-circle" style="font-size:19px"></i>Libre · m'inscrire</button>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:11px 13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">Équipe d'accueil B</div>
+              <div style="font-size:14px;color:#6B655D;margin-top:4px">4 bénévoles</div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:210px repeat(4,minmax(0,1fr));gap:10px">
+            <div style="background:#14345E;border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;justify-content:center">
+              <div style="font-size:20px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">Dimanche 7 h 00</div>
+              <div style="font-size:15px;color:#C3D0E1;margin-top:2px">Première messe · église</div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:11px 13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">Diomandé Awa</div>
+              <div style="font-size:14px;color:#8E1F19;font-weight:600;margin-top:4px">1 servant sur 2</div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:11px 13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">Chorale des jeunes</div>
+              <div style="font-size:14px;color:#6B655D;margin-top:4px">Gnahoré Séraphin · chef</div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:11px 13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">N'Guessan Paul</div>
+              <div style="font-size:14px;color:#6B655D;margin-top:4px">1ʳᵉ et 2ᵉ lecture</div>
+            </div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:6px;padding:9px;display:grid;place-items:center">
+              <button style="min-height:48px;width:100%;background:#E8EDF5;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#D6E1F0"><i class="ph-duotone ph-plus-circle" style="font-size:19px"></i>Libre · m'inscrire</button>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:210px repeat(4,minmax(0,1fr));gap:10px">
+            <div style="background:#24548F;border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;justify-content:center">
+              <div style="font-size:20px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">Dimanche 9 h 30</div>
+              <div style="font-size:15px;color:#C3D0E1;margin-top:2px">Messe des familles · église</div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:11px 13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">Bamba Rachelle</div>
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">Gnahoré Emmanuel</div>
+              <div style="font-size:14px;color:#6B655D;margin-top:4px">2 servants · complet</div>
+            </div>
+            <div style="background:#FBE9E8;border:2px solid #B3261E;border-radius:6px;padding:11px 13px">
+              <div style="display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-hand-waving" style="font-size:19px;color:#B3261E;flex:none"></i><div style="font-size:15px;font-weight:700;color:#8E1F19">Remplaçant recherché</div></div>
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#6B655D;text-decoration:line-through;line-height:1.3;margin-top:4px">Yao Solange</div>
+              <button style="min-height:44px;width:100%;margin-top:7px;background:#B3261E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:700;cursor:pointer" style-hover="background:#8E1F19">Je prends</button>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:11px 13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">Kouassi Adjoua</div>
+              <div style="font-size:14px;color:#6B655D;margin-top:4px">1ʳᵉ lecture · psaume</div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:11px 13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">Équipe d'accueil A</div>
+              <div style="font-size:14px;color:#6B655D;margin-top:4px">6 bénévoles</div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:210px repeat(4,minmax(0,1fr));gap:10px">
+            <div style="background:#24548F;border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;justify-content:center">
+              <div style="font-size:20px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums">Dimanche 18 h 30</div>
+              <div style="font-size:15px;color:#C3D0E1;margin-top:2px">Messe du soir · église</div>
+            </div>
+            <div style="background:#E4F1E8;border:2px solid #14713C;border-radius:6px;padding:11px 13px">
+              <div style="display:flex;align-items:center;gap:7px"><i class="ph-duotone ph-user-check" style="font-size:19px;color:#14713C;flex:none"></i><div style="font-size:15px;font-weight:700;color:#0F5A2F">Vous encadrez</div></div>
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3;margin-top:4px">Traoré Ibrahim · Diomandé Awa</div>
+            </div>
+            <div style="background:#fff;border:1.5px dashed #C2BAB0;border-radius:6px;padding:9px;display:grid;place-items:center">
+              <button style="min-height:48px;width:100%;background:#E8EDF5;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#D6E1F0"><i class="ph-duotone ph-plus-circle" style="font-size:19px"></i>Libre · m'inscrire</button>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:11px 13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">Assouman Éric</div>
+              <div style="font-size:14px;color:#6B655D;margin-top:4px">1ʳᵉ et 2ᵉ lecture</div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #C2BAB0;border-radius:6px;padding:11px 13px">
+              <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#2E2925;line-height:1.3">Équipe d'accueil C</div>
+              <div style="font-size:14px;color:#6B655D;margin-top:4px">3 bénévoles</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;flex:none">
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;background:#fff;border:1.5px solid #C2BAB0"></span><span style="font-size:16px;color:#2E2925">Affecté</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;background:#E8EDF5;border:1.5px solid #14345E"></span><span style="font-size:16px;color:#2E2925">Libre · auto-inscription</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;background:#FBE9E8;border:1.5px solid #B3261E"></span><span style="font-size:16px;color:#2E2925">Remplaçant recherché</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;background:#E4F1E8;border:1.5px solid #14713C"></span><span style="font-size:16px;color:#2E2925">Vos créneaux</span></div>
+          <div style="margin-left:auto;font-size:16px;color:#6B655D">Le curé et le sacristain voient le même planning, en lecture seule.</div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:12px;max-width:80ch">Une indisponibilité ne supprime pas l'affectation : elle la barre et ouvre un appel. Le nom reste lisible, parce que quelqu'un devra bien rappeler Solange si personne ne se propose avant samedi soir.</div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:40px">
+
+      <!-- 4.2 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">4.2 · Mes créneaux, sur le téléphone</div>
+        <div data-screen-label="4.2 Mes créneaux" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>20:15</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-cell-signal-medium" style="font-size:13px"></i><i class="ph-duotone ph-battery-high" style="font-size:13px"></i></span></div>
+          <div style="background:#14345E;padding:11px 14px;flex:none">
+            <div style="font-size:17px;font-weight:700;color:#fff;line-height:1.2">Ministères · ce week-end</div>
+            <div style="font-size:14px;color:#C3D0E1;margin-top:2px">2 créneaux pour vous</div>
+          </div>
+
+          <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:10px">
+            <div style="background:#FBE9E8;border:1px solid #B3261E;border-radius:6px;padding:13px">
+              <div style="display:flex;gap:9px;align-items:flex-start">
+                <i class="ph-duotone ph-hand-waving" style="font-size:22px;color:#B3261E;flex:none"></i>
+                <div><div style="font-size:15.5px;font-weight:700;color:#8E1F19;line-height:1.3">Chorale cherche un remplaçant</div><div style="font-size:14px;color:#4A443E;line-height:1.45;margin-top:3px">Dimanche 9 h 30, messe des familles. Vous êtes libre à cette heure.</div></div>
+              </div>
+              <button style="min-height:48px;width:100%;margin-top:11px;background:#B3261E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15.5px;font-weight:700;cursor:pointer" style-hover="background:#8E1F19">Je prends ce créneau</button>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #14713C;border-radius:6px;padding:13px">
+              <div style="font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#0F5A2F;margin-bottom:5px">Votre créneau</div>
+              <div style="font-size:19px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">Samedi 18 h 30</div>
+              <div style="font-size:14.5px;color:#4A443E;line-height:1.45;margin-top:3px">Servants d'autel · Traoré Ibrahim et Kouassi Jean-Marc</div>
+              <button style="min-height:46px;width:100%;margin-top:11px;background:#fff;color:#4A443E;border:1.5px solid #C2BAB0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-prohibit" style="font-size:18px"></i>Je ne serai pas disponible</button>
+            </div>
+
+            <div style="background:#fff;border:1px solid #EDE9E4;border-left:4px solid #14713C;border-radius:6px;padding:13px">
+              <div style="font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#0F5A2F;margin-bottom:5px">Votre créneau</div>
+              <div style="font-size:19px;font-weight:700;color:#2E2925;font-variant-numeric:tabular-nums">Dimanche 18 h 30</div>
+              <div style="font-size:14.5px;color:#4A443E;line-height:1.45;margin-top:3px">Servants d'autel · Traoré Ibrahim et Diomandé Awa</div>
+              <button style="min-height:46px;width:100%;margin-top:11px;background:#fff;color:#4A443E;border:1.5px solid #C2BAB0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#F2EFEA"><i class="ph-duotone ph-prohibit" style="font-size:18px"></i>Je ne serai pas disponible</button>
+            </div>
+
+            <div style="background:#E8EDF5;border-radius:6px;padding:12px;display:flex;gap:10px;align-items:flex-start">
+              <i class="ph-duotone ph-info" style="font-size:20px;color:#14345E;flex:none"></i>
+              <div style="font-size:13.5px;color:#2E2925;line-height:1.45">Déclarer une indisponibilité prévient les autres responsables, jamais les parents. Si personne ne se propose 24 h avant, le sacristain est alerté.</div>
+            </div>
+
+            <button style="min-height:48px;width:100%;margin-top:auto;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-calendar-plus" style="font-size:19px"></i>Voir tous les créneaux libres</button>
+          </div>
+
+          <div style="background:#fff;border-top:1px solid #DDD7CF;display:grid;grid-template-columns:repeat(5,1fr);flex:none">
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-shield-check" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Habilitation</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-users-three" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Inscrits</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-list-checks" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Présence</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid #14345E;background:#E8EDF5"><i class="ph-duotone ph-calendar-dots" style="font-size:24px;color:#14345E"></i><div style="font-size:12px;font-weight:700;color:#14345E">Planning</div></div>
+            <div style="min-height:64px;padding:8px 2px;display:grid;justify-items:center;gap:3px;border-top:3px solid transparent"><i class="ph-duotone ph-chat-circle-text" style="font-size:24px;color:#6B655D"></i><div style="font-size:12px;color:#4A443E">Messages</div></div>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Sur le téléphone, le planning se réduit à ce qui vous concerne : l'appel au remplacement d'abord, vos deux créneaux ensuite. La grille complète reste au poste.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ 05 ============ -->
+  <div style="padding-top:96px">
+    <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:8px">
+      <div style="font-size:52px;line-height:1;color:var(--color-accent)">05</div>
+      <h2 style="font-size:40px;margin:0">Communication au groupe</h2>
+    </div>
+    <p style="font-size:16px;max-width:64ch;margin:0 0 40px;color:var(--color-neutral-800)">Trois règles sont inscrites dans la mise en page plutôt que dans une aide. Le canal appartient au parent : chacun a dit s'il voulait une notification, un WhatsApp ou un SMS, et le responsable ne fait que constater la répartition. La réponse revient au secrétariat, jamais au numéro personnel du bénévole. Et rien de nominatif sur un enfant ne s'écrit dans un message qui part à vingt-six familles.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px">
+
+      <!-- 5.1 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">5.1 · Écrire aux parents</div>
+        <div data-screen-label="5.1 Message au groupe" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>21:02</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-wifi-high" style="font-size:13px"></i><i class="ph-duotone ph-battery-high" style="font-size:13px"></i></span></div>
+          <div style="background:#fff;min-height:56px;display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid #EDE9E4;flex:none">
+            <i class="ph-duotone ph-x" style="font-size:24px;color:#14345E"></i>
+            <div style="font-size:17px;font-weight:700;color:#2E2925">Message au groupe</div>
+          </div>
+
+          <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:10px">
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;padding:12px">
+              <div style="font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28;margin-bottom:6px">Destinataires</div>
+              <div style="font-size:16px;font-weight:700;color:#2E2925;line-height:1.35">Les parents des 18 louveteaux</div>
+              <div style="font-size:14px;color:#4A443E;line-height:1.45;margin-top:3px">26 parents · chacun reçoit sur le canal qu'il a choisi</div>
+              <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:9px">
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:#14345E;background:#E8EDF5;border-radius:12px;padding:4px 10px"><i class="ph-duotone ph-bell" style="font-size:16px"></i>Push · 17</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:#0F5A2F;background:#E4F1E8;border-radius:12px;padding:4px 10px"><i class="ph-duotone ph-whatsapp-logo" style="font-size:16px"></i>WhatsApp · 6</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:#6B4200;background:#FDF3DC;border-radius:12px;padding:4px 10px"><i class="ph-duotone ph-chat-dots" style="font-size:16px"></i>SMS · 3</span>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size:13.5px;font-weight:600;color:#4A443E;margin-bottom:7px">Un modèle pour commencer</div>
+              <div style="display:flex;gap:7px;flex-wrap:wrap">
+                <span style="min-height:40px;display:inline-flex;align-items:center;font-size:14px;color:#14345E;background:#fff;border:1.5px solid #C2BAB0;border-radius:20px;padding:0 13px;cursor:pointer" style-hover="background:#E8EDF5">Rappel de séance</span>
+                <span style="min-height:40px;display:inline-flex;align-items:center;font-size:14px;color:#14345E;background:#E8EDF5;border:1.5px solid #14345E;border-radius:20px;padding:0 13px;cursor:pointer">Sortie à préparer</span>
+                <span style="min-height:40px;display:inline-flex;align-items:center;font-size:14px;color:#14345E;background:#fff;border:1.5px solid #C2BAB0;border-radius:20px;padding:0 13px;cursor:pointer" style-hover="background:#E8EDF5">Séance annulée</span>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:2px solid #14345E;border-radius:6px;padding:12px">
+              <div style="font-size:15px;color:#2E2925;line-height:1.55">Chers parents, la sortie de samedi part à 8 h de la cour de la paroisse et rentre vers 17 h. Prévoir une casquette, une gourde et le pique-nique. Merci de confirmer la présence de votre enfant.</div>
+              <div style="display:flex;align-items:center;gap:10px;margin-top:10px;border-top:1px solid #EDE9E4;padding-top:9px">
+                <div style="font-size:13px;color:#6B655D;font-variant-numeric:tabular-nums">196 caractères · 2 SMS pour 3 parents</div>
+                <i class="ph-duotone ph-microphone" style="font-size:22px;color:#14345E;margin-left:auto"></i>
+              </div>
+            </div>
+
+            <div style="background:#FDF3DC;border-left:4px solid #8A5200;border-radius:4px;padding:11px 13px">
+              <div style="font-size:13.5px;color:#4A443E;line-height:1.45">Les parents répondent au secrétariat, pas à votre numéro personnel. N'écrivez ici rien de confidentiel sur un enfant : le message part à toutes les familles.</div>
+            </div>
+
+            <div style="margin-top:auto;display:grid;gap:9px">
+              <button style="min-height:56px;width:100%;background:#14345E;color:#fff;border:0;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer" style-hover="background:#0E2A4E"><i class="ph-duotone ph-paper-plane-tilt" style="font-size:22px"></i>Envoyer aux 26 parents</button>
+              <div style="font-size:13px;color:#6B655D;text-align:center">Le curé reçoit une copie de tous les messages de groupe.</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Le canal n'est pas un choix de l'expéditeur : chaque parent a dit comment il veut être joint, et l'écran ne fait que rendre compte de la répartition.</div>
+      </div>
+
+      <!-- 5.2 -->
+      <div style="width:360px;flex:none">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:9px">5.2 · Message envoyé</div>
+        <div data-screen-label="5.2 Accusé d'envoi" style="width:360px;min-height:720px;background:#F7F5F2;border:1px solid #C2BAB0;border-radius:10px;font-family:'Noto Sans',sans-serif;display:flex;flex-direction:column">
+          <div style="height:26px;background:#0B1F3A;color:#C3D0E1;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex:none"><span>21:04</span><span style="display:flex;gap:6px;align-items:center"><i class="ph-duotone ph-wifi-high" style="font-size:13px"></i><i class="ph-duotone ph-battery-high" style="font-size:13px"></i></span></div>
+          <div style="background:#14713C;padding:20px 16px;flex:none;text-align:center">
+            <i class="ph-duotone ph-check-circle" style="font-size:46px;color:#fff"></i>
+            <div style="font-size:20px;font-weight:700;color:#fff;line-height:1.25;margin-top:7px">Message parti</div>
+            <div style="font-size:14.5px;color:#CDEBD8;margin-top:3px">Samedi 5 septembre, 21 h 04</div>
+          </div>
+
+          <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:10px">
+            <div style="background:#fff;border:1px solid #EDE9E4;border-radius:6px;overflow:hidden">
+              <div style="padding:10px 13px;border-bottom:1px solid #EDE9E4;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#A84A28">Réception</div>
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 13px;border-bottom:1px solid #EDE9E4">
+                <i class="ph-duotone ph-bell" style="font-size:22px;color:#14345E;flex:none"></i>
+                <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">Notification · 17 parents</div><div style="font-size:13.5px;color:#0F5A2F">17 reçues · 9 déjà lues</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 13px;border-bottom:1px solid #EDE9E4">
+                <i class="ph-duotone ph-whatsapp-logo" style="font-size:22px;color:#14713C;flex:none"></i>
+                <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">WhatsApp · 6 parents</div><div style="font-size:13.5px;color:#0F5A2F">6 remises</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 13px">
+                <i class="ph-duotone ph-chat-dots" style="font-size:22px;color:#8A5200;flex:none"></i>
+                <div style="min-width:0;flex:1"><div style="font-size:15.5px;font-weight:600;color:#2E2925">SMS · 3 parents</div><div style="font-size:13.5px;color:#6B4200">2 remis · 1 en attente d'opérateur</div></div>
+              </div>
+            </div>
+
+            <div style="background:#FDF3DC;border:1px solid #D99A2B;border-radius:6px;padding:13px">
+              <div style="display:flex;gap:9px;align-items:flex-start">
+                <i class="ph-duotone ph-phone-x" style="font-size:22px;color:#8A5200;flex:none"></i>
+                <div><div style="font-size:15.5px;font-weight:700;color:#6B4200;line-height:1.3">Un parent n'a pas été joint</div><div style="font-size:14px;color:#4A443E;line-height:1.45;margin-top:3px">Le père de Gnahoré Emmanuel : numéro injoignable depuis trois semaines. Le secrétariat a été prévenu.</div></div>
+              </div>
+              <button style="min-height:44px;width:100%;margin-top:10px;background:#fff;color:#6B4200;border:1.5px solid #8A5200;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:14.5px;font-weight:600;cursor:pointer" style-hover="background:#FDF3DC">Le dire de vive voix samedi</button>
+            </div>
+
+            <sc-if value="{{ tracabilite }}" hint-placeholder-val="{{ true }}">
+              <div style="background:#F2EFEA;border:1px dashed #C2BAB0;border-radius:6px;padding:12px;display:flex;gap:10px;align-items:flex-start">
+                <i class="ph-duotone ph-archive" style="font-size:20px;color:#6B655D;flex:none"></i>
+                <div style="font-size:13.5px;color:#4A443E;line-height:1.45">Envoyé par {{ nomResponsable }} · copie au curé et au secrétariat · conservé un an.</div>
+              </div>
+            </sc-if>
+
+            <button style="min-height:52px;width:100%;margin-top:auto;background:#fff;color:#14345E;border:1.5px solid #14345E;border-radius:6px;font-family:'Noto Sans',sans-serif;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer" style-hover="background:#E8EDF5"><i class="ph-duotone ph-arrow-left" style="font-size:20px"></i>Revenir au groupe</button>
+          </div>
+        </div>
+        <div style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin-top:10px">Un envoi ne se termine pas par « envoyé » : il se termine par qui n'a pas reçu. C'est la seule information qui demande une action au responsable.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="padding-top:96px">
+    <div style="height:1px;background:var(--color-text)"></div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;padding-top:28px">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Écrit pour des bénévoles</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Un seul geste principal par écran, jamais de mot d'informaticien : « habilitation » est expliquée, « émarger » devient « marquer présent », « synchroniser » devient « partiront seules ». Cibles à 44 px minimum, 48 à 52 px pour l'émargement, aucune action destructrice sans écran de confirmation.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Le sensible se demande</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Santé, allergies et coordonnées des parents n'existent nulle part dans une liste : elles vivent dans une fiche d'urgence qui s'ouvre sur un motif déclaré, s'affiche sur un fond marqué confidentiel, se referme au bout de cinq minutes et laisse une trace nominative. L'habilitation en est la condition d'entrée.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Ce qui n'est pas encore dessiné</div>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:var(--color-neutral-800)">Le parcours de renouvellement lui-même, la vue du Référent Protection des Mineurs sur les habilitations de la paroisse, le registre de consultation des fiches d'urgence tel que le curé le lit, et la reprise du planning des ministères quand un mouvement en a plusieurs en parallèle.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;nomResponsable&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Mme Bamba Solange&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;uniteMouvement&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Unité Saint-Michel · Louveteaux&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;afficherTracabilite&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Confidentialité&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      nomResponsable: this.props.nomResponsable ?? 'Mme Bamba Solange',
+      uniteMouvement: this.props.uniteMouvement ?? 'Unité Saint-Michel · Louveteaux',
+      tracabilite: this.props.afficherTracabilite ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>
