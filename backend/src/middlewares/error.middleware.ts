@@ -1,6 +1,7 @@
 import type { ErrorRequestHandler } from 'express'
 import { ZodError } from 'zod'
 import { AuthError } from '../services/auth.service'
+import { RegistrationError } from '../services/registration.service'
 
 export const errorMiddleware: ErrorRequestHandler = (error, _req, res, _next) => {
   if (error instanceof ZodError) {
@@ -11,7 +12,7 @@ export const errorMiddleware: ErrorRequestHandler = (error, _req, res, _next) =>
     })
   }
 
-  if (error instanceof AuthError) {
+  if (error instanceof AuthError || error instanceof RegistrationError) {
     return res.status(error.statusCode).json({
       success: false,
       message: error.message,
