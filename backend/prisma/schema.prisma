@@ -301,6 +301,7 @@ model Movement {
   registrations  Registration[]
   documents      Document[]
   communications Communication[]
+  fees           MovementFee[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -422,6 +423,7 @@ model MovementFee {
   payments    Payment[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
   @@index([movementId])
   @@index([active])
   @@map("movement_fees")
