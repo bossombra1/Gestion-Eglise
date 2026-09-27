@@ -81,7 +81,7 @@ onMounted(() => store.loadRegistrations())
         ]"
         :key="option.value"
         :variant="statusFilter === option.value ? 'primary' : 'secondary'"
-        @click="statusFilter = option.value as typeof statusFilter"
+        @click="statusFilter = option.value as 'ALL' | RegistrationStatus"
       >
         {{ option.label }}
       </AppButton>
