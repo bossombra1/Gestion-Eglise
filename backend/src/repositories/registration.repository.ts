@@ -66,7 +66,11 @@ export const registrationRepository = {
   updateStatus(
     id: string,
     status: 'APPROVED' | 'REJECTED',
-    data: { approvedAt?: Date; rejectedAt?: Date; rejectionReason?: string | null },
+    data: {
+      approvedAt?: Date | null
+      rejectedAt?: Date | null
+      rejectionReason?: string | null
+    },
   ) {
     return prisma.registration.update({
       where: { id },
