@@ -5,7 +5,12 @@ export default {
     './src/**/*.{vue,js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+        sans: ['"Noto Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
