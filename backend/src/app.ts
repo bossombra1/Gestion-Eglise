@@ -1,26 +1,17 @@
-﻿import express from 'express'
+import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
+import apiRouter from './routes'
+import { errorMiddleware } from './middlewares/error.middleware'
 
 const app = express()
 
 app.use(helmet())
-
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  }),
-)
-
+app.use(cors({ origin: true, credentials: true }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/api/health', (_req, res) => {
-  res.json({
-    success: true,
-    message: 'EcclesiaConnect API is running',
-  })
-})
+app.use('/api', apiRouter)
+app.use(errorMiddleware)
 
 export default app
