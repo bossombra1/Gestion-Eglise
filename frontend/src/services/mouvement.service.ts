@@ -31,6 +31,26 @@ export const mouvementService = {
     return data
   },
 
+  async getFees() {
+    const { data } = await api.get('/payments/fees')
+    return data
+  },
+
+  async createFee(input: { movementId: string; name: string; amount: number; dueDate?: string }) {
+    const { data } = await api.post('/payments/fees', input)
+    return data
+  },
+
+  async getPayments() {
+    const { data } = await api.get('/payments')
+    return data
+  },
+
+  async createPayment(input: { registrationId: string; feeId?: string; amount: number; method: string; transactionReference?: string }) {
+    const { data } = await api.post('/payments', input)
+    return data
+  },
+
   async rejectRegistration(id: string, rejectionReason?: string) {
     const { data } = await api.patch('/registrations/' + id + '/reject', {
       rejectionReason,
