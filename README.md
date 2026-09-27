@@ -1,29 +1,49 @@
-# Branche Parent-Fidele
+# EcclesiaConnect
 
-## Mission
-Construire les espaces **Parent** et **Fidèle**. Les utilisateurs peuvent gérer leur profil, consulter leur famille, suivre les enfants lorsque le compte est parent, recevoir les communications et accéder aux documents autorisés.
+## Présentation
+EcclesiaConnect est une plateforme web de gestion et de communication pour une église/parroisse. Elle centralise les paroisses, utilisateurs, familles, fidèles, enfants, mouvements, inscriptions, cotisations, documents, communications et notifications.
 
-## Espace Parent
-Tableau de bord, profil, famille, enfants, fiches enfants, inscriptions, cotisations, documents, communications et notifications.
+Le projet est API-first afin que le futur client mobile réutilise le même backend.
 
-## Espace Fidèle
-Tableau de bord, profil, informations personnelles, appartenance à la paroisse, communications, documents, notifications et services autorisés.
+## Stack
+### Frontend
+Vue 3, TypeScript, Vite, Vue Router, Pinia, Tailwind CSS, Axios, VueUse, VeeValidate, Zod, Lucide Vue, Vitest et Vue Test Utils.
 
-## Frontend
-Vues principales :
-- `frontend/src/views/fidele/`
-- `frontend/src/views/auth/`
+### Backend
+Node.js, Express, TypeScript, PostgreSQL, Prisma, JWT, bcrypt, Zod, Helmet, CORS, rate limiting, Pino, Vitest et Supertest.
 
-Réutiliser les composants communs. Les différences Parent/Fidèle sont gérées par rôles et permissions.
+## Architecture
+Frontend : Vue → Axios → API REST.
 
-## Backend
-Respecter : Routes → Controllers → Services → Repositories → Prisma.
+Backend : Routes → Controllers → Services → Repositories → Prisma → PostgreSQL.
 
-Modules concernés : auth, users, families, faithful, children, registrations, payments, communications, documents, notifications.
+La logique métier reste dans les services. Les contrôleurs orchestrent les requêtes et réponses. Les données sont isolées par paroisse avec `parish_id`.
 
-## Règles
-- Un utilisateur ne consulte que les données autorisées par son rôle et ses relations.
-- Les contrôles de sécurité sont effectués côté backend.
-- Utiliser JWT, bcrypt et Zod.
-- Respecter `parish_id`.
-- Préparer les endpoints pour le futur mobile.
+## Organisation Git
+- `main` : branche d'intégration et référence globale.
+- `Administration` : administration de la plateforme et des paroisses.
+- `Parent-Fidele` : espaces parent et fidèle.
+- `responsable-mouvement` : gestion des mouvements.
+
+## Rôles
+SUPER_ADMIN, ADMIN_PARISH, SECRETARY, PRIEST, MOVEMENT_MANAGER, TREASURER, PARENT, FAITHFUL.
+
+## Modules
+Authentification, administration, paroisses, utilisateurs, familles, fidèles, enfants, mouvements, inscriptions, cotisations/paiements, communications, documents, notifications et tableau de bord.
+
+## Principes
+1. API REST commune au web et au futur mobile.
+2. Architecture multi-paroisse avec `parish_id`.
+3. Validation des entrées avec Zod.
+4. JWT et bcrypt pour l'authentification.
+5. Stockage des fichiers derrière un service extensible vers le cloud.
+6. Paiements derrière une abstraction pour Wave, Orange Money, MTN, Moov et Cash.
+7. Frontend organisé en Atomic Design : atoms → molecules → organisms → templates.
+8. Aucun secret dans Git.
+9. Les permissions sont contrôlées côté backend.
+
+## Développement
+Chaque développeur travaille sur sa branche fonctionnelle. Avant intégration dans `main`, le code doit être compilable, typé et testé lorsque nécessaire.
+
+## État
+La fondation frontend/backend est en place. PostgreSQL/Prisma et les premiers modules fonctionnels constituent la prochaine étape.
