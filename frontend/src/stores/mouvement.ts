@@ -17,12 +17,18 @@ export const useMouvementStore = defineStore('mouvement', () => {
   const fees = ref<import('@/types/mouvement').MovementFee[]>([])
   const payments = ref<import('@/types/mouvement').MovementPayment[]>([])
   const loading = ref(false)
+  const dashboard = ref<{ totals: { movements: number; children: number; activeMembers: number; pendingRegistrations: number; successfulPayments: number; paymentsAmount: number } } | null>(null)
   const registrationsLoading = ref(false)
   const error = ref<string | null>(null)
   const hasMovement = computed(() => Boolean(movement.value))
   const pendingRegistrations = computed(
     () => registrations.value.filter((item) => item.status === 'PENDING').length,
   )
+
+  async function loadDashboard() {
+    const response = await mouvementService.getDashboard()
+    dashboard.value = response.data ?? response
+  }
 
   async function loadMovement() {
     loading.value = true
@@ -105,6 +111,8 @@ export const useMouvementStore = defineStore('mouvement', () => {
     hasMovement,
     pendingRegistrations,
     loadMovement,
+    dashboard,
+    loadDashboard,
     loadChildren,
     loadParents,
     loadRegistrations,
