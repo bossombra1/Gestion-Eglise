@@ -125,7 +125,6 @@ model Parish {
   payments       Payment[]
   documents      Document[]
   communications Communication[]
-  fees           MovementFee[]
   notifications  Notification[]
   massIntentions MassIntention[]
 
