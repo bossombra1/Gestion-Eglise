@@ -1,0 +1,39 @@
+﻿# Dependencies
+**/node_modules/
+
+# Build outputs
+**/dist/
+**/build/
+**/.vite/
+
+# Environment files
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs
+**/*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Coverage
+**/coverage/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+**/*.tmp
+**/*.temp
+
+# Backend uploads generated locally
+backend/uploads/
+
+# Prisma local generated files
+backend/node_modules/.prisma/
