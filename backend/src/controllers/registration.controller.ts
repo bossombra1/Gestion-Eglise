@@ -13,6 +13,16 @@ const getContext = (req: Request) => {
   }
 }
 
+const getRegistrationId = (req: Request) => {
+  const id = req.params.id
+
+  if (typeof id !== 'string') {
+    throw new Error('Identifiant d’inscription invalide.')
+  }
+
+  return id
+}
+
 export const getRegistrations = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const context = getContext(req)
@@ -28,7 +38,7 @@ export const getRegistrations = async (req: Request, res: Response, next: NextFu
 export const approveRegistration = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const context = getContext(req)
-    const data = await registrationService.approve(req.params.id, context.userId, context.parishId)
+    const data = await registrationService.approve(getRegistrationId(req), context.userId, context.parishId)
 
     return res.json({
       success: true,
@@ -45,7 +55,7 @@ export const rejectRegistration = async (req: Request, res: Response, next: Next
     const context = getContext(req)
     const input = registrationDecisionSchema.parse(req.body)
     const data = await registrationService.reject(
-      req.params.id,
+      getRegistrationId(req),
       context.userId,
       context.parishId,
       input.rejectionReason,
