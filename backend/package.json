@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "ecclesiaconnect-backend",
   "version": "1.0.0",
   "private": true,
@@ -38,7 +38,9 @@
     "jsonwebtoken": "^9.0.3",
     "pino": "^10.3.1",
     "pino-http": "^11.0.0",
-    "zod": "^4.6.5"
+    "zod": "^4.6.5",
+    "@prisma/adapter-pg": "^7.10.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
