@@ -27,9 +27,22 @@ const approvedRegistrations = computed(() =>
   store.registrations.filter((item) => item.status === 'APPROVED' || item.status === 'COMPLETED'),
 )
 
-const selectedFee = computed(() => store.fees.find((fee) => fee.id === paymentForm.value.feeId))
+const selectedRegistration = computed(() =>
+  store.registrations.find((registration) => registration.id === paymentForm.value.registrationId),
+)
+
+const eligibleFees = computed(() => {
+  const movementId = selectedRegistration.value?.movementId
+  if (!movementId) return []
+  return store.fees.filter((fee) => fee.movementId === movementId && fee.active)
+})
+
+const selectedFee = computed(() =>
+  eligibleFees.value.find((fee) => fee.id === paymentForm.value.feeId),
+)
 
 const submitFee = async () => {
+  error.value = null
   success.value = null
   savingFee.value = true
   try {
@@ -49,9 +62,19 @@ const submitFee = async () => {
 }
 
 const submitPayment = async () => {
+  error.value = null
   success.value = null
   savingPayment.value = true
   try {
+    if (!selectedRegistration.value) {
+      error.value = 'Sélectionnez une inscription approuvée.'
+      return
+    }
+    if (paymentForm.value.feeId && !selectedFee.value) {
+      error.value = 'La cotisation sélectionnée ne correspond pas au mouvement de cette inscription.'
+      return
+    }
+
     await store.createPayment({
       registrationId: paymentForm.value.registrationId,
       feeId: paymentForm.value.feeId || undefined,
@@ -134,12 +157,14 @@ onMounted(async () => {
               </select>
             </label>
             <label class="block text-sm font-semibold">Cotisation
-              <select v-model="paymentForm.feeId" class="mt-1 w-full border border-[#C2BAB0] p-3 font-normal">
+              <select v-model="paymentForm.feeId" class="mt-1 w-full border border-[#C2BAB0] p-3 font-normal" :disabled="!selectedRegistration">
                 <option value="">Aucune / paiement libre</option>
-                <option v-for="fee in store.fees" :key="fee.id" :value="fee.id">
+                <option v-for="fee in eligibleFees" :key="fee.id" :value="fee.id">
                   {{ fee.name }} — {{ formatAmount(fee.amount) }}
                 </option>
               </select>
+              <span v-if="!selectedRegistration" class="mt-1 block text-xs font-normal text-[#6B655D]">Sélectionnez d’abord une inscription.</span>
+              <span v-else-if="!eligibleFees.length" class="mt-1 block text-xs font-normal text-[#6B655D]">Aucune cotisation active pour ce mouvement.</span>
             </label>
             <p v-if="selectedFee" class="text-xs text-[#6B655D]">Montant indicatif : {{ formatAmount(selectedFee.amount) }}</p>
             <label class="block text-sm font-semibold">Montant (FCFA)
