@@ -8,10 +8,15 @@ import { RegistrationError } from '../services/registration.service'
 
 export const errorMiddleware: ErrorRequestHandler = (error, _req, res, _next) => {
   if (error instanceof ZodError) {
+    const fieldErrors = error.flatten().fieldErrors
+    const details = Object.entries(fieldErrors)
+      .flatMap(([field, messages]) => (messages ?? []).map((message) => field + ': ' + message))
+      .join(' | ')
+
     return res.status(400).json({
       success: false,
-      message: 'Les données envoyées sont invalides.',
-      errors: error.flatten().fieldErrors,
+      message: details ? 'Données de paiement invalides : ' + details : 'Les données envoyées sont invalides.',
+      errors: fieldErrors,
     })
   }
 
