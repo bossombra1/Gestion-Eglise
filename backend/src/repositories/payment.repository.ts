@@ -74,18 +74,16 @@ export const paymentRepository = {
     })
   },
 
-  deactivateFee(feeId: string) {
-    return prisma.movementFee.update({
-      where: { id: feeId },
-      data: { active: false },
-      select: feeSelect,
-    })
-  },
+  async deleteFeeWithPayments(feeId: string) {
+    return prisma.$transaction(async (tx) => {
+      await tx.payment.deleteMany({
+        where: { feeId },
+      })
 
-  deleteFee(feeId: string) {
-    return prisma.movementFee.delete({
-      where: { id: feeId },
-      select: feeSelect,
+      return tx.movementFee.delete({
+        where: { id: feeId },
+        select: feeSelect,
+      })
     })
   },
 
@@ -164,8 +162,11 @@ export const paymentRepository = {
   findManagedPayments(userId: string, parishId?: string) {
     return prisma.payment.findMany({
       where: {
-        registration: {
-          movement: { managerId: userId, ...(parishId ? { parishId } : {}) },
+        fee: {
+          is: {
+            active: true,
+            movement: { managerId: userId, ...(parishId ? { parishId } : {}) },
+          },
         },
       },
       orderBy: { createdAt: 'desc' },
