@@ -113,3 +113,21 @@ export interface MovementDocument {
   movement?: { id: string; name: string; code: string } | null
   uploadedBy?: { id: string; firstName: string; lastName: string } | null
 }
+
+
+export type MovementCommunicationType = 'ANNOUNCEMENT' | 'MESSAGE' | 'INFORMATION' | 'REMINDER'
+export type MovementCommunicationAudience = 'PARENTS' | 'MEMBERS' | 'ALL'
+
+export interface MovementCommunication {
+  id: string
+  title: string
+  content: string
+  type: MovementCommunicationType
+  status: 'DRAFT' | 'SENT' | 'ARCHIVED'
+  movementId: string
+  sentAt?: string | null
+  createdAt: string
+  movement?: { id: string; name: string; code: string } | null
+  sender?: { id: string; firstName: string; lastName: string } | null
+  recipients?: Array<{ userId: string; readAt?: string | null }>
+}
