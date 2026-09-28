@@ -35,6 +35,7 @@ const successfulPayments = computed(() =>
 )
 
 const selectedPaymentChildId = ref<string | null>(null)
+const selectedFinancialChildId = ref<string | null>(null)
 
 const paymentGroups = computed(() => {
   const groups = new Map<string, { childId: string; childName: string; movementNames: string[]; payments: typeof store.payments; total: number }>()
@@ -63,6 +64,24 @@ const paymentGroups = computed(() => {
 const selectedPaymentGroup = computed(() => paymentGroups.value.find((group) => group.childId === selectedPaymentChildId.value) ?? null)
 const openPaymentDetails = (childId: string) => { selectedPaymentChildId.value = childId }
 const closePaymentDetails = () => { selectedPaymentChildId.value = null }
+const openFinancialDetails = (childId: string) => { selectedFinancialChildId.value = childId }
+const closeFinancialDetails = () => { selectedFinancialChildId.value = null }
+
+const financialGroups = computed(() => {
+  const groups = new Map<string, { childId: string; childName: string; movementNames: string[]; rows: typeof filteredFeeRows.value; due: number; paid: number; remaining: number }>()
+  for (const row of filteredFeeRows.value) {
+    const existing = groups.get(row.childId)
+    if (existing) {
+      existing.rows.push(row); existing.due += row.due; existing.paid += row.paid; existing.remaining += row.remaining
+      if (!existing.movementNames.includes(row.movementName)) existing.movementNames.push(row.movementName)
+    } else {
+      groups.set(row.childId, { childId: row.childId, childName: row.childName, movementNames: [row.movementName], rows: [row], due: row.due, paid: row.paid, remaining: row.remaining })
+    }
+  }
+  return Array.from(groups.values()).sort((a, b) => a.childName.localeCompare(b.childName, 'fr'))
+})
+
+const selectedFinancialGroup = computed(() => financialGroups.value.find((group) => group.childId === selectedFinancialChildId.value) ?? null)
 
 const activeFees = computed(() =>
   store.fees.filter((fee) => fee.active),
@@ -169,8 +188,13 @@ const selectedRegistration = computed(() =>
 
 const eligibleFees = computed(() => {
   const movementId = selectedRegistration.value?.movementId
-  if (!movementId) return []
-  return store.fees.filter((fee) => fee.movementId === movementId && fee.active)
+  const registrationId = selectedRegistration.value?.id
+  if (!movementId || !registrationId) return []
+  return store.fees.filter((fee) => {
+    if (fee.movementId !== movementId || !fee.active) return false
+    const paid = successfulPayments.value.filter((payment) => payment.registration?.id === registrationId && payment.fee?.id === fee.id).reduce((sum, payment) => sum + Number(payment.amount), 0)
+    return Number(fee.amount) - paid > 0
+  })
 })
 
 const selectedFee = computed(() =>
@@ -207,8 +231,16 @@ const submitPayment = async () => {
       return
     }
     if (paymentForm.value.feeId && !selectedFee.value) {
-      error.value = 'La cotisation sélectionnée ne correspond pas au mouvement de cette inscription.'
+      error.value = 'Cette cotisation est déjà soldée ou ne correspond pas au mouvement de cette inscription.'
       return
+    }
+    if (selectedFee.value) {
+      const paid = successfulPayments.value.filter((payment) => payment.registration?.id === paymentForm.value.registrationId && payment.fee?.id === selectedFee.value?.id).reduce((sum, payment) => sum + Number(payment.amount), 0)
+      const remaining = Math.max(Number(selectedFee.value.amount) - paid, 0)
+      if (Number(paymentForm.value.amount) > remaining) {
+        error.value = `Le montant maximum restant pour cette cotisation est de ${formatAmount(remaining)}.`
+        return
+      }
     }
 
     await store.createPayment({
@@ -272,70 +304,6 @@ onMounted(async () => {
         </article>
       </div>
 
-      <article class="mt-6 border border-[#C2BAB0] bg-white p-5">
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p class="eyebrow text-[#6B655D]">Suivi financier</p>
-            <h2 class="page-title mt-1 text-2xl text-[#14345E]">Enfant → cotisation → paiement</h2>
-          </div>
-          <p class="text-xs text-[#6B655D]">{{ filteredFeeRows.length }} ligne(s) affichée(s)</p>
-        </div>
-
-        <div class="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
-          <select v-model="filters.movementId" class="w-full border border-[#C2BAB0] p-3 text-sm">
-            <option value="">Tous les mouvements</option>
-            <option v-for="movement in movements" :key="movement.id" :value="movement.id">{{ movement.name }}</option>
-          </select>
-          <select v-model="filters.feeId" class="w-full border border-[#C2BAB0] p-3 text-sm">
-            <option value="">Toutes les cotisations</option>
-            <option v-for="fee in activeFees" :key="fee.id" :value="fee.id">{{ fee.name }}</option>
-          </select>
-          <select v-model="filters.status" class="w-full border border-[#C2BAB0] p-3 text-sm">
-            <option value="ALL">Tous les statuts</option>
-            <option value="PAID">Payé</option>
-            <option value="PARTIAL">Paiement partiel</option>
-            <option value="UNPAID">À payer</option>
-          </select>
-          <input v-model="filters.child" type="search" class="w-full border border-[#C2BAB0] p-3 text-sm" placeholder="Rechercher un enfant" />
-          <select v-model="filters.period" class="w-full border border-[#C2BAB0] p-3 text-sm">
-            <option value="ALL">Toutes les périodes</option>
-            <option value="YEAR">Cette année</option>
-            <option value="30_DAYS">30 derniers jours</option>
-          </select>
-        </div>
-
-        <div v-if="!filteredFeeRows.length" class="mt-5 border border-dashed border-[#C2BAB0] p-8 text-center text-sm text-[#6B655D]">
-          Aucune cotisation ne correspond aux filtres sélectionnés.
-        </div>
-
-        <div v-else class="mt-5 overflow-x-auto">
-          <table class="min-w-full text-left text-sm">
-            <thead class="bg-[#F7F5F2]">
-              <tr>
-                <th class="px-4 py-3">Enfant</th>
-                <th class="px-4 py-3">Cotisation</th>
-                <th class="px-4 py-3">Dû</th>
-                <th class="px-4 py-3">Payé</th>
-                <th class="px-4 py-3">Reste</th>
-                <th class="px-4 py-3">Statut</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="row in filteredFeeRows" :key="row.key" class="border-t border-[#EDE9E4]">
-                <td class="px-4 py-3">
-                  <p class="font-semibold text-[#2E2925]">{{ row.childName }}</p>
-                  <p class="text-xs text-[#6B655D]">{{ row.movementName }}</p>
-                </td>
-                <td class="px-4 py-3">{{ row.feeName }}</td>
-                <td class="px-4 py-3 font-medium">{{ formatAmount(row.due) }}</td>
-                <td class="px-4 py-3 font-medium text-[#14713C]">{{ formatAmount(row.paid) }}</td>
-                <td class="px-4 py-3 font-medium" :class="row.remaining ? 'text-[#C25A34]' : 'text-[#14713C]'">{{ formatAmount(row.remaining) }}</td>
-                <td class="px-4 py-3"><AppBadge :tone="statusTone(row.status)">{{ statusLabel(row.status) }}</AppBadge></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </article>
 
       <div class="mt-6 grid gap-6 xl:grid-cols-2">
         <article class="border border-[#C2BAB0] bg-white p-6">
@@ -439,6 +407,56 @@ onMounted(async () => {
           </table>
         </div>
       </article>
+
+
+      <article class="mt-6 border border-[#C2BAB0] bg-white p-5">
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="eyebrow text-[#6B655D]">Suivi financier</p>
+            <h2 class="page-title mt-1 text-2xl text-[#14345E]">Suivi financier par enfant</h2>
+          </div>
+          <p class="text-xs text-[#6B655D]">{{ filteredFeeRows.length }} ligne(s) affichée(s)</p>
+        </div>
+
+        <div class="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+          <select v-model="filters.movementId" class="w-full border border-[#C2BAB0] p-3 text-sm">
+            <option value="">Tous les mouvements</option>
+            <option v-for="movement in movements" :key="movement.id" :value="movement.id">{{ movement.name }}</option>
+          </select>
+          <select v-model="filters.feeId" class="w-full border border-[#C2BAB0] p-3 text-sm">
+            <option value="">Toutes les cotisations</option>
+            <option v-for="fee in activeFees" :key="fee.id" :value="fee.id">{{ fee.name }}</option>
+          </select>
+          <select v-model="filters.status" class="w-full border border-[#C2BAB0] p-3 text-sm">
+            <option value="ALL">Tous les statuts</option>
+            <option value="PAID">Payé</option>
+            <option value="PARTIAL">Paiement partiel</option>
+            <option value="UNPAID">À payer</option>
+          </select>
+          <input v-model="filters.child" type="search" class="w-full border border-[#C2BAB0] p-3 text-sm" placeholder="Rechercher un enfant" />
+          <select v-model="filters.period" class="w-full border border-[#C2BAB0] p-3 text-sm">
+            <option value="ALL">Toutes les périodes</option>
+            <option value="YEAR">Cette année</option>
+            <option value="30_DAYS">30 derniers jours</option>
+          </select>
+        </div>
+
+        <div v-if="!financialGroups.length" class="mt-5 border border-dashed border-[#C2BAB0] p-8 text-center text-sm text-[#6B655D]">Aucune cotisation ne correspond aux filtres sélectionnés.</div>
+        <div v-else class="mt-5 overflow-x-auto">
+          <table class="min-w-full text-left text-sm">
+            <thead class="bg-[#F7F5F2]"><tr><th class="px-4 py-3">Enfant</th><th class="px-4 py-3">Mouvement</th><th class="px-4 py-3">Dû</th><th class="px-4 py-3">Payé</th><th class="px-4 py-3">Reste</th><th class="px-4 py-3 text-right">Actions</th></tr></thead>
+            <tbody>
+              <tr v-for="group in financialGroups" :key="group.childId" class="border-t border-[#EDE9E4]">
+                <td class="px-4 py-3 font-semibold">{{ group.childName }}</td>
+                <td class="px-4 py-3">{{ group.movementNames.join(', ') }}</td>
+                <td class="px-4 py-3">{{ formatAmount(group.due) }}</td>
+                <td class="px-4 py-3 font-semibold text-[#14713C]">{{ formatAmount(group.paid) }}</td>
+                <td class="px-4 py-3 font-semibold" :class="group.remaining ? 'text-[#C25A34]' : 'text-[#14713C]'">{{ formatAmount(group.remaining) }}</td>
+                <td class="px-4 py-3 text-right"><AppButton type="button" variant="secondary" class="min-h-9 px-3" @click="openFinancialDetails(group.childId)"><Eye class="mr-2 size-4" />Voir</AppButton></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>      </article>
       <div v-if="selectedPaymentGroup" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1F3A]/50 p-4" @click.self="closePaymentDetails">
         <article class="max-h-[90vh] w-full max-w-3xl overflow-hidden border border-[#C2BAB0] bg-white shadow-xl">
           <header class="flex items-start justify-between gap-4 border-b border-[#DDD7CF] p-5">
@@ -473,6 +491,18 @@ onMounted(async () => {
           <footer class="flex justify-end border-t border-[#DDD7CF] p-4">
             <AppButton type="button" variant="secondary" @click="closePaymentDetails">Fermer</AppButton>
           </footer>
+        </article>
+      </div>
+      <div v-if="selectedFinancialGroup" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1F3A]/50 p-4" @click.self="closeFinancialDetails">
+        <article class="max-h-[90vh] w-full max-w-3xl overflow-hidden border border-[#C2BAB0] bg-white shadow-xl">
+          <header class="flex items-start justify-between gap-4 border-b border-[#DDD7CF] p-5"><div><p class="eyebrow text-[#C25A34]">Détail financier</p><h2 class="page-title mt-1 text-2xl text-[#14345E]">{{ selectedFinancialGroup.childName }}</h2><p class="mt-1 text-sm text-[#6B655D]">Dû {{ formatAmount(selectedFinancialGroup.due) }} · Payé {{ formatAmount(selectedFinancialGroup.paid) }} · Reste {{ formatAmount(selectedFinancialGroup.remaining) }}</p></div><button type="button" aria-label="Fermer" class="inline-flex size-10 items-center justify-center border border-[#C2BAB0]" @click="closeFinancialDetails"><X class="size-5" /></button></header>
+          <div class="max-h-[65vh] overflow-y-auto p-5 space-y-3">
+            <div v-for="row in selectedFinancialGroup.rows" :key="row.key" class="border border-[#EDE9E4] bg-[#F7F5F2] p-4">
+              <div class="flex items-start justify-between gap-3"><div><p class="font-semibold">{{ row.feeName }}</p><p class="mt-1 text-xs text-[#6B655D]">{{ row.movementName }}</p></div><AppBadge :tone="statusTone(row.status)">{{ statusLabel(row.status) }}</AppBadge></div>
+              <div class="mt-4 grid gap-3 sm:grid-cols-3"><div><p class="text-xs uppercase text-[#6B655D]">Dû</p><p class="mt-1 font-semibold">{{ formatAmount(row.due) }}</p></div><div><p class="text-xs uppercase text-[#6B655D]">Payé</p><p class="mt-1 font-semibold text-[#14713C]">{{ formatAmount(row.paid) }}</p></div><div><p class="text-xs uppercase text-[#6B655D]">Reste</p><p class="mt-1 font-semibold text-[#C25A34]">{{ formatAmount(row.remaining) }}</p></div></div>
+            </div>
+          </div>
+          <footer class="flex justify-end border-t border-[#DDD7CF] p-4"><AppButton type="button" variant="secondary" @click="closeFinancialDetails">Fermer</AppButton></footer>
         </article>
       </div>
     </div>
