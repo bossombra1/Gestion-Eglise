@@ -196,7 +196,55 @@ export const movementRepository = {
         },
       },
       orderBy: [{ lastName: 'asc' }, { firstName: 'asc' }],
-      select: { id: true, firstName: true, lastName: true, email: true, phone: true, parishId: true },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        phone: true,
+        parishId: true,
+        parentLinks: {
+          where: {
+            child: {
+              registrations: {
+                some: {
+                  ...(movementId ? { movementId } : {}),
+                  movement: {
+                    managerId: userId,
+                    ...(parishId ? { parishId } : {}),
+                    status: { not: 'ARCHIVED' },
+                  },
+                },
+              },
+            },
+          },
+          orderBy: { isPrimary: 'desc' },
+          select: {
+            relationship: true,
+            isPrimary: true,
+            child: {
+              select: {
+                id: true,
+                firstName: true,
+                lastName: true,
+                registrations: {
+                  where: {
+                    ...(movementId ? { movementId } : {}),
+                    movement: {
+                      managerId: userId,
+                      ...(parishId ? { parishId } : {}),
+                      status: { not: 'ARCHIVED' },
+                    },
+                  },
+                  select: {
+                    movement: { select: { id: true, name: true, code: true } },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     })
   },
 }
