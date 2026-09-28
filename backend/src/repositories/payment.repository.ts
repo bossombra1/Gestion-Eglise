@@ -23,13 +23,16 @@ const paymentInclude = {
   fee: { select: { id: true, name: true, amount: true } },
 } as const
 
+const managedMovementWhere = (userId: string, parishId?: string) => ({
+  managerId: userId,
+  ...(parishId ? { parishId } : {}),
+  status: { not: 'ARCHIVED' as const },
+})
+
 export const paymentRepository = {
   findManagedFees(userId: string, parishId?: string) {
     return prisma.movementFee.findMany({
-      where: {
-        active: true,
-        movement: { managerId: userId, ...(parishId ? { parishId } : {}) },
-      },
+      where: { active: true, movement: managedMovementWhere(userId, parishId) },
       orderBy: { createdAt: 'desc' },
       select: feeSelect,
     })
@@ -37,12 +40,7 @@ export const paymentRepository = {
 
   createFee(userId: string, parishId: string | undefined, data: { movementId: string; name: string; amount: number; dueDate?: Date }) {
     return prisma.movementFee.create({
-      data: {
-        movementId: data.movementId,
-        name: data.name,
-        amount: data.amount,
-        dueDate: data.dueDate,
-      },
+      data: { movementId: data.movementId, name: data.name, amount: data.amount, dueDate: data.dueDate },
       select: feeSelect,
     })
   },
@@ -51,7 +49,7 @@ export const paymentRepository = {
     return prisma.movementFee.findFirst({
       where: {
         id: feeId,
-        movement: { managerId: userId, ...(parishId ? { parishId } : {}) },
+        movement: managedMovementWhere(userId, parishId),
       },
       select: { id: true, movementId: true, active: true },
     })
@@ -64,32 +62,21 @@ export const paymentRepository = {
   updateFee(feeId: string, data: { name: string; amount: number; dueDate?: Date; active?: boolean }) {
     return prisma.movementFee.update({
       where: { id: feeId },
-      data: {
-        name: data.name,
-        amount: data.amount,
-        dueDate: data.dueDate,
-        ...(data.active === undefined ? {} : { active: data.active }),
-      },
+      data: { name: data.name, amount: data.amount, dueDate: data.dueDate, ...(data.active === undefined ? {} : { active: data.active }) },
       select: feeSelect,
     })
   },
 
   async deleteFeeWithPayments(feeId: string) {
     return prisma.$transaction(async (tx) => {
-      await tx.payment.deleteMany({
-        where: { feeId },
-      })
-
-      return tx.movementFee.delete({
-        where: { id: feeId },
-        select: feeSelect,
-      })
+      await tx.payment.deleteMany({ where: { feeId } })
+      return tx.movementFee.delete({ where: { id: feeId }, select: feeSelect })
     })
   },
 
   findManagedMovement(userId: string, parishId: string | undefined, movementId: string) {
     return prisma.movement.findFirst({
-      where: { id: movementId, managerId: userId, ...(parishId ? { parishId } : {}) },
+      where: { id: movementId, ...managedMovementWhere(userId, parishId) },
       select: { id: true, parishId: true },
     })
   },
@@ -99,7 +86,7 @@ export const paymentRepository = {
       where: {
         id: registrationId,
         status: { in: ['APPROVED', 'COMPLETED'] },
-        movement: { managerId: userId, ...(parishId ? { parishId } : {}) },
+        movement: managedMovementWhere(userId, parishId),
       },
       select: { id: true, parishId: true, movementId: true },
     })
@@ -110,7 +97,7 @@ export const paymentRepository = {
       where: {
         id: feeId,
         active: true,
-        movement: { managerId: userId, ...(parishId ? { parishId } : {}) },
+        movement: managedMovementWhere(userId, parishId),
       },
       select: { id: true, movementId: true, amount: true, currency: true },
     })
@@ -118,11 +105,7 @@ export const paymentRepository = {
 
   getSuccessfulFeeTotal(feeId: string, registrationId: string) {
     return prisma.payment.aggregate({
-      where: {
-        feeId,
-        registrationId,
-        status: 'SUCCESS',
-      },
+      where: { feeId, registrationId, status: 'SUCCESS' },
       _sum: { amount: true },
     })
   },
@@ -165,7 +148,7 @@ export const paymentRepository = {
         fee: {
           is: {
             active: true,
-            movement: { managerId: userId, ...(parishId ? { parishId } : {}) },
+            movement: managedMovementWhere(userId, parishId),
           },
         },
       },
