@@ -9,11 +9,19 @@ export const movementService = {
     return movementRepository.getDashboard(userId, parishId)
   },
 
-  getChildren(userId: string, parishId?: string) {
-    return movementRepository.findChildren(userId, parishId)
+  async getChildren(userId: string, parishId?: string, movementId?: string) {
+    if (movementId) {
+      const movement = await movementRepository.findManagedMovement(userId, movementId, parishId)
+      if (!movement) throw new Error('Mouvement non autorisé ou introuvable.')
+    }
+    return movementRepository.findChildren(userId, parishId, movementId)
   },
 
-  getParents(userId: string, parishId?: string) {
-    return movementRepository.findParents(userId, parishId)
+  async getParents(userId: string, parishId?: string, movementId?: string) {
+    if (movementId) {
+      const movement = await movementRepository.findManagedMovement(userId, movementId, parishId)
+      if (!movement) throw new Error('Mouvement non autorisé ou introuvable.')
+    }
+    return movementRepository.findParents(userId, parishId, movementId)
   },
 }
