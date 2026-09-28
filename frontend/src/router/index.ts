@@ -12,6 +12,7 @@ import InscriptionsView from '@/views/mouvement/InscriptionsView.vue'
 import CotisationsView from '@/views/mouvement/CotisationsView.vue'
 import DocumentsView from '@/views/mouvement/DocumentsView.vue'
 import CommunicationsView from '@/views/mouvement/CommunicationsView.vue'
+import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue'
 
 const movementRoles = ['MOVEMENT_MANAGER']
 
@@ -19,6 +20,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', component: HomeView, meta: { public: true } },
+    { path: '/confidentialite', component: PrivacyPolicyView, meta: { public: true } },
     {
       path: '/mouvement',
       component: AppLayout,
