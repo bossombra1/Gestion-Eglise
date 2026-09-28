@@ -97,4 +97,20 @@ export const mouvementService = {
     const { data } = await api.delete('/documents/' + id)
     return data
   },
+
+  async getCommunications() {
+    const { data } = await api.get('/communications')
+    return data
+  },
+
+  async createCommunication(input: {
+    movementId: string
+    title: string
+    content: string
+    type: string
+    audience: string
+  }) {
+    const { data } = await api.post('/communications', input)
+    return data
+  },
 }
