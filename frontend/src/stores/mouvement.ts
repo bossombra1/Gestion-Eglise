@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { mouvementService } from '@/services/mouvement.service'
 import type {
   MovementChild,
+  MovementChildDetail,
   MovementCommunication,
   MovementDocument,
   MovementParent,
@@ -14,6 +15,8 @@ import type {
 export const useMouvementStore = defineStore('mouvement', () => {
   const movement = ref<MovementSummary | null>(null)
   const children = ref<MovementChild[]>([])
+  const selectedChild = ref<MovementChildDetail | null>(null)
+  const childDetailLoading = ref(false)
   const parents = ref<MovementParent[]>([])
   const registrations = ref<MovementRegistration[]>([])
   const fees = ref<import('@/types/mouvement').MovementFee[]>([])
@@ -67,6 +70,26 @@ export const useMouvementStore = defineStore('mouvement', () => {
   async function loadChildren(params?: Record<string, unknown>) {
     const response = await mouvementService.getChildren(params)
     children.value = response.data ?? response
+  }
+
+  async function loadChild(id: string) {
+    childDetailLoading.value = true
+    error.value = null
+    try {
+      const response = await mouvementService.getChild(id)
+      selectedChild.value = response.data ?? response
+      return selectedChild.value
+    } catch (err) {
+      error.value = 'Impossible de charger la fiche de cet enfant.'
+      selectedChild.value = null
+      throw err
+    } finally {
+      childDetailLoading.value = false
+    }
+  }
+
+  function clearSelectedChild() {
+    selectedChild.value = null
   }
 
   async function loadParents(params?: Record<string, unknown>) {
@@ -176,6 +199,7 @@ export const useMouvementStore = defineStore('mouvement', () => {
   return {
     movement,
     children,
+    selectedChild,
     parents,
     registrations,
     fees,
@@ -186,6 +210,7 @@ export const useMouvementStore = defineStore('mouvement', () => {
     registrationsLoading,
     documentsLoading,
     communicationsLoading,
+    childDetailLoading,
     error,
     hasMovement,
     pendingRegistrations,
@@ -193,6 +218,8 @@ export const useMouvementStore = defineStore('mouvement', () => {
     dashboard,
     loadDashboard,
     loadChildren,
+    loadChild,
+    clearSelectedChild,
     loadParents,
     loadRegistrations,
     loadFees,
