@@ -7,6 +7,13 @@ export const feeCreateSchema = z.object({
   dueDate: z.string().datetime().optional(),
 })
 
+export const feeUpdateSchema = z.object({
+  name: z.string().trim().min(2).max(150),
+  amount: z.coerce.number().positive().max(100000000),
+  dueDate: z.string().datetime().optional(),
+  active: z.boolean().optional(),
+})
+
 export const paymentCreateSchema = z.object({
   registrationId: z.string().uuid(),
   feeId: z.preprocess(
