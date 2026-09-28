@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 import EmptyLayout from '@/layouts/EmptyLayout.vue'
@@ -15,6 +16,7 @@ import CommunicationsView from '@/views/mouvement/CommunicationsView.vue'
 import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue'
 
 const movementRoles = ['MOVEMENT_MANAGER']
+let sessionChecked = false
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,21 +49,30 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach((to) => {
+router.beforeEach(async (to) => {
   if (!to.meta.requiresAuth) return true
 
+  const auth = useAuthStore()
   const token = localStorage.getItem('ecclesia_token')
   const rawUser = localStorage.getItem('ecclesia_user')
-  if (!token || !rawUser) return { path: '/connexion', query: { redirect: to.fullPath } }
 
-  try {
-    const user = JSON.parse(rawUser) as { role?: string }
-    const roles = (to.meta.roles as string[] | undefined) ?? []
-    if (roles.length && !roles.includes(user.role ?? '')) return '/'
-  } catch {
-    localStorage.removeItem('ecclesia_token')
-    localStorage.removeItem('ecclesia_user')
+  if (!token || !rawUser) {
+    auth.logout()
     return { path: '/connexion', query: { redirect: to.fullPath } }
+  }
+
+  if (!sessionChecked) {
+    sessionChecked = true
+    const restored = await auth.restoreSession()
+    if (!restored) {
+      sessionChecked = false
+      return { path: '/connexion', query: { redirect: to.fullPath } }
+    }
+  }
+
+  const roles = (to.meta.roles as string[] | undefined) ?? []
+  if (roles.length && !roles.includes(auth.user?.role ?? '')) {
+    return '/'
   }
 
   return true
