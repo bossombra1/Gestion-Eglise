@@ -52,19 +52,11 @@ export const paymentService = {
     const fee = await paymentRepository.findManagedFeeForUpdate(userId, parishId, feeId)
     if (!fee) throw new PaymentError('Cotisation introuvable ou non autorisée.', 404)
 
-    const paymentCount = await paymentRepository.countPaymentsForFee(feeId)
-    if (paymentCount > 0) {
-      return {
-        deleted: false,
-        fee: await paymentRepository.deactivateFee(feeId),
-        message: 'La cotisation possède des paiements et a été désactivée pour conserver l’historique financier.',
-      }
-    }
+    await paymentRepository.deleteFeeWithPayments(feeId)
 
     return {
       deleted: true,
-      fee: await paymentRepository.deleteFee(feeId),
-      message: 'Cotisation supprimée.',
+      message: 'Cotisation et paiements associés supprimés.',
     }
   },
 
