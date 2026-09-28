@@ -189,7 +189,7 @@ watch(movementId, async (value) => {
       <article class="overflow-hidden border border-[#C2BAB0] bg-white">
         <div v-if="store.documentsLoading" class="flex min-h-32 items-center justify-center"><AppSpinner /></div>
         <EmptyState v-else-if="!filteredDocuments.length" title="Aucun document" description="Aucun document ne correspond à votre recherche ou à ce mouvement." />
-        <div v-else class="overflow-x-auto">
+        <div v-else class="hidden overflow-x-auto md:block">
           <table class="min-w-[850px] w-full text-left text-sm">
             <thead class="border-b border-[#DDD7CF] bg-[#F7F5F2] text-xs uppercase tracking-wide text-[#6B655D]">
               <tr>
@@ -222,6 +222,16 @@ watch(movementId, async (value) => {
           </table>
         </div>
       </article>
+      <div v-if="!store.documentsLoading && filteredDocuments.length" class="grid gap-3 md:hidden">
+        <article v-for="item in filteredDocuments" :key="item.id" class="border border-[#C2BAB0] bg-white p-4">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0"><p class="truncate font-semibold text-[#2E2925]">{{ item.name }}</p><p class="mt-1 truncate text-xs text-[#6B655D]">{{ item.fileName }}</p></div>
+            <AppBadge>{{ item.type }}</AppBadge>
+          </div>
+          <div class="mt-3 grid grid-cols-2 gap-2 text-xs text-[#6B655D]"><span>{{ formatSize(item.size) }}</span><span class="text-right">{{ formatDate(item.createdAt) }}</span></div>
+          <div class="mt-4 grid grid-cols-2 gap-2"><AppButton variant="secondary" @click="download(item.id, item.fileName)">Télécharger</AppButton><AppButton variant="danger" @click="remove(item.id)">Supprimer</AppButton></div>
+        </article>
+      </div>
     </template>
   </section>
 </template>
