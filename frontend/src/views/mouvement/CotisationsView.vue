@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import AppBadge from '@/components/atoms/AppBadge.vue'
 import AppButton from '@/components/atoms/AppButton.vue'
 import AppSpinner from '@/components/atoms/AppSpinner.vue'
-import { Eye, X } from 'lucide-vue-next'
+import { Eye, Pencil, Trash2, X } from 'lucide-vue-next'
 import { mouvementService } from '@/services/mouvement.service'
 import { useMouvementStore } from '@/stores/mouvement'
 import type { MovementSummary, PaymentMethod } from '@/types/mouvement'
@@ -16,6 +16,9 @@ const feeForm = ref({ movementId: '', name: '', amount: '', dueDate: '' })
 const paymentForm = ref({ registrationId: '', feeId: '', amount: '', method: 'CASH' as PaymentMethod, transactionReference: '' })
 const savingFee = ref(false)
 const savingPayment = ref(false)
+const savingFeeEdit = ref(false)
+const editingFeeId = ref<string | null>(null)
+const editingFeeForm = ref({ name: '', amount: '', dueDate: '', active: true })
 const success = ref<string | null>(null)
 
 const filters = ref({
@@ -201,6 +204,61 @@ const selectedFee = computed(() =>
   eligibleFees.value.find((fee) => fee.id === paymentForm.value.feeId),
 )
 
+const startEditFee = (fee: (typeof store.fees)[number]) => {
+  editingFeeId.value = fee.id
+  editingFeeForm.value = {
+    name: fee.name,
+    amount: String(fee.amount),
+    dueDate: fee.dueDate ? new Date(fee.dueDate).toISOString().slice(0, 10) : '',
+    active: fee.active,
+  }
+}
+
+const cancelEditFee = () => {
+  editingFeeId.value = null
+  editingFeeForm.value = { name: '', amount: '', dueDate: '', active: true }
+}
+
+const submitFeeEdit = async () => {
+  if (!editingFeeId.value) return
+  error.value = null
+  success.value = null
+  savingFeeEdit.value = true
+  try {
+    await store.updateFee({
+      id: editingFeeId.value,
+      name: editingFeeForm.value.name,
+      amount: Number(editingFeeForm.value.amount),
+      dueDate: editingFeeForm.value.dueDate
+        ? new Date(editingFeeForm.value.dueDate).toISOString()
+        : undefined,
+      active: editingFeeForm.value.active,
+    })
+    cancelEditFee()
+    success.value = 'Cotisation modifiée avec succès.'
+  } catch (err: any) {
+    error.value = err?.response?.data?.message ?? 'Impossible de modifier la cotisation.'
+  } finally {
+    savingFeeEdit.value = false
+  }
+}
+
+const removeFee = async (feeId: string) => {
+  const fee = store.fees.find((item) => item.id === feeId)
+  if (!fee) return
+  if (!window.confirm(`Supprimer la cotisation « ${fee.name} » ?`)) return
+
+  error.value = null
+  success.value = null
+  try {
+    const result = await store.deleteFee(feeId)
+    success.value = result?.message ?? 'Cotisation supprimée.'
+    if (editingFeeId.value === feeId) cancelEditFee()
+  } catch (err: any) {
+    error.value = err?.response?.data?.message ?? 'Impossible de supprimer la cotisation.'
+  }
+}
+
 const submitFee = async () => {
   error.value = null
   success.value = null
@@ -376,6 +434,60 @@ onMounted(async () => {
           </form>
         </article>
       </div>
+
+      <article class="mt-6 border border-[#C2BAB0] bg-white">
+        <div class="border-b border-[#DDD7CF] p-5">
+          <p class="eyebrow text-[#6B655D]">Gestion</p>
+          <h2 class="page-title mt-1 text-2xl text-[#14345E]">Cotisations du mouvement</h2>
+          <p class="mt-1 text-sm text-[#6B655D]">Modifiez les montants et échéances, ou désactivez une cotisation. Une cotisation ayant déjà reçu un paiement est conservée pour préserver l’historique.</p>
+        </div>
+
+        <div class="divide-y divide-[#EDE9E4]">
+          <div v-if="!store.fees.length" class="p-6 text-sm text-[#6B655D]">Aucune cotisation créée.</div>
+          <div v-for="fee in store.fees" :key="fee.id" class="p-5">
+            <div v-if="editingFeeId === fee.id" class="grid gap-4 lg:grid-cols-[1.4fr_1fr_1fr_auto] lg:items-end">
+              <label class="text-sm font-semibold">Libellé
+                <input v-model="editingFeeForm.name" class="mt-1 w-full border border-[#C2BAB0] p-3 font-normal" />
+              </label>
+              <label class="text-sm font-semibold">Montant
+                <input v-model="editingFeeForm.amount" type="number" min="1" class="mt-1 w-full border border-[#C2BAB0] p-3 font-normal" />
+              </label>
+              <label class="text-sm font-semibold">Échéance
+                <input v-model="editingFeeForm.dueDate" type="date" class="mt-1 w-full border border-[#C2BAB0] p-3 font-normal" />
+              </label>
+              <div class="flex gap-2">
+                <AppButton type="button" :disabled="savingFeeEdit" @click="submitFeeEdit">{{ savingFeeEdit ? '...' : 'Enregistrer' }}</AppButton>
+                <AppButton type="button" variant="secondary" :disabled="savingFeeEdit" @click="cancelEditFee">Annuler</AppButton>
+              </div>
+              <label class="flex items-center gap-2 text-sm font-medium lg:col-span-4">
+                <input v-model="editingFeeForm.active" type="checkbox" />
+                Cotisation active
+              </label>
+            </div>
+
+            <div v-else class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="font-semibold text-[#2E2925]">{{ fee.name }}</p>
+                  <AppBadge :tone="fee.active ? 'success' : 'warning'">{{ fee.active ? 'Active' : 'Inactive' }}</AppBadge>
+                </div>
+                <p class="mt-1 text-sm text-[#6B655D]">{{ fee.movement.name }} · Échéance {{ formatDate(fee.dueDate) }}</p>
+              </div>
+              <div class="flex items-center gap-4">
+                <p class="font-bold text-[#0B1F3A]">{{ formatAmount(fee.amount) }}</p>
+                <div class="flex gap-2">
+                  <AppButton type="button" variant="secondary" class="min-h-9 px-3" @click="startEditFee(fee)">
+                    <Pencil class="mr-2 size-4" />Modifier
+                  </AppButton>
+                  <AppButton type="button" variant="secondary" class="min-h-9 px-3 text-[#B3261E]" @click="removeFee(fee.id)">
+                    <Trash2 class="mr-2 size-4" />Supprimer
+                  </AppButton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
 
       <article class="mt-6 overflow-hidden border border-[#C2BAB0] bg-white">
         <div class="border-b border-[#DDD7CF] p-5">
