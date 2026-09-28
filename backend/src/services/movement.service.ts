@@ -33,6 +33,16 @@ export const movementService = {
     }))
   },
 
+  async getChild(userId: string, childId: string, parishId?: string) {
+    const child = await movementRepository.findManagedChild(userId, childId, parishId)
+
+    if (!child) {
+      throw new Error('Fiche enfant introuvable ou non autorisée.')
+    }
+
+    return child
+  },
+
   async getParents(userId: string, parishId?: string, movementId?: string) {
     if (movementId) {
       const movement = await movementRepository.findManagedMovement(userId, movementId, parishId)
