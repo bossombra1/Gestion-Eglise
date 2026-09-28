@@ -100,8 +100,9 @@ onMounted(() => store.loadRegistrations())
       </p>
     </div>
 
-    <div v-else class="mt-8 overflow-hidden border border-[#C2BAB0] bg-white">
-      <div class="overflow-x-auto">
+    <div v-else class="mt-8">
+      <div class="hidden overflow-hidden border border-[#C2BAB0] bg-white md:block">
+        <div class="overflow-x-auto">
         <table class="min-w-full text-left text-sm">
           <thead class="border-b border-[#DDD7CF] bg-[#F7F5F2]">
             <tr>
@@ -146,6 +147,30 @@ onMounted(() => store.loadRegistrations())
             </tr>
           </tbody>
         </table>
+        </div>
+      </div>
+
+      <div class="grid gap-3 md:hidden">
+        <article v-for="registration in filteredRegistrations" :key="registration.id" class="border border-[#C2BAB0] bg-white p-4">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="font-semibold text-[#14345E]">{{ registration.child.firstName }} {{ registration.child.lastName }}</p>
+              <p class="mt-1 text-xs text-[#6B655D]">{{ registration.movement.name }}</p>
+            </div>
+            <AppBadge :tone="statusTone(registration.status)">{{ statusLabel(registration.status) }}</AppBadge>
+          </div>
+          <div class="mt-4 grid gap-2 text-sm">
+            <p><span class="text-[#6B655D]">Parent :</span> {{ registration.child.parentLinks?.[0]?.parent.firstName ?? '—' }} {{ registration.child.parentLinks?.[0]?.parent.lastName ?? '' }}</p>
+            <p><span class="text-[#6B655D]">Demande :</span> {{ formatDate(registration.registrationDate) }}</p>
+            <p v-if="registration.child.parentLinks?.[0]?.parent.phone" class="text-[#6B655D]">{{ registration.child.parentLinks[0].parent.phone }}</p>
+          </div>
+          <div v-if="registration.status === 'PENDING'" class="mt-4 grid grid-cols-2 gap-2">
+            <AppButton :disabled="actionLoadingId === registration.id" @click="handleApprove(registration.id)">
+              {{ actionLoadingId === registration.id ? 'Traitement...' : 'Approuver' }}
+            </AppButton>
+            <AppButton variant="danger" :disabled="actionLoadingId === registration.id" @click="openReject(registration.id)">Refuser</AppButton>
+          </div>
+        </article>
       </div>
     </div>
 
