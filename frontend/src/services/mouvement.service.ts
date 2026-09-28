@@ -76,11 +76,11 @@ export const mouvementService = {
       headers: {
         'Content-Type': input.file.type || 'application/octet-stream',
         'X-Movement-Id': input.movementId,
-        'X-Document-Name': input.name,
-        'X-Document-Description': input.description ?? '',
-        'X-Document-Type': input.type,
-        'X-File-Name': input.file.name,
-        'X-File-Type': input.file.type || 'application/octet-stream',
+        'X-Document-Name': encodeURIComponent(input.name),
+        'X-Document-Description': encodeURIComponent(input.description ?? ''),
+        'X-Document-Type': encodeURIComponent(input.type),
+        'X-File-Name': encodeURIComponent(input.file.name),
+        'X-File-Type': encodeURIComponent(input.file.type || 'application/octet-stream'),
       },
     })
     return data
