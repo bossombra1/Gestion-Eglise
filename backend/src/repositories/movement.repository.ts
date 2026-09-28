@@ -96,6 +96,73 @@ export const movementRepository = {
     })
   },
 
+  async findManagedChild(userId: string, childId: string, parishId?: string) {
+    const registration = await prisma.registration.findFirst({
+      where: {
+        childId,
+        movement: {
+          managerId: userId,
+          ...(parishId ? { parishId } : {}),
+          status: { not: 'ARCHIVED' },
+        },
+      },
+      select: { childId: true },
+    })
+
+    if (!registration) return null
+
+    return prisma.child.findUnique({
+      where: { id: childId },
+      include: {
+        family: {
+          select: {
+            id: true,
+            name: true,
+            address: true,
+            phone: true,
+            email: true,
+          },
+        },
+        parentLinks: {
+          orderBy: { isPrimary: 'desc' },
+          include: {
+            parent: {
+              select: {
+                id: true,
+                firstName: true,
+                lastName: true,
+                email: true,
+                phone: true,
+                status: true,
+              },
+            },
+          },
+        },
+        registrations: {
+          where: {
+            movement: {
+              managerId: userId,
+              ...(parishId ? { parishId } : {}),
+              status: { not: 'ARCHIVED' },
+            },
+          },
+          orderBy: { registrationDate: 'desc' },
+          select: {
+            id: true,
+            movementId: true,
+            status: true,
+            registrationDate: true,
+            approvedAt: true,
+            rejectedAt: true,
+            rejectionReason: true,
+            notes: true,
+            movement: { select: { id: true, name: true, code: true } },
+          },
+        },
+      },
+    })
+  },
+
   findParents(userId: string, parishId?: string, movementId?: string) {
     return prisma.user.findMany({
       where: {
