@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { mouvementService } from '@/services/mouvement.service'
 import type {
   MovementChild,
+  MovementDocument,
   MovementParent,
   MovementRegistration,
   MovementSummary,
@@ -16,9 +17,21 @@ export const useMouvementStore = defineStore('mouvement', () => {
   const registrations = ref<MovementRegistration[]>([])
   const fees = ref<import('@/types/mouvement').MovementFee[]>([])
   const payments = ref<import('@/types/mouvement').MovementPayment[]>([])
+  const documents = ref<MovementDocument[]>([])
   const loading = ref(false)
-  const dashboard = ref<{ totals: { movements: number; children: number; activeMembers: number; pendingRegistrations: number; successfulPayments: number; paymentsAmount: number } } | null>(null)
+  const dashboard = ref<{
+    movements: MovementSummary[]
+    totals: {
+      movements: number
+      children: number
+      activeMembers: number
+      pendingRegistrations: number
+      successfulPayments: number
+      paymentsAmount: number
+    }
+  } | null>(null)
   const registrationsLoading = ref(false)
+  const documentsLoading = ref(false)
   const error = ref<string | null>(null)
   const hasMovement = computed(() => Boolean(movement.value))
   const pendingRegistrations = computed(
@@ -28,6 +41,9 @@ export const useMouvementStore = defineStore('mouvement', () => {
   async function loadDashboard() {
     const response = await mouvementService.getDashboard()
     dashboard.value = response.data ?? response
+    if (!movement.value && dashboard.value?.movements?.[0]) {
+      movement.value = dashboard.value.movements[0]
+    }
   }
 
   async function loadMovement() {
@@ -35,7 +51,8 @@ export const useMouvementStore = defineStore('mouvement', () => {
     error.value = null
     try {
       const response = await mouvementService.getMovement()
-      movement.value = response.data ?? response
+      const data = response.data ?? response
+      movement.value = Array.isArray(data) ? data[0] ?? null : data
     } catch (err) {
       error.value = 'Impossible de charger les informations du mouvement.'
       throw err
@@ -78,6 +95,20 @@ export const useMouvementStore = defineStore('mouvement', () => {
     payments.value = response.data ?? response
   }
 
+  async function loadDocuments(movementId?: string) {
+    documentsLoading.value = true
+    error.value = null
+    try {
+      const response = await mouvementService.getDocuments(movementId)
+      documents.value = response.data ?? response
+    } catch (err) {
+      error.value = 'Impossible de charger les documents.'
+      throw err
+    } finally {
+      documentsLoading.value = false
+    }
+  }
+
   async function createFee(input: { movementId: string; name: string; amount: number; dueDate?: string }) {
     await mouvementService.createFee(input)
     await loadFees()
@@ -86,6 +117,22 @@ export const useMouvementStore = defineStore('mouvement', () => {
   async function createPayment(input: { registrationId: string; feeId?: string; amount: number; method: string; transactionReference?: string }) {
     await mouvementService.createPayment(input)
     await loadPayments()
+  }
+
+  async function uploadDocument(input: {
+    movementId: string
+    name: string
+    description?: string
+    type: string
+    file: File
+  }) {
+    await mouvementService.uploadDocument(input)
+    await loadDocuments(input.movementId)
+  }
+
+  async function deleteDocument(id: string, movementId?: string) {
+    await mouvementService.deleteDocument(id)
+    await loadDocuments(movementId)
   }
 
   async function approveRegistration(id: string) {
@@ -105,8 +152,10 @@ export const useMouvementStore = defineStore('mouvement', () => {
     registrations,
     fees,
     payments,
+    documents,
     loading,
     registrationsLoading,
+    documentsLoading,
     error,
     hasMovement,
     pendingRegistrations,
@@ -118,8 +167,11 @@ export const useMouvementStore = defineStore('mouvement', () => {
     loadRegistrations,
     loadFees,
     loadPayments,
+    loadDocuments,
     createFee,
     createPayment,
+    uploadDocument,
+    deleteDocument,
     approveRegistration,
     rejectRegistration,
   }
