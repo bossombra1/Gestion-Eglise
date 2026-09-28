@@ -9,7 +9,10 @@ export const feeCreateSchema = z.object({
 
 export const paymentCreateSchema = z.object({
   registrationId: z.string().uuid(),
-  feeId: z.string().uuid().optional(),
+  feeId: z.preprocess(
+    (value) => (value === '' ? undefined : value),
+    z.string().uuid().optional(),
+  ),
   amount: z.coerce.number().positive().max(100000000),
   method: z.enum(['WAVE', 'ORANGE_MONEY', 'MTN_MONEY', 'MOOV_MONEY', 'CASH', 'OTHER']),
   transactionReference: z.string().trim().max(150).optional(),
