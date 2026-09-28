@@ -17,8 +17,7 @@ const filteredChildren = computed(() => {
   const query = search.value.trim().toLowerCase()
 
   return store.children.filter((child) => {
-    const matchesMovement = !movementId.value || child.movement?.id === movementId.value
-    if (!matchesMovement) return false
+    if (movementId.value && child.movement?.id !== movementId.value) return false
     if (!query) return true
 
     return (
@@ -51,7 +50,7 @@ const statusLabel = (status?: string) => ({
   COMPLETED: 'Terminée',
 }[status ?? ''] ?? status ?? '—')
 
-const statusVariant = (status?: string) => {
+const statusTone = (status?: string): 'neutral' | 'success' | 'warning' | 'danger' => {
   if (status === 'APPROVED' || status === 'COMPLETED') return 'success'
   if (status === 'PENDING') return 'warning'
   if (status === 'REJECTED' || status === 'CANCELLED') return 'danger'
@@ -74,7 +73,7 @@ async function refresh() {
   try {
     await Promise.all([store.loadDashboard(), store.loadChildren()])
   } catch {
-    // L'écran conserve l'état vide et le message du store.
+    // L'état d'erreur est déjà exposé par le store.
   }
 }
 
@@ -88,22 +87,15 @@ onMounted(refresh)
         <div>
           <p class="eyebrow text-[#C25A34]">Gestion du mouvement</p>
           <h1 class="mt-1 font-serif text-3xl font-semibold text-[#2E2925]">Fiches enfants</h1>
-          <p class="mt-2 text-sm text-[#6B655D]">
-            Consultez les informations personnelles, familiales et d'inscription des enfants.
-          </p>
+          <p class="mt-2 text-sm text-[#6B655D]">Consultez les informations personnelles, familiales et d'inscription des enfants.</p>
         </div>
-        <AppButton variant="secondary" :disabled="store.loading" @click="refresh">
-          Actualiser
-        </AppButton>
+        <AppButton variant="secondary" :disabled="store.loading" @click="refresh">Actualiser</AppButton>
       </div>
     </header>
 
     <div class="grid gap-3 md:grid-cols-[minmax(0,1fr)_240px_auto]">
       <SearchInput v-model="search" placeholder="Rechercher un enfant ou un parent…" />
-      <select
-        v-model="movementId"
-        class="min-h-10 w-full border border-[#C2BAB0] bg-white px-3 text-sm text-[#2E2925] outline-none focus:border-[#24548F]"
-      >
+      <select v-model="movementId" class="min-h-10 w-full border border-[#C2BAB0] bg-white px-3 text-sm text-[#2E2925] outline-none focus:border-[#24548F]">
         <option value="">Tous mes mouvements</option>
         <option v-for="item in movements" :key="item.id" :value="item.id">{{ item.name }}</option>
       </select>
@@ -125,84 +117,49 @@ onMounted(refresh)
         <table class="w-full min-w-[980px] text-left text-sm">
           <thead class="border-b border-[#DDD7CF] bg-[#F7F5F2] text-xs uppercase tracking-wide text-[#6B655D]">
             <tr>
-              <th class="px-4 py-3">Enfant</th>
-              <th class="px-4 py-3">Âge</th>
-              <th class="px-4 py-3">Mouvement</th>
-              <th class="px-4 py-3">Parents</th>
-              <th class="px-4 py-3">Contact principal</th>
-              <th class="px-4 py-3">Inscription</th>
+              <th class="px-4 py-3">Enfant</th><th class="px-4 py-3">Âge</th><th class="px-4 py-3">Mouvement</th>
+              <th class="px-4 py-3">Parents</th><th class="px-4 py-3">Contact principal</th><th class="px-4 py-3">Inscription</th>
               <th class="px-4 py-3 text-right">Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="child in filteredChildren"
-              :key="`${child.id}-${child.movement?.id ?? 'all'}`"
-              class="border-b border-[#EDE9E4] last:border-0 hover:bg-[#FCFBF9]"
-            >
+            <tr v-for="child in filteredChildren" :key="`${child.id}-${child.movement?.id ?? 'all'}`" class="border-b border-[#EDE9E4] last:border-0 hover:bg-[#FCFBF9]">
               <td class="px-4 py-4">
                 <p class="font-semibold text-[#14345E]">{{ child.firstName }} {{ child.lastName }}</p>
                 <p class="mt-0.5 text-xs text-[#6B655D]">{{ child.gender || 'Genre non renseigné' }}</p>
               </td>
-              <td class="px-4 py-4 text-[#6B655D]">
-                <span class="font-medium text-[#2E2925]">{{ calculateAge(child.birthDate) }}</span>
-                <span class="block text-xs">{{ formatDate(child.birthDate) }}</span>
-              </td>
+              <td class="px-4 py-4 text-[#6B655D]"><span class="font-medium text-[#2E2925]">{{ calculateAge(child.birthDate) }}</span><span class="block text-xs">{{ formatDate(child.birthDate) }}</span></td>
               <td class="px-4 py-4"><AppBadge>{{ child.movement?.name ?? '—' }}</AppBadge></td>
               <td class="px-4 py-4">{{ child.parentLinks?.length ?? 0 }}</td>
               <td class="px-4 py-4">
                 <div v-if="child.parentLinks?.[0]?.parent" class="space-y-0.5">
-                  <p class="font-medium">
-                    {{ child.parentLinks[0].parent.firstName }} {{ child.parentLinks[0].parent.lastName }}
-                  </p>
-                  <p class="text-xs text-[#6B655D]">
-                    {{ child.parentLinks[0].parent.phone || child.parentLinks[0].parent.email || 'Contact non renseigné' }}
-                  </p>
+                  <p class="font-medium">{{ child.parentLinks[0].parent.firstName }} {{ child.parentLinks[0].parent.lastName }}</p>
+                  <p class="text-xs text-[#6B655D]">{{ child.parentLinks[0].parent.phone || child.parentLinks[0].parent.email || 'Contact non renseigné' }}</p>
                 </div>
                 <span v-else class="text-[#6B655D]">—</span>
               </td>
-              <td class="px-4 py-4">
-                <AppBadge :variant="statusVariant(child.registrationStatus)">
-                  {{ statusLabel(child.registrationStatus) }}
-                </AppBadge>
-              </td>
-              <td class="px-4 py-4 text-right">
-                <AppButton variant="secondary" @click="openChild(child.id)">Voir la fiche</AppButton>
-              </td>
+              <td class="px-4 py-4"><AppBadge :tone="statusTone(child.registrationStatus)">{{ statusLabel(child.registrationStatus) }}</AppBadge></td>
+              <td class="px-4 py-4 text-right"><AppButton variant="secondary" @click="openChild(child.id)">Voir la fiche</AppButton></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <EmptyState
-      v-else
-      title="Aucune fiche enfant"
-      description="Aucun enfant ne correspond aux filtres sélectionnés."
-    />
+    <EmptyState v-else title="Aucune fiche enfant" description="Aucun enfant ne correspond aux filtres sélectionnés." />
 
-    <div
-      v-if="store.selectedChild"
-      class="fixed inset-0 z-50 flex items-end justify-center bg-[#0B1F3A]/40 p-0 md:items-center md:p-6"
-      @click.self="closeDetail"
-    >
+    <div v-if="store.selectedChild" class="fixed inset-0 z-50 flex items-end justify-center bg-[#0B1F3A]/40 p-0 md:items-center md:p-6" @click.self="closeDetail">
       <aside class="max-h-[92vh] w-full max-w-5xl overflow-y-auto border border-[#C2BAB0] bg-[#F7F5F2] shadow-xl">
         <div class="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-[#DDD7CF] bg-white px-5 py-4">
           <div class="min-w-0">
             <p class="eyebrow text-[#C25A34]">Fiche enfant</p>
-            <h2 class="mt-1 font-serif text-2xl font-semibold text-[#14345E]">
-              {{ store.selectedChild.firstName }} {{ store.selectedChild.lastName }}
-            </h2>
-            <p class="mt-1 text-sm text-[#6B655D]">
-              {{ calculateAge(store.selectedChild.birthDate) }} · {{ store.selectedChild.gender || 'Genre non renseigné' }}
-            </p>
+            <h2 class="mt-1 font-serif text-2xl font-semibold text-[#14345E]">{{ store.selectedChild.firstName }} {{ store.selectedChild.lastName }}</h2>
+            <p class="mt-1 text-sm text-[#6B655D]">{{ calculateAge(store.selectedChild.birthDate) }} · {{ store.selectedChild.gender || 'Genre non renseigné' }}</p>
           </div>
           <AppButton variant="ghost" @click="closeDetail">Fermer</AppButton>
         </div>
 
-        <div v-if="store.childDetailLoading" class="flex min-h-60 items-center justify-center">
-          <AppSpinner />
-        </div>
+        <div v-if="store.childDetailLoading" class="flex min-h-60 items-center justify-center"><AppSpinner /></div>
 
         <div v-else class="grid gap-4 p-5 lg:grid-cols-2">
           <section class="border border-[#DDD7CF] bg-white p-5">
@@ -250,20 +207,11 @@ onMounted(refresh)
             <h3 class="font-semibold text-[#2E2925]">Inscriptions dans vos mouvements</h3>
             <div v-if="store.selectedChild.registrations.length" class="mt-4 overflow-x-auto">
               <table class="w-full min-w-[620px] text-left text-sm">
-                <thead class="border-b border-[#DDD7CF] text-xs uppercase tracking-wide text-[#6B655D]">
-                  <tr>
-                    <th class="px-2 py-3">Mouvement</th>
-                    <th class="px-2 py-3">Statut</th>
-                    <th class="px-2 py-3">Date</th>
-                    <th class="px-2 py-3">Note</th>
-                  </tr>
-                </thead>
+                <thead class="border-b border-[#DDD7CF] text-xs uppercase tracking-wide text-[#6B655D]"><tr><th class="px-2 py-3">Mouvement</th><th class="px-2 py-3">Statut</th><th class="px-2 py-3">Date</th><th class="px-2 py-3">Note</th></tr></thead>
                 <tbody>
                   <tr v-for="registration in store.selectedChild.registrations" :key="registration.id" class="border-b border-[#EDE9E4] last:border-0">
                     <td class="px-2 py-3 font-medium">{{ registration.movement.name }}</td>
-                    <td class="px-2 py-3">
-                      <AppBadge :variant="statusVariant(registration.status)">{{ statusLabel(registration.status) }}</AppBadge>
-                    </td>
+                    <td class="px-2 py-3"><AppBadge :tone="statusTone(registration.status)">{{ statusLabel(registration.status) }}</AppBadge></td>
                     <td class="px-2 py-3 text-[#6B655D]">{{ formatDate(registration.registrationDate) }}</td>
                     <td class="px-2 py-3 text-[#6B655D]">{{ registration.notes || registration.rejectionReason || '—' }}</td>
                   </tr>
@@ -275,9 +223,7 @@ onMounted(refresh)
 
           <section class="border border-[#DDD7CF] bg-white p-5 lg:col-span-2">
             <h3 class="font-semibold text-[#2E2925]">Informations médicales</h3>
-            <p class="mt-3 whitespace-pre-wrap text-sm leading-6 text-[#6B655D]">
-              {{ store.selectedChild.medicalInformation || 'Aucune information médicale renseignée.' }}
-            </p>
+            <p class="mt-3 whitespace-pre-wrap text-sm leading-6 text-[#6B655D]">{{ store.selectedChild.medicalInformation || 'Aucune information médicale renseignée.' }}</p>
           </section>
         </div>
       </aside>
