@@ -1,12 +1,4 @@
-export type UserRole =
-  | 'SUPER_ADMIN'
-  | 'ADMIN_PARISH'
-  | 'SECRETARY'
-  | 'PRIEST'
-  | 'MOVEMENT_MANAGER'
-  | 'TREASURER'
-  | 'PARENT'
-  | 'FAITHFUL'
+export type UserRole = 'SUPER_ADMIN' | 'ADMIN_PARISH' | 'SECRETARY' | 'PRIEST' | 'MOVEMENT_MANAGER' | 'TREASURER' | 'PARENT' | 'FAITHFUL'
 
 export interface AuthUser {
   id: string
@@ -20,6 +12,6 @@ export interface AuthUser {
 }
 
 export interface LoginResponse {
-  token: string
+  accessToken: string
   user: AuthUser
 }
