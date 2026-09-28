@@ -50,7 +50,15 @@ export const movementRepository = {
       prisma.movementMember.count({ where: { movementId: { in: movementIds }, status: 'ACTIVE' } }),
       prisma.registration.count({ where: { movementId: { in: movementIds }, status: 'PENDING' } }),
       prisma.payment.aggregate({
-        where: { registration: { movementId: { in: movementIds } }, status: 'SUCCESS' },
+        where: {
+          status: 'SUCCESS',
+          fee: {
+            is: {
+              active: true,
+              movementId: { in: movementIds },
+            },
+          },
+        },
         _count: { _all: true },
         _sum: { amount: true },
       }),
