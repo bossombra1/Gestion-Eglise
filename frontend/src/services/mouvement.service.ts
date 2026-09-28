@@ -52,7 +52,17 @@ export const mouvementService = {
   },
 
   async createPayment(input: { registrationId: string; feeId?: string; amount: number; method: string; transactionReference?: string }) {
-    const { data } = await api.post('/payments', input)
+    const payload = {
+      registrationId: input.registrationId,
+      amount: input.amount,
+      method: input.method,
+      ...(input.feeId?.trim() ? { feeId: input.feeId.trim() } : {}),
+      ...(input.transactionReference?.trim()
+        ? { transactionReference: input.transactionReference.trim() }
+        : {}),
+    }
+
+    const { data } = await api.post('/payments', payload)
     return data
   },
 
