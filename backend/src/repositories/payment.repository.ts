@@ -64,8 +64,23 @@ export const paymentRepository = {
 
   findManagedFee(userId: string, parishId: string | undefined, feeId: string) {
     return prisma.movementFee.findFirst({
-      where: { id: feeId, movement: { managerId: userId, ...(parishId ? { parishId } : {}) } },
-      select: { id: true, movementId: true },
+      where: {
+        id: feeId,
+        active: true,
+        movement: { managerId: userId, ...(parishId ? { parishId } : {}) },
+      },
+      select: { id: true, movementId: true, amount: true, currency: true },
+    })
+  },
+
+  getSuccessfulFeeTotal(feeId: string, registrationId: string) {
+    return prisma.payment.aggregate({
+      where: {
+        feeId,
+        registrationId,
+        status: 'SUCCESS',
+      },
+      _sum: { amount: true },
     })
   },
 
