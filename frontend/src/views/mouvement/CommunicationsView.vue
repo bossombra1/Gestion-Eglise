@@ -15,6 +15,8 @@ const saving = ref(false)
 const error = ref<string | null>(null)
 const success = ref<string | null>(null)
 const search = ref('')
+const movementFilter = ref('')
+const selectedCommunication = ref<any | null>(null)
 const form = ref({
   movementId: '',
   title: '',
@@ -26,13 +28,23 @@ const form = ref({
 const movements = computed<MovementSummary[]>(() => store.dashboard?.movements ?? [])
 const filteredCommunications = computed(() => {
   const query = search.value.trim().toLowerCase()
-  if (!query) return store.communications
-  return store.communications.filter((item) =>
-    item.title.toLowerCase().includes(query) ||
-    item.content.toLowerCase().includes(query) ||
-    item.movement?.name.toLowerCase().includes(query),
-  )
+  return store.communications.filter((item) => {
+    const matchesMovement = !movementFilter.value || item.movementId === movementFilter.value
+    const matchesSearch =
+      !query ||
+      item.title.toLowerCase().includes(query) ||
+      item.content.toLowerCase().includes(query) ||
+      item.movement?.name.toLowerCase().includes(query)
+    return matchesMovement && matchesSearch
+  })
 })
+
+const totalSent = computed(() => store.communications.filter((item) => item.status === 'SENT').length)
+const totalRecipients = computed(() =>
+  store.communications.reduce((sum, item) => sum + (item.recipients?.length ?? 0), 0),
+)
+const closeDetails = () => { selectedCommunication.value = null }
+
 
 const formatDate = (value?: string | null) =>
   value ? new Intl.DateTimeFormat('fr-FR', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value)) : '—'
@@ -85,6 +97,12 @@ onMounted(async () => {
       <div v-if="error" class="border border-[#B3261E] bg-[#FCE5E3] p-4 text-sm text-[#8F1E18]">{{ error }}</div>
       <div v-if="success" class="border border-[#14713C] bg-[#E4F2E9] p-4 text-sm text-[#14713C]">{{ success }}</div>
 
+      <div class="grid gap-4 md:grid-cols-3">
+        <article class="border border-[#C2BAB0] bg-white p-5"><p class="text-xs font-semibold uppercase tracking-wide text-[#6B655D]">Communications</p><p class="mt-1 text-2xl font-bold text-[#0B1F3A]">{{ store.communications.length }}</p><p class="text-xs text-[#6B655D]">Historique sur votre périmètre</p></article>
+        <article class="border border-[#C2BAB0] bg-white p-5"><p class="text-xs font-semibold uppercase tracking-wide text-[#6B655D]">Envoyées</p><p class="mt-1 text-2xl font-bold text-[#14713C]">{{ totalSent }}</p><p class="text-xs text-[#6B655D]">Communications transmises</p></article>
+        <article class="border border-[#C2BAB0] bg-white p-5"><p class="text-xs font-semibold uppercase tracking-wide text-[#6B655D]">Destinataires</p><p class="mt-1 text-2xl font-bold text-[#14345E]">{{ totalRecipients }}</p><p class="text-xs text-[#6B655D]">Destinations cumulées</p></article>
+      </div>
+
       <article class="border border-[#C2BAB0] bg-white p-6">
         <p class="eyebrow text-[#6B655D]">Nouvelle communication</p>
         <h2 class="page-title mt-1 text-2xl text-[#14345E]">Envoyer un message</h2>
@@ -134,7 +152,13 @@ onMounted(async () => {
             <p class="eyebrow text-[#6B655D]">Historique</p>
             <h2 class="page-title mt-1 text-2xl text-[#14345E]">Communications envoyées</h2>
           </div>
-          <SearchInput v-model="search" placeholder="Rechercher…" />
+          <div class="flex w-full flex-col gap-2 sm:flex-row">
+            <select v-model="movementFilter" class="border border-[#C2BAB0] bg-white p-3 text-sm sm:min-w-52">
+              <option value="">Tous mes mouvements</option>
+              <option v-for="movement in movements" :key="movement.id" :value="movement.id">{{ movement.name }}</option>
+            </select>
+            <SearchInput v-model="search" placeholder="Rechercher…" />
+          </div>
         </div>
 
         <div v-if="store.communicationsLoading" class="flex min-h-32 items-center justify-center"><AppSpinner /></div>
@@ -162,7 +186,7 @@ onMounted(async () => {
                 <td class="px-5 py-4">{{ item.type }}</td>
                 <td class="px-5 py-4">{{ item.recipients?.length ?? 0 }}</td>
                 <td class="px-5 py-4 text-[#6B655D]">{{ formatDate(item.sentAt ?? item.createdAt) }}</td>
-                <td class="px-5 py-4"><AppBadge tone="success">{{ item.status === 'SENT' ? 'Envoyée' : item.status }}</AppBadge></td>
+                <td class="px-5 py-4"><div class="flex gap-2"><AppBadge tone="success">{{ item.status === 'SENT' ? 'Envoyée' : item.status }}</AppBadge><AppButton variant="secondary" @click="selectedCommunication = item">Détails</AppButton></div></td>
               </tr>
             </tbody>
           </table>
@@ -174,9 +198,31 @@ onMounted(async () => {
             <div class="min-w-0"><p class="font-semibold text-[#2E2925]">{{ item.title }}</p><p class="mt-1 line-clamp-2 text-xs leading-5 text-[#6B655D]">{{ item.content }}</p></div>
             <AppBadge tone="success">{{ item.status === 'SENT' ? 'Envoyée' : item.status }}</AppBadge>
           </div>
-          <div class="mt-4 grid gap-2 text-xs text-[#6B655D]"><span>{{ item.movement?.name ?? '—' }} · {{ item.type }}</span><span>{{ item.recipients?.length ?? 0 }} destinataire{{ (item.recipients?.length ?? 0) > 1 ? 's' : '' }}</span><span>{{ formatDate(item.sentAt ?? item.createdAt) }}</span></div>
+          <div class="mt-4 grid gap-2 text-xs text-[#6B655D]"><span>{{ item.movement?.name ?? '—' }} · {{ item.type }}</span><span>{{ item.recipients?.length ?? 0 }} destinataire{{ (item.recipients?.length ?? 0) > 1 ? 's' : '' }}</span><span>{{ formatDate(item.sentAt ?? item.createdAt) }}</span><AppButton variant="secondary" @click="selectedCommunication = item">Voir les détails</AppButton></div>
         </article>
       </div>
     </template>
+
+    <div v-if="selectedCommunication" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1F3A]/70 p-4" @click.self="closeDetails">
+      <article class="max-h-[90vh] w-full max-w-2xl overflow-y-auto bg-white shadow-2xl">
+        <header class="flex items-start justify-between gap-4 border-b border-[#DDD7CF] p-5">
+          <div><p class="eyebrow text-[#C25A34]">Communication</p><h2 class="mt-1 text-2xl font-bold text-[#0B1F3A]">{{ selectedCommunication.title }}</h2></div>
+          <button type="button" class="text-2xl text-[#6B655D]" aria-label="Fermer" @click="closeDetails">×</button>
+        </header>
+        <div class="space-y-5 p-5">
+          <div class="grid gap-3 sm:grid-cols-2">
+            <div><p class="text-xs uppercase tracking-wide text-[#6B655D]">Mouvement</p><p class="mt-1 font-semibold">{{ selectedCommunication.movement?.name ?? '—' }}</p></div>
+            <div><p class="text-xs uppercase tracking-wide text-[#6B655D]">Destinataires</p><p class="mt-1 font-semibold">{{ selectedCommunication.recipients?.length ?? 0 }}</p></div>
+            <div><p class="text-xs uppercase tracking-wide text-[#6B655D]">Type</p><p class="mt-1 font-semibold">{{ selectedCommunication.type }}</p></div>
+            <div><p class="text-xs uppercase tracking-wide text-[#6B655D]">Envoyée le</p><p class="mt-1 font-semibold">{{ formatDate(selectedCommunication.sentAt ?? selectedCommunication.createdAt) }}</p></div>
+          </div>
+          <div class="border border-[#DDD7CF] bg-[#F7F5F2] p-4">
+            <p class="whitespace-pre-wrap text-sm leading-6 text-[#2E2925]">{{ selectedCommunication.content }}</p>
+          </div>
+          <div v-if="selectedCommunication.sender" class="text-sm text-[#6B655D]">Envoyée par <span class="font-semibold text-[#2E2925]">{{ selectedCommunication.sender.firstName }} {{ selectedCommunication.sender.lastName }}</span></div>
+        </div>
+        <footer class="flex justify-end border-t border-[#DDD7CF] p-5"><AppButton variant="secondary" @click="closeDetails">Fermer</AppButton></footer>
+      </article>
+    </div>
   </section>
 </template>
