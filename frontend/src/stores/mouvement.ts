@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { mouvementService } from '@/services/mouvement.service'
 import type {
   MovementChild,
+  MovementCommunication,
   MovementDocument,
   MovementParent,
   MovementRegistration,
@@ -18,6 +19,7 @@ export const useMouvementStore = defineStore('mouvement', () => {
   const fees = ref<import('@/types/mouvement').MovementFee[]>([])
   const payments = ref<import('@/types/mouvement').MovementPayment[]>([])
   const documents = ref<MovementDocument[]>([])
+  const communications = ref<MovementCommunication[]>([])
   const loading = ref(false)
   const dashboard = ref<{
     movements: MovementSummary[]
@@ -32,6 +34,7 @@ export const useMouvementStore = defineStore('mouvement', () => {
   } | null>(null)
   const registrationsLoading = ref(false)
   const documentsLoading = ref(false)
+  const communicationsLoading = ref(false)
   const error = ref<string | null>(null)
   const hasMovement = computed(() => Boolean(movement.value))
   const pendingRegistrations = computed(
@@ -109,6 +112,31 @@ export const useMouvementStore = defineStore('mouvement', () => {
     }
   }
 
+  async function loadCommunications() {
+    communicationsLoading.value = true
+    error.value = null
+    try {
+      const response = await mouvementService.getCommunications()
+      communications.value = response.data ?? response
+    } catch (err) {
+      error.value = 'Impossible de charger les communications.'
+      throw err
+    } finally {
+      communicationsLoading.value = false
+    }
+  }
+
+  async function createCommunication(input: {
+    movementId: string
+    title: string
+    content: string
+    type: string
+    audience: string
+  }) {
+    await mouvementService.createCommunication(input)
+    await loadCommunications()
+  }
+
   async function createFee(input: { movementId: string; name: string; amount: number; dueDate?: string }) {
     await mouvementService.createFee(input)
     await loadFees()
@@ -153,9 +181,11 @@ export const useMouvementStore = defineStore('mouvement', () => {
     fees,
     payments,
     documents,
+    communications,
     loading,
     registrationsLoading,
     documentsLoading,
+    communicationsLoading,
     error,
     hasMovement,
     pendingRegistrations,
@@ -172,6 +202,8 @@ export const useMouvementStore = defineStore('mouvement', () => {
     createPayment,
     uploadDocument,
     deleteDocument,
+    loadCommunications,
+    createCommunication,
     approveRegistration,
     rejectRegistration,
   }
