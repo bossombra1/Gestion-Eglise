@@ -46,6 +46,21 @@ export const mouvementService = {
     return data
   },
 
+  async updateFee(input: { id: string; name: string; amount: number; dueDate?: string; active?: boolean }) {
+    const { data } = await api.patch('/payments/fees/' + input.id, {
+      name: input.name,
+      amount: input.amount,
+      dueDate: input.dueDate,
+      active: input.active,
+    })
+    return data
+  },
+
+  async deleteFee(id: string) {
+    const { data } = await api.delete('/payments/fees/' + id)
+    return data
+  },
+
   async getPayments() {
     const { data } = await api.get('/payments')
     return data
