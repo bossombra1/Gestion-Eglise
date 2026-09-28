@@ -140,7 +140,7 @@ onMounted(async () => {
         <div v-if="store.communicationsLoading" class="flex min-h-32 items-center justify-center"><AppSpinner /></div>
         <EmptyState v-else-if="!filteredCommunications.length" title="Aucune communication" description="Aucune communication envoyée ne correspond à votre recherche." />
 
-        <div v-else class="overflow-x-auto">
+        <div v-else class="hidden overflow-x-auto md:block">
           <table class="min-w-[900px] w-full text-left text-sm">
             <thead class="border-b border-[#DDD7CF] bg-[#F7F5F2] text-xs uppercase tracking-wide text-[#6B655D]">
               <tr>
@@ -168,6 +168,15 @@ onMounted(async () => {
           </table>
         </div>
       </article>
+      <div v-if="!store.communicationsLoading && filteredCommunications.length" class="grid gap-3 md:hidden">
+        <article v-for="item in filteredCommunications" :key="item.id" class="border border-[#C2BAB0] bg-white p-4">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0"><p class="font-semibold text-[#2E2925]">{{ item.title }}</p><p class="mt-1 line-clamp-2 text-xs leading-5 text-[#6B655D]">{{ item.content }}</p></div>
+            <AppBadge tone="success">{{ item.status === 'SENT' ? 'Envoyée' : item.status }}</AppBadge>
+          </div>
+          <div class="mt-4 grid gap-2 text-xs text-[#6B655D]"><span>{{ item.movement?.name ?? '—' }} · {{ item.type }}</span><span>{{ item.recipients?.length ?? 0 }} destinataire{{ (item.recipients?.length ?? 0) > 1 ? 's' : '' }}</span><span>{{ formatDate(item.sentAt ?? item.createdAt) }}</span></div>
+        </article>
+      </div>
     </template>
   </section>
 </template>
