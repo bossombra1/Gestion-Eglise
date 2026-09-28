@@ -32,7 +32,7 @@ export const paymentService = {
     if (input.amount !== undefined && fee.active) {
       const paymentCount = await paymentRepository.countPaymentsForFee(feeId)
       if (paymentCount > 0) {
-        const total = await paymentRepository.getSuccessfulFeeTotal(feeId, '')
+        const total = await paymentRepository.getSuccessfulFeePaidTotal(feeId)
         const paid = Number(total._sum.amount ?? 0)
         if (input.amount < paid) {
           throw new PaymentError('Le nouveau montant ne peut pas être inférieur aux paiements déjà enregistrés.', 400)
