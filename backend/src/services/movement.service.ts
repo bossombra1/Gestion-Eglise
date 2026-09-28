@@ -48,6 +48,31 @@ export const movementService = {
       const movement = await movementRepository.findManagedMovement(userId, movementId, parishId)
       if (!movement) throw new Error('Mouvement non autorisé ou introuvable.')
     }
-    return movementRepository.findParents(userId, parishId, movementId)
+
+    const parents = await movementRepository.findParents(userId, parishId, movementId)
+
+    return parents.map((parent) => ({
+      id: parent.id,
+      firstName: parent.firstName,
+      lastName: parent.lastName,
+      email: parent.email,
+      phone: parent.phone,
+      parishId: parent.parishId,
+      children: parent.parentLinks.map((link) => ({
+        id: link.child.id,
+        firstName: link.child.firstName,
+        lastName: link.child.lastName,
+        relationship: link.relationship,
+        isPrimary: link.isPrimary,
+        movements: Array.from(
+          new Map(
+            link.child.registrations.map((registration) => [
+              registration.movement.id,
+              registration.movement,
+            ]),
+          ).values(),
+        ),
+      })),
+    }))
   },
 }
