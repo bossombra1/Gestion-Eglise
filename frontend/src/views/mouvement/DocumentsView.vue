@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import AppBadge from '@/components/atoms/AppBadge.vue'
 import AppButton from '@/components/atoms/AppButton.vue'
 import AppSpinner from '@/components/atoms/AppSpinner.vue'
@@ -16,6 +16,11 @@ const loading = ref(true)
 const saving = ref(false)
 const error = ref<string | null>(null)
 const success = ref<string | null>(null)
+const previewDocument = ref<MovementDocumentType extends never ? never : any>(null)
+const previewUrl = ref<string | null>(null)
+const previewMimeType = ref('')
+const previewLoading = ref(false)
+const previewError = ref<string | null>(null)
 const fileInput = ref<HTMLInputElement | null>(null)
 const form = ref({
   name: '',
@@ -104,7 +109,42 @@ const download = async (id: string, fileName: string) => {
   }
 }
 
-const remove = async (id: string) => {
+const closePreview = () => {
+  if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
+  previewUrl.value = null
+  previewDocument.value = null
+  previewMimeType.value = ''
+  previewError.value = null
+}
+
+const isImagePreview = computed(() => previewMimeType.value.startsWith('image/'))
+const isPdfPreview = computed(() => previewMimeType.value === 'application/pdf')
+const isTextPreview = computed(() => previewMimeType.value.startsWith('text/'))
+
+const preview = async (item: any) => {
+  closePreview()
+  previewDocument.value = item
+  previewLoading.value = true
+  try {
+    const { blob } = await mouvementService.downloadDocument(item.id)
+    previewMimeType.value = item.mimeType || blob.type || ''
+    previewUrl.value = URL.createObjectURL(blob)
+  } catch {
+    previewError.value = 'Impossible de charger la prévisualisation du document.'
+  } finally {
+    previewLoading.value = false
+  }
+}
+
+const downloadPreview = () => {
+  if (!previewUrl.value || !previewDocument.value) return
+  const anchor = document.createElement('a')
+  anchor.href = previewUrl.value
+  anchor.download = previewDocument.value.fileName
+  anchor.click()
+}
+
+const remove = async (id: string) =>
   if (!window.confirm('Supprimer définitivement ce document ?')) return
   error.value = null
   try {
@@ -131,6 +171,7 @@ onMounted(async () => {
 watch(movementId, async (value) => {
   if (!loading.value) await store.loadDocuments(value || undefined)
 })
+onBeforeUnmount(closePreview)
 </script>
 
 <template>
@@ -213,7 +254,7 @@ watch(movementId, async (value) => {
                 <td class="px-5 py-4 text-[#6B655D]">{{ formatDate(item.createdAt) }}</td>
                 <td class="px-5 py-4">
                   <div class="flex gap-2">
-                    <AppButton variant="secondary" @click="download(item.id, item.fileName)">Télécharger</AppButton>
+                    <AppButton variant="secondary" @click="preview(item)">Prévisualiser</AppButton>
                     <AppButton variant="danger" @click="remove(item.id)">Supprimer</AppButton>
                   </div>
                 </td>
@@ -229,9 +270,42 @@ watch(movementId, async (value) => {
             <AppBadge>{{ item.type }}</AppBadge>
           </div>
           <div class="mt-3 grid grid-cols-2 gap-2 text-xs text-[#6B655D]"><span>{{ formatSize(item.size) }}</span><span class="text-right">{{ formatDate(item.createdAt) }}</span></div>
-          <div class="mt-4 grid grid-cols-2 gap-2"><AppButton variant="secondary" @click="download(item.id, item.fileName)">Télécharger</AppButton><AppButton variant="danger" @click="remove(item.id)">Supprimer</AppButton></div>
+          <div class="mt-4 grid grid-cols-2 gap-2"><AppButton variant="secondary" @click="preview(item)">Prévisualiser</AppButton><AppButton variant="danger" @click="remove(item.id)">Supprimer</AppButton></div>
         </article>
       </div>
     </template>
+
+    <div v-if="previewDocument" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1F3A]/70 p-3 sm:p-6" @click.self="closePreview">
+      <article class="flex max-h-[94vh] w-full max-w-6xl flex-col overflow-hidden bg-white shadow-2xl">
+        <header class="flex items-start justify-between gap-4 border-b border-[#DDD7CF] px-5 py-4 sm:px-6">
+          <div class="min-w-0">
+            <p class="eyebrow text-[#C25A34]">Prévisualisation</p>
+            <h2 class="truncate text-xl font-bold text-[#0B1F3A]">{{ previewDocument.name }}</h2>
+            <p class="mt-1 truncate text-xs text-[#6B655D]">{{ previewDocument.fileName }} · {{ formatSize(previewDocument.size) }}</p>
+          </div>
+          <button type="button" class="shrink-0 text-2xl leading-none text-[#6B655D] hover:text-[#0B1F3A]" aria-label="Fermer" @click="closePreview">×</button>
+        </header>
+
+        <div class="min-h-0 flex-1 overflow-auto bg-[#F7F5F2] p-3 sm:p-5">
+          <div v-if="previewLoading" class="flex min-h-[50vh] items-center justify-center"><AppSpinner /></div>
+          <div v-else-if="previewError" class="flex min-h-[50vh] items-center justify-center text-center text-sm text-[#B3261E]">{{ previewError }}</div>
+          <div v-else-if="isImagePreview && previewUrl" class="flex min-h-[50vh] items-center justify-center">
+            <img :src="previewUrl" :alt="previewDocument.name" class="max-h-[68vh] max-w-full object-contain shadow" />
+          </div>
+          <iframe v-else-if="(isPdfPreview || isTextPreview) && previewUrl" :src="previewUrl" :title="'Prévisualisation de ' + previewDocument.name" class="h-[68vh] w-full border border-[#DDD7CF] bg-white"></iframe>
+          <div v-else class="flex min-h-[50vh] flex-col items-center justify-center px-6 text-center">
+            <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#EDE9E4] text-2xl">📄</div>
+            <h3 class="text-lg font-semibold text-[#0B1F3A]">Prévisualisation non disponible</h3>
+            <p class="mt-2 max-w-md text-sm text-[#6B655D]">Ce format ne peut pas être affiché directement dans le navigateur. Vous pouvez télécharger le fichier pour l’ouvrir avec l’application adaptée.</p>
+            <p class="mt-2 text-xs text-[#6B655D]">{{ previewMimeType || 'Type de fichier inconnu' }}</p>
+          </div>
+        </div>
+
+        <footer class="flex flex-col-reverse gap-2 border-t border-[#DDD7CF] bg-white px-5 py-4 sm:flex-row sm:items-center sm:justify-end sm:px-6">
+          <AppButton variant="secondary" @click="closePreview">Fermer</AppButton>
+          <AppButton :disabled="previewLoading || !previewUrl" @click="downloadPreview">Télécharger le document</AppButton>
+        </footer>
+      </article>
+    </div>
   </section>
 </template>
