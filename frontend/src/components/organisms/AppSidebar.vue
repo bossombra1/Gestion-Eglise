@@ -16,12 +16,16 @@ const items = [
 </script>
 
 <template>
-  <aside class="flex w-full shrink-0 flex-col bg-[#0B1F3A] text-white lg:w-64 lg:border-r lg:border-[#C2BAB0]">
-    <div class="border-b border-white/15 px-5 py-4 lg:px-5 lg:py-5">
+  <aside class="flex w-full shrink-0 flex-col bg-[#0B1F3A] text-white lg:h-screen lg:w-64 lg:overflow-hidden lg:border-r lg:border-[#C2BAB0]">
+    <div class="shrink-0 border-b border-white/15 px-5 py-4 lg:px-5 lg:py-5">
       <p class="font-serif text-2xl font-semibold">EcclesiaConnect</p>
       <p class="mt-1 text-xs uppercase tracking-[.16em] text-[#C3D0E1]">Responsable de mouvement</p>
     </div>
-    <nav class="flex gap-1 overflow-x-auto p-2 lg:flex-1 lg:flex-col lg:space-y-1 lg:overflow-visible lg:p-3" aria-label="Navigation mouvement">
+
+    <nav
+      class="flex gap-1 overflow-x-auto p-2 lg:min-h-0 lg:flex-1 lg:flex-col lg:space-y-1 lg:overflow-x-hidden lg:overflow-y-auto lg:p-3"
+      aria-label="Navigation mouvement"
+    >
       <RouterLink
         v-for="item in items"
         :key="item.to"
@@ -33,6 +37,9 @@ const items = [
         <span>{{ item.label }}</span>
       </RouterLink>
     </nav>
-    <div class="hidden border-t border-white/15 p-4 text-xs text-[#AFC0D6] lg:block">Espace métier isolé · base commune</div>
+
+    <div class="hidden shrink-0 border-t border-white/15 p-4 text-xs text-[#AFC0D6] lg:block">
+      Espace métier isolé · base commune
+    </div>
   </aside>
 </template>
