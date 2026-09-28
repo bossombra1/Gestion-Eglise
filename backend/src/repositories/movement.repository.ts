@@ -21,6 +21,18 @@ export const movementRepository = {
     })
   },
 
+  async findManagedMovement(userId: string, movementId: string, parishId?: string) {
+    return prisma.movement.findFirst({
+      where: {
+        id: movementId,
+        managerId: userId,
+        ...(parishId ? { parishId } : {}),
+        status: { not: 'ARCHIVED' },
+      },
+      select: { id: true, name: true, code: true, parishId: true },
+    })
+  },
+
   async getDashboard(userId: string, parishId?: string) {
     const movements = await this.findManagedMovements(userId, parishId)
     const movementIds = movements.map((movement) => movement.id)
@@ -28,43 +40,20 @@ export const movementRepository = {
     if (movementIds.length === 0) {
       return {
         movements: [],
-        totals: {
-          movements: 0,
-          children: 0,
-          activeMembers: 0,
-          pendingRegistrations: 0,
-          successfulPayments: 0,
-          paymentsAmount: 0,
-        },
+        totals: { movements: 0, children: 0, activeMembers: 0, pendingRegistrations: 0, successfulPayments: 0, paymentsAmount: 0 },
       }
     }
 
-    const [children, activeMembers, pendingRegistrations, successfulPayments] =
-      await Promise.all([
-        prisma.registration.count({
-          where: { movementId: { in: movementIds } },
-        }),
-        prisma.movementMember.count({
-          where: {
-            movementId: { in: movementIds },
-            status: 'ACTIVE',
-          },
-        }),
-        prisma.registration.count({
-          where: {
-            movementId: { in: movementIds },
-            status: 'PENDING',
-          },
-        }),
-        prisma.payment.aggregate({
-          where: {
-            registration: { movementId: { in: movementIds } },
-            status: 'SUCCESS',
-          },
-          _count: { _all: true },
-          _sum: { amount: true },
-        }),
-      ])
+    const [children, activeMembers, pendingRegistrations, successfulPayments] = await Promise.all([
+      prisma.registration.count({ where: { movementId: { in: movementIds } } }),
+      prisma.movementMember.count({ where: { movementId: { in: movementIds }, status: 'ACTIVE' } }),
+      prisma.registration.count({ where: { movementId: { in: movementIds }, status: 'PENDING' } }),
+      prisma.payment.aggregate({
+        where: { registration: { movementId: { in: movementIds } }, status: 'SUCCESS' },
+        _count: { _all: true },
+        _sum: { amount: true },
+      }),
+    ])
 
     return {
       movements,
@@ -79,12 +68,14 @@ export const movementRepository = {
     }
   },
 
-  findChildren(userId: string, parishId?: string) {
+  findChildren(userId: string, parishId?: string, movementId?: string) {
     return prisma.registration.findMany({
       where: {
+        ...(movementId ? { movementId } : {}),
         movement: {
           managerId: userId,
           ...(parishId ? { parishId } : {}),
+          status: { not: 'ARCHIVED' },
         },
       },
       orderBy: { createdAt: 'desc' },
@@ -94,26 +85,18 @@ export const movementRepository = {
             parentLinks: {
               include: {
                 parent: {
-                  select: {
-                    id: true,
-                    firstName: true,
-                    lastName: true,
-                    email: true,
-                    phone: true,
-                  },
+                  select: { id: true, firstName: true, lastName: true, email: true, phone: true },
                 },
               },
             },
           },
         },
-        movement: {
-          select: { id: true, name: true, code: true },
-        },
+        movement: { select: { id: true, name: true, code: true } },
       },
     })
   },
 
-  findParents(userId: string, parishId?: string) {
+  findParents(userId: string, parishId?: string, movementId?: string) {
     return prisma.user.findMany({
       where: {
         role: 'PARENT',
@@ -124,9 +107,11 @@ export const movementRepository = {
             child: {
               registrations: {
                 some: {
+                  ...(movementId ? { movementId } : {}),
                   movement: {
                     managerId: userId,
                     ...(parishId ? { parishId } : {}),
+                    status: { not: 'ARCHIVED' },
                   },
                 },
               },
@@ -135,14 +120,7 @@ export const movementRepository = {
         },
       },
       orderBy: [{ lastName: 'asc' }, { firstName: 'asc' }],
-      select: {
-        id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-        parishId: true,
-      },
+      select: { id: true, firstName: true, lastName: true, email: true, phone: true, parishId: true },
     })
   },
 }
