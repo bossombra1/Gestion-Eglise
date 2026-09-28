@@ -181,9 +181,26 @@ const formatAmount = (value: string | number) =>
 const formatDate = (value?: string | null) =>
   value ? new Intl.DateTimeFormat('fr-FR', { dateStyle: 'medium' }).format(new Date(value)) : '—'
 
+const allRegistrations = computed(() => store.registrations)
+
 const approvedRegistrations = computed(() =>
   store.registrations.filter((item) => item.status === 'APPROVED' || item.status === 'COMPLETED'),
 )
+
+const registrationStatusLabel = (status: string) => {
+  switch (status) {
+    case 'APPROVED':
+      return 'Approuvée'
+    case 'COMPLETED':
+      return 'Terminée'
+    case 'PENDING':
+      return 'En attente'
+    case 'REJECTED':
+      return 'Refusée'
+    default:
+      return status
+  }
+}
 
 const selectedRegistration = computed(() =>
   store.registrations.find((registration) => registration.id === paymentForm.value.registrationId),
@@ -285,7 +302,12 @@ const submitPayment = async () => {
   savingPayment.value = true
   try {
     if (!selectedRegistration.value) {
-      error.value = 'Sélectionnez une inscription approuvée.'
+      error.value = 'Sélectionnez une inscription.'
+      return
+    }
+
+    if (selectedRegistration.value.status !== 'APPROVED' && selectedRegistration.value.status !== 'COMPLETED') {
+      error.value = 'Cette inscription n’est pas encore approuvée. Le paiement sera disponible après approbation.'
       return
     }
     if (paymentForm.value.feeId && !selectedFee.value) {
@@ -398,8 +420,13 @@ onMounted(async () => {
             <label class="block text-sm font-semibold">Enfant / inscription
               <select v-model="paymentForm.registrationId" required class="mt-1 w-full border border-[#C2BAB0] p-3 font-normal">
                 <option value="" disabled>Sélectionner</option>
-                <option v-for="registration in approvedRegistrations" :key="registration.id" :value="registration.id">
-                  {{ registration.child.firstName }} {{ registration.child.lastName }} — {{ registration.movement.name }}
+                <option
+                  v-for="registration in allRegistrations"
+                  :key="registration.id"
+                  :value="registration.id"
+                  :disabled="registration.status !== 'APPROVED' && registration.status !== 'COMPLETED'"
+                >
+                  {{ registration.child.firstName }} {{ registration.child.lastName }} — {{ registration.movement.name }} · {{ registrationStatusLabel(registration.status) }}
                 </option>
               </select>
             </label>
