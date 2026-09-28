@@ -46,7 +46,7 @@ export const movementRepository = {
     }
 
     const [children, activeMembers, pendingRegistrations, successfulPayments] = await Promise.all([
-      prisma.registration.count({ where: { movementId: { in: movementIds } } }),
+      prisma.registration.count({\n        where: {\n          movementId: { in: movementIds },\n          status: { in: ['APPROVED', 'COMPLETED'] },\n        },\n      }),
       prisma.movementMember.count({ where: { movementId: { in: movementIds }, status: 'ACTIVE' } }),
       prisma.registration.count({ where: { movementId: { in: movementIds }, status: 'PENDING' } }),
       prisma.payment.aggregate({
