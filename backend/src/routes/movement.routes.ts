@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import {
+  getChild,
   getChildren,
   getDashboard,
   getMyMovements,
@@ -16,6 +17,7 @@ router.use(authenticate, authorize('MOVEMENT_MANAGER'), requireParish)
 router.get('/me', getMyMovements)
 router.get('/me/dashboard', getDashboard)
 router.get('/me/children', getChildren)
+router.get('/me/children/:id', getChild)
 router.get('/me/parents', getParents)
 
 export default router
