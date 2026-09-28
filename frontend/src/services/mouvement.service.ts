@@ -16,6 +16,11 @@ export const mouvementService = {
     return data
   },
 
+  async getChild(id: string) {
+    const { data } = await api.get('/movements/me/children/' + id)
+    return data
+  },
+
   async getParents(params?: Record<string, unknown>) {
     const { data } = await api.get('/movements/me/parents', { params })
     return data
