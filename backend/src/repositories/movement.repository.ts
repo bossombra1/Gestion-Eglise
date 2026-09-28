@@ -1,15 +1,13 @@
 import { prisma } from '../lib/prisma'
 
-const managedMovementWhere = (userId: string, parishId?: string) => ({
-  managerId: userId,
-  ...(parishId ? { parishId } : {}),
-  status: { not: 'ARCHIVED' as const },
-})
-
 export const movementRepository = {
   findManagedMovements(userId: string, parishId?: string) {
     return prisma.movement.findMany({
-      where: managedMovementWhere(userId, parishId),
+      where: {
+        managerId: userId,
+        ...(parishId ? { parishId } : {}),
+        status: { not: 'ARCHIVED' },
+      },
       orderBy: { name: 'asc' },
       select: {
         id: true,
@@ -24,22 +22,15 @@ export const movementRepository = {
     })
   },
 
-  findManagedMovement(userId: string, parishId: string | undefined, movementId: string) {
+  async findManagedMovement(userId: string, movementId: string, parishId?: string) {
     return prisma.movement.findFirst({
       where: {
         id: movementId,
-        ...managedMovementWhere(userId, parishId),
+        managerId: userId,
+        ...(parishId ? { parishId } : {}),
+        status: { not: 'ARCHIVED' },
       },
-      select: {
-        id: true,
-        name: true,
-        code: true,
-        description: true,
-        status: true,
-        parishId: true,
-        managerId: true,
-        parish: { select: { id: true, name: true, code: true } },
-      },
+      select: { id: true, name: true, code: true, parishId: true },
     })
   },
 
@@ -68,18 +59,8 @@ export const movementRepository = {
           status: { in: ['APPROVED', 'COMPLETED'] },
         },
       }),
-      prisma.movementMember.count({
-        where: {
-          movementId: { in: movementIds },
-          status: 'ACTIVE',
-        },
-      }),
-      prisma.registration.count({
-        where: {
-          movementId: { in: movementIds },
-          status: 'PENDING',
-        },
-      }),
+      prisma.movementMember.count({ where: { movementId: { in: movementIds }, status: 'ACTIVE' } }),
+      prisma.registration.count({ where: { movementId: { in: movementIds }, status: 'PENDING' } }),
       prisma.payment.aggregate({
         where: {
           status: 'SUCCESS',
@@ -113,7 +94,9 @@ export const movementRepository = {
       where: {
         ...(movementId ? { movementId } : {}),
         movement: {
-          ...managedMovementWhere(userId, parishId),
+          managerId: userId,
+          ...(parishId ? { parishId } : {}),
+          status: { not: 'ARCHIVED' },
         },
       },
       orderBy: { createdAt: 'desc' },
@@ -123,13 +106,7 @@ export const movementRepository = {
             parentLinks: {
               include: {
                 parent: {
-                  select: {
-                    id: true,
-                    firstName: true,
-                    lastName: true,
-                    email: true,
-                    phone: true,
-                  },
+                  select: { id: true, firstName: true, lastName: true, email: true, phone: true },
                 },
               },
             },
@@ -140,26 +117,35 @@ export const movementRepository = {
     })
   },
 
-  findManagedChild(userId: string, parishId: string | undefined, childId: string) {
-    return prisma.child.findFirst({
+  async findManagedChild(userId: string, childId: string, parishId?: string) {
+    const registration = await prisma.registration.findFirst({
       where: {
-        id: childId,
-        parentLinks: {
-          some: {
-            child: {
-              registrations: {
-                some: {
-                  movement: {
-                    ...managedMovementWhere(userId, parishId),
-                  },
-                },
-              },
-            },
-          },
+        childId,
+        movement: {
+          managerId: userId,
+          ...(parishId ? { parishId } : {}),
+          status: { not: 'ARCHIVED' },
         },
       },
+      select: { childId: true },
+    })
+
+    if (!registration) return null
+
+    return prisma.child.findUnique({
+      where: { id: childId },
       include: {
+        family: {
+          select: {
+            id: true,
+            name: true,
+            address: true,
+            phone: true,
+            email: true,
+          },
+        },
         parentLinks: {
+          orderBy: { isPrimary: 'desc' },
           include: {
             parent: {
               select: {
@@ -168,6 +154,7 @@ export const movementRepository = {
                 lastName: true,
                 email: true,
                 phone: true,
+                status: true,
               },
             },
           },
@@ -175,13 +162,99 @@ export const movementRepository = {
         registrations: {
           where: {
             movement: {
-              ...managedMovementWhere(userId, parishId),
+              managerId: userId,
+              ...(parishId ? { parishId } : {}),
+              status: { not: 'ARCHIVED' },
             },
           },
-          include: {
+          orderBy: { registrationDate: 'desc' },
+          select: {
+            id: true,
+            movementId: true,
+            status: true,
+            registrationDate: true,
+            approvedAt: true,
+            rejectedAt: true,
+            rejectionReason: true,
+            notes: true,
             movement: { select: { id: true, name: true, code: true } },
           },
-          orderBy: { createdAt: 'desc' },
+        },
+      },
+    })
+  },
+
+  findParents(userId: string, parishId?: string, movementId?: string) {
+    return prisma.user.findMany({
+      where: {
+        role: 'PARENT',
+        status: 'ACTIVE',
+        ...(parishId ? { parishId } : {}),
+        parentLinks: {
+          some: {
+            child: {
+              registrations: {
+                some: {
+                  ...(movementId ? { movementId } : {}),
+                  movement: {
+                    managerId: userId,
+                    ...(parishId ? { parishId } : {}),
+                    status: { not: 'ARCHIVED' },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      orderBy: [{ lastName: 'asc' }, { firstName: 'asc' }],
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        phone: true,
+        parishId: true,
+        parentLinks: {
+          where: {
+            child: {
+              registrations: {
+                some: {
+                  ...(movementId ? { movementId } : {}),
+                  movement: {
+                    managerId: userId,
+                    ...(parishId ? { parishId } : {}),
+                    status: { not: 'ARCHIVED' },
+                  },
+                },
+              },
+            },
+          },
+          orderBy: { isPrimary: 'desc' },
+          select: {
+            relationship: true,
+            isPrimary: true,
+            child: {
+              select: {
+                id: true,
+                firstName: true,
+                lastName: true,
+                registrations: {
+                  where: {
+                    ...(movementId ? { movementId } : {}),
+                    movement: {
+                      managerId: userId,
+                      ...(parishId ? { parishId } : {}),
+                      status: { not: 'ARCHIVED' },
+                    },
+                  },
+                  select: {
+                    movement: { select: { id: true, name: true, code: true } },
+                  },
+                },
+              },
+            },
+          },
         },
       },
     })
