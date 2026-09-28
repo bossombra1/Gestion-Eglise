@@ -1,5 +1,5 @@
 import { paymentRepository } from '../repositories/payment.repository'
-import type { FeeCreateInput, PaymentCreateInput } from '../schemas/payment.schema'
+import type { FeeCreateInput, FeeUpdateInput, PaymentCreateInput } from '../schemas/payment.schema'
 
 export class PaymentError extends Error {
   constructor(message: string, public readonly statusCode = 400) {
@@ -23,6 +23,49 @@ export const paymentService = {
       amount: input.amount,
       dueDate: input.dueDate ? new Date(input.dueDate) : undefined,
     })
+  },
+
+  async updateFee(userId: string, parishId: string | undefined, feeId: string, input: FeeUpdateInput) {
+    const fee = await paymentRepository.findManagedFeeForUpdate(userId, parishId, feeId)
+    if (!fee) throw new PaymentError('Cotisation introuvable ou non autorisée.', 404)
+
+    if (input.amount !== undefined && fee.active) {
+      const paymentCount = await paymentRepository.countPaymentsForFee(feeId)
+      if (paymentCount > 0) {
+        const total = await paymentRepository.getSuccessfulFeeTotal(feeId, '')
+        const paid = Number(total._sum.amount ?? 0)
+        if (input.amount < paid) {
+          throw new PaymentError('Le nouveau montant ne peut pas être inférieur aux paiements déjà enregistrés.', 400)
+        }
+      }
+    }
+
+    return paymentRepository.updateFee(feeId, {
+      name: input.name,
+      amount: input.amount,
+      dueDate: input.dueDate ? new Date(input.dueDate) : undefined,
+      active: input.active,
+    })
+  },
+
+  async deleteFee(userId: string, parishId: string | undefined, feeId: string) {
+    const fee = await paymentRepository.findManagedFeeForUpdate(userId, parishId, feeId)
+    if (!fee) throw new PaymentError('Cotisation introuvable ou non autorisée.', 404)
+
+    const paymentCount = await paymentRepository.countPaymentsForFee(feeId)
+    if (paymentCount > 0) {
+      return {
+        deleted: false,
+        fee: await paymentRepository.deactivateFee(feeId),
+        message: 'La cotisation possède des paiements et a été désactivée pour conserver l’historique financier.',
+      }
+    }
+
+    return {
+      deleted: true,
+      fee: await paymentRepository.deleteFee(feeId),
+      message: 'Cotisation supprimée.',
+    }
   },
 
   listPayments(userId: string, parishId?: string) {
