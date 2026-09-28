@@ -26,4 +26,5 @@ export const paymentCreateSchema = z.object({
 })
 
 export type FeeCreateInput = z.infer<typeof feeCreateSchema>
+export type FeeUpdateInput = z.infer<typeof feeUpdateSchema>
 export type PaymentCreateInput = z.infer<typeof paymentCreateSchema>
