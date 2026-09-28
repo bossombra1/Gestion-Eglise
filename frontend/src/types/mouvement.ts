@@ -32,6 +32,20 @@ export interface MovementParent {
   email?: string | null
 }
 
+export interface MovementParentChild {
+  id: string
+  firstName: string
+  lastName: string
+  relationship?: string | null
+  isPrimary: boolean
+  movements: Array<{ id: string; name: string; code: string }>
+}
+
+export interface MovementParentWithChildren extends MovementParent {
+  parishId?: string | null
+  children: MovementParentChild[]
+}
+
 export interface MovementChildRegistration {
   id: string
   movementId: string
