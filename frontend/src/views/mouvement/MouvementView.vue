@@ -44,7 +44,8 @@ onMounted(async () => {
 
         <div class="mt-6 border border-[#EDE9E4] p-4">
           <p class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#6B655D]"><Users class="size-4" /> Membres</p>
-          <p class="mt-2 text-2xl font-semibold text-[#0B1F3A]">{{ item._count?.members ?? '—' }}</p>
+          <p class="mt-2 text-2xl font-semibold text-[#0B1F3A]">—</p>
+          <p class="mt-1 text-xs text-[#6B655D]">Nombre de membres non exposé par cette vue.</p>
         </div>
 
         <div class="mt-6 flex flex-wrap gap-2">
