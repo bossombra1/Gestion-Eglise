@@ -26,7 +26,10 @@ const paymentInclude = {
 export const paymentRepository = {
   findManagedFees(userId: string, parishId?: string) {
     return prisma.movementFee.findMany({
-      where: { movement: { managerId: userId, ...(parishId ? { parishId } : {}) } },
+      where: {
+        active: true,
+        movement: { managerId: userId, ...(parishId ? { parishId } : {}) },
+      },
       orderBy: { createdAt: 'desc' },
       select: feeSelect,
     })
