@@ -11,25 +11,27 @@ export interface MovementChild {
   id: string
   firstName: string
   lastName: string
-  birthDate?: string
+  birthDate?: string | null
+  gender?: string | null
   registrationStatus?: string
   parentCount?: number
+  movement?: { id: string; name: string; code: string }
+  parentLinks?: Array<{
+    relationship?: string | null
+    isPrimary: boolean
+    parent: MovementParent
+  }>
 }
 
 export interface MovementParent {
   id: string
   firstName: string
   lastName: string
-  phone?: string
-  email?: string
+  phone?: string | null
+  email?: string | null
 }
 
-export type RegistrationStatus =
-  | 'PENDING'
-  | 'APPROVED'
-  | 'REJECTED'
-  | 'CANCELLED'
-  | 'COMPLETED'
+export type RegistrationStatus = 'PENDING' | 'APPROVED' | 'REJECTED' | 'CANCELLED' | 'COMPLETED'
 
 export interface RegistrationParent {
   id: string
@@ -45,11 +47,7 @@ export interface RegistrationChild {
   lastName: string
   birthDate?: string | null
   gender?: string | null
-  parentLinks?: Array<{
-    relationship?: string | null
-    isPrimary: boolean
-    parent: RegistrationParent
-  }>
+  parentLinks?: Array<{ relationship?: string | null; isPrimary: boolean; parent: RegistrationParent }>
 }
 
 export interface MovementRegistration {
@@ -64,12 +62,7 @@ export interface MovementRegistration {
   rejectionReason?: string | null
   notes?: string | null
   child: RegistrationChild
-  movement: {
-    id: string
-    name: string
-    code: string
-    parishId: string
-  }
+  movement: { id: string; name: string; code: string; parishId: string }
 }
 
 export type PaymentMethod = 'WAVE' | 'ORANGE_MONEY' | 'MTN_MONEY' | 'MOOV_MONEY' | 'CASH' | 'OTHER'
@@ -93,11 +86,6 @@ export interface MovementPayment {
   status: string
   transactionReference?: string | null
   paidAt?: string | null
-  registration?: {
-    id: string
-    status: RegistrationStatus
-    child: { id: string; firstName: string; lastName: string }
-    movement: { id: string; name: string; code: string }
-  } | null
+  registration?: { id: string; status: RegistrationStatus; child: { id: string; firstName: string; lastName: string }; movement: { id: string; name: string; code: string } } | null
   fee?: { id: string; name: string; amount: string | number } | null
 }
