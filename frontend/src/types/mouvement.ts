@@ -5,6 +5,7 @@ export interface MovementSummary {
   description?: string
   parishId: string
   status?: string
+  parish?: { id: string; name: string; code?: string | null }
 }
 
 export interface MovementChild {
