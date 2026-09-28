@@ -252,8 +252,12 @@ const submitPayment = async () => {
     })
     paymentForm.value = { registrationId: '', feeId: '', amount: '', method: 'CASH', transactionReference: '' }
     success.value = 'Paiement enregistré avec succès.'
-  } catch {
-    error.value = 'Impossible d’enregistrer le paiement.'
+  } catch (err: any) {
+    error.value =
+      err?.response?.data?.message ??
+      (Array.isArray(err?.response?.data?.errors)
+        ? err.response.data.errors.join(', ')
+        : 'Impossible d’enregistrer le paiement.')
   } finally {
     savingPayment.value = false
   }
