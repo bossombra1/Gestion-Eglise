@@ -91,7 +91,7 @@ onMounted(async () => {
               Paroisse
             </p>
             <p class="mt-2 font-semibold text-[#14345E]">
-              {{ item.parishId }}
+              {{ item.parish?.name ?? item.parishId }}
             </p>
             <p class="mt-1 text-xs text-[#6B655D]">
               Périmètre paroissial associé au mouvement.
