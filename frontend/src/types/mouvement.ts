@@ -31,6 +31,37 @@ export interface MovementParent {
   email?: string | null
 }
 
+export interface MovementChildRegistration {
+  id: string
+  movementId: string
+  status: RegistrationStatus
+  registrationDate: string
+  approvedAt?: string | null
+  rejectedAt?: string | null
+  rejectionReason?: string | null
+  notes?: string | null
+  movement: { id: string; name: string; code: string }
+}
+
+export interface MovementChildDetail extends MovementChild {
+  medicalInformation?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  family?: {
+    id: string
+    name: string
+    address?: string | null
+    phone?: string | null
+    email?: string | null
+  } | null
+  parentLinks: Array<{
+    relationship?: string | null
+    isPrimary: boolean
+    parent: MovementParent & { status?: string }
+  }>
+  registrations: MovementChildRegistration[]
+}
+
 export type RegistrationStatus = 'PENDING' | 'APPROVED' | 'REJECTED' | 'CANCELLED' | 'COMPLETED'
 
 export interface RegistrationParent {
@@ -113,7 +144,6 @@ export interface MovementDocument {
   movement?: { id: string; name: string; code: string } | null
   uploadedBy?: { id: string; firstName: string; lastName: string } | null
 }
-
 
 export type MovementCommunicationType = 'ANNOUNCEMENT' | 'MESSAGE' | 'INFORMATION' | 'REMINDER'
 export type MovementCommunicationAudience = 'PARENTS' | 'MEMBERS' | 'ALL'
