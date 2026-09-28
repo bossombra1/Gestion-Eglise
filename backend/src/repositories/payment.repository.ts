@@ -44,6 +44,48 @@ export const paymentRepository = {
     })
   },
 
+  findManagedFeeForUpdate(userId: string, parishId: string | undefined, feeId: string) {
+    return prisma.movementFee.findFirst({
+      where: {
+        id: feeId,
+        movement: { managerId: userId, ...(parishId ? { parishId } : {}) },
+      },
+      select: { id: true, movementId: true, active: true },
+    })
+  },
+
+  async countPaymentsForFee(feeId: string) {
+    return prisma.payment.count({ where: { feeId } })
+  },
+
+  updateFee(feeId: string, data: { name: string; amount: number; dueDate?: Date; active?: boolean }) {
+    return prisma.movementFee.update({
+      where: { id: feeId },
+      data: {
+        name: data.name,
+        amount: data.amount,
+        dueDate: data.dueDate,
+        ...(data.active === undefined ? {} : { active: data.active }),
+      },
+      select: feeSelect,
+    })
+  },
+
+  deactivateFee(feeId: string) {
+    return prisma.movementFee.update({
+      where: { id: feeId },
+      data: { active: false },
+      select: feeSelect,
+    })
+  },
+
+  deleteFee(feeId: string) {
+    return prisma.movementFee.delete({
+      where: { id: feeId },
+      select: feeSelect,
+    })
+  },
+
   findManagedMovement(userId: string, parishId: string | undefined, movementId: string) {
     return prisma.movement.findFirst({
       where: { id: movementId, managerId: userId, ...(parishId ? { parishId } : {}) },
