@@ -1,29 +1,31 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const prisma = {
-  movement: {
-    findMany: vi.fn(),
-    findFirst: vi.fn(),
+const { prisma } = vi.hoisted(() => ({
+  prisma: {
+    movement: {
+      findMany: vi.fn(),
+      findFirst: vi.fn(),
+    },
+    registration: {
+      findMany: vi.fn(),
+      findFirst: vi.fn(),
+      count: vi.fn(),
+    },
+    user: {
+      findMany: vi.fn(),
+    },
+    movementFee: {
+      findMany: vi.fn(),
+      findFirst: vi.fn(),
+      delete: vi.fn(),
+    },
+    payment: {
+      findMany: vi.fn(),
+      deleteMany: vi.fn(),
+    },
+    $transaction: vi.fn(),
   },
-  registration: {
-    findMany: vi.fn(),
-    findFirst: vi.fn(),
-    count: vi.fn(),
-  },
-  user: {
-    findMany: vi.fn(),
-  },
-  movementFee: {
-    findMany: vi.fn(),
-    findFirst: vi.fn(),
-    delete: vi.fn(),
-  },
-  payment: {
-    findMany: vi.fn(),
-    deleteMany: vi.fn(),
-  },
-  $transaction: vi.fn(),
-}
+}))
 
 vi.mock('../src/lib/prisma', () => ({ prisma }))
 
