@@ -7,7 +7,7 @@ import EmptyState from '@/components/molecules/EmptyState.vue'
 import SearchInput from '@/components/molecules/SearchInput.vue'
 import { mouvementService } from '@/services/mouvement.service'
 import { useMouvementStore } from '@/stores/mouvement'
-import type { MovementDocumentType, MovementSummary } from '@/types/mouvement'
+import type { MovementDocument, MovementDocumentType, MovementSummary } from '@/types/mouvement'
 
 const store = useMouvementStore()
 const search = ref('')
@@ -16,7 +16,7 @@ const loading = ref(true)
 const saving = ref(false)
 const error = ref<string | null>(null)
 const success = ref<string | null>(null)
-const previewDocument = ref<MovementDocumentType extends never ? never : any>(null)
+const previewDocument = ref<MovementDocument | null>(null)
 const previewUrl = ref<string | null>(null)
 const previewMimeType = ref('')
 const previewLoading = ref(false)
@@ -91,21 +91,6 @@ const submit = async () => {
     error.value = err?.response?.data?.message ?? 'Impossible d’ajouter le document.'
   } finally {
     saving.value = false
-  }
-}
-
-const download = async (id: string, fileName: string) => {
-  error.value = null
-  try {
-    const { blob } = await mouvementService.downloadDocument(id)
-    const url = URL.createObjectURL(blob)
-    const anchor = document.createElement('a')
-    anchor.href = url
-    anchor.download = fileName
-    anchor.click()
-    URL.revokeObjectURL(url)
-  } catch {
-    error.value = 'Impossible de télécharger le document.'
   }
 }
 
