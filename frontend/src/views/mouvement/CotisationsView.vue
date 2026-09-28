@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import AppBadge from '@/components/atoms/AppBadge.vue'
 import AppButton from '@/components/atoms/AppButton.vue'
 import AppSpinner from '@/components/atoms/AppSpinner.vue'
+import { Eye, X } from 'lucide-vue-next'
 import { mouvementService } from '@/services/mouvement.service'
 import { useMouvementStore } from '@/stores/mouvement'
 import type { MovementSummary, PaymentMethod } from '@/types/mouvement'
@@ -32,6 +33,36 @@ const activeRegistrations = computed(() =>
 const successfulPayments = computed(() =>
   store.payments.filter((payment) => payment.status === 'SUCCESS'),
 )
+
+const selectedPaymentChildId = ref<string | null>(null)
+
+const paymentGroups = computed(() => {
+  const groups = new Map<string, { childId: string; childName: string; movementNames: string[]; payments: typeof store.payments; total: number }>()
+  for (const payment of store.payments) {
+    const child = payment.registration?.child
+    if (!child) continue
+    const existing = groups.get(child.id)
+    if (existing) {
+      existing.payments.push(payment)
+      existing.total += Number(payment.amount)
+      const movementName = payment.registration?.movement.name
+      if (movementName && !existing.movementNames.includes(movementName)) existing.movementNames.push(movementName)
+    } else {
+      groups.set(child.id, {
+        childId: child.id,
+        childName: `${child.firstName} ${child.lastName}`,
+        movementNames: payment.registration?.movement.name ? [payment.registration.movement.name] : [],
+        payments: [payment],
+        total: Number(payment.amount),
+      })
+    }
+  }
+  return Array.from(groups.values()).sort((a, b) => a.childName.localeCompare(b.childName, 'fr'))
+})
+
+const selectedPaymentGroup = computed(() => paymentGroups.value.find((group) => group.childId === selectedPaymentChildId.value) ?? null)
+const openPaymentDetails = (childId: string) => { selectedPaymentChildId.value = childId }
+const closePaymentDetails = () => { selectedPaymentChildId.value = null }
 
 const activeFees = computed(() =>
   store.fees.filter((fee) => fee.active),
@@ -384,22 +415,66 @@ onMounted(async () => {
           <table class="min-w-full text-left text-sm">
             <thead class="bg-[#F7F5F2]">
               <tr>
-                <th class="px-5 py-4">Enfant</th><th class="px-5 py-4">Cotisation</th><th class="px-5 py-4">Montant</th><th class="px-5 py-4">Mode</th><th class="px-5 py-4">Date</th><th class="px-5 py-4">Statut</th>
+                <th class="px-5 py-4">Enfant</th>
+                <th class="px-5 py-4">Mouvement</th>
+                <th class="px-5 py-4">Paiements</th>
+                <th class="px-5 py-4">Total</th>
+                <th class="px-5 py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="payment in store.payments" :key="payment.id" class="border-t border-[#EDE9E4]">
-                <td class="px-5 py-4">{{ payment.registration?.child.firstName }} {{ payment.registration?.child.lastName }}</td>
-                <td class="px-5 py-4">{{ payment.fee?.name || 'Paiement libre' }}</td>
-                <td class="px-5 py-4 font-semibold">{{ formatAmount(payment.amount) }}</td>
-                <td class="px-5 py-4">{{ payment.method }}</td>
-                <td class="px-5 py-4">{{ formatDate(payment.paidAt) }}</td>
-                <td class="px-5 py-4"><AppBadge :tone="payment.status === 'SUCCESS' ? 'success' : 'warning'">{{ payment.status === 'SUCCESS' ? 'Réussi' : payment.status }}</AppBadge></td>
+              <tr v-for="group in paymentGroups" :key="group.childId" class="border-t border-[#EDE9E4]">
+                <td class="px-5 py-4 font-semibold text-[#2E2925]">{{ group.childName }}</td>
+                <td class="px-5 py-4">{{ group.movementNames.join(', ') || '—' }}</td>
+                <td class="px-5 py-4 font-medium">{{ group.payments.length }}</td>
+                <td class="px-5 py-4 font-semibold text-[#14713C]">{{ formatAmount(group.total) }}</td>
+                <td class="px-5 py-4 text-right">
+                  <AppButton type="button" variant="secondary" class="min-h-9 px-3" @click="openPaymentDetails(group.childId)">
+                    <Eye class="mr-2 size-4" />
+                    Voir
+                  </AppButton>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </article>
+      <div v-if="selectedPaymentGroup" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1F3A]/50 p-4" @click.self="closePaymentDetails">
+        <article class="max-h-[90vh] w-full max-w-3xl overflow-hidden border border-[#C2BAB0] bg-white shadow-xl">
+          <header class="flex items-start justify-between gap-4 border-b border-[#DDD7CF] p-5">
+            <div>
+              <p class="eyebrow text-[#C25A34]">Détail des paiements</p>
+              <h2 class="page-title mt-1 text-2xl text-[#14345E]">{{ selectedPaymentGroup.childName }}</h2>
+              <p class="mt-1 text-sm text-[#6B655D]">{{ selectedPaymentGroup.payments.length }} paiement(s) · Total {{ formatAmount(selectedPaymentGroup.total) }}</p>
+            </div>
+            <button type="button" aria-label="Fermer" class="inline-flex size-10 shrink-0 items-center justify-center border border-[#C2BAB0] text-[#6B655D] hover:bg-[#F7F5F2]" @click="closePaymentDetails">
+              <X class="size-5" />
+            </button>
+          </header>
+          <div class="max-h-[65vh] overflow-y-auto p-5">
+            <div class="space-y-3">
+              <div v-for="payment in selectedPaymentGroup.payments" :key="payment.id" class="border border-[#EDE9E4] bg-[#F7F5F2] p-4">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <p class="font-semibold text-[#2E2925]">{{ payment.fee?.name || 'Paiement libre' }}</p>
+                    <p class="mt-1 text-xs text-[#6B655D]">{{ payment.registration?.movement.name || 'Mouvement non renseigné' }}</p>
+                  </div>
+                  <AppBadge :tone="payment.status === 'SUCCESS' ? 'success' : 'warning'">{{ payment.status === 'SUCCESS' ? 'Réussi' : payment.status }}</AppBadge>
+                </div>
+                <div class="mt-4 grid gap-3 sm:grid-cols-3">
+                  <div><p class="text-xs uppercase tracking-wide text-[#6B655D]">Montant</p><p class="mt-1 font-semibold text-[#14713C]">{{ formatAmount(payment.amount) }}</p></div>
+                  <div><p class="text-xs uppercase tracking-wide text-[#6B655D]">Mode</p><p class="mt-1 font-medium text-[#2E2925]">{{ payment.method }}</p></div>
+                  <div><p class="text-xs uppercase tracking-wide text-[#6B655D]">Date</p><p class="mt-1 font-medium text-[#2E2925]">{{ formatDate(payment.paidAt) }}</p></div>
+                </div>
+                <p v-if="payment.transactionReference" class="mt-3 text-xs text-[#6B655D]">Référence : <span class="font-medium text-[#2E2925]">{{ payment.transactionReference }}</span></p>
+              </div>
+            </div>
+          </div>
+          <footer class="flex justify-end border-t border-[#DDD7CF] p-4">
+            <AppButton type="button" variant="secondary" @click="closePaymentDetails">Fermer</AppButton>
+          </footer>
+        </article>
+      </div>
     </div>
   </section>
 </template>
