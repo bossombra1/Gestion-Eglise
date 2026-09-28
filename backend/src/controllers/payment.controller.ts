@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express'
-import { feeCreateSchema, paymentCreateSchema } from '../schemas/payment.schema'
+import { feeCreateSchema, feeUpdateSchema, paymentCreateSchema } from '../schemas/payment.schema'
 import { paymentService } from '../services/payment.service'
 
 const getContext = (req: Request) => {
@@ -27,22 +27,8 @@ export const createFee = async (req: Request, res: Response, next: NextFunction)
 export const updateFee = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const context = getContext(req)
-    const input = feeCreateSchema.omit({ movementId: true }).extend({
-      active: feeCreateSchema.shape.movementId.optional().transform(() => undefined),
-    })
-    const body = {
-      name: req.body.name,
-      amount: req.body.amount,
-      dueDate: req.body.dueDate,
-      active: req.body.active,
-    }
-    const parsed = (await import('zod')).z.object({
-      name: (await import('zod')).z.string().trim().min(2).max(150),
-      amount: (await import('zod')).z.coerce.number().positive().max(100000000),
-      dueDate: (await import('zod')).z.string().datetime().optional(),
-      active: (await import('zod')).z.boolean().optional(),
-    }).parse(body)
-    const data = await paymentService.updateFee(context.userId, context.parishId, req.params.id, parsed)
+    const input = feeUpdateSchema.parse(req.body)
+    const data = await paymentService.updateFee(context.userId, context.parishId, req.params.id, input)
     return res.json({ success: true, data })
   } catch (error) { return next(error) }
 }
