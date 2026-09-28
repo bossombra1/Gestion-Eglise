@@ -165,6 +165,17 @@ export const useMouvementStore = defineStore('mouvement', () => {
     await loadFees()
   }
 
+  async function updateFee(input: { id: string; name: string; amount: number; dueDate?: string; active?: boolean }) {
+    await mouvementService.updateFee(input)
+    await loadFees()
+  }
+
+  async function deleteFee(id: string) {
+    const response = await mouvementService.deleteFee(id)
+    await loadFees()
+    return response.data ?? response
+  }
+
   async function createPayment(input: { registrationId: string; feeId?: string; amount: number; method: string; transactionReference?: string }) {
     await mouvementService.createPayment(input)
     await loadPayments()
@@ -226,6 +237,8 @@ export const useMouvementStore = defineStore('mouvement', () => {
     loadPayments,
     loadDocuments,
     createFee,
+    updateFee,
+    deleteFee,
     createPayment,
     uploadDocument,
     deleteDocument,
