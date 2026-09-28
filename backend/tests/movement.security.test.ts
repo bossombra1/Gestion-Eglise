@@ -48,6 +48,89 @@ import { communicationService } from '../src/services/communication.service'
 describe('movement security isolation', () => {
   beforeEach(() => vi.clearAllMocks())
 
+  it('approves a pending registration and clears previous rejection data', async () => {
+    vi.mocked(registrationRepository.findManagedById).mockResolvedValue({
+      id: 'registration-a',
+      status: 'PENDING',
+    } as never)
+    vi.mocked(registrationRepository.updateStatus).mockResolvedValue({
+      id: 'registration-a',
+      status: 'APPROVED',
+    } as never)
+
+    await registrationService.approve('registration-a', 'manager-a', 'parish-a')
+
+    expect(registrationRepository.updateStatus).toHaveBeenCalledWith(
+      'registration-a',
+      'APPROVED',
+      expect.objectContaining({
+        rejectedAt: null,
+        rejectionReason: null,
+        approvedAt: expect.any(Date),
+      }),
+    )
+  })
+
+  it('rejects a pending registration with the supplied reason', async () => {
+    vi.mocked(registrationRepository.findManagedById).mockResolvedValue({
+      id: 'registration-a',
+      status: 'PENDING',
+    } as never)
+    vi.mocked(registrationRepository.updateStatus).mockResolvedValue({
+      id: 'registration-a',
+      status: 'REJECTED',
+    } as never)
+
+    await registrationService.reject(
+      'registration-a',
+      'manager-a',
+      'parish-a',
+      'Dossier incomplet',
+    )
+
+    expect(registrationRepository.updateStatus).toHaveBeenCalledWith(
+      'registration-a',
+      'REJECTED',
+      expect.objectContaining({
+        rejectedAt: expect.any(Date),
+        approvedAt: null,
+        rejectionReason: 'Dossier incomplet',
+      }),
+    )
+  })
+
+  it('blocks approval when the registration is not pending', async () => {
+    for (const status of ['APPROVED', 'REJECTED', 'CANCELLED', 'COMPLETED']) {
+      vi.clearAllMocks()
+      vi.mocked(registrationRepository.findManagedById).mockResolvedValue({
+        id: 'registration-a',
+        status,
+      } as never)
+
+      await expect(
+        registrationService.approve('registration-a', 'manager-a', 'parish-a'),
+      ).rejects.toMatchObject({ statusCode: 400 })
+
+      expect(registrationRepository.updateStatus).not.toHaveBeenCalled()
+    }
+  })
+
+  it('blocks rejection when the registration is not pending', async () => {
+    for (const status of ['APPROVED', 'REJECTED', 'CANCELLED', 'COMPLETED']) {
+      vi.clearAllMocks()
+      vi.mocked(registrationRepository.findManagedById).mockResolvedValue({
+        id: 'registration-a',
+        status,
+      } as never)
+
+      await expect(
+        registrationService.reject('registration-a', 'manager-a', 'parish-a'),
+      ).rejects.toMatchObject({ statusCode: 400 })
+
+      expect(registrationRepository.updateStatus).not.toHaveBeenCalled()
+    }
+  })
+
   it('blocks approval of an inscription outside the manager scope', async () => {
     vi.mocked(registrationRepository.findManagedById).mockResolvedValue(null)
 
@@ -66,6 +149,88 @@ describe('movement security isolation', () => {
     ).rejects.toMatchObject({ statusCode: 404 })
 
     expect(registrationRepository.updateStatus).not.toHaveBeenCalled()
+  })
+
+  it('blocks payment for a pending registration', async () => {
+    vi.mocked(paymentRepository.findManagedRegistration).mockResolvedValue(null)
+
+    await expect(
+      paymentService.createPayment('manager-a', 'parish-a', {
+        registrationId: 'registration-pending',
+        amount: 5000,
+        method: 'CASH',
+      }),
+    ).rejects.toMatchObject({ statusCode: 404 })
+
+    expect(paymentRepository.createPayment).not.toHaveBeenCalled()
+  })
+
+  it('allows a valid partial payment on an active fee', async () => {
+    vi.mocked(paymentRepository.findManagedRegistration).mockResolvedValue({
+      id: 'registration-a',
+      parishId: 'parish-a',
+      movementId: 'movement-a',
+    })
+    vi.mocked(paymentRepository.findManagedFee).mockResolvedValue({
+      id: 'fee-a',
+      movementId: 'movement-a',
+      amount: 5000,
+      currency: 'XOF',
+    } as never)
+    vi.mocked(paymentRepository.getSuccessfulFeeTotal).mockResolvedValue({
+      _sum: { amount: 0 },
+    } as never)
+    vi.mocked(paymentRepository.createPayment).mockResolvedValue({ id: 'payment-a' } as never)
+
+    await paymentService.createPayment('manager-a', 'parish-a', {
+      registrationId: 'registration-a',
+      feeId: 'fee-a',
+      amount: 3000,
+      method: 'CASH',
+    })
+
+    expect(paymentRepository.createPayment).toHaveBeenCalledWith(
+      expect.objectContaining({
+        registrationId: 'registration-a',
+        feeId: 'fee-a',
+        amount: 3000,
+        parishId: 'parish-a',
+      }),
+    )
+  })
+
+  it('allows a payment that exactly completes the remaining fee balance', async () => {
+    vi.mocked(paymentRepository.findManagedRegistration).mockResolvedValue({
+      id: 'registration-a',
+      parishId: 'parish-a',
+      movementId: 'movement-a',
+    })
+    vi.mocked(paymentRepository.findManagedFee).mockResolvedValue({
+      id: 'fee-a',
+      movementId: 'movement-a',
+      amount: 5000,
+      currency: 'XOF',
+    } as never)
+    vi.mocked(paymentRepository.getSuccessfulFeeTotal).mockResolvedValue({
+      _sum: { amount: 3000 },
+    } as never)
+    vi.mocked(paymentRepository.createPayment).mockResolvedValue({ id: 'payment-b' } as never)
+
+    await paymentService.createPayment('manager-a', 'parish-a', {
+      registrationId: 'registration-a',
+      feeId: 'fee-a',
+      amount: 2000,
+      method: 'WAVE',
+      transactionReference: 'TX-001',
+    })
+
+    expect(paymentRepository.createPayment).toHaveBeenCalledWith(
+      expect.objectContaining({
+        amount: 2000,
+        method: 'WAVE',
+        transactionReference: 'TX-001',
+      }),
+    )
   })
 
   it('blocks payment creation for an inscription outside the manager scope', async () => {
