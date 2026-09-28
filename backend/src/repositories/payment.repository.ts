@@ -126,6 +126,13 @@ export const paymentRepository = {
     })
   },
 
+  getSuccessfulFeePaidTotal(feeId: string) {
+    return prisma.payment.aggregate({
+      where: { feeId, status: 'SUCCESS' },
+      _sum: { amount: true },
+    })
+  },
+
   createPayment(data: {
     registrationId: string
     feeId?: string
