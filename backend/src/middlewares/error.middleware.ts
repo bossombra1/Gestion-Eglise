@@ -1,4 +1,4 @@
-import type { ErrorRequestHandler } from 'express'
+﻿import type { ErrorRequestHandler } from 'express'
 import { ZodError } from 'zod'
 import { AuthError } from '../services/auth.service'
 import { CommunicationError } from '../services/communication.service'
@@ -10,12 +10,18 @@ export const errorMiddleware: ErrorRequestHandler = (error, _req, res, _next) =>
   if (error instanceof ZodError) {
     const fieldErrors = error.flatten().fieldErrors
     const details = Object.entries(fieldErrors)
-      .flatMap(([field, messages]) => (messages ?? []).map((message) => field + ': ' + message))
+      .flatMap(([field, messages]) =>
+        Array.isArray(messages)
+          ? messages.map((message: string) => field + ': ' + message)
+          : [],
+      )
       .join(' | ')
 
     return res.status(400).json({
       success: false,
-      message: details ? 'Données de paiement invalides : ' + details : 'Les données envoyées sont invalides.',
+      message: details
+        ? 'Données de paiement invalides : ' + details
+        : 'Les données envoyées sont invalides.',
       errors: fieldErrors,
     })
   }
