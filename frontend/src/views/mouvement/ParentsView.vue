@@ -17,8 +17,8 @@ const filtered = computed(() => {
   const q = search.value.trim().toLowerCase()
   if (!q) return store.parents
   return store.parents.filter((parent) => {
-    const parentText = ${parent.firstName} ${parent.lastName} ${parent.phone ?? ''} ${parent.email ?? ''}.toLowerCase()
-    const childText = parent.children.map((child) => ${child.firstName} ${child.lastName}).join(' ').toLowerCase()
+    const parentText = [parent.firstName, parent.lastName, parent.phone ?? '', parent.email ?? ''].join(' ').toLowerCase()
+    const childText = parent.children.map((child) => [child.firstName, child.lastName].join(' ')).join(' ').toLowerCase()
     return parentText.includes(q) || childText.includes(q)
   })
 })
