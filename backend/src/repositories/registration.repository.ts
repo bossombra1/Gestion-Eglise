@@ -58,6 +58,7 @@ export const registrationRepository = {
         movement: {
           managerId: userId,
           ...(parishId ? { parishId } : {}),
+          status: { not: 'ARCHIVED' },
         },
       },
       include: registrationInclude,
