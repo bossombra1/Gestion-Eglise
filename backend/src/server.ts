@@ -1,9 +1,7 @@
-﻿import 'dotenv/config'
-
+import 'dotenv/config'
 import app from './app'
+import { env } from './config/env'
 
-const PORT = Number(process.env.PORT) || 3000
-
-app.listen(PORT, () => {
-  console.log(`EcclesiaConnect API running on http://localhost:${PORT}`)
+app.listen(env.PORT, () => {
+  console.log(`EcclesiaConnect API running on http://localhost:${env.PORT}`)
 })

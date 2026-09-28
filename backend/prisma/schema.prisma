@@ -1,0 +1,561 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN_PARISH
+  SECRETARY
+  PRIEST
+  MOVEMENT_MANAGER
+  TREASURER
+  PARENT
+  FAITHFUL
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum FamilyMemberRole {
+  PARENT
+  CHILD
+  OTHER
+}
+
+enum MovementStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum MovementMemberStatus {
+  PENDING
+  ACTIVE
+  INACTIVE
+  REMOVED
+}
+
+enum RegistrationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+  COMPLETED
+}
+
+enum PaymentMethod {
+  WAVE
+  ORANGE_MONEY
+  MTN_MONEY
+  MOOV_MONEY
+  CASH
+  OTHER
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  CANCELLED
+  REFUNDED
+}
+
+enum DocumentType {
+  GENERAL
+  REGISTRATION
+  MEDICAL
+  ADMINISTRATIVE
+  FINANCIAL
+  COMMUNICATION
+  OTHER
+}
+
+enum CommunicationType {
+  ANNOUNCEMENT
+  MESSAGE
+  INFORMATION
+  REMINDER
+}
+
+enum CommunicationStatus {
+  DRAFT
+  SENT
+  ARCHIVED
+}
+
+enum NotificationType {
+  INFORMATION
+  SUCCESS
+  WARNING
+  ERROR
+  REMINDER
+}
+
+enum MassIntentionStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model Parish {
+  id          String  @id @default(uuid())
+  name        String
+  code        String  @unique
+  address     String?
+  phone       String?
+  email       String?
+  description String?
+  active      Boolean @default(true)
+
+  users          User[]
+  families       Family[]
+  children       Child[]
+  movements      Movement[]
+  registrations  Registration[]
+  payments       Payment[]
+  documents      Document[]
+  communications Communication[]
+  notifications  Notification[]
+  massIntentions MassIntention[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([active])
+  @@map("parishes")
+}
+
+model User {
+  id           String     @id @default(uuid())
+  firstName    String
+  lastName     String
+  email        String?    @unique
+  phone        String?    @unique
+  passwordHash String
+  role         UserRole
+  status       UserStatus @default(ACTIVE)
+
+  parishId String?
+  parish   Parish? @relation(fields: [parishId], references: [id], onDelete: SetNull)
+
+  faithfulProfile Faithful?
+
+  familyMemberships FamilyMember[]
+
+  parentLinks ParentChild[]
+
+  managedMovements Movement[] @relation("MovementManager")
+
+  movementMemberships MovementMember[]
+
+  sentCommunications Communication[] @relation("CommunicationSender")
+
+  uploadedDocuments Document[] @relation("DocumentUploader")
+
+  notifications Notification[]
+
+  createdRegistrations Registration[] @relation("RegistrationCreator")
+
+  paymentsCreated Payment[] @relation("PaymentCreator")
+
+  massIntentions MassIntention[] @relation("MassIntentionRequester")
+
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  communicationRecipients CommunicationRecipient[]
+
+  @@index([parishId])
+  @@index([role])
+  @@index([status])
+  @@map("users")
+}
+
+model Faithful {
+  id String @id @default(uuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  birthDate     DateTime?
+  address       String?
+  profession    String?
+  maritalStatus String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faithful")
+}
+
+model Family {
+  id      String  @id @default(uuid())
+  name    String
+  address String?
+  phone   String?
+  email   String?
+
+  parishId String
+  parish   Parish @relation(fields: [parishId], references: [id], onDelete: Cascade)
+
+  members  FamilyMember[]
+  children Child[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parishId])
+  @@map("families")
+}
+
+model FamilyMember {
+  id String @id @default(uuid())
+
+  familyId String
+  family   Family @relation(fields: [familyId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  role FamilyMemberRole
+
+  createdAt DateTime @default(now())
+
+  @@unique([familyId, userId])
+  @@index([userId])
+  @@map("family_members")
+}
+
+model Child {
+  id String @id @default(uuid())
+
+  firstName             String
+  lastName              String
+  birthDate             DateTime?
+  gender                String?
+  medicalInformation    String?
+  emergencyContactName  String?
+  emergencyContactPhone String?
+
+  parishId String
+  parish   Parish @relation(fields: [parishId], references: [id], onDelete: Cascade)
+
+  familyId String?
+  family   Family? @relation(fields: [familyId], references: [id], onDelete: SetNull)
+
+  parentLinks ParentChild[]
+
+  registrations Registration[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parishId])
+  @@index([familyId])
+  @@index([lastName, firstName])
+  @@map("children")
+}
+
+model ParentChild {
+  id String @id @default(uuid())
+
+  parentId String
+  parent   User   @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  childId String
+  child   Child  @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  relationship String?
+  isPrimary    Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@unique([parentId, childId])
+  @@index([childId])
+  @@map("parent_children")
+}
+
+model Movement {
+  id          String         @id @default(uuid())
+  name        String
+  code        String
+  description String?
+  status      MovementStatus @default(ACTIVE)
+
+  parishId String
+  parish   Parish @relation(fields: [parishId], references: [id], onDelete: Cascade)
+
+  managerId String?
+  manager   User?   @relation("MovementManager", fields: [managerId], references: [id], onDelete: SetNull)
+
+  members        MovementMember[]
+  registrations  Registration[]
+  documents      Document[]
+  communications Communication[]
+  fees           MovementFee[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([parishId, code])
+  @@index([parishId])
+  @@index([managerId])
+  @@index([status])
+  @@map("movements")
+}
+
+model MovementMember {
+  id String @id @default(uuid())
+
+  movementId String
+  movement   Movement @relation(fields: [movementId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  status MovementMemberStatus @default(PENDING)
+
+  joinedAt DateTime?
+  leftAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([movementId, userId])
+  @@index([userId])
+  @@index([status])
+  @@map("movement_members")
+}
+
+model Registration {
+  id String @id @default(uuid())
+
+  childId String
+  child   Child  @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  movementId String
+  movement   Movement @relation(fields: [movementId], references: [id], onDelete: Cascade)
+
+  parishId String
+  parish   Parish @relation(fields: [parishId], references: [id], onDelete: Cascade)
+
+  createdById String?
+  createdBy   User?   @relation("RegistrationCreator", fields: [createdById], references: [id], onDelete: SetNull)
+
+  status RegistrationStatus @default(PENDING)
+
+  registrationDate DateTime  @default(now())
+  approvedAt       DateTime?
+  rejectedAt       DateTime?
+  rejectionReason  String?
+
+  notes String?
+
+  payments Payment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([childId, movementId])
+  @@index([movementId])
+  @@index([parishId])
+  @@index([status])
+  @@map("registrations")
+}
+
+model Payment {
+  id String @id @default(uuid())
+
+  amount   Decimal @db.Decimal(12, 2)
+  currency String  @default("XOF")
+
+  method PaymentMethod
+  status PaymentStatus @default(PENDING)
+
+  transactionReference String?
+  providerReference    String?
+
+  registrationId String?
+  registration   Registration? @relation(fields: [registrationId], references: [id], onDelete: SetNull)
+
+  feeId String?
+  fee   MovementFee? @relation(fields: [feeId], references: [id], onDelete: SetNull)
+
+  parishId String
+  parish   Parish @relation(fields: [parishId], references: [id], onDelete: Cascade)
+
+  createdById String?
+  createdBy   User?   @relation("PaymentCreator", fields: [createdById], references: [id], onDelete: SetNull)
+
+  paidAt DateTime?
+
+  metadata Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parishId])
+  @@index([registrationId])
+  @@index([status])
+  @@index([transactionReference])
+  @@index([feeId])
+  @@map("payments")
+}
+
+model MovementFee {
+  id         String    @id @default(uuid())
+  movementId String
+  movement   Movement  @relation(fields: [movementId], references: [id], onDelete: Cascade)
+  name       String
+  amount     Decimal   @db.Decimal(12, 2)
+  currency   String    @default("XOF")
+  dueDate    DateTime?
+  active     Boolean   @default(true)
+  payments   Payment[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([movementId])
+  @@index([active])
+  @@map("movement_fees")
+}
+
+model Document {
+  id String @id @default(uuid())
+
+  name        String
+  description String?
+  type        DocumentType @default(GENERAL)
+
+  fileName String
+  filePath String
+  mimeType String?
+  size     Int?
+
+  parishId String
+  parish   Parish @relation(fields: [parishId], references: [id], onDelete: Cascade)
+
+  movementId String?
+  movement   Movement? @relation(fields: [movementId], references: [id], onDelete: Cascade)
+
+  uploadedById String
+  uploadedBy   User   @relation("DocumentUploader", fields: [uploadedById], references: [id], onDelete: Restrict)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parishId])
+  @@index([movementId])
+  @@index([type])
+  @@map("documents")
+}
+
+model Communication {
+  id String @id @default(uuid())
+
+  title   String
+  content String
+
+  type   CommunicationType
+  status CommunicationStatus @default(DRAFT)
+
+  parishId String
+  parish   Parish @relation(fields: [parishId], references: [id], onDelete: Cascade)
+
+  movementId String?
+  movement   Movement? @relation(fields: [movementId], references: [id], onDelete: Cascade)
+
+  senderId String
+  sender   User   @relation("CommunicationSender", fields: [senderId], references: [id], onDelete: Restrict)
+
+  sentAt DateTime?
+
+  recipients CommunicationRecipient[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parishId])
+  @@index([movementId])
+  @@index([status])
+  @@map("communications")
+}
+
+model CommunicationRecipient {
+  id String @id @default(uuid())
+
+  communicationId String
+  communication   Communication @relation(fields: [communicationId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  readAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@unique([communicationId, userId])
+  @@index([userId])
+  @@map("communication_recipients")
+}
+
+model Notification {
+  id String @id @default(uuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type NotificationType @default(INFORMATION)
+
+  title   String
+  message String
+
+  readAt DateTime?
+
+  createdAt DateTime @default(now())
+  parish    Parish?  @relation(fields: [parishId], references: [id])
+  parishId  String?
+
+  @@index([userId])
+  @@index([readAt])
+  @@map("notifications")
+}
+
+model MassIntention {
+  id String @id @default(uuid())
+
+  parishId String
+  parish   Parish @relation(fields: [parishId], references: [id], onDelete: Cascade)
+
+  requesterId String?
+  requester   User?   @relation("MassIntentionRequester", fields: [requesterId], references: [id], onDelete: SetNull)
+
+  intention       String
+  beneficiaryName String?
+
+  requestedDate DateTime
+  timeSlot      String?
+
+  amount   Decimal? @db.Decimal(12, 2)
+  currency String   @default("XOF")
+
+  status MassIntentionStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parishId])
+  @@index([requesterId])
+  @@index([status])
+  @@index([requestedDate])
+  @@map("mass_intentions")
+}

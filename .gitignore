@@ -37,3 +37,8 @@ backend/uploads/
 
 # Prisma local generated files
 backend/node_modules/.prisma/
+
+# Prisma generated client
+backend/generated/
+# Prisma generated client inside TypeScript sources
+backend/src/generated/
