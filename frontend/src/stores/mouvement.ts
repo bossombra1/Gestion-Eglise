@@ -6,7 +6,7 @@ import type {
   MovementChildDetail,
   MovementCommunication,
   MovementDocument,
-  MovementParent,
+  MovementParentWithChildren,
   MovementRegistration,
   MovementSummary,
   RegistrationStatus,
@@ -17,7 +17,7 @@ export const useMouvementStore = defineStore('mouvement', () => {
   const children = ref<MovementChild[]>([])
   const selectedChild = ref<MovementChildDetail | null>(null)
   const childDetailLoading = ref(false)
-  const parents = ref<MovementParent[]>([])
+  const parents = ref<MovementParentWithChildren[]>([])
   const registrations = ref<MovementRegistration[]>([])
   const fees = ref<import('@/types/mouvement').MovementFee[]>([])
   const payments = ref<import('@/types/mouvement').MovementPayment[]>([])
@@ -47,9 +47,7 @@ export const useMouvementStore = defineStore('mouvement', () => {
   async function loadDashboard() {
     const response = await mouvementService.getDashboard()
     dashboard.value = response.data ?? response
-    if (!movement.value && dashboard.value?.movements?.[0]) {
-      movement.value = dashboard.value.movements[0]
-    }
+    if (!movement.value && dashboard.value?.movements?.[0]) movement.value = dashboard.value.movements[0]
   }
 
   async function loadMovement() {
@@ -62,9 +60,7 @@ export const useMouvementStore = defineStore('mouvement', () => {
     } catch (err) {
       error.value = 'Impossible de charger les informations du mouvement.'
       throw err
-    } finally {
-      loading.value = false
-    }
+    } finally { loading.value = false }
   }
 
   async function loadChildren(params?: Record<string, unknown>) {
@@ -77,9 +73,7 @@ export const useMouvementStore = defineStore('mouvement', () => {
       error.value = 'Impossible de charger les fiches enfants.'
       children.value = []
       throw err
-    } finally {
-      loading.value = false
-    }
+    } finally { loading.value = false }
   }
 
   async function loadChild(id: string) {
@@ -93,18 +87,22 @@ export const useMouvementStore = defineStore('mouvement', () => {
       error.value = 'Impossible de charger la fiche de cet enfant.'
       selectedChild.value = null
       throw err
-    } finally {
-      childDetailLoading.value = false
-    }
+    } finally { childDetailLoading.value = false }
   }
 
-  function clearSelectedChild() {
-    selectedChild.value = null
-  }
+  function clearSelectedChild() { selectedChild.value = null }
 
   async function loadParents(params?: Record<string, unknown>) {
-    const response = await mouvementService.getParents(params)
-    parents.value = response.data ?? response
+    loading.value = true
+    error.value = null
+    try {
+      const response = await mouvementService.getParents(params)
+      parents.value = response.data ?? response
+    } catch (err) {
+      error.value = 'Impossible de charger les parents.'
+      parents.value = []
+      throw err
+    } finally { loading.value = false }
   }
 
   async function loadRegistrations(status?: RegistrationStatus) {
@@ -116,20 +114,11 @@ export const useMouvementStore = defineStore('mouvement', () => {
     } catch (err) {
       error.value = 'Impossible de charger les inscriptions.'
       throw err
-    } finally {
-      registrationsLoading.value = false
-    }
+    } finally { registrationsLoading.value = false }
   }
 
-  async function loadFees() {
-    const response = await mouvementService.getFees()
-    fees.value = response.data ?? response
-  }
-
-  async function loadPayments() {
-    const response = await mouvementService.getPayments()
-    payments.value = response.data ?? response
-  }
+  async function loadFees() { const response = await mouvementService.getFees(); fees.value = response.data ?? response }
+  async function loadPayments() { const response = await mouvementService.getPayments(); payments.value = response.data ?? response }
 
   async function loadDocuments(movementId?: string) {
     documentsLoading.value = true
@@ -140,9 +129,7 @@ export const useMouvementStore = defineStore('mouvement', () => {
     } catch (err) {
       error.value = 'Impossible de charger les documents.'
       throw err
-    } finally {
-      documentsLoading.value = false
-    }
+    } finally { documentsLoading.value = false }
   }
 
   async function loadCommunications() {
@@ -154,107 +141,35 @@ export const useMouvementStore = defineStore('mouvement', () => {
     } catch (err) {
       error.value = 'Impossible de charger les communications.'
       throw err
-    } finally {
-      communicationsLoading.value = false
-    }
+    } finally { communicationsLoading.value = false }
   }
 
-  async function createCommunication(input: {
-    movementId: string
-    title: string
-    content: string
-    type: string
-    audience: string
-  }) {
-    await mouvementService.createCommunication(input)
-    await loadCommunications()
+  async function createCommunication(input: { movementId: string; title: string; content: string; type: string; audience: string }) {
+    await mouvementService.createCommunication(input); await loadCommunications()
   }
-
   async function createFee(input: { movementId: string; name: string; amount: number; dueDate?: string }) {
-    await mouvementService.createFee(input)
-    await loadFees()
+    await mouvementService.createFee(input); await loadFees()
   }
-
   async function updateFee(input: { id: string; name: string; amount: number; dueDate?: string; active?: boolean }) {
-    await mouvementService.updateFee(input)
-    await loadFees()
+    await mouvementService.updateFee(input); await loadFees()
   }
-
-  async function deleteFee(id: string) {
-    const response = await mouvementService.deleteFee(id)
-    await loadFees()
-    return response.data ?? response
-  }
-
+  async function deleteFee(id: string) { const response = await mouvementService.deleteFee(id); await loadFees(); return response.data ?? response }
   async function createPayment(input: { registrationId: string; feeId?: string; amount: number; method: string; transactionReference?: string }) {
-    await mouvementService.createPayment(input)
-    await loadPayments()
+    await mouvementService.createPayment(input); await loadPayments()
   }
-
-  async function uploadDocument(input: {
-    movementId: string
-    name: string
-    description?: string
-    type: string
-    file: File
-  }) {
-    await mouvementService.uploadDocument(input)
-    await loadDocuments(input.movementId)
+  async function uploadDocument(input: { movementId: string; name: string; description?: string; type: string; file: File }) {
+    await mouvementService.uploadDocument(input); await loadDocuments(input.movementId)
   }
-
-  async function deleteDocument(id: string, movementId?: string) {
-    await mouvementService.deleteDocument(id)
-    await loadDocuments(movementId)
-  }
-
-  async function approveRegistration(id: string) {
-    await mouvementService.approveRegistration(id)
-    await loadRegistrations()
-  }
-
-  async function rejectRegistration(id: string, rejectionReason?: string) {
-    await mouvementService.rejectRegistration(id, rejectionReason)
-    await loadRegistrations()
-  }
+  async function deleteDocument(id: string, movementId?: string) { await mouvementService.deleteDocument(id); await loadDocuments(movementId) }
+  async function approveRegistration(id: string) { await mouvementService.approveRegistration(id); await loadRegistrations() }
+  async function rejectRegistration(id: string, rejectionReason?: string) { await mouvementService.rejectRegistration(id, rejectionReason); await loadRegistrations() }
 
   return {
-    movement,
-    children,
-    selectedChild,
-    parents,
-    registrations,
-    fees,
-    payments,
-    documents,
-    communications,
-    loading,
-    registrationsLoading,
-    documentsLoading,
-    communicationsLoading,
-    childDetailLoading,
-    error,
-    hasMovement,
-    pendingRegistrations,
-    loadMovement,
-    dashboard,
-    loadDashboard,
-    loadChildren,
-    loadChild,
-    clearSelectedChild,
-    loadParents,
-    loadRegistrations,
-    loadFees,
-    loadPayments,
-    loadDocuments,
-    createFee,
-    updateFee,
-    deleteFee,
-    createPayment,
-    uploadDocument,
-    deleteDocument,
-    loadCommunications,
-    createCommunication,
-    approveRegistration,
-    rejectRegistration,
+    movement, children, selectedChild, parents, registrations, fees, payments, documents, communications,
+    loading, registrationsLoading, documentsLoading, communicationsLoading, childDetailLoading, error,
+    hasMovement, pendingRegistrations, loadMovement, dashboard, loadDashboard, loadChildren, loadChild,
+    clearSelectedChild, loadParents, loadRegistrations, loadFees, loadPayments, loadDocuments, createFee,
+    updateFee, deleteFee, createPayment, uploadDocument, deleteDocument, loadCommunications,
+    createCommunication, approveRegistration, rejectRegistration,
   }
 })
