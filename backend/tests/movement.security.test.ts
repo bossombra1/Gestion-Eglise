@@ -12,6 +12,7 @@ vi.mock('../src/repositories/payment.repository', () => ({
     findManagedMovement: vi.fn(),
     findManagedRegistration: vi.fn(),
     findManagedFee: vi.fn(),
+    getSuccessfulFeeTotal: vi.fn(),
     createFee: vi.fn(),
     createPayment: vi.fn(),
   },
@@ -77,6 +78,81 @@ describe('movement security isolation', () => {
         method: 'CASH',
       }),
     ).rejects.toMatchObject({ statusCode: 404 })
+
+    expect(paymentRepository.createPayment).not.toHaveBeenCalled()
+  })
+
+  it('blocks payment on an inactive fee', async () => {
+    vi.mocked(paymentRepository.findManagedRegistration).mockResolvedValue({
+      id: 'registration-a',
+      parishId: 'parish-a',
+      movementId: 'movement-a',
+    })
+    vi.mocked(paymentRepository.findManagedFee).mockResolvedValue(null)
+
+    await expect(
+      paymentService.createPayment('manager-a', 'parish-a', {
+        registrationId: 'registration-a',
+        feeId: 'fee-inactive',
+        amount: 5000,
+        method: 'CASH',
+      }),
+    ).rejects.toMatchObject({ statusCode: 400 })
+
+    expect(paymentRepository.getSuccessfulFeeTotal).not.toHaveBeenCalled()
+    expect(paymentRepository.createPayment).not.toHaveBeenCalled()
+  })
+
+  it('blocks a payment that exceeds the fee amount', async () => {
+    vi.mocked(paymentRepository.findManagedRegistration).mockResolvedValue({
+      id: 'registration-a',
+      parishId: 'parish-a',
+      movementId: 'movement-a',
+    })
+    vi.mocked(paymentRepository.findManagedFee).mockResolvedValue({
+      id: 'fee-a',
+      movementId: 'movement-a',
+      amount: 5000,
+      currency: 'XOF',
+    } as never)
+
+    await expect(
+      paymentService.createPayment('manager-a', 'parish-a', {
+        registrationId: 'registration-a',
+        feeId: 'fee-a',
+        amount: 6000,
+        method: 'CASH',
+      }),
+    ).rejects.toMatchObject({ statusCode: 400 })
+
+    expect(paymentRepository.getSuccessfulFeeTotal).not.toHaveBeenCalled()
+    expect(paymentRepository.createPayment).not.toHaveBeenCalled()
+  })
+
+  it('blocks a payment that exceeds the remaining fee balance', async () => {
+    vi.mocked(paymentRepository.findManagedRegistration).mockResolvedValue({
+      id: 'registration-a',
+      parishId: 'parish-a',
+      movementId: 'movement-a',
+    })
+    vi.mocked(paymentRepository.findManagedFee).mockResolvedValue({
+      id: 'fee-a',
+      movementId: 'movement-a',
+      amount: 5000,
+      currency: 'XOF',
+    } as never)
+    vi.mocked(paymentRepository.getSuccessfulFeeTotal).mockResolvedValue({
+      _sum: { amount: 3000 },
+    } as never)
+
+    await expect(
+      paymentService.createPayment('manager-a', 'parish-a', {
+        registrationId: 'registration-a',
+        feeId: 'fee-a',
+        amount: 3000,
+        method: 'CASH',
+      }),
+    ).rejects.toMatchObject({ statusCode: 400 })
 
     expect(paymentRepository.createPayment).not.toHaveBeenCalled()
   })
