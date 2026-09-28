@@ -7,5 +7,14 @@
         <p class="mt-5 max-w-2xl text-lg leading-8 text-[#6B655D]">Les espaces Administration, Fidèle/Parent et Responsable de mouvement restent séparés. Cette base fournit uniquement les fondations partagées.</p>
       </div>
     </section>
+
+    <footer class="border-t border-[#DDD7CF] bg-white/60">
+      <div class="app-container flex flex-col gap-3 py-6 text-sm text-[#6B655D] sm:flex-row sm:items-center sm:justify-between">
+        <span>© 2026 EcclesiaConnect</span>
+        <RouterLink to="/confidentialite" class="font-semibold text-[#24548F] hover:underline">
+          Politique de confidentialité
+        </RouterLink>
+      </div>
+    </footer>
   </main>
 </template>
