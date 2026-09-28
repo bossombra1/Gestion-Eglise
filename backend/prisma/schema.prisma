@@ -387,8 +387,8 @@ model Payment {
   registrationId String?
   registration   Registration? @relation(fields: [registrationId], references: [id], onDelete: SetNull)
 
-  feeId          String?
-  fee            MovementFee? @relation(fields: [feeId], references: [id], onDelete: SetNull)
+  feeId String?
+  fee   MovementFee? @relation(fields: [feeId], references: [id], onDelete: SetNull)
 
   parishId String
   parish   Parish @relation(fields: [parishId], references: [id], onDelete: Cascade)
@@ -412,17 +412,17 @@ model Payment {
 }
 
 model MovementFee {
-  id          String   @id @default(uuid())
-  movementId  String
-  movement    Movement @relation(fields: [movementId], references: [id], onDelete: Cascade)
-  name        String
-  amount      Decimal  @db.Decimal(12, 2)
-  currency    String   @default("XOF")
-  dueDate     DateTime?
-  active      Boolean  @default(true)
-  payments    Payment[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String    @id @default(uuid())
+  movementId String
+  movement   Movement  @relation(fields: [movementId], references: [id], onDelete: Cascade)
+  name       String
+  amount     Decimal   @db.Decimal(12, 2)
+  currency   String    @default("XOF")
+  dueDate    DateTime?
+  active     Boolean   @default(true)
+  payments   Payment[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 
   @@index([movementId])
   @@index([active])
