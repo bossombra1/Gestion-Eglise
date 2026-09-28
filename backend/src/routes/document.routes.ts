@@ -9,7 +9,7 @@ const router = Router()
 
 router.use(authenticate, authorize('MOVEMENT_MANAGER'), requireParish)
 router.get('/', getDocuments)
-router.post('/', express.raw({ type: 'application/octet-stream', limit: '10mb' }), uploadDocument)
+router.post('/', express.raw({ type: '*/*', limit: '10mb' }), uploadDocument)
 router.get('/:id/download', downloadDocument)
 router.delete('/:id', deleteDocument)
 
