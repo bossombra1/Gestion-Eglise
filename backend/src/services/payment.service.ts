@@ -36,7 +36,18 @@ export const paymentService = {
     if (input.feeId) {
       const fee = await paymentRepository.findManagedFee(userId, parishId, input.feeId)
       if (!fee || fee.movementId !== registration.movementId) {
-        throw new PaymentError('Cette cotisation n’appartient pas au mouvement de l’inscription.', 400)
+        throw new PaymentError('Cette cotisation n’appartient pas au mouvement de l’inscription ou elle est inactive.', 400)
+      }
+
+      if (input.amount > Number(fee.amount)) {
+        throw new PaymentError('Le montant du paiement dépasse le montant de la cotisation.', 400)
+      }
+
+      const total = await paymentRepository.getSuccessfulFeeTotal(input.feeId, input.registrationId)
+      const alreadyPaid = Number(total._sum.amount ?? 0)
+
+      if (alreadyPaid + input.amount > Number(fee.amount)) {
+        throw new PaymentError('Le paiement dépasserait le montant restant de la cotisation.', 400)
       }
     }
 
