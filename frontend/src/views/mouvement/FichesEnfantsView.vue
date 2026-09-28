@@ -92,7 +92,7 @@ onMounted(async () => {
                 <span class="text-xs font-semibold text-[#24548F]">{{ statusLabel(child.registrationStatus) }}</span>
               </td>
               <td class="px-4 py-3 text-right">
-                <AppButton size="sm" variant="secondary" @click="openChild(child.id)">Voir la fiche</AppButton>
+                <AppButton variant="secondary" @click="openChild(child.id)">Voir la fiche</AppButton>
               </td>
             </tr>
           </tbody>
@@ -111,7 +111,7 @@ onMounted(async () => {
               {{ store.selectedChild.firstName }} {{ store.selectedChild.lastName }}
             </h2>
           </div>
-          <AppButton variant="ghost" size="sm" @click="closeDetail">Fermer</AppButton>
+          <AppButton variant="ghost" @click="closeDetail">Fermer</AppButton>
         </div>
 
         <div v-if="store.childDetailLoading" class="flex min-h-60 items-center justify-center"><AppSpinner /></div>
