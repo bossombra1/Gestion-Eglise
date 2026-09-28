@@ -1,9 +1,9 @@
 <template>
-  <div class="flex min-h-screen bg-[#F7F5F2]">
+  <div class="flex min-h-screen flex-col bg-[#F7F5F2] lg:flex-row">
     <AppSidebar />
     <div class="min-w-0 flex-1">
       <AppHeader />
-      <main class="app-container py-7">
+      <main class="app-container py-5 sm:py-7">
         <RouterView />
       </main>
     </div>
