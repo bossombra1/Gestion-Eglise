@@ -129,7 +129,7 @@ const downloadPreview = () => {
   anchor.click()
 }
 
-const remove = async (id: string) =>
+const remove = async (id: string) => {
   if (!window.confirm('Supprimer définitivement ce document ?')) return
   error.value = null
   try {
