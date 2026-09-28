@@ -13,6 +13,12 @@ const getOptionalMovementId = (req: Request) => {
   return value
 }
 
+const getChildId = (req: Request) => {
+  const { id } = req.params
+  if (typeof id !== 'string' || !id) throw new Error('Identifiant d’enfant invalide.')
+  return id
+}
+
 export const getMyMovements = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const context = getContext(req)
@@ -33,6 +39,14 @@ export const getChildren = async (req: Request, res: Response, next: NextFunctio
   try {
     const context = getContext(req)
     const data = await movementService.getChildren(context.userId, context.parishId, getOptionalMovementId(req))
+    return res.json({ success: true, data })
+  } catch (error) { return next(error) }
+}
+
+export const getChild = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const context = getContext(req)
+    const data = await movementService.getChild(context.userId, getChildId(req), context.parishId)
     return res.json({ success: true, data })
   } catch (error) { return next(error) }
 }
