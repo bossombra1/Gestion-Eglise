@@ -68,8 +68,18 @@ export const useMouvementStore = defineStore('mouvement', () => {
   }
 
   async function loadChildren(params?: Record<string, unknown>) {
-    const response = await mouvementService.getChildren(params)
-    children.value = response.data ?? response
+    loading.value = true
+    error.value = null
+    try {
+      const response = await mouvementService.getChildren(params)
+      children.value = response.data ?? response
+    } catch (err) {
+      error.value = 'Impossible de charger les fiches enfants.'
+      children.value = []
+      throw err
+    } finally {
+      loading.value = false
+    }
   }
 
   async function loadChild(id: string) {
