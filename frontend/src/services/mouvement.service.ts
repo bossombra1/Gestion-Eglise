@@ -57,4 +57,44 @@ export const mouvementService = {
     })
     return data
   },
+
+  async getDocuments(movementId?: string) {
+    const { data } = await api.get('/documents', {
+      params: movementId ? { movementId } : undefined,
+    })
+    return data
+  },
+
+  async uploadDocument(input: {
+    movementId: string
+    name: string
+    description?: string
+    type: string
+    file: File
+  }) {
+    const { data } = await api.post('/documents', input.file, {
+      headers: {
+        'Content-Type': input.file.type || 'application/octet-stream',
+        'X-Movement-Id': input.movementId,
+        'X-Document-Name': input.name,
+        'X-Document-Description': input.description ?? '',
+        'X-Document-Type': input.type,
+        'X-File-Name': input.file.name,
+        'X-File-Type': input.file.type || 'application/octet-stream',
+      },
+    })
+    return data
+  },
+
+  async downloadDocument(id: string) {
+    const { data, headers } = await api.get('/documents/' + id + '/download', {
+      responseType: 'blob',
+    })
+    return { blob: data as Blob, contentDisposition: headers['content-disposition'] as string | undefined }
+  },
+
+  async deleteDocument(id: string) {
+    const { data } = await api.delete('/documents/' + id)
+    return data
+  },
 }
