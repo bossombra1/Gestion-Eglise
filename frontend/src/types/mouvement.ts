@@ -89,3 +89,27 @@ export interface MovementPayment {
   registration?: { id: string; status: RegistrationStatus; child: { id: string; firstName: string; lastName: string }; movement: { id: string; name: string; code: string } } | null
   fee?: { id: string; name: string; amount: string | number } | null
 }
+
+export type MovementDocumentType =
+  | 'GENERAL'
+  | 'REGISTRATION'
+  | 'MEDICAL'
+  | 'ADMINISTRATIVE'
+  | 'FINANCIAL'
+  | 'COMMUNICATION'
+  | 'OTHER'
+
+export interface MovementDocument {
+  id: string
+  name: string
+  description?: string | null
+  type: MovementDocumentType
+  fileName: string
+  mimeType?: string | null
+  size?: number | null
+  movementId: string
+  createdAt: string
+  updatedAt: string
+  movement?: { id: string; name: string; code: string } | null
+  uploadedBy?: { id: string; firstName: string; lastName: string } | null
+}
