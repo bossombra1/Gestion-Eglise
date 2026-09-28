@@ -51,8 +51,13 @@ const sanitizeFileName = (value: string) => {
 }
 
 const getOptionalHeader = (value: string | string[] | undefined) => {
-  if (Array.isArray(value)) return value[0]
-  return value
+  const raw = Array.isArray(value) ? value[0] : value
+  if (!raw) return raw
+  try {
+    return decodeURIComponent(raw)
+  } catch {
+    return raw
+  }
 }
 
 export const documentService = {
