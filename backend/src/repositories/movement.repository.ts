@@ -17,6 +17,7 @@ export const movementRepository = {
         status: true,
         parishId: true,
         managerId: true,
+        parish: { select: { id: true, name: true, code: true } },
       },
     })
   },
