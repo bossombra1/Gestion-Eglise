@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { AlertTriangle, CalendarDays, Check, Plus, Save, X } from 'lucide-vue-next'
+import { AlertTriangle, CalendarDays, Plus, Printer, Save, X } from 'lucide-vue-next'
 import { bannsApi, type MarriageCase, type MarriageDocumentStatus } from '@/services/administration-banns.service'
 
 type Couple = MarriageCase
@@ -56,11 +56,9 @@ const publicationCount = (item: Couple) =>
 
 const publicationText = (item: Couple) => {
   const count = publicationCount(item)
-  if (!count) return 'Non commencée'
-  if (item.oppositionCount > 0) return count + ' / 3 publiée(s) · ' + item.oppositionCount + ' opposition(s)'
-  if (count === 3) return '3 / 3 publiées · aucune opposition'
-  const next = publicationDates(item).findIndex(v => !v)
-  return count + ' / 3 · prochaine publication à renseigner'
+  if (!count) return 'Aucune publication enregistrée'
+  if (item.oppositionCount > 0) return count + ' publication(s) · ' + item.oppositionCount + ' opposition(s)'
+  return count + ' publication(s) enregistrée(s)'
 }
 
 const statusLabel = (status: MarriageDocumentStatus) => ({
@@ -85,7 +83,7 @@ const documents = (item: Couple) => [
 ]
 
 const totalCases = computed(() => couples.value.length)
-const publicationsToComplete = computed(() => couples.value.filter(item => publicationCount(item) < 3).length)
+const casesWithPublications = computed(() => couples.value.filter(item => publicationCount(item) > 0).length)
 
 async function load() {
   loading.value = true
@@ -222,21 +220,37 @@ onMounted(load)
       </div>
     </div>
 
-    <div class="overflow-hidden rounded-md border border-[#C2BAB0] bg-white">
+    <div class="print-area overflow-hidden rounded-md border border-[#C2BAB0] bg-white">
+      <div class="hidden print-only px-8 pt-6 pb-4">
+        <div class="text-center">
+          <div class="text-xs font-bold uppercase tracking-[0.18em] text-[#6B655D]">EcclesiaConnect · Administration</div>
+          <h2 class="mt-2 font-serif text-2xl text-[#2E2925]">Registre des bans de mariage</h2>
+          <p class="mt-1 text-sm text-[#6B655D]">Tableau de suivi des dossiers et des publications des bans</p>
+        </div>
+      </div>
       <div class="flex flex-wrap items-center gap-4 border-b border-[#DDD7CF] px-5 py-3">
         <div>
           <div class="text-xl font-bold text-[#2E2925]">Bans de mariage</div>
-          <div class="text-[13.5px] text-[#6B655D]">
-            {{ totalCases }} dossier(s) · {{ publicationsToComplete }} dossier(s) avec des publications à compléter
+          <div class="truncate text-[12.5px] text-[#6B655D]">
+            {{ totalCases }} dossier(s) · {{ casesWithPublications }} avec publication(s) enregistrée(s)
           </div>
         </div>
-        <button
-          type="button"
-          class="ml-auto inline-flex min-h-[38px] items-center gap-2 rounded bg-[#14345E] px-4 text-sm font-bold text-white transition hover:bg-[#0E2A4E]"
-          @click="openNew"
-        >
-          <Plus :size="17" /> Ouvrir un dossier
-        </button>
+        <div class="ml-auto flex items-center gap-2">
+          <button
+            type="button"
+            class="inline-flex min-h-[38px] items-center gap-2 rounded border border-[#C2BAB0] bg-white px-3 text-sm font-semibold text-[#2E2925] transition hover:bg-[#F7F5F2]"
+            @click="window.print()"
+          >
+            <Printer :size="16" /> Imprimer le tableau
+          </button>
+          <button
+            type="button"
+            class="inline-flex min-h-[38px] items-center gap-2 rounded bg-[#14345E] px-4 text-sm font-bold text-white transition hover:bg-[#0E2A4E]"
+            @click="openNew"
+          >
+            <Plus :size="17" /> Ouvrir un dossier
+          </button>
+        </div>
       </div>
 
       <div v-if="error && !selected && !showNew" class="m-4 rounded border border-[#B3261E]/30 bg-[#FFF5F4] p-3 text-sm text-[#B3261E]">{{ error }}</div>
@@ -244,53 +258,53 @@ onMounted(load)
       <div v-if="loading" class="p-12 text-center text-sm text-[#6B655D]">Chargement des dossiers…</div>
 
       <div v-else class="overflow-x-auto">
-        <table class="w-full min-w-[1180px] text-[14px]">
-          <thead class="bg-[#F7F5F2] text-left text-xs font-bold uppercase tracking-[0.05em] text-[#6B655D]">
+        <table class="w-full min-w-[980px] table-fixed text-[13px]">
+          <thead class="bg-[#F7F5F2] text-left text-[11px] font-bold uppercase tracking-[0.04em] text-[#6B655D]">
             <tr>
-              <th class="px-4 py-3">Fiancés</th>
-              <th class="w-[150px] px-3 py-3">Célébration</th>
-              <th class="w-[350px] px-3 py-3">Pièces requises</th>
-              <th class="w-[240px] px-3 py-3">Publication des bans</th>
-              <th class="w-[150px] px-3 py-3">Célébrant</th>
-              <th class="w-[100px] px-3 py-3">Action</th>
+              <th class="w-[18%] px-3 py-3">Fiancés</th>
+              <th class="w-[14%] px-2 py-3">Célébration</th>
+              <th class="w-[28%] px-2 py-3">Pièces requises</th>
+              <th class="w-[23%] px-2 py-3">Publication des bans</th>
+              <th class="w-[12%] px-2 py-3">Célébrant</th>
+              <th class="w-[5%] px-2 py-3">Action</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="item in couples" :key="item.id" class="border-t border-[#EDE9E4] align-top hover:bg-[#FCFBFA]">
-              <td class="px-4 py-4">
-                <div class="font-semibold text-[#2E2925]">{{ item.groomName }}</div>
+              <td class="px-3 py-3">
+                <div class="truncate font-semibold text-[#2E2925]">{{ item.groomName }}</div>
                 <div class="text-[13.5px] text-[#6B655D]">et {{ item.brideName }}</div>
               </td>
-              <td class="px-3 py-4 tabular-nums">
+              <td class="px-2 py-3 tabular-nums">
                 {{ formatDate(item.celebrationDate) }}
-                <div class="text-[13px] text-[#6B655D]">{{ item.celebrationTime || 'Heure à définir' }}</div>
+                <div class="text-[12px] text-[#6B655D]">{{ item.celebrationTime || 'Heure à définir' }}</div>
               </td>
-              <td class="px-3 py-4">
-                <div class="flex flex-wrap gap-1.5">
-                  <span v-for="doc in documents(item)" :key="doc.label" class="rounded-xl px-2 py-0.5 text-[12px] font-semibold" :class="statusClass(doc.status)">
-                    {{ doc.label }} · {{ statusLabel(doc.status) }}
+              <td class="px-2 py-3">
+                <div class="flex flex-wrap gap-1">
+                  <span v-for="doc in documents(item)" :key="doc.label" class="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[11px] font-semibold" :class="statusClass(doc.status)">
+                    {{ doc.label.replace('Confirmation ', 'Conf. ').replace('Baptême ', 'Bapt. ') }}
                   </span>
                 </div>
               </td>
-              <td class="px-3 py-4">
-                <div class="mb-1.5 flex gap-1">
-                  <span v-for="n in 3" :key="n" class="h-2 w-[30px] rounded" :class="n <= publicationCount(item) ? 'bg-[#14713C]' : 'bg-[#EDE9E4]'" />
+              <td class="px-2 py-3">
+                <div class="mb-1 flex items-center gap-1.5">
+                  <span v-for="n in 3" :key="n" class="h-1.5 w-5 rounded" :class="n <= publicationCount(item) ? 'bg-[#14713C]' : 'bg-[#EDE9E4]'" />
                 </div>
-                <div class="text-[13px] font-semibold" :class="publicationCount(item) === 3 ? 'text-[#14713C]' : publicationCount(item) ? 'text-[#8A5200]' : 'text-[#6B655D]'">
+                <div class="text-[12px] font-semibold whitespace-nowrap" :class="publicationCount(item) === 3 ? 'text-[#14713C]' : publicationCount(item) ? 'text-[#8A5200]' : 'text-[#6B655D]'">
                   {{ publicationText(item) }}
                 </div>
-                <div v-if="item.publication1Date || item.publication2Date || item.publication3Date" class="mt-1 text-[12px] text-[#6B655D]">
+                <div v-if="item.publication1Date || item.publication2Date || item.publication3Date" class="mt-1 truncate text-[11px] text-[#6B655D]">
                   <span v-if="item.publication1Date">1 : {{ formatDate(item.publication1Date) }}</span>
                   <span v-if="item.publication2Date"> · 2 : {{ formatDate(item.publication2Date) }}</span>
                   <span v-if="item.publication3Date"> · 3 : {{ formatDate(item.publication3Date) }}</span>
                 </div>
               </td>
-              <td class="px-3 py-4">
+              <td class="px-2 py-3">
                 <span :class="item.celebrantName ? 'text-[#2E2925]' : 'font-semibold text-[#8A5200]'">
                   {{ item.celebrantName || 'À définir' }}
                 </span>
               </td>
-              <td class="px-3 py-4">
+              <td class="px-2 py-3">
                 <button type="button" class="font-semibold text-[#A84A28] hover:underline" @click="openCase(item)">
                   Ouvrir
                 </button>
@@ -303,12 +317,11 @@ onMounted(load)
         </table>
       </div>
 
-      <div class="flex items-start gap-2.5 border-t border-[#EDE9E4] bg-[#FDF3DC] px-4 py-3 text-[13.5px] leading-5 text-[#2E2925]">
-        <CalendarDays :size="19" class="mt-0.5 shrink-0 text-[#8A5200]" />
+      <div class="flex items-start gap-2.5 border-t border-[#EDE9E4] bg-[#FDF3DC] px-4 py-3 text-[13px] leading-5 text-[#2E2925] screen-only">
+        <CalendarDays :size="18" class="mt-0.5 shrink-0 text-[#8A5200]" />
         <div>
-          <strong>Publication des bans :</strong> dans cette vue, une publication est une date réellement renseignée pour une lecture/affichage du ban.
-          Les trois étapes sont suivies séparément afin de savoir ce qui a déjà été publié et ce qui reste à faire.
-          Les règles et le nombre de publications applicables à la paroisse doivent être confirmés par le responsable avant validation finale.
+          <strong>Publication des bans :</strong> une date enregistrée signifie qu'une publication a été effectivement réalisée.
+          Les emplacements « Publication 1 », « Publication 2 » et « Publication 3 » sont des champs de suivi facultatifs : ne renseignez que ceux qui correspondent à la procédure appliquée par votre paroisse.
         </div>
       </div>
     </div>
@@ -566,3 +579,37 @@ onMounted(load)
     </div>
   </section>
 </template>
+
+<style>
+@media print {
+  @page { size: landscape; margin: 10mm; }
+  body * { visibility: hidden !important; }
+  .print-area, .print-area * { visibility: visible !important; }
+  .print-area {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+  .print-only { display: block !important; }
+  .screen-only { display: none !important; }
+  .print-area table {
+    min-width: 0 !important;
+    width: 100% !important;
+    table-layout: fixed !important;
+    font-size: 10px !important;
+  }
+  .print-area th, .print-area td {
+    padding: 5px 6px !important;
+    overflow-wrap: anywhere;
+  }
+  .print-area tbody tr { break-inside: avoid; }
+  .print-area .truncate {
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+  }
+}
+</style>
