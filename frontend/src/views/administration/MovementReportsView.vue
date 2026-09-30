@@ -1,4 +1,4 @@
-<!-- patched by assistant: see full existing implementation with safe first movement selection -->
+<!-- patched by assistant: safe first movement selection -->
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { Download, RefreshCw, Users, ClipboardList, Wallet, MessageSquare, FileText } from 'lucide-vue-next'
