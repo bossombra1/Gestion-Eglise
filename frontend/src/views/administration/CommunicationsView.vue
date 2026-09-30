@@ -24,7 +24,7 @@ const charCount = computed(() => message.value.length)
 const smsCount = computed(() => Math.max(1, Math.ceil(charCount.value / 160)))
 const selectedMovement = computed(() => movements.value.find(m => m.id === movement.value))
 const audienceCount = computed(() => audience.value === 'all' ? movements.value.reduce((n,m)=>n+(m._count?.members??0),0) : selectedMovement.value?._count?.members ?? 0)
-const audienceLabel = computed(() => ({ all: 'Tous les fidèles inscrits', 'movement-parents': 'Parents d’un mouvement', 'movement-members': 'Membres d’un mouvement', donors: 'Donateurs d’un projet' } as Record<string,string>)[audience.value] ?? audience.value)
+const audienceLabel = computed(() => ({ all: 'Tous les fidèles inscrits', 'movement-parents': 'Parents d’un mouvement', 'movement-members': 'Membres d’un mouvement' } as Record<string,string>)[audience.value] ?? audience.value)
 
 async function load() {
   loading.value = true
@@ -98,7 +98,6 @@ onMounted(load)
             {id:'all',label:'Tous les fidèles inscrits'},
             {id:'movement-parents',label:'Parents d’un mouvement'},
             {id:'movement-members',label:'Membres d’un mouvement'},
-            {id:'donors',label:'Donateurs d’un projet'}
           ]" :key="item.id" class="flex min-h-11 items-center gap-2.5 border px-3 text-left text-[14.5px]" :class="audience===item.id ? 'border-2 border-[#14345E] bg-[#E8EDF5] text-[#14345E]' : 'border-[#DDD7CF] bg-white text-[#2E2925]'" @click="audience=item.id">
             <span class="size-[17px] shrink-0 rounded-full border-2" :class="audience===item.id ? 'border-[5px] border-[#14345E] bg-white' : 'border-[#C2BAB0]'"></span>
             <span class="min-w-0 flex-1">{{ item.label }}</span>
