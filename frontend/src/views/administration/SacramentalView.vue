@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { FileText, Plus, Search, X, AlertTriangle } from 'lucide-vue-next'
 import { sacramentalApi, type SacramentalAct, type SacramentalPerson } from '@/services/administration-sacramental.service'
-const query=ref(''); const selected=ref(0); const showNewAct=ref(false); const people=ref<{name:string;birth:string;acts:number;id:string}[]>([]); const acts=ref<SacramentalAct[]>([]); const form=ref({personId:'',type:'BAPTISM',celebrationDate:'',celebrantName:'',place:'',registerNumber:'',certificateNumber:''}); const error=ref('')
+const query=ref(''); const selected=ref(0); const showNewAct=ref(false); const people=ref<{name:string;birth:string;acts:number;id:string}[]>([]); const acts=ref<SacramentalAct[]>([]); const form=ref({firstName:'',lastName:'',personId:'',type:'BAPTISM',celebrationDate:'',celebrantName:'',place:'',registerNumber:'',certificateNumber:''}); const error=ref('')
 const filtered=computed(()=>{const q=query.value.trim().toLowerCase();return q?people.value.filter(p=>p.name.toLowerCase().includes(q)):people.value})
 const person=computed(()=>filtered.value[selected.value]??people.value[0])
 const selectedActs=computed(()=>acts.value.filter(a=>a.personId===person.value?.id))
