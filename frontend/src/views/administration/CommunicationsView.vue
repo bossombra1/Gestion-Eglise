@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Bell, Clock3, Info, Megaphone, Paperclip, PaperPlane, Send, Users, X } from 'lucide-vue-next'
+import { Bell, Clock3, Info, Megaphone, Paperclip, Send, Users } from 'lucide-vue-next'
 
 const audience = ref('movement-parents')
 const movement = ref('Scouts et Guides')
