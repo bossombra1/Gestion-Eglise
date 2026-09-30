@@ -170,6 +170,8 @@ model User {
 
   massIntentions MassIntention[] @relation("MassIntentionRequester")
 
+  sacramentalActs SacramentalAct[]
+
   createdAt               DateTime                 @default(now())
   updatedAt               DateTime                 @updatedAt
   communicationRecipients CommunicationRecipient[]
