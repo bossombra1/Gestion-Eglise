@@ -23,6 +23,12 @@ import AdministrationActivityView from '@/views/administration/ActivityView.vue'
 import AdministrationRegistrationsView from '@/views/administration/RegistrationsView.vue'
 import AdministrationDocumentsView from '@/views/administration/DocumentsView.vue'
 import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue'
+import AdministrationFinancesView from '@/views/administration/FinancesView.vue'
+import AdministrationCommunicationsView from '@/views/administration/CommunicationsView.vue'
+import AdministrationIntentionsView from '@/views/administration/IntentionsView.vue'
+import AdministrationAgendaView from '@/views/administration/AgendaView.vue'
+import AdministrationSettingsView from '@/views/administration/SettingsView.vue'
+import AdministrationReportsView from '@/views/administration/ReportsView.vue'
 
 const movementRoles = ['MOVEMENT_MANAGER']
 const administrationRoles = ['ADMIN_PARISH']
@@ -63,6 +69,12 @@ const router = createRouter({
         { path: 'activite', component: AdministrationActivityView },
         { path: 'inscriptions', component: AdministrationRegistrationsView },
         { path: 'documents', component: AdministrationDocumentsView },
+        { path: 'finances', component: AdministrationFinancesView },
+        { path: 'communications', component: AdministrationCommunicationsView },
+        { path: 'intentions', component: AdministrationIntentionsView },
+        { path: 'agenda', component: AdministrationAgendaView },
+        { path: 'parametres', component: AdministrationSettingsView },
+        { path: 'rapports', component: AdministrationReportsView },
         { path: ':module', component: AdministrationModulePlaceholderView },
       ],
     },
