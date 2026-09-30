@@ -27,7 +27,7 @@ async function load() {
   try {
     movements.value = await administrationMovementsApi.list()
     const firstMovement = movements.value[0]
-    if (!movementId.value && firstMovement) movementId.value = firstMovement.id
+    if (!movementId.value && firstMovement) { movementId.value = firstMovement.id }
     await loadReport()
   } catch { error.value = 'Impossible de charger les mouvements.'; loading.value = false }
 }
