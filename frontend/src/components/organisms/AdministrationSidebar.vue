@@ -10,7 +10,7 @@ const items = [
   { to: '/administration/intentions', label: 'Intentions', icon: Megaphone },
   { to: '/administration/registres', label: 'Registres', icon: BookOpen },
   { to: '/administration/bans', label: 'Bans de mariage', icon: Heart },
-  { to: '/administration/rapports-mouvements', label: 'Inscriptions', icon: BarChart3 },
+  { to: '/administration/rapports-mouvements', label: 'Rapports des mouvements', icon: BarChart3 },
   { to: '/administration/communications', label: 'Communication', icon: MessageSquare },
 ]
 </script>
