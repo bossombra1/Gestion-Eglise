@@ -189,7 +189,7 @@ const publicationBars = computed(() => (couple: Couple) =>
 
           <div class="mt-3 rounded border border-[#EDE9E4] p-3">
             <div class="mb-1.5 grid grid-cols-7 gap-1 text-center text-[11.5px] text-[#6B655D]">
-              <div v-for="day in ['L','M','M','J','V','S','D']" :key="day + Math.random()">{{ day }}</div>
+              <div v-for="(day, index) in ['L','M','M','J','V','S','D']" :key="index">{{ day }}</div>
             </div>
             <div class="grid grid-cols-7 gap-1 text-center text-[13px] text-[#2E2925]">
               <template v-for="(day, index) in [28,29,30,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,1]" :key="index">
