@@ -9,28 +9,15 @@ const dashboard = ref<AdministrationDashboard | null>(null)
 const loading = ref(true)
 const error = ref('')
 
-const kpis = computed(() => [
-  {
-    label: 'Mouvements actifs',
-    value: dashboard.value ? String(dashboard.value.movements.active) : '—',
-    hint: dashboard.value ? `${dashboard.value.movements.total} au total` : 'Chargement...',
-  },
-  {
-    label: 'Inscriptions en cours',
-    value: dashboard.value ? String(dashboard.value.registrations.pending) : '—',
-    hint: dashboard.value ? `${dashboard.value.registrations.total} au total` : 'Chargement...',
-  },
-  {
-    label: 'Demandes de messe',
-    value: dashboard.value ? String(dashboard.value.massIntentions.total) : '—',
-    hint: dashboard.value ? `${dashboard.value.massIntentions.pending} en attente` : 'Chargement...',
-  },
-  {
-    label: 'Utilisateurs actifs',
-    value: dashboard.value ? String(dashboard.value.users.active) : '—',
-    hint: dashboard.value ? `${dashboard.value.users.total} au total` : 'Chargement...',
-  },
-])
+const kpis = computed(() => {
+  const data = dashboard.value
+  return [
+    { label: 'Intentions à valider', value: data ? String(data.massIntentions.pending) : '—', hint: data ? `${data.massIntentions.total} demandes au total` : 'Chargement...', tone: 'warning', to: '/administration/intentions' },
+    { label: 'Mouvements actifs', value: data ? String(data.movements.active) : '—', hint: data ? `${data.movements.total} mouvements au total` : 'Chargement...', tone: 'success', to: '/administration/rapports-mouvements' },
+    { label: 'Dossiers d’inscription', value: data ? String(data.registrations.pending) : '—', hint: data ? `${data.registrations.total} dossiers au total` : 'Chargement...', tone: 'blue', to: '/administration/rapports-mouvements' },
+    { label: 'Utilisateurs actifs', value: data ? String(data.users.active) : '—', hint: data ? `${data.users.total} utilisateurs au total` : 'Chargement...', tone: 'accent', to: '/administration/parametres' },
+  ]
+})
 
 const links = [
   { to: '/administration/intentions', label: 'Gérer les intentions', description: 'Demandes de messe à traiter', icon: Megaphone },
