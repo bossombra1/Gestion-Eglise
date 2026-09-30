@@ -45,7 +45,7 @@ onMounted(async () => {
       <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p class="eyebrow text-[#C25A34]">Gestion du mouvement</p>
-          <h1 class="page-title mt-1 text-4xl text-[#0B1F3A]">Mon mouvement</h1>
+          <h1 class="page-title mt-1 text-3xl sm:text-4xl text-[#0B1F3A]">Mon mouvement</h1>
           <p class="mt-2 text-[#6B655D]">Les mouvements qui vous sont confiés et leur périmètre de gestion.</p>
         </div>
         <button
