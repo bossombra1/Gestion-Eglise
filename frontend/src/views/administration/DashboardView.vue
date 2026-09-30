@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { ArrowRight, BarChart3, ClipboardList, FileText, MessageSquare, Receipt, Users } from 'lucide-vue-next'
+import { ArrowRight, ClipboardList, FileText, MessageSquare, Megaphone, BookOpen, Heart, Users } from 'lucide-vue-next'
 import { RouterLink } from 'vue-router'
 import StatCard from '@/components/molecules/StatCard.vue'
 import { administrationApi, type AdministrationDashboard } from '@/services/administration.service'
@@ -8,9 +8,6 @@ import { administrationApi, type AdministrationDashboard } from '@/services/admi
 const dashboard = ref<AdministrationDashboard | null>(null)
 const loading = ref(true)
 const error = ref('')
-
-const formatAmount = (amount: number, currency = 'XOF') =>
-  new Intl.NumberFormat('fr-FR').format(amount) + (currency === 'XOF' ? ' FCFA' : ` ${currency}`)
 
 const kpis = computed(() => [
   {
@@ -24,9 +21,9 @@ const kpis = computed(() => [
     hint: dashboard.value ? `${dashboard.value.registrations.total} au total` : 'Chargement...',
   },
   {
-    label: 'Cotisations encaissées',
-    value: dashboard.value ? formatAmount(dashboard.value.payments.totalAmount, dashboard.value.payments.currency) : '—',
-    hint: dashboard.value ? `${dashboard.value.payments.successful} paiements réussis` : 'Chargement...',
+    label: 'Demandes de messe',
+    value: dashboard.value ? String(dashboard.value.massIntentions.total) : '—',
+    hint: dashboard.value ? `${dashboard.value.massIntentions.pending} en attente` : 'Chargement...',
   },
   {
     label: 'Utilisateurs actifs',
@@ -36,12 +33,11 @@ const kpis = computed(() => [
 ])
 
 const links = [
-  { to: '/administration/mouvements', label: 'Piloter les mouvements', description: 'Catalogue et responsables', icon: Users },
-  { to: '/administration/inscriptions', label: 'Suivre les inscriptions', description: 'Vue consolidée, sans remplacer le responsable', icon: ClipboardList },
-  { to: '/administration/finances', label: 'Superviser les finances', description: 'Cotisations, dons et paiements', icon: Receipt },
-  { to: '/administration/rapports', label: 'Consulter les rapports', description: 'Rapports transmis par les responsables', icon: FileText },
+  { to: '/administration/intentions', label: 'Gérer les intentions', description: 'Demandes de messe à traiter', icon: Megaphone },
+  { to: '/administration/registres', label: 'Consulter les registres', description: 'Registre sacramentel', icon: BookOpen },
+  { to: '/administration/bans', label: 'Suivre les bans', description: 'Bans de mariage', icon: Heart },
+  { to: '/administration/inscriptions', label: 'Suivre les inscriptions', description: 'Inscriptions aux mouvements', icon: Users },
   { to: '/administration/communications', label: 'Publier une communication', description: 'Annonces et campagnes', icon: MessageSquare },
-  { to: '/administration/activite', label: 'Voir l’activité', description: 'Indicateurs par mouvement', icon: BarChart3 },
 ]
 
 const loadDashboard = async () => {
@@ -70,8 +66,8 @@ onMounted(loadDashboard)
             {{ dashboard?.parish.name ?? 'Votre paroisse' }} · vue consolidée de l’activité paroissiale.
           </p>
         </div>
-        <RouterLink to="/administration/rapports" class="inline-flex min-h-11 items-center justify-center gap-2 bg-[#C25A34] px-4 text-sm font-semibold text-white hover:bg-[#A84A28]">
-          Voir les rapports <ArrowRight class="size-4" />
+        <RouterLink to="/administration/intentions" class="inline-flex min-h-11 items-center justify-center gap-2 bg-[#C25A34] px-4 text-sm font-semibold text-white hover:bg-[#A84A28]">
+          Voir les intentions <ArrowRight class="size-4" />
         </RouterLink>
       </div>
     </header>
@@ -85,13 +81,13 @@ onMounted(loadDashboard)
       <StatCard v-for="item in kpis" :key="item.label" :label="item.label" :value="item.value" :hint="item.hint" />
     </div>
 
-    <div class="grid gap-6 xl:grid-cols-[1.35fr_.65fr]">
+    <div class="grid gap-6">
       <article class="border border-[#C2BAB0] bg-white">
         <div class="border-b border-[#DDD7CF] px-5 py-5 sm:px-6">
           <p class="eyebrow text-[#6B655D]">Pilotage</p>
           <h2 class="page-title mt-1 text-2xl text-[#14345E]">Actions de supervision</h2>
         </div>
-        <nav class="grid divide-y divide-[#EDE9E4] sm:grid-cols-2 sm:divide-y-0">
+        <nav class="grid divide-y divide-[#EDE9E4] sm:grid-cols-2 lg:grid-cols-3 sm:divide-y-0">
           <RouterLink v-for="item in links" :key="item.to" :to="item.to" class="flex min-h-28 items-start gap-3 border-b border-[#EDE9E4] p-5 hover:bg-[#F7F5F2] sm:border-r">
             <component :is="item.icon" class="mt-1 size-5 shrink-0 text-[#C25A34]" />
             <span>
@@ -104,8 +100,8 @@ onMounted(loadDashboard)
       </article>
 
       <article class="border border-[#C2BAB0] bg-white p-5 sm:p-6">
-        <p class="eyebrow text-[#6B655D]">Activité</p>
-        <h2 class="page-title mt-1 text-2xl text-[#14345E]">Mouvements</h2>
+        <p class="eyebrow text-[#6B655D]">Mouvements</p>
+        <h2 class="page-title mt-1 text-2xl text-[#14345E]">Vue consolidée</h2>
         <div v-if="loading" class="mt-5 text-sm text-[#6B655D]">Chargement...</div>
         <div v-else class="mt-5 space-y-3">
           <div v-for="movement in dashboard?.movementActivity" :key="movement.id" class="flex items-center justify-between border-b border-[#EDE9E4] pb-3 last:border-0">
