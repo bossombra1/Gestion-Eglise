@@ -152,6 +152,7 @@ model Parish {
   communications Communication[]
   notifications  Notification[]
   massIntentions MassIntention[]
+  sacramentalActs SacramentalAct[]
   marriageCases MarriageCase[]
 
   createdAt DateTime @default(now())
@@ -196,7 +197,6 @@ model User {
 
   massIntentions MassIntention[] @relation("MassIntentionRequester")
 
-  sacramentalActs SacramentalAct[]
 
   createdAt               DateTime                 @default(now())
   updatedAt               DateTime                 @updatedAt
