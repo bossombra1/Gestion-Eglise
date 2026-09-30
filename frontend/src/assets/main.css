@@ -14,22 +14,115 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  html, body, #app { min-height: 100%; margin: 0; }
+  html, body, #app {
+    min-height: 100%;
+    margin: 0;
+  }
 
-  body { min-width: 320px; background: #f7f5f2; }
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
 
-  button, input, textarea, select { font: inherit; }
-  button { cursor: pointer; }
-  a { color: inherit; text-decoration: none; }
+  body {
+    min-width: 320px;
+    max-width: 100%;
+    overflow-x: hidden;
+    background: #f7f5f2;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  img, svg, video, canvas {
+    max-width: 100%;
+  }
+
+  img, video {
+    height: auto;
+  }
+
+  button, input, textarea, select {
+    font: inherit;
+    max-width: 100%;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  textarea {
+    resize: vertical;
+  }
 
   :focus-visible {
     outline: 3px solid rgba(194, 90, 52, .35);
     outline-offset: 2px;
   }
+
+  @media (max-width: 640px) {
+    input, textarea, select, button {
+      font-size: 16px;
+    }
+  }
 }
 
 @layer components {
-  .app-container { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: 1.5rem; }
-  .page-title { font-family: 'Source Serif 4', serif; font-weight: 600; letter-spacing: -.025em; }
-  .eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .app-container {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .page-title {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    letter-spacing: -.025em;
+    overflow-wrap: anywhere;
+  }
+
+  .eyebrow {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .responsive-table {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .responsive-table > table {
+    min-width: 720px;
+  }
+
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 1023px) {
+  .app-container {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1536px) {
+  .app-container {
+    max-width: 1536px;
+  }
 }
