@@ -40,7 +40,7 @@ router.post('/intentions/:id/cash',async(req,res,next)=>{try{
      transactionReference,
      paidAt:new Date(),
      createdById:req.user!.id,
-     metadata:{massIntentionId:id,source:'ADMINISTRATION_CASH_COUNTER',note:note||undefined},
+     metadata:{massIntentionId:id,source:'ADMINISTRATION_CASH_COUNTER',...(note ? {note} : {})},
    }})
    const updated=await tx.massIntention.updateMany({where:{id,parishId,status:'PENDING'},data:{status:'CONFIRMED'}})
    if(!updated.count)throw new Error('L’intention a déjà été traitée.')
