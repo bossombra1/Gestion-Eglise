@@ -87,7 +87,7 @@ onMounted(async () => {
   <section class="space-y-6">
     <div class="border-b border-[#C2BAB0] pb-5">
       <p class="eyebrow text-[#C25A34]">Responsable de mouvement</p>
-      <h1 class="page-title mt-1 text-4xl text-[#0B1F3A]">Communications</h1>
+      <h1 class="page-title mt-1 text-3xl sm:text-4xl text-[#0B1F3A]">Communications</h1>
       <p class="mt-2 text-[#6B655D]">Diffusez les informations du mouvement et consultez l’historique des communications envoyées.</p>
     </div>
 
