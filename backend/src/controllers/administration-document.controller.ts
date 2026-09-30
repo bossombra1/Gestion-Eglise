@@ -27,7 +27,7 @@ export const getDocuments = async (req: Request, res: Response, next: NextFuncti
 
 export const downloadDocument = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const document = await administrationDocumentService.getFile(getParishId(req), req.params.id)
+    const document = await administrationDocumentService.getFile(getParishId(req), typeof req.params.id === 'string' ? req.params.id : Array.isArray(req.params.id) ? req.params.id[0] : '' )
     return res.download(document.filePath, document.fileName, {
       headers: { 'Content-Type': document.mimeType ?? 'application/octet-stream' },
     })
