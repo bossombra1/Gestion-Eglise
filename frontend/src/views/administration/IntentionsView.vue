@@ -297,7 +297,12 @@ onMounted(load)
 
       <div v-if="loading" class="p-10 text-center text-sm text-[#6B655D]">Chargement des intentions…</div>
 
-      <div v-else class="responsive-table">
+      <div v-else class="responsive-table print-sheet">
+        <div class="print-sheet-title">
+          <h2>Feuille des intentions de messe</h2>
+          <p>{{ new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }).format(new Date()) }}</p>
+        </div>
+
         <table class="min-w-[1080px] w-full border-collapse font-sans text-sm">
           <thead class="bg-white text-left">
             <tr class="border-b border-[#EDE9E4] text-[12px] uppercase tracking-wide text-[#6B655D]">
@@ -456,19 +461,85 @@ onMounted(load)
 </template>
 
 <style scoped>
+.print-sheet-title {
+  display: none;
+}
+
 @media print {
-  section > div:first-child {
-    border: 0;
+  @page {
+    size: A4 landscape;
+    margin: 12mm;
   }
 
-  section > div:first-child > div:not(:nth-child(2)),
-  section > div:first-child > div:last-child,
-  section > p {
-    display: none !important;
-  }
-
-  body {
+  :global(body) {
     background: white !important;
+  }
+
+  :global(body > *) {
+    visibility: hidden !important;
+  }
+
+  :global(body > * *) {
+    visibility: hidden !important;
+  }
+
+  :global(.print-sheet),
+  :global(.print-sheet *) {
+    visibility: visible !important;
+  }
+
+  :global(.print-sheet) {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: white !important;
+  }
+
+  .print-sheet-title {
+    display: block;
+    margin-bottom: 10mm;
+    text-align: center;
+  }
+
+  .print-sheet-title h2 {
+    margin: 0;
+    font-size: 18pt;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .print-sheet-title p {
+    margin: 3mm 0 0;
+    font-size: 10pt;
+    color: #333;
+    text-transform: capitalize;
+  }
+
+  .print-sheet table {
+    width: 100% !important;
+    min-width: 0 !important;
+    border-collapse: collapse !important;
+    font-size: 9pt !important;
+  }
+
+  .print-sheet th,
+  .print-sheet td {
+    border: 1px solid #777 !important;
+    padding: 6px !important;
+    color: #000 !important;
+    background: white !important;
+  }
+
+  .print-sheet thead {
+    display: table-header-group;
+  }
+
+  .print-sheet tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }
 </style>
