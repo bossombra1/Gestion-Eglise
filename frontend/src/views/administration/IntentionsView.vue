@@ -42,7 +42,7 @@ const statusFilter = ref<'ALL' | IntentionStatus>('PENDING')
 const typeFilter = ref('ALL')
 const dateFilter = ref('ALL')
 const page = ref(1)
-const pageSize = ref(9)
+const pageSize = ref(4)
 const confirmOpen = ref(false)
 const confirmMode = ref<'CONFIRM' | 'CANCEL'>('CONFIRM')
 const pendingActionIds = ref<string[]>([])
@@ -237,13 +237,13 @@ onMounted(load)
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center gap-2 border-b border-[#EDE9E4] bg-white px-5 py-2.5">
-        <label class="flex h-9 w-full max-w-[250px] items-center gap-2 rounded border-[1.5px] border-[#C2BAB0] bg-white px-3">
+      <div class="flex flex-wrap items-center gap-2 border-b border-[#EDE9E4] bg-white px-4 py-2.5">
+        <label class="flex min-h-12 w-full max-w-[360px] items-center gap-2 rounded border-[1.5px] border-[#C2BAB0] bg-white px-3">
           <Search class="size-4 text-[#6B655D]" />
           <input v-model="search" class="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-[#9A9289]" placeholder="Rechercher un nom, un reçu…" />
         </label>
 
-        <label class="flex h-9 items-center gap-2 rounded border-[1.5px] border-[#C2BAB0] bg-white px-3 text-sm text-[#2E2925]">
+        <label class="flex min-h-12 items-center gap-2 rounded border-[1.5px] border-[#C2BAB0] bg-white px-3 text-sm text-[#2E2925]">
           <CalendarDays class="size-4 text-[#14345E]" />
           <select v-model="dateFilter" class="bg-transparent outline-none">
             <option value="ALL">Toutes les dates</option>
@@ -320,7 +320,7 @@ onMounted(load)
             <tr
               v-for="item in paginated"
               :key="item.id"
-              class="border-b border-[#EDE9E4] transition hover:bg-[#F7F5F2]"
+              class="min-h-[76px] border-b border-[#EDE9E4] transition hover:bg-[#F7F5F2]"
               :class="selectedIds.includes(item.id) ? 'bg-[#E8EDF5]' : ''"
             >
               <td class="px-3 py-3">
@@ -382,7 +382,7 @@ onMounted(load)
         </table>
       </div>
 
-      <div class="flex flex-col gap-3 border-t border-[#EDE9E4] bg-white px-5 py-3 text-[13.5px] text-[#4A443E] sm:flex-row sm:items-center">
+      <div class="flex flex-col gap-3 border-t border-[#EDE9E4] bg-white px-4 py-3 text-[13.5px] text-[#4A443E] sm:flex-row sm:items-center">
         <div>Lignes {{ filtered.length ? (page - 1) * pageSize + 1 : 0 }} à {{ Math.min(page * pageSize, filtered.length) }} sur {{ filtered.length }}</div>
         <div class="flex items-center gap-2">
           Afficher
