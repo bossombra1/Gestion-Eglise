@@ -2,14 +2,12 @@
 import { RouterLink } from 'vue-router'
 import {
   Bell,
-  CalendarDays,
-  FileText,
-  FolderOpen,
+  BookOpen,
+  Heart,
   LayoutDashboard,
   MessageSquare,
-  Receipt,
+  Megaphone,
   Settings,
-  Users,
   X,
 } from 'lucide-vue-next'
 
@@ -18,14 +16,11 @@ const emit = defineEmits<{ close: [] }>()
 
 const items = [
   { to: '/administration/dashboard', label: 'Tableau de bord', icon: LayoutDashboard },
-  { to: '/administration/utilisateurs', label: 'Utilisateurs', icon: Users },
-  { to: '/administration/mouvements', label: 'Mouvements & rapports', icon: Users },
-  { to: '/administration/documents', label: 'Documents', icon: FolderOpen },
-  { to: '/administration/finances', label: 'Finances', icon: Receipt },
-  { to: '/administration/communications', label: 'Communications', icon: MessageSquare },
-  { to: '/administration/agenda', label: 'Agenda', icon: CalendarDays },
-  { to: '/administration/intentions', label: 'Intentions de messe', icon: Bell },
-  { to: '/administration/rapports', label: 'Rapports', icon: FileText },
+  { to: '/administration/intentions', label: 'Intentions', icon: Megaphone },
+  { to: '/administration/registres', label: 'Registres', icon: BookOpen },
+  { to: '/administration/bans', label: 'Bans de mariage', icon: Heart },
+  { to: '/administration/inscriptions', label: 'Inscriptions aux mouvements', icon: Users },
+  { to: '/administration/communications', label: 'Communication', icon: MessageSquare },
   { to: '/administration/parametres', label: 'Paramètres', icon: Settings },
 ]
 </script>
