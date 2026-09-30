@@ -8,6 +8,7 @@ import communicationRouter from './communication.routes'
 import administrationRouter from './administration.routes'
 import administrationUserRouter from './administration-user.routes'
 import administrationMovementRouter from './administration-movement.routes'
+import administrationActivityRouter from './administration-activity.routes'
 
 const router = Router()
 
@@ -27,5 +28,6 @@ router.use('/communications', communicationRouter)
 router.use('/administration', administrationRouter)
 router.use('/administration/users', administrationUserRouter)
 router.use('/administration/mouvements', administrationMovementRouter)
+router.use('/administration/activite', administrationActivityRouter)
 
 export default router
