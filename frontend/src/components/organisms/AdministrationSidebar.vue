@@ -21,9 +21,8 @@ const emit = defineEmits<{ close: [] }>()
 const items = [
   { to: '/administration/dashboard', label: 'Tableau de bord', icon: LayoutDashboard },
   { to: '/administration/utilisateurs', label: 'Utilisateurs', icon: Users },
-  { to: '/administration/mouvements', label: 'Mouvements', icon: Users },
+  { to: '/administration/mouvements', label: 'Mouvements & rapports', icon: Users },
   { to: '/administration/activite', label: 'Activité des mouvements', icon: BarChart3 },
-  { to: '/administration/inscriptions', label: 'Suivi des inscriptions', icon: ClipboardList },
   { to: '/administration/documents', label: 'Documents', icon: FolderOpen },
   { to: '/administration/finances', label: 'Finances', icon: Receipt },
   { to: '/administration/communications', label: 'Communications', icon: MessageSquare },
