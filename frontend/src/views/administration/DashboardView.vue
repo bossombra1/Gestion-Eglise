@@ -36,7 +36,7 @@ const links = [
   { to: '/administration/intentions', label: 'Gérer les intentions', description: 'Demandes de messe à traiter', icon: Megaphone },
   { to: '/administration/registres', label: 'Consulter les registres', description: 'Registre sacramentel', icon: BookOpen },
   { to: '/administration/bans', label: 'Suivre les bans', description: 'Bans de mariage', icon: Heart },
-  { to: '/administration/inscriptions', label: 'Suivre les inscriptions', description: 'Inscriptions aux mouvements', icon: Users },
+  { to: '/administration/rapports-mouvements', label: 'Suivre les inscriptions', description: 'Rapports des mouvements', icon: Users },
   { to: '/administration/communications', label: 'Publier une communication', description: 'Annonces et campagnes', icon: MessageSquare },
 ]
 
