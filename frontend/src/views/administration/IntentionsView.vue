@@ -1,0 +1,8 @@
+<script setup lang="ts">
+import { onMounted,ref } from 'vue'
+import api from '@/services/api'
+const loading=ref(true),error=ref(''),data=ref<any[]>([])
+const load=async()=>{try{data.value=(await api.get('/administration/overview/intentions')).data.data}catch{error.value='Impossible de charger les données.'}finally{loading.value=false}}
+onMounted(load)
+</script>
+<template><section class="space-y-6"><header class="border border-[#C2BAB0] bg-white p-6"><p class="eyebrow text-[#C25A34]">Vie paroissiale</p><h1 class="page-title mt-2 text-3xl text-[#0B1F3A]">Intentions de messe</h1><p class="mt-2 text-sm text-[#6B655D]">Suivi administratif des demandes.</p></header><div v-if="loading" class="bg-white p-6">Chargement...</div><div v-else-if="error" class="bg-white p-6 text-[#B3261E]">{{error}}</div><div v-else class="overflow-x-auto border border-[#C2BAB0] bg-white"><table class="min-w-full text-sm"><thead><tr class="border-b bg-[#F7F5F2] text-left"><th class="p-4">Date</th><th class="p-4">Intention</th><th class="p-4">Demandeur</th><th class="p-4">Statut</th></tr></thead><tbody><tr v-for="i in data" :key="i.id" class="border-b"><td class="p-4">{{new Date(i.requestedDate).toLocaleDateString('fr-FR')}} {{i.timeSlot||''}}</td><td class="p-4">{{i.intention}}<span v-if="i.beneficiaryName"> · {{i.beneficiaryName}}</span></td><td class="p-4">{{i.requester ? i.requester.firstName+' '+i.requester.lastName : '—'}}</td><td class="p-4 font-semibold">{{i.status}}</td></tr></tbody></table></div></section></template>
