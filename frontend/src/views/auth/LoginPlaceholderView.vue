@@ -25,7 +25,8 @@ const route = useRoute()
 const auth = useAuthStore()
 async function submit() {
   if (await auth.login(email.value.trim(), password.value)) {
-    const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/mouvement/dashboard'
+    const defaultPath = auth.user?.role === 'ADMIN_PARISH' ? '/administration/dashboard' : '/mouvement/dashboard'
+    const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : defaultPath
     await router.replace(redirect)
   }
 }
