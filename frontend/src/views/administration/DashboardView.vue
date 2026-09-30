@@ -57,65 +57,84 @@ onMounted(loadDashboard)
 
 <template>
   <section class="space-y-6">
-    <header class="border border-[#C2BAB0] bg-white p-5 sm:p-7 lg:p-8">
-      <p class="eyebrow text-[#C25A34]">Administration paroissiale</p>
-      <div class="mt-2 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <h1 class="page-title text-3xl text-[#0B1F3A] sm:text-4xl lg:text-5xl">Tableau de bord</h1>
-          <p class="mt-3 max-w-3xl text-sm leading-6 text-[#6B655D]">
-            {{ dashboard?.parish.name ?? 'Votre paroisse' }} · vue consolidée de l’activité paroissiale.
-          </p>
-        </div>
-        <RouterLink to="/administration/intentions" class="inline-flex min-h-11 items-center justify-center gap-2 bg-[#C25A34] px-4 text-sm font-semibold text-white hover:bg-[#A84A28]">
-          Voir les intentions <ArrowRight class="size-4" />
-        </RouterLink>
+    <div class="mb-4 flex flex-col gap-2 border-b border-[#C2BAB0] pb-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C25A34]">Administration paroissiale</p>
+        <h1 class="mt-1 font-['Source_Serif_4'] text-[32px] font-semibold leading-none tracking-[-0.02em] text-[#2E2925] sm:text-[38px]">Tableau de bord</h1>
+        <p class="mt-2 text-[13.5px] leading-5 text-[#6B655D]">{{ dashboard?.parish.name ?? 'Votre paroisse' }} · activité consolidée du secrétariat.</p>
       </div>
-    </header>
+      <RouterLink to="/administration/intentions" class="inline-flex min-h-9 items-center justify-center gap-2 rounded-[5px] bg-[#14345E] px-3.5 text-[13.5px] font-bold text-white hover:bg-[#0E2A4E]">
+        <ArrowRight class="size-4" /> Voir les intentions
+      </RouterLink>
+    </div>
 
     <div v-if="error" class="border border-[#B3261E]/30 bg-[#FFF5F4] p-4 text-sm text-[#B3261E]">
       {{ error }}
       <button class="ml-2 font-semibold underline" @click="loadDashboard">Réessayer</button>
     </div>
 
-    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      <StatCard v-for="item in kpis" :key="item.label" :label="item.label" :value="item.value" :hint="item.hint" />
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <RouterLink v-for="item in kpis" :key="item.label" :to="item.to ?? '/administration/dashboard'" class="rounded-[5px] border border-[#EDE9E4] border-l-4 bg-white p-[13px_14px] transition hover:bg-[#FBFAF8]" :class="item.tone === 'warning' ? 'border-l-[#8A5200]' : item.tone === 'success' ? 'border-l-[#14713C]' : item.tone === 'blue' ? 'border-l-[#14345E]' : 'border-l-[#C25A34]'">
+        <div class="text-[12.5px] font-semibold uppercase tracking-[0.06em] text-[#6B655D]">{{ item.label }}</div>
+        <div class="mt-1 text-[34px] font-bold leading-none tabular-nums text-[#2E2925]">{{ item.value }}</div>
+        <div class="mt-2 text-[13.5px] text-[#4A443E]">{{ item.hint }}</div>
+      </RouterLink>
     </div>
 
-    <div class="grid gap-6">
-      <article class="border border-[#C2BAB0] bg-white">
-        <div class="border-b border-[#DDD7CF] px-5 py-5 sm:px-6">
-          <p class="eyebrow text-[#6B655D]">Pilotage</p>
-          <h2 class="page-title mt-1 text-2xl text-[#14345E]">Actions de supervision</h2>
+    <div class="mt-3 grid items-start gap-3 xl:grid-cols-[minmax(0,1fr)_360px]">
+      <div class="overflow-hidden rounded-[5px] border border-[#EDE9E4] bg-white">
+        <div class="flex items-center gap-3 border-b border-[#EDE9E4] px-3.5 py-[11px]">
+          <div class="text-[15.5px] font-bold text-[#2E2925]">Activité des mouvements</div>
+          <RouterLink to="/administration/rapports-mouvements" class="ml-auto text-[13.5px] font-semibold text-[#A84A28] hover:underline">Tout voir →</RouterLink>
         </div>
-        <nav class="grid divide-y divide-[#EDE9E4] sm:grid-cols-2 lg:grid-cols-3 sm:divide-y-0">
-          <RouterLink v-for="item in links" :key="item.to" :to="item.to" class="flex min-h-28 items-start gap-3 border-b border-[#EDE9E4] p-5 hover:bg-[#F7F5F2] sm:border-r">
-            <component :is="item.icon" class="mt-1 size-5 shrink-0 text-[#C25A34]" />
-            <span>
-              <span class="block text-sm font-semibold text-[#2E2925]">{{ item.label }}</span>
-              <span class="mt-1 block text-xs leading-5 text-[#6B655D]">{{ item.description }}</span>
-            </span>
-            <ArrowRight class="ml-auto mt-1 size-4 shrink-0 text-[#6B655D]" />
-          </RouterLink>
-        </nav>
-      </article>
+        <div v-if="loading" class="p-5 text-[13.5px] text-[#6B655D]">Chargement des données…</div>
+        <table v-else class="w-full text-[13px]">
+          <thead class="border-b border-[#EDE9E4] bg-[#FBFAF8] text-left text-[11.5px] font-semibold uppercase tracking-[0.05em] text-[#6B655D]">
+            <tr><th class="px-3.5 py-2.5">Mouvement</th><th class="px-3.5 py-2.5">Membres</th><th class="px-3.5 py-2.5">Inscriptions</th><th class="px-3.5 py-2.5">Statut</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="movement in dashboard?.movementActivity" :key="movement.id" class="border-b border-[#EDE9E4] last:border-0 hover:bg-[#FBFAF8]">
+              <td class="px-3.5 py-3"><div class="font-semibold text-[#2E2925]">{{ movement.name }}</div><div class="mt-0.5 text-[12px] text-[#6B655D]">{{ movement.code }}</div></td>
+              <td class="px-3.5 py-3 tabular-nums">{{ movement._count.members }}</td>
+              <td class="px-3.5 py-3 tabular-nums">{{ movement._count.registrations }}</td>
+              <td class="px-3.5 py-3"><span class="inline-flex rounded-[14px] border border-[#14713C] bg-[#E4F1E8] px-2.5 py-0.5 text-[12px] font-semibold text-[#14713C]">{{ movement.status === 'ACTIVE' ? 'Actif' : movement.status }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div v-if="!loading && !dashboard?.movementActivity.length" class="p-5 text-[13.5px] text-[#6B655D]">Aucun mouvement enregistré.</div>
+      </div>
 
-      <article class="border border-[#C2BAB0] bg-white p-5 sm:p-6">
-        <p class="eyebrow text-[#6B655D]">Mouvements</p>
-        <h2 class="page-title mt-1 text-2xl text-[#14345E]">Vue consolidée</h2>
-        <div v-if="loading" class="mt-5 text-sm text-[#6B655D]">Chargement...</div>
-        <div v-else class="mt-5 space-y-3">
-          <div v-for="movement in dashboard?.movementActivity" :key="movement.id" class="flex items-center justify-between border-b border-[#EDE9E4] pb-3 last:border-0">
-            <div>
-              <p class="text-sm font-semibold text-[#2E2925]">{{ movement.name }}</p>
-              <p class="text-xs text-[#6B655D]">{{ movement._count.members }} membres · {{ movement._count.registrations }} inscriptions</p>
-            </div>
-            <span class="text-xs font-semibold" :class="movement.status === 'ACTIVE' ? 'text-[#14713C]' : 'text-[#6B655D]'">
-              {{ movement.status === 'ACTIVE' ? 'Actif' : movement.status }}
-            </span>
+      <div class="grid gap-3">
+        <div class="overflow-hidden rounded-[5px] border-2 border-[#8A5200] bg-white">
+          <div class="flex items-center gap-2 border-b border-[#8A5200] bg-[#FDF3DC] px-3 py-[9px]">
+            <Clock3 class="size-[19px] text-[#8A5200]" /><div class="text-[14px] font-bold text-[#8A5200]">À traiter</div>
+            <span class="ml-auto rounded-[10px] bg-white px-2 py-0.5 text-[12px] font-semibold text-[#8A5200]">{{ dashboard?.massIntentions.pending ?? '—' }}</span>
           </div>
-          <p v-if="!dashboard?.movementActivity.length" class="text-sm text-[#6B655D]">Aucun mouvement enregistré.</p>
+          <div class="grid gap-3 p-3">
+            <RouterLink to="/administration/intentions" class="block border-b border-[#EDE9E4] pb-3">
+              <div class="text-[14px] font-bold text-[#2E2925]">Intentions en attente</div>
+              <div class="mt-1 text-[13.5px] text-[#4A443E]">{{ dashboard?.massIntentions.pending ?? 0 }} demande(s) à valider.</div>
+              <div class="mt-2 font-semibold text-[#A84A28]">Ouvrir la file →</div>
+            </RouterLink>
+            <RouterLink to="/administration/rapports-mouvements" class="block">
+              <div class="text-[14px] font-bold text-[#2E2925]">Inscriptions à examiner</div>
+              <div class="mt-1 text-[13.5px] text-[#4A443E]">{{ dashboard?.registrations.pending ?? 0 }} dossier(s) en attente.</div>
+              <div class="mt-2 font-semibold text-[#A84A28]">Voir les dossiers →</div>
+            </RouterLink>
+          </div>
         </div>
-      </article>
+        <div class="rounded-[5px] border border-[#EDE9E4] bg-white p-3">
+          <div class="text-[14px] font-bold text-[#2E2925]">Repères du jour</div>
+          <div class="mt-2 grid gap-2 text-[13px] text-[#4A443E]">
+            <div class="flex justify-between border-b border-[#EDE9E4] pb-2"><span>Intentions confirmées</span><strong class="tabular-nums text-[#14345E]">{{ dashboard?.massIntentions.confirmed ?? '—' }}</strong></div>
+            <div class="flex justify-between border-b border-[#EDE9E4] pb-2"><span>Inscriptions approuvées</span><strong class="tabular-nums text-[#14345E]">{{ dashboard?.registrations.approved ?? '—' }}</strong></div>
+            <div class="flex justify-between"><span>Utilisateurs actifs</span><strong class="tabular-nums text-[#14713C]">{{ dashboard?.users.active ?? '—' }}</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-[#C2BAB0] pt-3 text-[12px] text-[#6B655D]">
+      <span>Données synchronisées</span><span>Action requise</span><span class="ml-auto">Les indicateurs restent liés aux écrans de traitement.</span>
     </div>
   </section>
 </template>
