@@ -1,26 +1,15 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { FileText, Plus, Search, X, AlertTriangle } from 'lucide-vue-next'
-
-type Person = { name: string; birth: string; acts: number }
-const query = ref('Kouassi')
-const selected = ref(0)
-const showNewAct = ref(false)
-
-const people: Person[] = [
-  { name: 'Kouassi Adjoua', birth: 'Née le 8 juin 1988 · 4 actes', acts: 4 },
-  { name: 'Kouassi Marie-Estelle', birth: 'Née le 4 mars 2015 · 2 actes', acts: 2 },
-  { name: 'Kouassi Jean-Baptiste', birth: 'Né le 19 juillet 2018 · 1 acte', acts: 1 },
-  { name: 'Kouassi Grâce', birth: 'Née le 12 mai 2023 · 1 acte', acts: 1 },
-  { name: 'Kouassi Michel', birth: 'Né le 2 janvier 1984 · 3 actes', acts: 3 },
-  { name: 'Kouassi Bernadette', birth: 'Née le 30 octobre 1961 · 4 actes', acts: 4 },
-  { name: 'Kouassi Éliane', birth: 'Née le 17 avril 1996 · 3 actes', acts: 3 },
-]
-const filtered = computed(() => {
-  const q = query.value.trim().toLowerCase()
-  return q ? people.filter(p => p.name.toLowerCase().includes(q)) : people
-})
-const person = computed(() => filtered.value[selected.value] ?? people[0])
+import { sacramentalApi, type SacramentalAct, type SacramentalPerson } from '@/services/administration-sacramental.service'
+const query=ref(''); const selected=ref(0); const showNewAct=ref(false); const people=ref<{name:string;birth:string;acts:number;id:string}[]>([]); const acts=ref<SacramentalAct[]>([]); const form=ref({personId:'',type:'BAPTISM',celebrationDate:'',celebrantName:'',place:'',registerNumber:'',certificateNumber:''}); const error=ref('')
+const filtered=computed(()=>{const q=query.value.trim().toLowerCase();return q?people.value.filter(p=>p.name.toLowerCase().includes(q)):people.value})
+const person=computed(()=>filtered.value[selected.value]??people.value[0])
+const selectedActs=computed(()=>acts.value.filter(a=>a.personId===person.value?.id))
+const rows=computed(()=>selectedActs.value.map(a=>({s:a.type,d:new Date(a.celebrationDate).toLocaleDateString('fr-FR'),r:a.registerNumber||'—',id:a.id})))
+async function load(){try{const d=await sacramentalApi.list(query.value);acts.value=d.acts;people.value=d.people.map(p=>({id:p.id,name:p.firstName+' '+p.lastName,birth:p.faithfulProfile?.birthDate?'Né(e) le '+new Date(p.faithfulProfile.birthDate).toLocaleDateString('fr-FR'):'Date de naissance non renseignée',acts:d.acts.filter(a=>a.personId===p.id).length}));if(selected.value>=people.value.length)selected.value=0}catch{error.value='Impossible de charger le registre.'}}
+async function createAct(){try{await sacramentalApi.create(form.value);showNewAct.value=false;await load()}catch{error.value='Impossible d’inscrire l’acte.'}}
+onMounted(load)
 </script>
 
 <template>
@@ -45,7 +34,7 @@ const person = computed(() => filtered.value[selected.value] ?? people[0])
             <input v-model="query" class="min-w-0 flex-1 border-0 bg-transparent text-[14px] outline-none" placeholder="Rechercher un nom" />
             <button v-if="query" type="button" @click="query=''" class="text-[#6B655D]"><X class="size-3.5" /></button>
           </label>
-          <button type="button" @click="showNewAct=true" class="inline-flex min-h-9 shrink-0 items-center gap-2 rounded-[5px] bg-[#14345E] px-3.5 text-[13.5px] font-bold text-white hover:bg-[#0E2A4E]">
+          <button type="button" @click="form.personId=person?.id||'';showNewAct=true" class="inline-flex min-h-9 shrink-0 items-center gap-2 rounded-[5px] bg-[#14345E] px-3.5 text-[13.5px] font-bold text-white hover:bg-[#0E2A4E]">
             <Plus class="size-4" /> Nouvel acte
           </button>
         </div>
@@ -73,7 +62,7 @@ const person = computed(() => filtered.value[selected.value] ?? people[0])
               <table class="w-full min-w-[620px] text-[14px]">
                 <thead class="bg-[#FBFAF8] text-left text-[11.5px] uppercase tracking-[0.05em] text-[#6B655D]"><tr><th class="px-3.5 py-2.5">Sacrement</th><th class="px-3.5 py-2.5">Date</th><th class="px-3.5 py-2.5">Registre</th><th class="px-3.5 py-2.5">Certificat</th></tr></thead>
                 <tbody>
-                  <tr v-for="row in [{s:'Baptême',d:'24 juil. 1988',r:'B-1988 · f. 112 n° 41'},{s:'Première communion',d:'12 mai 1996',r:'C-1996 · f. 34 n° 18'},{s:'Confirmation',d:'3 juin 2001',r:'CF-2001 · f. 8 n° 96'},{s:'Mariage',d:'18 déc. 2010',r:'M-2010 · f. 21 n° 7'}]" :key="row.s" class="border-t border-[#EDE9E4]">
+                  <tr v-for="row in rows" :key="row.s" class="border-t border-[#EDE9E4]">
                     <td class="px-3.5 py-3"><div class="font-semibold text-[#2E2925]">{{ row.s }}</div><div class="text-[13px] text-[#6B655D]">Bouaké, St-Michel · P. Assouman</div></td><td class="px-3.5 py-3 whitespace-nowrap">{{ row.d }}</td><td class="px-3.5 py-3 text-[13px]">{{ row.r }}</td><td class="px-3.5 py-3 font-semibold text-[#A84A28]">Générer</td>
                   </tr>
                 </tbody>
@@ -100,7 +89,7 @@ const person = computed(() => filtered.value[selected.value] ?? people[0])
             </div>
           </div>
           <div class="mt-3 rounded-[5px] border border-[#B3261E] bg-[#FBE9E8] p-3 text-[13.5px] leading-5 text-[#2E2925]">Document officiel numéroté. Chaque génération est enregistrée au nom de l'agent.</div>
-          <button class="mt-3 min-h-10 w-full rounded-[5px] bg-[#14345E] text-[14px] font-bold text-white hover:bg-[#0E2A4E]"><FileText class="mr-2 inline size-4" /> Confirmer et générer</button>
+          <button type="button" @click="createAct" class="mt-3 min-h-10 w-full rounded-[5px] bg-[#14345E] text-[14px] font-bold text-white hover:bg-[#0E2A4E]"><FileText class="mr-2 inline size-4" /> Confirmer et générer</button>
         </aside>
       </div>
     </div>
@@ -110,11 +99,11 @@ const person = computed(() => filtered.value[selected.value] ?? people[0])
         <div class="border-b border-[#EDE9E4] p-4"><h2 class="text-[19px] font-bold text-[#2E2925]">Inscrire un acte de baptême</h2><p class="text-[13.5px] text-[#6B655D]">Registre B-2026 · prochain numéro 0087</p></div>
         <div class="flex gap-2 border-b border-[#B3261E] bg-[#FBE9E8] p-3 text-[13.5px] leading-5"><AlertTriangle class="size-5 shrink-0 text-[#B3261E]" /><span><strong class="text-[#B3261E]">Un acte inscrit ne peut plus être supprimé.</strong> Vérifiez chaque champ avant inscription.</span></div>
         <div class="grid gap-3 p-4 sm:grid-cols-2">
-          <label class="text-[13.5px] font-semibold">Nom<input value="KOUASSI" class="mt-1 min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] px-3 font-normal outline-none focus:border-[#14345E]" /></label>
-          <label class="text-[13.5px] font-semibold">Prénoms<input value="Emmanuel Yao" class="mt-1 min-h-10 w-full rounded-[5px] border-2 border-[#14345E] px-3 font-normal outline-none" /></label>
+          <label class="text-[13.5px] font-semibold">Nom<input v-model="form.lastName" class="mt-1 min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] px-3 font-normal outline-none focus:border-[#14345E]" /></label>
+          <label class="text-[13.5px] font-semibold">Prénoms<input v-model="form.firstName" class="mt-1 min-h-10 w-full rounded-[5px] border-2 border-[#14345E] px-3 font-normal outline-none" /></label>
           <label class="text-[13.5px] font-semibold">Date de naissance<input type="date" class="mt-1 min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] px-3 font-normal" /></label>
           <label class="text-[13.5px] font-semibold">Date du baptême<input type="date" class="mt-1 min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] px-3 font-normal" /></label>
-          <label class="text-[13.5px] font-semibold sm:col-span-2">Ministre<input value="P. Konan" class="mt-1 min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] px-3 font-normal" /></label>
+          <label class="text-[13.5px] font-semibold sm:col-span-2">Ministre<input v-model="form.celebrantName" class="mt-1 min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] px-3 font-normal" /></label>
         </div>
         <div class="flex justify-end gap-2 p-4 pt-0"><button @click="showNewAct=false" class="min-h-10 rounded-[5px] border-[1.5px] border-[#C2BAB0] px-4 text-[14px] font-semibold">Annuler</button><button class="min-h-10 rounded-[5px] bg-[#14345E] px-4 text-[14px] font-bold text-white">Inscrire définitivement au registre</button></div>
       </div>
