@@ -18,6 +18,7 @@ import AdministrationDashboardView from '@/views/administration/DashboardView.vu
 import AdministrationModulePlaceholderView from '@/views/administration/ModulePlaceholderView.vue'
 import AdministrationUsersView from '@/views/administration/UsersView.vue'
 import AdministrationMovementsView from '@/views/administration/MovementsView.vue'
+import AdministrationMovementReportView from '@/views/administration/MovementReportView.vue'
 import AdministrationActivityView from '@/views/administration/ActivityView.vue'
 import AdministrationRegistrationsView from '@/views/administration/RegistrationsView.vue'
 import AdministrationDocumentsView from '@/views/administration/DocumentsView.vue'
@@ -58,6 +59,7 @@ const router = createRouter({
         { path: 'dashboard', component: AdministrationDashboardView },
         { path: 'utilisateurs', component: AdministrationUsersView },
         { path: 'mouvements', component: AdministrationMovementsView },
+        { path: 'mouvements/:id', component: AdministrationMovementReportView },
         { path: 'activite', component: AdministrationActivityView },
         { path: 'inscriptions', component: AdministrationRegistrationsView },
         { path: 'documents', component: AdministrationDocumentsView },
