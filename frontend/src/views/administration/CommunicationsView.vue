@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { Bell, Clock3, Info, Megaphone, Paperclip, Send, Users } from 'lucide-vue-next'
 import { administrationMovementsApi, type AdministrationMovement } from '@/services/administration-movements.service'
 import { administrationCommunicationsApi, type AdministrationCommunication } from '@/services/administration-communications.service'
@@ -19,11 +19,12 @@ const error = ref('')
 const sending = ref(false)
 const scheduledAt = ref('')
 const selectedFile = ref<File | null>(null)
+const audienceCounts = ref({ members: 0, parents: 0, all: 0, allRelevant: 0 })
 
 const charCount = computed(() => message.value.length)
 const smsCount = computed(() => Math.max(1, Math.ceil(charCount.value / 160)))
 const selectedMovement = computed(() => movements.value.find(m => m.id === movement.value))
-const audienceCount = computed(() => audience.value === 'all' ? movements.value.reduce((n,m)=>n+(m._count?.members??0),0) : selectedMovement.value?._count?.members ?? 0)
+const audienceCount = computed(() => audience.value === 'all' ? audienceCounts.value.all : audience.value === 'movement-parents' ? audienceCounts.value.parents : audienceCounts.value.members)
 const audienceLabel = computed(() => ({ all: 'Tous les fidèles inscrits', 'movement-parents': 'Parents d’un mouvement', 'movement-members': 'Membres d’un mouvement' } as Record<string,string>)[audience.value] ?? audience.value)
 
 async function load() {
@@ -57,7 +58,7 @@ async function persistCommunication(sendNow: boolean, schedule = false) {
       title:subject.value.trim(),
       content:message.value.trim(),
       type:nature.value==='urgent'?'REMINDER':'INFORMATION',
-      audience:audience.value==='movement-members'?'MEMBERS':audience.value==='movement-parents'?'PARENTS':audience.value==='donors'?'DONORS':'ALL',
+      audience:audience.value==='movement-members'?'MEMBERS':audience.value==='movement-parents'?'PARENTS':'ALL',
       sendNow,
       scheduledAt: schedule ? new Date(scheduledAt.value).toISOString() : null,
     })
@@ -73,6 +74,7 @@ async function persistCommunication(sendNow: boolean, schedule = false) {
 function saveDraft(){ void persistCommunication(false) }
 async function sendMessage(){ await persistCommunication(true) }
 async function scheduleMessage(){ await persistCommunication(false, true) }
+watch(movement, async (id) => { if (!id) return; try { audienceCounts.value = await administrationCommunicationsApi.audienceCounts(id) } catch { error.value = 'Impossible de charger les destinataires.' } }, { immediate: true })
 onMounted(load)
 </script>
 
