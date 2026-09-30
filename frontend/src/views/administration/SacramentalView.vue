@@ -44,7 +44,7 @@ const sacramentLabel = (type: string) => ({
   ORDINATION: 'Ordination',
   ANOINTING: 'Onction des malades',
   RECONCILIATION: 'Réconciliation',
-}).[type] ?? type
+})[type] ?? type
 
 async function load() {
   try {
