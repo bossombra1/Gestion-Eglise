@@ -1,4 +1,53 @@
 import api from './api'
-export interface SacramentalPerson{id:string;firstName:string;lastName:string;email:string|null;phone:string|null;faithfulProfile:{birthDate:string|null}|null}
-export interface SacramentalAct{id:string;personId:string;type:string;status:string;celebrationDate:string;place:string|null;celebrantName:string|null;registerNumber:string|null;certificateNumber:string|null;notes:string|null;annotations:string|null;person:{id:string;firstName:string;lastName:string}}
-export const sacramentalApi={async list(q?:string){const r=await api.get<{success:boolean;data:{people:SacramentalPerson[];acts:SacramentalAct[]}}>('/administration/sacramental',{params:q?{q}:undefined});return r.data.data},async create(payload:Record<string,unknown>){const r=await api.post<{success:boolean;data:SacramentalAct}>('/administration/sacramental',payload);return r.data.data},async update(id:string,payload:Record<string,unknown>){await api.patch('/administration/sacramental/'+id,payload)}}
+
+export interface SacramentalAct {
+  id: string
+  parishId: string
+  personFirstName: string
+  personLastName: string
+  personBirthDate: string | null
+  type: string
+  status: string
+  celebrationDate: string
+  place: string | null
+  celebrantName: string | null
+  registerNumber: string | null
+  certificateNumber: string | null
+  notes: string | null
+  annotations: string | null
+}
+
+export interface SacramentalActPayload {
+  personFirstName: string
+  personLastName: string
+  personBirthDate: string
+  type: string
+  celebrationDate: string
+  celebrantName: string
+  place: string
+  registerNumber: string
+  certificateNumber: string
+  notes: string
+}
+
+export const sacramentalApi = {
+  async list(q?: string) {
+    const r = await api.get<{ success: boolean; data: { acts: SacramentalAct[] } }>(
+      '/administration/sacramental',
+      { params: q ? { q } : undefined },
+    )
+    return r.data.data
+  },
+
+  async create(payload: SacramentalActPayload) {
+    const r = await api.post<{ success: boolean; data: SacramentalAct }>(
+      '/administration/sacramental',
+      payload,
+    )
+    return r.data.data
+  },
+
+  async update(id: string, payload: Partial<SacramentalActPayload> & Record<string, unknown>) {
+    await api.patch('/administration/sacramental/' + id, payload)
+  },
+}
