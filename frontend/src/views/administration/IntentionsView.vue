@@ -1,6 +1,20 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { Check, Loader2, X } from 'lucide-vue-next'
+import {
+  CalendarDays,
+  Check,
+  CheckCircle2,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Clock3,
+  Loader2,
+  Megaphone,
+  Printer,
+  Search,
+  X,
+  XCircle,
+} from 'lucide-vue-next'
 import api from '@/services/api'
 
 type IntentionStatus = 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED'
@@ -22,46 +36,119 @@ const loading = ref(true)
 const error = ref('')
 const data = ref<MassIntention[]>([])
 const updatingId = ref<string | null>(null)
+const selectedIds = ref<string[]>([])
+const search = ref('')
+const statusFilter = ref<'ALL' | IntentionStatus>('PENDING')
+const typeFilter = ref('ALL')
+const dateFilter = ref('ALL')
+const page = ref(1)
+const pageSize = ref(9)
+const confirmOpen = ref(false)
+const confirmMode = ref<'CONFIRM' | 'CANCEL'>('CONFIRM')
+const pendingActionIds = ref<string[]>([])
 
 const statusLabels: Record<IntentionStatus, string> = {
   PENDING: 'En attente',
-  CONFIRMED: 'Confirmée',
-  CANCELLED: 'Annulée',
-  COMPLETED: 'Terminée',
+  CONFIRMED: 'Validé',
+  CANCELLED: 'Refusé',
+  COMPLETED: 'Verrouillé',
 }
 
-const statusClass: Record<IntentionStatus, string> = {
-  PENDING: 'bg-[#FFF7E8] text-[#8A5A00]',
-  CONFIRMED: 'bg-[#EDF8F1] text-[#14713C]',
-  CANCELLED: 'bg-[#FFF1F0] text-[#B3261E]',
-  COMPLETED: 'bg-[#EEF3FA] text-[#14345E]',
-}
+const filtered = computed(() => {
+  const q = search.value.trim().toLowerCase()
+  return data.value.filter((item) => {
+    const requester = item.requester ? `${item.requester.firstName} ${item.requester.lastName}` : ''
+    const matchesSearch = !q || [
+      requester,
+      item.intention,
+      item.beneficiaryName ?? '',
+      item.requester?.phone ?? '',
+      item.id,
+    ].join(' ').toLowerCase().includes(q)
 
-const stats = computed(() => ({
-  total: data.value.length,
-  pending: data.value.filter(i => i.status === 'PENDING').length,
-  confirmed: data.value.filter(i => i.status === 'CONFIRMED').length,
-}))
+    const matchesStatus = statusFilter.value === 'ALL' || item.status === statusFilter.value
+    const matchesType = typeFilter.value === 'ALL' || item.intention === typeFilter.value
+
+    const d = new Date(item.requestedDate)
+    const now = new Date()
+    const matchesDate =
+      dateFilter.value === 'ALL' ||
+      (dateFilter.value === 'UPCOMING' && d >= new Date(now.getFullYear(), now.getMonth(), now.getDate())) ||
+      (dateFilter.value === 'TODAY' && d.toDateString() === now.toDateString())
+
+    return matchesSearch && matchesStatus && matchesType && matchesDate
+  })
+})
+
+const types = computed(() => [...new Set(data.value.map(item => item.intention).filter(Boolean))])
+
+const totalPages = computed(() => Math.max(1, Math.ceil(filtered.value.length / pageSize.value)))
+const paginated = computed(() => {
+  const start = (page.value - 1) * pageSize.value
+  return filtered.value.slice(start, start + pageSize.value)
+})
+
+const pendingCount = computed(() => data.value.filter(i => i.status === 'PENDING').length)
+const validatedThisMonth = computed(() => {
+  const now = new Date()
+  return data.value.filter(i => {
+    const d = new Date(i.createdAt)
+    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear() && ['CONFIRMED', 'COMPLETED'].includes(i.status)
+  }).length
+})
+
+const selectedPending = computed(() =>
+  data.value.filter(i => selectedIds.value.includes(i.id) && i.status === 'PENDING')
+)
+
+const selectedTotal = computed(() =>
+  selectedPending.value.reduce((sum, item) => sum + Number(item.amount ?? 0), 0)
+)
+
+const allVisibleSelected = computed(() =>
+  paginated.value.length > 0 && paginated.value.every(item => selectedIds.value.includes(item.id))
+)
 
 const formatDate = (value: string) =>
-  new Intl.DateTimeFormat('fr-FR', { dateStyle: 'medium' }).format(new Date(value))
+  new Intl.DateTimeFormat('fr-FR', { weekday: 'short', day: '2-digit', month: '2-digit' }).format(new Date(value))
+
+const formatTime = (value: string | null) => value || '—'
 
 const formatAmount = (amount: string | number | null, currency: string) => {
   if (amount === null || amount === undefined) return '—'
   return new Intl.NumberFormat('fr-FR').format(Number(amount)) + (currency === 'XOF' ? ' FCFA' : ` ${currency}`)
 }
 
-const load = async () => {
-  loading.value = true
-  error.value = ''
-  try {
-    const response = await api.get<{ success: boolean; data: MassIntention[] }>('/administration/overview/intentions')
-    data.value = response.data.data
-  } catch {
-    error.value = 'Impossible de charger les demandes de messe.'
-  } finally {
-    loading.value = false
+const requesterName = (item: MassIntention) =>
+  item.requester ? `${item.requester.firstName} ${item.requester.lastName}` : 'Demandeur non renseigné'
+
+const resetFilters = () => {
+  search.value = ''
+  statusFilter.value = 'PENDING'
+  typeFilter.value = 'ALL'
+  dateFilter.value = 'ALL'
+  page.value = 1
+}
+
+const toggleSelection = (id: string) => {
+  selectedIds.value = selectedIds.value.includes(id)
+    ? selectedIds.value.filter(value => value !== id)
+    : [...selectedIds.value, id]
+}
+
+const toggleAllVisible = () => {
+  if (allVisibleSelected.value) {
+    selectedIds.value = selectedIds.value.filter(id => !paginated.value.some(item => item.id === id))
+  } else {
+    selectedIds.value = [...new Set([...selectedIds.value, ...paginated.value.filter(i => i.status === 'PENDING').map(i => i.id)])]
   }
+}
+
+const openBulkConfirm = (mode: 'CONFIRM' | 'CANCEL') => {
+  if (!selectedPending.value.length) return
+  confirmMode.value = mode
+  pendingActionIds.value = selectedPending.value.map(i => i.id)
+  confirmOpen.value = true
 }
 
 const updateStatus = async (item: MassIntention, status: IntentionStatus) => {
@@ -77,49 +164,311 @@ const updateStatus = async (item: MassIntention, status: IntentionStatus) => {
   }
 }
 
+const confirmBulkAction = async () => {
+  const status: IntentionStatus = confirmMode.value === 'CONFIRM' ? 'CONFIRMED' : 'CANCELLED'
+  error.value = ''
+  try {
+    await Promise.all(
+      pendingActionIds.value.map(id =>
+        api.patch(`/administration/overview/intentions/${id}/status`, { status })
+      )
+    )
+    data.value.forEach(item => {
+      if (pendingActionIds.value.includes(item.id)) item.status = status
+    })
+    selectedIds.value = selectedIds.value.filter(id => !pendingActionIds.value.includes(id))
+    confirmOpen.value = false
+  } catch {
+    error.value = 'Certaines intentions n’ont pas pu être mises à jour.'
+  }
+}
+
+const printSheet = () => {
+  window.print()
+}
+
+const load = async () => {
+  loading.value = true
+  error.value = ''
+  try {
+    const response = await api.get<{ success: boolean; data: MassIntention[] }>('/administration/overview/intentions')
+    data.value = response.data.data
+  } catch {
+    error.value = 'Impossible de charger les demandes de messe.'
+  } finally {
+    loading.value = false
+  }
+}
+
 onMounted(load)
 </script>
 
 <template>
-  <section class="space-y-6">
-    <header class="border border-[#C2BAB0] bg-white p-6">
-      <p class="eyebrow text-[#C25A34]">Vie paroissiale</p>
-      <h1 class="page-title mt-2 text-3xl text-[#0B1F3A]">Intentions de messe</h1>
-      <p class="mt-2 text-sm text-[#6B655D]">Réception et suivi des demandes de messe de la paroisse.</p>
-    </header>
+  <section class="min-w-0">
+    <div class="mb-0 border border-[#C2BAB0] bg-white">
+      <div class="flex flex-col gap-4 border-b border-[#DDD7CF] px-5 py-4 lg:flex-row lg:items-center">
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <Megaphone class="size-5 text-[#14345E]" />
+            <h1 class="font-sans text-xl font-bold text-[#2E2925]">Intentions de messe</h1>
+          </div>
+          <p class="mt-1 text-[13.5px] text-[#6B655D]">
+            {{ pendingCount }} en attente · {{ validatedThisMonth }} validées ce mois
+          </p>
+        </div>
 
-    <div class="grid gap-4 sm:grid-cols-3">
-      <div class="border border-[#C2BAB0] bg-white p-5"><p class="text-xs uppercase text-[#6B655D]">Total</p><p class="mt-2 text-2xl font-semibold text-[#14345E]">{{ stats.total }}</p></div>
-      <div class="border border-[#C2BAB0] bg-white p-5"><p class="text-xs uppercase text-[#6B655D]">En attente</p><p class="mt-2 text-2xl font-semibold text-[#8A5A00]">{{ stats.pending }}</p></div>
-      <div class="border border-[#C2BAB0] bg-white p-5"><p class="text-xs uppercase text-[#6B655D]">Confirmées</p><p class="mt-2 text-2xl font-semibold text-[#14713C]">{{ stats.confirmed }}</p></div>
+        <div class="flex flex-wrap gap-2 lg:ml-auto">
+          <button
+            type="button"
+            disabled
+            title="L'encaissement espèces sera activé avec le module de paiement."
+            class="inline-flex min-h-10 items-center gap-2 rounded border-[1.5px] border-[#14345E] bg-white px-3 text-sm font-semibold text-[#14345E] opacity-55"
+          >
+            Encaisser des espèces
+          </button>
+          <button
+            type="button"
+            class="inline-flex min-h-10 items-center gap-2 rounded bg-[#14345E] px-3.5 text-sm font-bold text-white hover:bg-[#0E2A4E]"
+            @click="printSheet"
+          >
+            <Printer class="size-4" />
+            Générer la feuille du jour
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 border-b border-[#EDE9E4] bg-white px-5 py-2.5">
+        <label class="flex h-9 w-full max-w-[250px] items-center gap-2 rounded border-[1.5px] border-[#C2BAB0] bg-white px-3">
+          <Search class="size-4 text-[#6B655D]" />
+          <input v-model="search" class="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-[#9A9289]" placeholder="Rechercher un nom, un reçu…" />
+        </label>
+
+        <label class="flex h-9 items-center gap-2 rounded border-[1.5px] border-[#C2BAB0] bg-white px-3 text-sm text-[#2E2925]">
+          <CalendarDays class="size-4 text-[#14345E]" />
+          <select v-model="dateFilter" class="bg-transparent outline-none">
+            <option value="ALL">Toutes les dates</option>
+            <option value="TODAY">Aujourd’hui</option>
+            <option value="UPCOMING">À venir</option>
+          </select>
+          <ChevronDown class="size-3.5 text-[#6B655D]" />
+        </label>
+
+        <label class="flex h-9 items-center gap-2 rounded border-[1.5px] border-[#C2BAB0] bg-white px-3 text-sm text-[#2E2925]">
+          <select v-model="statusFilter" class="bg-transparent outline-none">
+            <option value="PENDING">Statut : en attente</option>
+            <option value="ALL">Tous les statuts</option>
+            <option value="CONFIRMED">Validé</option>
+            <option value="COMPLETED">Verrouillé</option>
+            <option value="CANCELLED">Refusé</option>
+          </select>
+          <ChevronDown class="size-3.5 text-[#6B655D]" />
+        </label>
+
+        <label class="flex h-9 items-center gap-2 rounded border-[1.5px] border-[#C2BAB0] bg-white px-3 text-sm text-[#2E2925]">
+          <select v-model="typeFilter" class="bg-transparent outline-none">
+            <option value="ALL">Tous les types</option>
+            <option v-for="type in types" :key="type" :value="type">{{ type }}</option>
+          </select>
+          <ChevronDown class="size-3.5 text-[#6B655D]" />
+        </label>
+
+        <button type="button" class="ml-auto text-[13.5px] font-semibold text-[#A84A28] hover:underline" @click="resetFilters">
+          Réinitialiser les filtres
+        </button>
+      </div>
+
+      <div v-if="selectedPending.length" class="flex flex-col gap-3 bg-[#14345E] px-5 py-2.5 text-white lg:flex-row lg:items-center">
+        <div class="flex items-center gap-3">
+          <CheckCircle2 class="size-5" />
+          <div class="text-sm font-bold">{{ selectedPending.length }} intentions sélectionnées</div>
+          <div class="text-[13.5px] text-[#C3D0E1]">Total {{ formatAmount(selectedTotal, 'XOF') }} · à traiter</div>
+        </div>
+        <div class="flex flex-wrap gap-2 lg:ml-auto">
+          <button type="button" class="min-h-9 rounded bg-white/10 px-3 text-[13.5px] font-semibold hover:bg-white/20" @click="openBulkConfirm('CANCEL')">
+            <XCircle class="mr-1 inline size-4" /> Refuser
+          </button>
+          <button type="button" class="min-h-9 rounded bg-[#14713C] px-3 font-bold text-[13.5px] hover:bg-[#0F5A2F]" @click="openBulkConfirm('CONFIRM')">
+            <Check class="mr-1 inline size-4" /> Valider les {{ selectedPending.length }}
+          </button>
+        </div>
+      </div>
+
+      <div v-if="error" class="m-4 rounded border border-[#B3261E]/30 bg-[#FFF5F4] p-3 text-sm text-[#B3261E]">{{ error }}</div>
+
+      <div v-if="loading" class="p-10 text-center text-sm text-[#6B655D]">Chargement des intentions…</div>
+
+      <div v-else class="responsive-table">
+        <table class="min-w-[1080px] w-full border-collapse font-sans text-sm">
+          <thead class="bg-white text-left">
+            <tr class="border-b border-[#EDE9E4] text-[12px] uppercase tracking-wide text-[#6B655D]">
+              <th class="w-10 px-3 py-3">
+                <input type="checkbox" :checked="allVisibleSelected" class="size-4 accent-[#14345E]" @change="toggleAllVisible" />
+              </th>
+              <th class="w-24 px-3 py-3">Reçu</th>
+              <th class="px-3 py-3">Demandeur</th>
+              <th class="px-3 py-3">Type</th>
+              <th class="px-3 py-3">Bénéficiaire</th>
+              <th class="w-40 px-3 py-3">Messe</th>
+              <th class="w-28 px-3 py-3">Montant</th>
+              <th class="w-32 px-3 py-3">Paiement</th>
+              <th class="w-32 px-3 py-3">Statut</th>
+              <th class="w-24 px-3 py-3">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr
+              v-for="item in paginated"
+              :key="item.id"
+              class="border-b border-[#EDE9E4] transition hover:bg-[#F7F5F2]"
+              :class="selectedIds.includes(item.id) ? 'bg-[#E8EDF5]' : ''"
+            >
+              <td class="px-3 py-3">
+                <input
+                  type="checkbox"
+                  :checked="selectedIds.includes(item.id)"
+                  :disabled="item.status !== 'PENDING'"
+                  class="size-4 accent-[#14345E] disabled:opacity-30"
+                  @change="toggleSelection(item.id)"
+                />
+              </td>
+              <td class="px-3 py-3 font-mono text-[12px] tabular-nums text-[#4A443E]">{{ item.id.slice(0, 8).toUpperCase() }}</td>
+              <td class="px-3 py-3 font-semibold text-[#2E2925]">{{ requesterName(item) }}</td>
+              <td class="px-3 py-3 text-[#4A443E]">{{ item.intention }}</td>
+              <td class="px-3 py-3 text-[#4A443E]">{{ item.beneficiaryName || '—' }}</td>
+              <td class="px-3 py-3 tabular-nums text-[#2E2925]">
+                <span>{{ formatDate(item.requestedDate) }}</span>
+                <span class="block text-xs text-[#6B655D]">{{ formatTime(item.timeSlot) }}</span>
+              </td>
+              <td class="px-3 py-3 whitespace-nowrap font-semibold tabular-nums text-[#2E2925]">{{ formatAmount(item.amount, item.currency) }}</td>
+              <td class="px-3 py-3 text-[#4A443E]">—</td>
+              <td class="px-3 py-3">
+                <span
+                  class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12px] font-semibold"
+                  :class="{
+                    'border-[#14713C] bg-[#E4F1E8] text-[#14713C]': item.status === 'CONFIRMED',
+                    'border-dashed border-[#8A5200] bg-[#FDF3DC] text-[#8A5200]': item.status === 'PENDING',
+                    'border-[#B3261E] bg-[#FBE9E8] text-[#B3261E]': item.status === 'CANCELLED',
+                    'border-[#14345E] bg-[#E8EDF5] text-[#14345E]': item.status === 'COMPLETED',
+                  }"
+                >
+                  <CheckCircle2 v-if="item.status === 'CONFIRMED'" class="size-3.5" />
+                  <Clock3 v-else-if="item.status === 'PENDING'" class="size-3.5" />
+                  <XCircle v-else-if="item.status === 'CANCELLED'" class="size-3.5" />
+                  <Check v-else class="size-3.5" />
+                  {{ statusLabels[item.status] }}
+                </span>
+              </td>
+              <td class="px-3 py-3">
+                <button
+                  v-if="item.status === 'PENDING'"
+                  type="button"
+                  class="font-semibold text-[#A84A28] hover:underline disabled:opacity-50"
+                  :disabled="updatingId === item.id"
+                  @click="pendingActionIds = [item.id]; confirmMode = 'CONFIRM'; confirmOpen = true"
+                >
+                  <Loader2 v-if="updatingId === item.id" class="inline size-3 animate-spin" />
+                  Ouvrir
+                </button>
+                <span v-else-if="item.status === 'CANCELLED'" class="font-semibold text-[#A84A28]">Motif</span>
+                <span v-else class="text-[13px] text-[#9A9289]">Verrouillé</span>
+              </td>
+            </tr>
+
+            <tr v-if="!paginated.length">
+              <td colspan="10" class="px-6 py-12 text-center text-sm text-[#6B655D]">Aucune intention ne correspond aux filtres.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flex flex-col gap-3 border-t border-[#EDE9E4] bg-white px-5 py-3 text-[13.5px] text-[#4A443E] sm:flex-row sm:items-center">
+        <div>Lignes {{ filtered.length ? (page - 1) * pageSize + 1 : 0 }} à {{ Math.min(page * pageSize, filtered.length) }} sur {{ filtered.length }}</div>
+        <div class="flex items-center gap-2">
+          Afficher
+          <select v-model.number="pageSize" class="h-8 rounded border-[1.5px] border-[#C2BAB0] bg-white px-2 outline-none">
+            <option :value="9">9</option>
+            <option :value="25">25</option>
+            <option :value="50">50</option>
+          </select>
+          par page
+        </div>
+        <div class="flex items-center gap-1 sm:ml-auto">
+          <button type="button" class="grid size-8 place-items-center rounded border border-[#DDD7CF] disabled:opacity-40" :disabled="page === 1" @click="page--">
+            <ChevronLeft class="size-4" />
+          </button>
+          <span class="grid size-8 place-items-center rounded border-2 border-[#14345E] bg-[#14345E] text-white">{{ page }}</span>
+          <button type="button" class="grid size-8 place-items-center rounded border border-[#DDD7CF] disabled:opacity-40" :disabled="page >= totalPages" @click="page++">
+            <ChevronRight class="size-4" />
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div v-if="error" class="border border-[#B3261E]/30 bg-[#FFF5F4] p-4 text-sm text-[#B3261E]">{{ error }}</div>
-    <div v-if="loading" class="border border-[#C2BAB0] bg-white p-6 text-sm text-[#6B655D]">Chargement...</div>
-
-    <div v-else class="overflow-x-auto border border-[#C2BAB0] bg-white">
-      <table class="min-w-[900px] w-full text-sm">
-        <thead><tr class="border-b bg-[#F7F5F2] text-left">
-          <th class="p-4">Date</th><th class="p-4">Intention</th><th class="p-4">Demandeur</th><th class="p-4">Montant</th><th class="p-4">Statut</th><th class="p-4">Actions</th>
-        </tr></thead>
-        <tbody>
-          <tr v-for="item in data" :key="item.id" class="border-b last:border-0">
-            <td class="p-4 whitespace-nowrap">{{ formatDate(item.requestedDate) }}<span v-if="item.timeSlot" class="block text-xs text-[#6B655D]">{{ item.timeSlot }}</span></td>
-            <td class="p-4"><span class="font-medium">{{ item.intention }}</span><span v-if="item.beneficiaryName" class="block text-xs text-[#6B655D]">{{ item.beneficiaryName }}</span></td>
-            <td class="p-4">{{ item.requester ? `${item.requester.firstName} ${item.requester.lastName}` : '—' }}<span v-if="item.requester?.phone" class="block text-xs text-[#6B655D]">{{ item.requester.phone }}</span></td>
-            <td class="p-4 whitespace-nowrap">{{ formatAmount(item.amount, item.currency) }}</td>
-            <td class="p-4"><span class="rounded-full px-2.5 py-1 text-xs font-semibold" :class="statusClass[item.status]">{{ statusLabels[item.status] }}</span></td>
-            <td class="p-4">
-              <div class="flex gap-2">
-                <button v-if="item.status === 'PENDING'" class="inline-flex items-center gap-1 rounded bg-[#14713C] px-3 py-2 text-xs font-semibold text-white disabled:opacity-50" :disabled="updatingId === item.id" @click="updateStatus(item, 'CONFIRMED')"><Loader2 v-if="updatingId === item.id" class="size-3 animate-spin" /><Check v-else class="size-3" /> Confirmer</button>
-                <button v-if="item.status === 'PENDING'" class="inline-flex items-center gap-1 rounded border border-[#B3261E]/30 px-3 py-2 text-xs font-semibold text-[#B3261E] disabled:opacity-50" :disabled="updatingId === item.id" @click="updateStatus(item, 'CANCELLED')"><X class="size-3" /> Annuler</button>
-                <button v-if="item.status === 'CONFIRMED'" class="inline-flex items-center gap-1 rounded bg-[#14345E] px-3 py-2 text-xs font-semibold text-white disabled:opacity-50" :disabled="updatingId === item.id" @click="updateStatus(item, 'COMPLETED')">Marquer terminée</button>
-              </div>
-            </td>
-          </tr>
-          <tr v-if="!data.length"><td colspan="6" class="p-8 text-center text-sm text-[#6B655D]">Aucune demande de messe.</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <p class="mt-3 max-w-3xl text-[13.5px] leading-6 text-[#6B655D]">
+      Une intention validée devient verrouillée : elle reste consultable mais n’offre plus d’action opérationnelle.
+    </p>
   </section>
+
+  <div v-if="confirmOpen" class="fixed inset-0 z-[100] grid place-items-center bg-[#0B1F3A]/45 p-4" @click.self="confirmOpen = false">
+    <div class="w-full max-w-xl overflow-hidden rounded border border-[#C2BAB0] bg-white shadow-2xl">
+      <div class="flex items-start gap-3 border-b border-[#EDE9E4] p-5">
+        <div class="grid size-10 shrink-0 place-items-center rounded bg-[#E8EDF5]">
+          <CheckCircle2 class="size-6 text-[#14345E]" />
+        </div>
+        <div>
+          <h2 class="text-lg font-bold text-[#2E2925]">
+            {{ confirmMode === 'CONFIRM' ? `Valider ${pendingActionIds.length} intention${pendingActionIds.length > 1 ? 's' : ''} ?` : `Refuser ${pendingActionIds.length} intention${pendingActionIds.length > 1 ? 's' : ''} ?` }}
+          </h2>
+          <p class="mt-1 text-sm leading-5 text-[#4A443E]">
+            {{ confirmMode === 'CONFIRM'
+              ? 'Une fois validées, elles entrent dans la feuille du prêtre et ne peuvent plus être modifiées.'
+              : 'Les intentions seront refusées et retirées de la file de validation.' }}
+          </p>
+        </div>
+      </div>
+
+      <div class="grid gap-2 p-5">
+        <div v-for="id in pendingActionIds" :key="id" class="flex justify-between gap-4 rounded bg-[#F7F5F2] px-3 py-2.5 text-sm">
+          <span class="text-[#4A443E]">{{ requesterName(data.find(item => item.id === id)!) }} · {{ data.find(item => item.id === id)?.intention }}</span>
+          <span class="font-semibold text-[#2E2925]">{{ data.find(item => item.id === id) ? formatDate(data.find(item => item.id === id)!.requestedDate) : '' }}</span>
+        </div>
+        <div v-if="confirmMode === 'CONFIRM'" class="flex gap-2 rounded bg-[#E8EDF5] p-3 text-sm text-[#14345E]">
+          <CheckCircle2 class="mt-0.5 size-4 shrink-0" />
+          La validation est appliquée à toutes les intentions sélectionnées.
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 px-5 pb-5">
+        <button type="button" class="min-h-10 rounded border-[1.5px] border-[#C2BAB0] bg-white px-4 text-sm font-semibold text-[#2E2925]" @click="confirmOpen = false">Annuler</button>
+        <button
+          type="button"
+          class="inline-flex min-h-10 items-center gap-2 rounded px-4 text-sm font-bold text-white"
+          :class="confirmMode === 'CONFIRM' ? 'bg-[#14713C] hover:bg-[#0F5A2F]' : 'bg-[#B3261E] hover:bg-[#8F1E18]'"
+          @click="confirmBulkAction"
+        >
+          <Check class="size-4" />
+          {{ confirmMode === 'CONFIRM' ? `Oui, valider les ${pendingActionIds.length}` : `Oui, refuser les ${pendingActionIds.length}` }}
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+@media print {
+  section > div:first-child {
+    border: 0;
+  }
+
+  section > div:first-child > div:not(:nth-child(2)),
+  section > div:first-child > div:last-child,
+  section > p {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+  }
+}
+</style>
