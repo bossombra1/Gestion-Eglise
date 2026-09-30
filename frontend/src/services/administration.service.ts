@@ -5,7 +5,7 @@ export interface AdministrationDashboard {
   users: { total: number; active: number }
   movements: { total: number; active: number }
   registrations: { total: number; pending: number; approved: number; rejected: number }
-  payments: { successful: number; pending: number; totalAmount: number; currency: string }
+  massIntentions: { total: number; pending: number; confirmed: number; completed: number }
   movementActivity: Array<{
     id: string
     name: string
