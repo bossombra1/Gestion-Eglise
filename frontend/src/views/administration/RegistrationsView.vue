@@ -1,23 +1,125 @@
 <script setup lang="ts">
-import {onMounted,ref} from 'vue'
-import {RefreshCw,ClipboardList} from 'lucide-vue-next'
-import {administrationRegistrationsApi,type AdministrationRegistrationItem} from '@/services/administration-registrations.service'
-import {administrationMovementsApi,type AdministrationMovement} from '@/services/administration-movements.service'
-const data=ref<any>(null),movements=ref<AdministrationMovement[]>([]),loading=ref(true),error=ref(''),movementId=ref(''),status=ref(''),days=ref(30)
-const labels:Record<string,string>={PENDING:'En attente',APPROVED:'Approuvée',REJECTED:'Refusée',CANCELLED:'Annulée',COMPLETED:'Terminée'}
-const load=async()=>{loading.value=true;error.value='';try{data.value=await administrationRegistrationsApi.list({movementId:movementId.value||undefined,status:status.value||undefined,days:days.value})}catch{error.value='Impossible de charger les inscriptions.'}finally{loading.value=false}}
-onMounted(async()=>{try{movements.value=await administrationMovementsApi.list()}catch{}await load()})
-const dateLabel=(d:string)=>new Intl.DateTimeFormat('fr-FR',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(d))
-const parent=(i:AdministrationRegistrationItem)=>i.child.parentLinks?.[0]?.parent
+import { onMounted, ref } from 'vue'
+import { RefreshCw, ClipboardList } from 'lucide-vue-next'
+import { administrationRegistrationsApi, type AdministrationRegistrationItem } from '@/services/administration-registrations.service'
+import { administrationMovementsApi, type AdministrationMovement } from '@/services/administration-movements.service'
+
+const data = ref<any>(null)
+const movements = ref<AdministrationMovement[]>([])
+const loading = ref(true)
+const error = ref('')
+const movementId = ref('')
+const status = ref('')
+const days = ref(30)
+
+const labels: Record<string, string> = {
+  PENDING: 'En attente',
+  APPROVED: 'Approuvée',
+  REJECTED: 'Refusée',
+  CANCELLED: 'Annulée',
+  COMPLETED: 'Terminée',
+}
+
+const load = async () => {
+  loading.value = true
+  error.value = ''
+  try {
+    data.value = await administrationRegistrationsApi.list({
+      movementId: movementId.value || undefined,
+      status: status.value || undefined,
+      days: days.value,
+    })
+  } catch {
+    error.value = 'Impossible de charger les inscriptions.'
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(async () => {
+  try {
+    movements.value = await administrationMovementsApi.list()
+  } catch {}
+  await load()
+})
+
+const dateLabel = (date: string) =>
+  new Intl.DateTimeFormat('fr-FR', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  }).format(new Date(date))
+
+const parent = (item: AdministrationRegistrationItem) =>
+  item.child.parentLinks?.[0]?.parent
 </script>
+
 <template>
-<section class="space-y-6">
-<header class="border border-[#C2BAB0] bg-white p-5 sm:p-7"><p class="text-xs font-semibold uppercase tracking-[.16em] text-[#C25A34]">Supervision paroissiale</p><h1 class="mt-2 font-serif text-3xl text-[#0B1F3A] sm:text-4xl">Suivi des inscriptions</h1><p class="mt-2 text-sm text-[#6B655D]">Vue consolidée des dossiers transmis aux mouvements.</p></header>
-<div class="flex flex-col gap-3 lg:flex-row"><select v-model="movementId" @change="load" class="min-h-11 flex-1 border border-[#C2BAB0] bg-white px-3 text-sm"><option value="">Tous les mouvements</option><option v-for="m in movements" :key="m.id" :value="m.id">{{m.name}}</option></select><select v-model="status" @change="load" class="min-h-11 border border-[#C2BAB0] bg-white px-3 text-sm"><option value="">Tous les statuts</option><option v-for="(label,key) in labels" :key="key" :value="key">{{label}}</option></select><select v-model="days" @change="load" class="min-h-11 border border-[#C2BAB0] bg-white px-3 text-sm"><option :value="7">7 jours</option><option :value="30">30 jours</option><option :value="90">90 jours</option></select><button @click="load" class="inline-flex min-h-11 items-center justify-center gap-2 border border-[#C2BAB0] bg-white px-4 text-sm font-semibold"><RefreshCw class="size-4" :class="loading?'animate-spin':''"/> Actualiser</button></div>
-<div v-if="error" class="border border-[#B3261E]/30 bg-[#FFF5F4] p-4 text-sm text-[#B3261E]">{{error}}</div>
-<div v-if="loading" class="border border-[#C2BAB0] bg-white p-6 text-sm text-[#6B655D]">Chargement...</div>
-<template v-else-if="data">
-<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5"><div v-for="card in [{l:'Total',v:data.total},{l:'En attente',v:data.pending},{l:'Approuvées',v:data.approved},{l:'Refusées',v:data.rejected},{l:'Terminées',v:data.completed}]" :key="card.l" class="border border-[#DDD7CF] bg-white p-4"><ClipboardList class="size-5 text-[#24548F]"/><p class="mt-2 text-xs font-semibold uppercase tracking-wide text-[#6B655D]">{{card.l}}</p><p class="font-serif text-3xl text-[#14345E]">{{card.v}}</p></div></div>
-<div class="overflow-hidden border border-[#C2BAB0] bg-white"><div class="overflow-x-auto"><table class="w-full min-w-[850px] text-left text-sm"><thead class="bg-[#F7F5F2] text-xs uppercase tracking-wide text-[#6B655D]"><tr><th class="px-4 py-3">Enfant</th><th class="px-4 py-3">Parent</th><th class="px-4 py-3">Mouvement</th><th class="px-4 py-3">Date</th><th class="px-4 py-3">Statut</th><th class="px-4 py-3">Motif</th></tr></thead><tbody class="divide-y divide-[#EDE9E4]"><tr v-for="item in data.items" :key="item.id"><td class="px-4 py-3 font-semibold">{{item.child.firstName}} {{item.child.lastName}}</td><td class="px-4 py-3">{{parent(item)?parent(item)?.firstName+' '+parent(item)?.lastName:'—'}}</td><td class="px-4 py-3">{{item.movement.name}}</td><td class="px-4 py-3 whitespace-nowrap">{{dateLabel(item.registrationDate)}}</td><td class="px-4 py-3"><span class="inline-flex rounded-full border px-2 py-1 text-xs font-semibold">{{labels[item.status]||item.status}}</span></td><td class="max-w-[220px] px-4 py-3 text-[#6B655D]">{{item.rejectionReason||'—'}}</td></tr></tbody></table></div><div v-if="!data.items.length" class="p-8 text-center text-sm text-[#6B655D]">Aucune inscription sur cette période.</div></div>
-</template></section>
-</template
+  <section class="space-y-6">
+    <header class="border border-[#C2BAB0] bg-white p-5 sm:p-7">
+      <p class="text-xs font-semibold uppercase tracking-[.16em] text-[#C25A34]">Supervision paroissiale</p>
+      <h1 class="mt-2 font-serif text-3xl text-[#0B1F3A] sm:text-4xl">Suivi des inscriptions</h1>
+      <p class="mt-2 text-sm text-[#6B655D]">Vue consolidée des dossiers transmis aux mouvements.</p>
+    </header>
+
+    <div class="flex flex-col gap-3 lg:flex-row">
+      <select v-model="movementId" @change="load" class="min-h-11 flex-1 border border-[#C2BAB0] bg-white px-3 text-sm">
+        <option value="">Tous les mouvements</option>
+        <option v-for="movement in movements" :key="movement.id" :value="movement.id">{{ movement.name }}</option>
+      </select>
+      <select v-model="status" @change="load" class="min-h-11 border border-[#C2BAB0] bg-white px-3 text-sm">
+        <option value="">Tous les statuts</option>
+        <option v-for="(label, key) in labels" :key="key" :value="key">{{ label }}</option>
+      </select>
+      <select v-model="days" @change="load" class="min-h-11 border border-[#C2BAB0] bg-white px-3 text-sm">
+        <option :value="7">7 jours</option>
+        <option :value="30">30 jours</option>
+        <option :value="90">90 jours</option>
+      </select>
+      <button @click="load" class="inline-flex min-h-11 items-center justify-center gap-2 border border-[#C2BAB0] bg-white px-4 text-sm font-semibold">
+        <RefreshCw class="size-4" :class="{ 'animate-spin': loading }" /> Actualiser
+      </button>
+    </div>
+
+    <div v-if="error" class="border border-[#B3261E]/30 bg-[#FFF5F4] p-4 text-sm text-[#B3261E]">{{ error }}</div>
+    <div v-if="loading" class="border border-[#C2BAB0] bg-white p-6 text-sm text-[#6B655D]">Chargement...</div>
+
+    <template v-else-if="data">
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <div v-for="card in [{ l: 'Total', v: data.total }, { l: 'En attente', v: data.pending }, { l: 'Approuvées', v: data.approved }, { l: 'Refusées', v: data.rejected }, { l: 'Terminées', v: data.completed }]" :key="card.l" class="border border-[#DDD7CF] bg-white p-4">
+          <ClipboardList class="size-5 text-[#24548F]" />
+          <p class="mt-2 text-xs font-semibold uppercase tracking-wide text-[#6B655D]">{{ card.l }}</p>
+          <p class="font-serif text-3xl text-[#14345E]">{{ card.v }}</p>
+        </div>
+      </div>
+
+      <div class="overflow-hidden border border-[#C2BAB0] bg-white">
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[850px] text-left text-sm">
+            <thead class="bg-[#F7F5F2] text-xs uppercase tracking-wide text-[#6B655D]">
+              <tr>
+                <th class="px-4 py-3">Enfant</th>
+                <th class="px-4 py-3">Parent</th>
+                <th class="px-4 py-3">Mouvement</th>
+                <th class="px-4 py-3">Date</th>
+                <th class="px-4 py-3">Statut</th>
+                <th class="px-4 py-3">Motif</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#EDE9E4]">
+              <tr v-for="item in data.items" :key="item.id">
+                <td class="px-4 py-3 font-semibold">{{ item.child.firstName }} {{ item.child.lastName }}</td>
+                <td class="px-4 py-3">{{ parent(item) ? parent(item)?.firstName + ' ' + parent(item)?.lastName : '—' }}</td>
+                <td class="px-4 py-3">{{ item.movement.name }}</td>
+                <td class="px-4 py-3 whitespace-nowrap">{{ dateLabel(item.registrationDate) }}</td>
+                <td class="px-4 py-3"><span class="inline-flex rounded-full border px-2 py-1 text-xs font-semibold">{{ labels[item.status] || item.status }}</span></td>
+                <td class="max-w-[220px] px-4 py-3 text-[#6B655D]">{{ item.rejectionReason || '—' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div v-if="!data.items.length" class="p-8 text-center text-sm text-[#6B655D]">Aucune inscription sur cette période.</div>
+      </div>
+    </template>
+  </section>
+</template>
