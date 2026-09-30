@@ -1,24 +1,48 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { Bell, Clock3, Info, Megaphone, Paperclip, Send, Users } from 'lucide-vue-next'
+import { administrationMovementsApi, type AdministrationMovement } from '@/services/administration-movements.service'
+import { administrationCommunicationsApi, type AdministrationCommunication } from '@/services/administration-communications.service'
 
 const audience = ref('movement-parents')
-const movement = ref('Scouts et Guides')
+const movement = ref('')
+const movements = ref<AdministrationMovement[]>([])
+const history = ref<AdministrationCommunication[]>([])
 const nature = ref<'informative' | 'urgent'>('informative')
-const subject = ref('Première rencontre des Scouts — samedi 12 septembre')
-const message = ref('Chers parents,\n\nLa première rencontre des Scouts et Guides aura lieu samedi 12 septembre à 15 h, dans la cour de la paroisse. Prévoyez une tenue simple et une gourde d\'eau. La rencontre se termine à 18 h.\n\nLes inscriptions restent ouvertes jusqu\'au 30 septembre.\n\nLe secrétariat paroissial')
+const subject = ref('')
+const message = ref('')
 const saved = ref(false)
 const showConfirmation = ref(false)
 const sent = ref(false)
+const loading = ref(true)
+const error = ref('')
+const sending = ref(false)
 
 const charCount = computed(() => message.value.length)
 const smsCount = computed(() => Math.max(1, Math.ceil(charCount.value / 160)))
-const audienceCount = computed(() => audience.value === 'all' ? 1842 : audience.value === 'movement-members' ? 412 : 96)
+const selectedMovement = computed(() => movements.value.find(m => m.id === movement.value))
+const audienceCount = computed(() => audience.value === 'all' ? movements.value.reduce((n,m)=>n+(m.membersCount??0),0) : selectedMovement.value?.membersCount ?? 0)
 
-const saveDraft = () => {
-  saved.value = true
-  window.setTimeout(() => { saved.value = false }, 2500)
+async function load() {
+  loading.value = true
+  try {
+    movements.value = await administrationMovementsApi.list()
+    if (!movement.value && movements.value[0]) movement.value = movements.value[0].id
+    history.value = await administrationCommunicationsApi.list()
+  } catch { error.value = 'Impossible de charger les communications.' }
+  finally { loading.value = false }
 }
+function saveDraft(){ saved.value=true; window.setTimeout(()=>saved.value=false,2500) }
+async function sendMessage(){
+  if(!movement.value || !subject.value.trim() || !message.value.trim()) return
+  sending.value=true; error.value=''
+  try {
+    const item=await administrationCommunicationsApi.send({movementId:movement.value,title:subject.value,content:message.value,type:nature.value==='urgent'?'REMINDER':'INFORMATION',audience:audience.value==='movement-members'?'MEMBERS':audience.value==='movement-parents'?'PARENTS':'ALL',sendNow:true})
+    history.value.unshift(item); sent.value=true; showConfirmation.value=false
+  } catch { error.value='Impossible d’envoyer le message.' }
+  finally { sending.value=false }
+}
+onMounted(load)
 </script>
 
 <template>
@@ -51,7 +75,7 @@ const saveDraft = () => {
         </div>
         <div class="mt-5">
           <label class="text-[13.5px] font-semibold text-[#2E2925]">Mouvement concerné</label>
-          <select v-model="movement" class="mt-1 min-h-11 w-full border-[1.5px] border-[#C2BAB0] bg-white px-3 text-sm"><option>Scouts et Guides</option><option>Chorale</option><option>Jeunesse</option></select>
+          <select v-model="movement" class="mt-1 min-h-11 w-full border-[1.5px] border-[#C2BAB0] bg-white px-3 text-sm"><option v-for="item in movements" :key="item.id" :value="item.id">{{ item.name }}</option></select>
         </div>
         <div class="mt-4 bg-[#F7F5F2] p-3">
           <div class="text-sm font-bold text-[#2E2925]">{{ audienceCount }} destinataires</div>
@@ -127,7 +151,7 @@ const saveDraft = () => {
           </div>
           <div class="flex justify-end gap-2">
             <button class="min-h-10 border border-[#C2BAB0] bg-white px-4 text-sm font-semibold" @click="showConfirmation = true">Revenir au brouillon</button>
-            <button class="inline-flex min-h-10 items-center gap-2 bg-[#14345E] px-4 text-sm font-bold text-white" @click="sent = true; showConfirmation = false"><Send class="size-4" />Envoyer maintenant</button>
+            <button class="inline-flex min-h-10 items-center gap-2 bg-[#14345E] px-4 text-sm font-bold text-white" @click="sendMessage"><Send class="size-4" />Envoyer maintenant</button>
           </div>
           <p v-if="sent" class="text-sm font-semibold text-[#14713C]">Message enregistré comme envoyé.</p>
         </div>
@@ -143,14 +167,9 @@ const saveDraft = () => {
               <tr><th class="px-3 py-2.5">Message</th><th class="w-20 px-2 py-2.5">Envoyé</th><th class="w-20 px-2 py-2.5">Reçus</th><th class="w-16 px-2 py-2.5">Lus</th></tr>
             </thead>
             <tbody>
-              <tr v-for="item in [
-                {message:'Kermesse : appel aux volontaires', audience:'Tous les fidèles · informatif', sent:'28 août', received:'1 838', read:'62 %'},
-                {message:'Messe de 6 h déplacée à 6 h 30', audience:'Tous les fidèles · urgent', sent:'26 août', received:'1 842', read:'88 %'},
-                {message:'Reprise de la catéchèse', audience:'Parents · Catéchèse', sent:'22 août', received:'124', read:'74 %'},
-                {message:'Merci aux donateurs de la toiture', audience:'Donateurs · projet toiture', sent:'15 août', received:'214', read:'81 %'}
-              ]" :key="item.message" class="border-t border-[#EDE9E4]">
-                <td class="px-3 py-2.5"><div class="font-semibold text-[#2E2925]">{{ item.message }}</div><div class="text-[#6B655D]">{{ item.audience }}</div></td>
-                <td class="px-2 py-2.5 tabular-nums">{{ item.sent }}</td><td class="px-2 py-2.5 tabular-nums">{{ item.received }}</td><td class="px-2 py-2.5 tabular-nums">{{ item.read }}</td>
+              <tr v-for="item in history"" :key="item.message" class="border-t border-[#EDE9E4]">
+                <td class="px-3 py-2.5"><div class="font-semibold text-[#2E2925]">{{ item.title }}</div><div class="text-[#6B655D]">{{ item.movement?.name || 'Paroisse' }} · {{ item.type }}</div></td>
+                <td class="px-2 py-2.5 tabular-nums">{{ item.sentAt ? new Date(item.sentAt).toLocaleDateString('fr-FR') : 'Brouillon' }}</td><td class="px-2 py-2.5 tabular-nums">{{ item.recipients.length }}</td><td class="px-2 py-2.5 tabular-nums">{{ item.recipients.length ? Math.round(item.recipients.filter(r => r.readAt).length / item.recipients.length * 100) : 0 }} %</td>
               </tr>
             </tbody>
           </table>
