@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import {
-  BarChart3,
   Bell,
   CalendarDays,
-  ClipboardList,
   FileText,
   FolderOpen,
   LayoutDashboard,
@@ -22,7 +20,6 @@ const items = [
   { to: '/administration/dashboard', label: 'Tableau de bord', icon: LayoutDashboard },
   { to: '/administration/utilisateurs', label: 'Utilisateurs', icon: Users },
   { to: '/administration/mouvements', label: 'Mouvements & rapports', icon: Users },
-  { to: '/administration/activite', label: 'Activité des mouvements', icon: BarChart3 },
   { to: '/administration/documents', label: 'Documents', icon: FolderOpen },
   { to: '/administration/finances', label: 'Finances', icon: Receipt },
   { to: '/administration/communications', label: 'Communications', icon: MessageSquare },
