@@ -19,6 +19,8 @@ const form = ref({
   notes: '',
 })
 const error = ref('')
+const personSearch = ref('')
+const personCandidates = ref<{ name: string; birth: string; id: string }[]>([])
 
 const filtered = computed(() => {
   const q = query.value.trim().toLowerCase()
@@ -63,13 +65,37 @@ async function load() {
   }
 }
 
-function openNewAct() {
-  if (!person.value) {
-    error.value = 'Sélectionnez d’abord une personne.'
-    return
+async function searchPersons() {
+  try {
+    const q = personSearch.value.trim()
+    const d = await sacramentalApi.list(q || undefined)
+    personCandidates.value = d.people.map(p => ({
+      id: p.id,
+      name: p.firstName + ' ' + p.lastName,
+      birth: p.faithfulProfile?.birthDate
+        ? 'Né(e) le ' + new Date(p.faithfulProfile.birthDate).toLocaleDateString('fr-FR')
+        : 'Date de naissance non renseignée',
+    }))
+  } catch {
+    personCandidates.value = []
   }
+}
+
+function selectFormPerson(item: { name: string; birth: string; id: string }) {
+  form.value.personId = item.id
+  personSearch.value = item.name
+  personCandidates.value = []
+}
+
+function clearFormPerson() {
+  form.value.personId = ''
+  personSearch.value = ''
+  personCandidates.value = []
+}
+
+async function openNewAct() {
   form.value = {
-    personId: person.value.id,
+    personId: person.value?.id || '',
     type: 'BAPTISM',
     celebrationDate: '',
     celebrantName: '',
@@ -79,6 +105,8 @@ function openNewAct() {
     notes: '',
   }
   error.value = ''
+  personSearch.value = person.value?.name || ''
+  personCandidates.value = []
   showNewAct.value = true
 }
 
@@ -93,6 +121,8 @@ async function createAct() {
     showNewAct.value = false
     error.value = ''
     await load()
+    personSearch.value = ''
+    personCandidates.value = []
   } catch (e: any) {
     error.value = e?.response?.data?.message || 'Impossible d’inscrire l’acte.'
   }
@@ -219,16 +249,31 @@ onMounted(load)
       <div class="w-full max-w-2xl overflow-hidden rounded-[6px] border border-[#C2BAB0] bg-white shadow-xl">
         <div class="border-b border-[#EDE9E4] p-4">
           <h2 class="text-[19px] font-bold text-[#2E2925]">Inscrire un acte</h2>
-          <p class="text-[13.5px] text-[#6B655D]">Personne sélectionnée : {{ person?.name }}</p>
+          <p class="text-[13.5px] text-[#6B655D]">Recherchez la personne par son nom puis sélectionnez la fiche correspondante.</p>
         </div>
         <div class="flex gap-2 border-b border-[#B3261E] bg-[#FBE9E8] p-3 text-[13.5px] leading-5">
           <AlertTriangle class="size-5 shrink-0 text-[#B3261E]" />
           <span><strong class="text-[#B3261E]">Un acte inscrit ne peut plus être supprimé.</strong> Vérifiez chaque champ avant inscription.</span>
         </div>
         <div class="grid gap-3 p-4 sm:grid-cols-2">
-          <label class="text-[13.5px] font-semibold">Personne sélectionnée
-            <input :value="person?.name || ''" readonly class="mt-1 min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] bg-[#F7F5F2] px-3 font-normal" />
-          </label>
+          <div class="relative text-[13.5px] font-semibold">
+            <label>Personne
+              <div class="mt-1 flex gap-2">
+                <input v-model="personSearch" @input="searchPersons" class="min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] bg-white px-3 font-normal" placeholder="Saisir le nom ou le prénom" autocomplete="off" />
+                <button v-if="form.personId" type="button" @click="clearFormPerson" class="shrink-0 rounded-[5px] border-[1.5px] border-[#C2BAB0] px-3 text-[#6B655D]" title="Changer de personne"><X class="size-4" /></button>
+              </div>
+            </label>
+            <div v-if="personSearch.trim() && !form.personId && personCandidates.length" class="absolute left-0 right-0 top-[68px] z-20 max-h-48 overflow-y-auto rounded-[5px] border border-[#C2BAB0] bg-white shadow-lg">
+              <button v-for="candidate in personCandidates" :key="candidate.id" type="button" @click="selectFormPerson(candidate)" class="block w-full border-b border-[#EDE9E4] px-3 py-2.5 text-left last:border-0 hover:bg-[#F7F5F2]">
+                <div class="font-semibold text-[#2E2925]">{{ candidate.name }}</div>
+                <div class="text-[12px] font-normal text-[#6B655D]">{{ candidate.birth }}</div>
+              </button>
+            </div>
+            <div v-if="personSearch.trim() && !form.personId && !personCandidates.length" class="absolute left-0 right-0 top-[68px] z-20 rounded-[5px] border border-[#C2BAB0] bg-white p-3 text-[12.5px] font-normal text-[#6B655D] shadow-lg">
+              Aucune personne correspondante.
+            </div>
+            <div v-if="form.personId" class="mt-1 text-[12px] font-normal text-[#2E2925]">Personne liée : <strong>{{ personSearch }}</strong></div>
+          </div>
           <label class="text-[13.5px] font-semibold">Sacrement
             <select v-model="form.type" class="mt-1 min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] bg-white px-3 font-normal">
               <option value="BAPTISM">Baptême</option>
@@ -260,7 +305,7 @@ onMounted(load)
           </label>
         </div>
         <div class="flex justify-end gap-2 p-4 pt-0">
-          <button type="button" @click="showNewAct=false" class="min-h-10 rounded-[5px] border-[1.5px] border-[#C2BAB0] px-4 text-[14px] font-semibold">Annuler</button>
+          <button type="button" @click="showNewAct=false; clearFormPerson()" class="min-h-10 rounded-[5px] border-[1.5px] border-[#C2BAB0] px-4 text-[14px] font-semibold">Annuler</button>
           <button type="button" @click="createAct" class="min-h-10 rounded-[5px] bg-[#14345E] px-4 text-[14px] font-bold text-white hover:bg-[#0E2A4E]">Inscrire définitivement au registre</button>
         </div>
       </div>
