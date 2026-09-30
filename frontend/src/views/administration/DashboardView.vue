@@ -1,14 +1,39 @@
 <script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
 import { ArrowRight, BarChart3, ClipboardList, FileText, MessageSquare, Receipt, Users } from 'lucide-vue-next'
 import { RouterLink } from 'vue-router'
 import StatCard from '@/components/molecules/StatCard.vue'
+import { administrationApi, type AdministrationDashboard } from '@/services/administration.service'
 
-const kpis = [
-  { label: 'Mouvements actifs', value: '—', hint: 'Données consolidées à connecter' },
-  { label: 'Inscriptions en cours', value: '—', hint: 'Suivi global des demandes' },
-  { label: 'Cotisations encaissées', value: '—', hint: 'Tous mouvements confondus' },
-  { label: 'Rapports reçus', value: '—', hint: 'Période courante' },
-]
+const dashboard = ref<AdministrationDashboard | null>(null)
+const loading = ref(true)
+const error = ref('')
+
+const formatAmount = (amount: number, currency = 'XOF') =>
+  new Intl.NumberFormat('fr-FR').format(amount) + (currency === 'XOF' ? ' FCFA' : ` ${currency}`)
+
+const kpis = computed(() => [
+  {
+    label: 'Mouvements actifs',
+    value: dashboard.value ? String(dashboard.value.movements.active) : '—',
+    hint: dashboard.value ? `${dashboard.value.movements.total} au total` : 'Chargement...',
+  },
+  {
+    label: 'Inscriptions en cours',
+    value: dashboard.value ? String(dashboard.value.registrations.pending) : '—',
+    hint: dashboard.value ? `${dashboard.value.registrations.total} au total` : 'Chargement...',
+  },
+  {
+    label: 'Cotisations encaissées',
+    value: dashboard.value ? formatAmount(dashboard.value.payments.totalAmount, dashboard.value.payments.currency) : '—',
+    hint: dashboard.value ? `${dashboard.value.payments.successful} paiements réussis` : 'Chargement...',
+  },
+  {
+    label: 'Utilisateurs actifs',
+    value: dashboard.value ? String(dashboard.value.users.active) : '—',
+    hint: dashboard.value ? `${dashboard.value.users.total} au total` : 'Chargement...',
+  },
+])
 
 const links = [
   { to: '/administration/mouvements', label: 'Piloter les mouvements', description: 'Catalogue et responsables', icon: Users },
@@ -18,6 +43,20 @@ const links = [
   { to: '/administration/communications', label: 'Publier une communication', description: 'Annonces et campagnes', icon: MessageSquare },
   { to: '/administration/activite', label: 'Voir l’activité', description: 'Indicateurs par mouvement', icon: BarChart3 },
 ]
+
+const loadDashboard = async () => {
+  loading.value = true
+  error.value = ''
+  try {
+    dashboard.value = await administrationApi.getDashboard()
+  } catch {
+    error.value = 'Impossible de charger les données du tableau de bord.'
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(loadDashboard)
 </script>
 
 <template>
@@ -28,7 +67,7 @@ const links = [
         <div>
           <h1 class="page-title text-3xl text-[#0B1F3A] sm:text-4xl lg:text-5xl">Tableau de bord</h1>
           <p class="mt-3 max-w-3xl text-sm leading-6 text-[#6B655D]">
-            Une vue consolidée de la paroisse : l’administration supervise, tandis que chaque responsable conserve la gestion opérationnelle de son mouvement.
+            {{ dashboard?.parish.name ?? 'Votre paroisse' }} · vue consolidée de l’activité paroissiale.
           </p>
         </div>
         <RouterLink to="/administration/rapports" class="inline-flex min-h-11 items-center justify-center gap-2 bg-[#C25A34] px-4 text-sm font-semibold text-white hover:bg-[#A84A28]">
@@ -36,6 +75,11 @@ const links = [
         </RouterLink>
       </div>
     </header>
+
+    <div v-if="error" class="border border-[#B3261E]/30 bg-[#FFF5F4] p-4 text-sm text-[#B3261E]">
+      {{ error }}
+      <button class="ml-2 font-semibold underline" @click="loadDashboard">Réessayer</button>
+    </div>
 
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       <StatCard v-for="item in kpis" :key="item.label" :label="item.label" :value="item.value" :hint="item.hint" />
@@ -60,12 +104,20 @@ const links = [
       </article>
 
       <article class="border border-[#C2BAB0] bg-white p-5 sm:p-6">
-        <p class="eyebrow text-[#6B655D]">Principe de fonctionnement</p>
-        <h2 class="page-title mt-1 text-2xl text-[#14345E]">Une supervision, pas un goulot d’étranglement</h2>
-        <div class="mt-5 space-y-4 text-sm leading-6 text-[#6B655D]">
-          <p><strong class="text-[#2E2925]">Parent / fidèle</strong> : envoie directement son dossier au mouvement choisi.</p>
-          <p><strong class="text-[#2E2925]">Responsable mouvement</strong> : traite les inscriptions et gère son activité au quotidien.</p>
-          <p><strong class="text-[#2E2925]">Administration</strong> : consolide les indicateurs, supervise les finances, reçoit les rapports et pilote la vie paroissiale.</p>
+        <p class="eyebrow text-[#6B655D]">Activité</p>
+        <h2 class="page-title mt-1 text-2xl text-[#14345E]">Mouvements</h2>
+        <div v-if="loading" class="mt-5 text-sm text-[#6B655D]">Chargement...</div>
+        <div v-else class="mt-5 space-y-3">
+          <div v-for="movement in dashboard?.movementActivity" :key="movement.id" class="flex items-center justify-between border-b border-[#EDE9E4] pb-3 last:border-0">
+            <div>
+              <p class="text-sm font-semibold text-[#2E2925]">{{ movement.name }}</p>
+              <p class="text-xs text-[#6B655D]">{{ movement._count.members }} membres · {{ movement._count.registrations }} inscriptions</p>
+            </div>
+            <span class="text-xs font-semibold" :class="movement.status === 'ACTIVE' ? 'text-[#14713C]' : 'text-[#6B655D]'">
+              {{ movement.status === 'ACTIVE' ? 'Actif' : movement.status }}
+            </span>
+          </div>
+          <p v-if="!dashboard?.movementActivity.length" class="text-sm text-[#6B655D]">Aucun mouvement enregistré.</p>
         </div>
       </article>
     </div>
