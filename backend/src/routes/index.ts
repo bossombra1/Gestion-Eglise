@@ -6,6 +6,7 @@ import paymentRouter from './payment.routes'
 import documentRouter from './document.routes'
 import communicationRouter from './communication.routes'
 import administrationRouter from './administration.routes'
+import administrationUserRouter from './administration-user.routes'
 
 const router = Router()
 
@@ -23,5 +24,6 @@ router.use('/payments', paymentRouter)
 router.use('/documents', documentRouter)
 router.use('/communications', communicationRouter)
 router.use('/administration', administrationRouter)
+router.use('/administration/users', administrationUserRouter)
 
 export default router
