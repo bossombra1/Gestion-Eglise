@@ -111,8 +111,12 @@ async function openNewAct() {
 }
 
 async function createAct() {
-  if (!form.value.personId || !form.value.celebrationDate) {
-    error.value = 'Sélectionnez une personne et renseignez la date du sacrement.'
+  if (!form.value.personId) {
+    error.value = 'La personne saisie ne correspond à aucune personne sélectionnée. Choisissez une personne dans les résultats.'
+    return
+  }
+  if (!form.value.celebrationDate) {
+    error.value = 'Renseignez la date du sacrement.'
     return
   }
 
@@ -259,7 +263,7 @@ onMounted(load)
           <div class="relative text-[13.5px] font-semibold">
             <label>Personne
               <div class="mt-1 flex gap-2">
-                <input v-model="personSearch" @input="searchPersons" class="min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] bg-white px-3 font-normal" placeholder="Saisir le nom ou le prénom" autocomplete="off" />
+                <input v-model="personSearch" @input="form.personId = ''; searchPersons()" class="min-h-10 w-full rounded-[5px] border-[1.5px] border-[#C2BAB0] bg-white px-3 font-normal" placeholder="Saisir le nom ou le prénom" autocomplete="off" />
                 <button v-if="form.personId" type="button" @click="clearFormPerson" class="shrink-0 rounded-[5px] border-[1.5px] border-[#C2BAB0] px-3 text-[#6B655D]" title="Changer de personne"><X class="size-4" /></button>
               </div>
             </label>
