@@ -1,40 +1,35 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Bell, LogOut, Menu } from 'lucide-vue-next'
-import AppButton from '@/components/atoms/AppButton.vue'
+import { Bell, Menu } from 'lucide-vue-next'
 import { useAuthStore } from '@/stores/auth'
 
 defineEmits<{ menu: [] }>()
-
 const auth = useAuthStore()
 const fullName = computed(() => auth.user ? `${auth.user.firstName} ${auth.user.lastName}`.trim() : 'Utilisateur')
+const today = computed(() => new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date()))
 </script>
 
 <template>
-  <header class="flex min-h-16 flex-wrap items-center justify-between gap-2 border-b border-[#C2BAB0] bg-white px-3 py-3 sm:px-5 lg:flex-nowrap lg:px-6">
-    <div class="flex min-w-0 items-center gap-2 sm:gap-3">
-      <button class="touch-target flex shrink-0 items-center justify-center rounded text-[#0B1F3A] hover:bg-[#F2EFEA] lg:hidden" aria-label="Ouvrir le menu" @click="$emit('menu')">
-        <Menu class="size-6" />
-      </button>
-      <div class="min-w-0">
-        <p class="eyebrow truncate text-[#C25A34]">Espace administration</p>
-        <p class="truncate text-xs text-[#6B655D] sm:text-sm">Supervision et coordination de la paroisse</p>
-      </div>
+  <header class="flex min-h-[64px] items-center gap-3 border-b border-[#DDD7CF] bg-white px-4 sm:px-5">
+    <button class="touch-target flex shrink-0 items-center justify-center rounded text-[#0B1F3A] hover:bg-[#F2EFEA] lg:hidden" aria-label="Ouvrir le menu" @click="$emit('menu')">
+      <Menu class="size-6" />
+    </button>
+    <div class="min-w-0">
+      <p class="text-[20px] font-bold leading-tight text-[#2E2925]">{{ today }}</p>
+      <p class="text-[13.5px] text-[#6B655D]">Accueil de la paroisse · Synchronisation active</p>
     </div>
-
-    <div class="flex min-w-0 items-center gap-1 sm:gap-2 lg:gap-4">
+    <div class="ml-auto flex items-center gap-2.5">
+      <div class="hidden min-h-9 items-center gap-2 rounded bg-[#E4F1E8] px-2.5 sm:flex">
+        <span class="size-2 rounded-full bg-[#14713C]"></span>
+        <span class="text-[13.5px] font-semibold text-[#14713C]">À jour</span>
+      </div>
       <button class="touch-target flex items-center justify-center rounded p-2 text-[#4A443E] hover:bg-[#F2EFEA]" aria-label="Notifications">
         <Bell class="size-5" />
       </button>
-      <div class="hidden min-w-0 text-right sm:block">
-        <p class="max-w-40 truncate text-sm font-semibold lg:max-w-56">{{ fullName }}</p>
-        <p class="truncate text-xs text-[#6B655D]">{{ auth.user?.role === 'SUPER_ADMIN' ? 'Super administrateur' : 'Administrateur paroissial' }}</p>
+      <div class="hidden text-right sm:block">
+        <p class="max-w-44 truncate text-sm font-semibold text-[#2E2925]">{{ fullName }}</p>
+        <p class="text-xs text-[#6B655D]">{{ auth.user?.role === 'SUPER_ADMIN' ? 'Super administrateur' : 'Secrétariat' }}</p>
       </div>
-      <AppButton variant="ghost" class="shrink-0" @click="auth.logout(); $router.push('/')">
-        <LogOut class="size-4" />
-        <span class="hidden sm:inline">Déconnexion</span>
-        <span class="sm:hidden">Sortir</span>
-      </AppButton>
     </div>
   </header>
 </template>
