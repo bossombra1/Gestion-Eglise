@@ -100,7 +100,7 @@ enum NotificationType {
   REMINDER
 }
 
-enum MassIntentionStatus {
+enum SacramentType {\n  BAPTISM\n  CONFIRMATION\n  FIRST_COMMUNION\n  MARRIAGE\n  ORDINATION\n  FUNERAL\n  OTHER\n}\n\nenum SacramentalActStatus {\n  DRAFT\n  VALIDATED\n  CANCELLED\n}\n\nenum MarriageCaseStatus {\n  DRAFT\n  DOCUMENTS_PENDING\n  READY\n  PUBLISHED\n  CELEBRATED\n  CANCELLED\n}\n\nenum MassIntentionStatus {
   PENDING
   CONFIRMED
   CANCELLED
@@ -126,7 +126,7 @@ model Parish {
   documents      Document[]
   communications Communication[]
   notifications  Notification[]
-  massIntentions MassIntention[]
+  massIntentions MassIntention[]\n  sacramentalActs SacramentalAct[]\n  marriageCases MarriageCase[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -528,6 +528,53 @@ model Notification {
   @@index([userId])
   @@index([readAt])
   @@map("notifications")
+}
+
+model SacramentalAct {
+  id String @id @default(uuid())
+  parishId String
+  parish Parish @relation(fields:[parishId],references:[id],onDelete:Cascade)
+  personId String
+  person User @relation(fields:[personId],references:[id],onDelete:Restrict)
+  type SacramentType
+  status SacramentalActStatus @default(DRAFT)
+  celebrationDate DateTime
+  place String?
+  celebrantName String?
+  registerNumber String?
+  certificateNumber String?
+  notes String?
+  annotations String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([parishId])
+  @@index([personId])
+  @@index([type])
+  @@index([celebrationDate])
+  @@map("sacramental_acts")
+}
+
+model MarriageCase {
+  id String @id @default(uuid())
+  parishId String
+  parish Parish @relation(fields:[parishId],references:[id],onDelete:Cascade)
+  groomName String
+  brideName String
+  celebrationDate DateTime
+  celebrationTime String?
+  celebrantName String?
+  status MarriageCaseStatus @default(DRAFT)
+  groomDocuments Int @default(0)
+  brideDocuments Int @default(0)
+  requiredDocuments Int @default(3)
+  publicationCount Int @default(0)
+  notes String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([parishId])
+  @@index([celebrationDate])
+  @@index([status])
+  @@map("marriage_cases")
 }
 
 model MassIntention {
