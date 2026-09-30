@@ -12,9 +12,10 @@ export const administrationRepository = {
       pendingRegistrations,
       approvedRegistrations,
       rejectedRegistrations,
-      successfulPayments,
-      pendingPayments,
-      successfulPaymentAggregate,
+      massIntentions,
+      pendingMassIntentions,
+      confirmedMassIntentions,
+      completedMassIntentions,
       movementActivity,
     ] = await Promise.all([
       prisma.parish.findUnique({
@@ -29,12 +30,10 @@ export const administrationRepository = {
       prisma.registration.count({ where: { parishId, status: 'PENDING' } }),
       prisma.registration.count({ where: { parishId, status: 'APPROVED' } }),
       prisma.registration.count({ where: { parishId, status: 'REJECTED' } }),
-      prisma.payment.count({ where: { parishId, status: 'SUCCESS' } }),
-      prisma.payment.count({ where: { parishId, status: 'PENDING' } }),
-      prisma.payment.aggregate({
-        where: { parishId, status: 'SUCCESS' },
-        _sum: { amount: true },
-      }),
+      prisma.massIntention.count({ where: { parishId } }),
+      prisma.massIntention.count({ where: { parishId, status: 'PENDING' } }),
+      prisma.massIntention.count({ where: { parishId, status: 'CONFIRMED' } }),
+      prisma.massIntention.count({ where: { parishId, status: 'COMPLETED' } }),
       prisma.movement.findMany({
         where: { parishId },
         select: {
@@ -65,11 +64,11 @@ export const administrationRepository = {
         approved: approvedRegistrations,
         rejected: rejectedRegistrations,
       },
-      payments: {
-        successful: successfulPayments,
-        pending: pendingPayments,
-        totalAmount: Number(successfulPaymentAggregate._sum.amount ?? 0),
-        currency: 'XOF',
+      massIntentions: {
+        total: massIntentions,
+        pending: pendingMassIntentions,
+        confirmed: confirmedMassIntentions,
+        completed: completedMassIntentions,
       },
       movementActivity,
     }
