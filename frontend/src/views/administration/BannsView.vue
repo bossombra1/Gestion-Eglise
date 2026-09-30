@@ -1,17 +1,210 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { AlertTriangle, CalendarDays, Check, Plus, X } from 'lucide-vue-next'
-import { bannsApi, type MarriageCase } from '@/services/administration-banns.service'
-type Status='complete'|'progress'|'pending'
-type Couple={id:string;groom:string;bride:string;date:string;time:string;documents:{label:string;status:Status}[];publications:number;publicationNote:string;celebrant:string}
-const couples=ref<Couple[]>([]);const selected=ref<Couple|null>(null);const showNew=ref(false);const newGroom=ref('');const newBride=ref('');const newDate=ref('');const newTime=ref('10:00');const error=ref('')
-function map(x:MarriageCase):Couple{return{id:x.id,groom:x.groomName,bride:x.brideName,date:new Date(x.celebrationDate).toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'}),time:x.celebrationTime?.replace(':',' h ')||'—',documents:[{label:'Documents époux',status:x.groomDocuments>=x.requiredDocuments?'complete':x.groomDocuments?'progress':'pending'},{label:'Documents épouse',status:x.brideDocuments>=x.requiredDocuments?'complete':x.brideDocuments?'progress':'pending'}],publications:x.publicationCount,publicationNote:x.publicationCount+' / 3',celebrant:x.celebrantName||'À définir'}}
-async function load(){try{couples.value=(await bannsApi.list()).map(map)}catch{error.value='Impossible de charger les dossiers.'}}
-async function createCase(){try{await bannsApi.create({groomName:newGroom.value,brideName:newBride.value,celebrationDate:newDate.value,celebrationTime:newTime.value});showNew.value=false;newGroom.value='';newBride.value='';newDate.value='';await load()}catch{error.value='Impossible de créer le dossier.'}}
-async function saveCase(){if(!selected.value)return;try{await bannsApi.update(selected.value.id,{status:selected.value.publications===3?'PUBLISHED':'DOCUMENTS_PENDING',publicationCount:selected.value.publications,celebrantName:selected.value.celebrant==='À définir'?null:selected.value.celebrant});selected.value=null;await load()}catch{error.value='Impossible d’enregistrer le dossier.'}}
-const closeCase=()=>{selected.value=null};const openCase=(c:Couple)=>{selected.value=c}
-const statusClass=(status:Status)=>({complete:'bg-[#E4F1E8] text-[#14713C]',progress:'bg-[#FDF3DC] text-[#8A5200]',pending:'bg-[#FBE9E8] text-[#B3261E]'}[status])
-const publicationBars=computed(()=> (couple:Couple)=>[1,2,3].map(n=>n<=couple.publications))
+import { AlertTriangle, CalendarDays, Check, Plus, Save, X } from 'lucide-vue-next'
+import { bannsApi, type MarriageCase, type MarriageDocumentStatus } from '@/services/administration-banns.service'
+
+type Couple = MarriageCase
+
+const couples = ref<Couple[]>([])
+const selected = ref<Couple | null>(null)
+const showNew = ref(false)
+const loading = ref(true)
+const saving = ref(false)
+const error = ref('')
+
+const newForm = ref({
+  groomName: '',
+  brideName: '',
+  groomBirthDate: '',
+  brideBirthDate: '',
+  groomPhone: '',
+  bridePhone: '',
+  groomAddress: '',
+  brideAddress: '',
+  celebrationDate: '',
+  celebrationTime: '10:00',
+  celebrantName: '',
+  groomBaptismStatus: 'PENDING' as MarriageDocumentStatus,
+  brideBaptismStatus: 'PENDING' as MarriageDocumentStatus,
+  groomConfirmationStatus: 'PENDING' as MarriageDocumentStatus,
+  brideConfirmationStatus: 'PENDING' as MarriageDocumentStatus,
+  preparationStatus: 'PENDING' as MarriageDocumentStatus,
+  civilStatusStatus: 'PENDING' as MarriageDocumentStatus,
+  publication1Date: '',
+  publication2Date: '',
+  publication3Date: '',
+  oppositionCount: 0,
+  oppositionNote: '',
+  notes: '',
+})
+
+const formatDate = (value: string | null | undefined) =>
+  value
+    ? new Intl.DateTimeFormat('fr-FR', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' }).format(new Date(value))
+    : '—'
+
+const formatDateInput = (value: string | null | undefined) => value ? value.slice(0, 10) : ''
+
+const publicationDates = (item: Couple) => [
+  item.publication1Date,
+  item.publication2Date,
+  item.publication3Date,
+]
+
+const publicationCount = (item: Couple) =>
+  publicationDates(item).filter(Boolean).length || item.publicationCount
+
+const publicationText = (item: Couple) => {
+  const count = publicationCount(item)
+  if (!count) return 'Non commencée'
+  if (item.oppositionCount > 0) return count + ' / 3 publiée(s) · ' + item.oppositionCount + ' opposition(s)'
+  if (count === 3) return '3 / 3 publiées · aucune opposition'
+  const next = publicationDates(item).findIndex(v => !v)
+  return count + ' / 3 · prochaine publication à renseigner'
+}
+
+const statusLabel = (status: MarriageDocumentStatus) => ({
+  COMPLETE: 'Complet',
+  ISSUE: 'À corriger',
+  PENDING: 'À renseigner',
+}[status])
+
+const statusClass = (status: MarriageDocumentStatus) => ({
+  COMPLETE: 'bg-[#E4F1E8] text-[#14713C]',
+  ISSUE: 'bg-[#FBE9E8] text-[#B3261E]',
+  PENDING: 'bg-[#FDF3DC] text-[#8A5200]',
+}[status])
+
+const documents = (item: Couple) => [
+  { label: 'Baptême époux', status: item.groomBaptismStatus },
+  { label: 'Baptême épouse', status: item.brideBaptismStatus },
+  { label: 'Confirmation époux', status: item.groomConfirmationStatus },
+  { label: 'Confirmation épouse', status: item.brideConfirmationStatus },
+  { label: 'Préparation', status: item.preparationStatus },
+  { label: 'État civil', status: item.civilStatusStatus },
+]
+
+const totalCases = computed(() => couples.value.length)
+const publicationsToComplete = computed(() => couples.value.filter(item => publicationCount(item) < 3).length)
+
+async function load() {
+  loading.value = true
+  error.value = ''
+  try {
+    couples.value = await bannsApi.list()
+  } catch {
+    error.value = 'Impossible de charger les dossiers de mariage.'
+  } finally {
+    loading.value = false
+  }
+}
+
+function resetNewForm() {
+  Object.assign(newForm.value, {
+    groomName: '', brideName: '', groomBirthDate: '', brideBirthDate: '',
+    groomPhone: '', bridePhone: '', groomAddress: '', brideAddress: '',
+    celebrationDate: '', celebrationTime: '10:00', celebrantName: '',
+    groomBaptismStatus: 'PENDING', brideBaptismStatus: 'PENDING',
+    groomConfirmationStatus: 'PENDING', brideConfirmationStatus: 'PENDING',
+    preparationStatus: 'PENDING', civilStatusStatus: 'PENDING',
+    publication1Date: '', publication2Date: '', publication3Date: '',
+    oppositionCount: 0, oppositionNote: '', notes: '',
+  })
+}
+
+function openNew() {
+  resetNewForm()
+  showNew.value = true
+  error.value = ''
+}
+
+async function createCase() {
+  if (!newForm.value.groomName.trim() || !newForm.value.brideName.trim() || !newForm.value.celebrationDate) {
+    error.value = 'Les noms des fiancés et la date de célébration sont obligatoires.'
+    return
+  }
+
+  saving.value = true
+  error.value = ''
+  try {
+    await bannsApi.create({
+      ...newForm.value,
+      groomName: newForm.value.groomName.trim(),
+      brideName: newForm.value.brideName.trim(),
+      groomBirthDate: newForm.value.groomBirthDate || undefined,
+      brideBirthDate: newForm.value.brideBirthDate || undefined,
+      publication1Date: newForm.value.publication1Date || undefined,
+      publication2Date: newForm.value.publication2Date || undefined,
+      publication3Date: newForm.value.publication3Date || undefined,
+      publicationCount: [newForm.value.publication1Date, newForm.value.publication2Date, newForm.value.publication3Date].filter(Boolean).length,
+      status: 'DRAFT',
+    })
+    showNew.value = false
+    await load()
+  } catch (e: any) {
+    error.value = e?.response?.data?.message || 'Impossible de créer le dossier.'
+  } finally {
+    saving.value = false
+  }
+}
+
+function openCase(item: Couple) {
+  selected.value = structuredClone(item)
+  error.value = ''
+}
+
+function closeCase() {
+  selected.value = null
+}
+
+async function saveCase() {
+  if (!selected.value) return
+  saving.value = true
+  error.value = ''
+  try {
+    const count = publicationCount(selected.value)
+    const status = selected.value.status === 'CANCELLED'
+      ? 'CANCELLED'
+      : count >= 3 ? 'PUBLISHED' : selected.value.status === 'PUBLISHED' ? 'READY' : selected.value.status
+
+    await bannsApi.update(selected.value.id, {
+      groomName: selected.value.groomName,
+      brideName: selected.value.brideName,
+      groomBirthDate: selected.value.groomBirthDate || null,
+      brideBirthDate: selected.value.brideBirthDate || null,
+      groomPhone: selected.value.groomPhone || null,
+      bridePhone: selected.value.bridePhone || null,
+      groomAddress: selected.value.groomAddress || null,
+      brideAddress: selected.value.brideAddress || null,
+      celebrationDate: selected.value.celebrationDate,
+      celebrationTime: selected.value.celebrationTime || null,
+      celebrantName: selected.value.celebrantName || null,
+      groomBaptismStatus: selected.value.groomBaptismStatus,
+      brideBaptismStatus: selected.value.brideBaptismStatus,
+      groomConfirmationStatus: selected.value.groomConfirmationStatus,
+      brideConfirmationStatus: selected.value.brideConfirmationStatus,
+      preparationStatus: selected.value.preparationStatus,
+      civilStatusStatus: selected.value.civilStatusStatus,
+      groomDocuments: documents(selected.value).filter(d => d.status === 'COMPLETE' && d.label.includes('époux')).length,
+      brideDocuments: documents(selected.value).filter(d => d.status === 'COMPLETE' && d.label.includes('épouse')).length,
+      publicationCount: count,
+      publication1Date: selected.value.publication1Date || null,
+      publication2Date: selected.value.publication2Date || null,
+      publication3Date: selected.value.publication3Date || null,
+      oppositionCount: Number(selected.value.oppositionCount || 0),
+      oppositionNote: selected.value.oppositionNote || null,
+      notes: selected.value.notes || null,
+      status,
+    })
+    selected.value = null
+    await load()
+  } catch (e: any) {
+    error.value = e?.response?.data?.message || 'Impossible d’enregistrer le dossier.'
+  } finally {
+    saving.value = false
+  }
+}
+
 onMounted(load)
 </script>
 
@@ -21,198 +214,346 @@ onMounted(load)
       <span class="text-[42px] leading-none text-[#C25A34]">05</span>
       <div>
         <h1 class="font-serif text-[32px] leading-tight text-[#2E2925]">Bans de mariage</h1>
-        <p class="mt-1 max-w-3xl text-sm leading-6 text-[#6B655D]">
-          Un dossier de mariage se joue sur des délais : pièces à réunir, trois publications à afficher,
-          et un célébrant disponible le jour dit. Les trois vivent sur le même écran.
+        <p class="mt-1 max-w-4xl text-sm leading-6 text-[#6B655D]">
+          Suivi des dossiers, des pièces nécessaires et des publications des bans jusqu'à la célébration.
         </p>
       </div>
     </div>
 
-    <div class="overflow-hidden rounded-md border border-[#C2BAB0] bg-[#F7F5F2]">
-      <div class="flex flex-wrap items-center gap-4 border-b border-[#DDD7CF] bg-white px-5 py-3">
+    <div class="overflow-hidden rounded-md border border-[#C2BAB0] bg-white">
+      <div class="flex flex-wrap items-center gap-4 border-b border-[#DDD7CF] px-5 py-3">
         <div>
           <div class="text-xl font-bold text-[#2E2925]">Bans de mariage</div>
-          <div class="text-[13.5px] text-[#6B655D]">5 dossiers en cours · 2 publications à afficher dimanche</div>
+          <div class="text-[13.5px] text-[#6B655D]">
+            {{ totalCases }} dossier(s) · {{ publicationsToComplete }} dossier(s) avec des publications à compléter
+          </div>
         </div>
         <button
+          type="button"
           class="ml-auto inline-flex min-h-[38px] items-center gap-2 rounded bg-[#14345E] px-4 text-sm font-bold text-white transition hover:bg-[#0E2A4E]"
-          @click="showNew = true"
+          @click="openNew"
         >
           <Plus :size="17" /> Ouvrir un dossier
         </button>
       </div>
 
-      <div class="grid lg:grid-cols-[minmax(0,1fr)_396px]">
-        <div class="min-w-0 overflow-x-auto bg-white lg:border-r lg:border-[#EDE9E4]">
-          <table class="w-full min-w-[980px] text-[14px]">
-            <thead class="bg-[#F7F5F2] text-left text-xs font-bold uppercase tracking-[0.05em] text-[#6B655D]">
-              <tr>
-                <th class="px-4 py-3">Fiancés</th>
-                <th class="w-[124px] px-3 py-3">Célébration</th>
-                <th class="w-[180px] px-3 py-3">Pièces requises</th>
-                <th class="w-[188px] px-3 py-3">Publication des bans</th>
-                <th class="w-[120px] px-3 py-3">Célébrant</th>
-                <th class="w-[96px] px-3 py-3">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="couple in couples" :key="couple.groom + couple.bride" class="border-t border-[#EDE9E4] align-top">
-                <td class="px-4 py-3">
-                  <div class="font-semibold text-[#2E2925]">{{ couple.groom }}</div>
-                  <div class="text-[13.5px] text-[#6B655D]">et {{ couple.bride }}</div>
-                </td>
-                <td class="px-3 py-3 tabular-nums">
-                  {{ couple.date }}<div class="text-[13px] text-[#6B655D]">{{ couple.time }}</div>
-                </td>
-                <td class="px-3 py-3">
-                  <div class="flex flex-wrap gap-1.5">
-                    <span v-for="doc in couple.documents" :key="doc.label" class="rounded-xl px-2 py-0.5 text-[12px] font-semibold" :class="statusClass(doc.status)">
-                      {{ doc.label }}
-                    </span>
-                  </div>
-                </td>
-                <td class="px-3 py-3">
-                  <div class="mb-1 flex gap-1">
-                    <span v-for="(published, index) in publicationBars(couple)" :key="index" class="h-2 w-[22px] rounded" :class="published ? 'bg-[#14713C]' : 'bg-[#EDE9E4]'" />
-                  </div>
-                  <div class="text-[13px] font-semibold" :class="couple.publications === 3 ? 'text-[#14713C]' : couple.publications > 0 ? 'text-[#8A5200]' : 'text-[#6B655D]'">
-                    {{ couple.publicationNote }}
-                  </div>
-                </td>
-                <td class="px-3 py-3">
-                  <span :class="couple.celebrant === 'À définir' ? 'font-semibold text-[#8A5200]' : 'text-[#2E2925]'">{{ couple.celebrant }}</span>
-                </td>
-                <td class="px-3 py-3">
-                  <button class="font-semibold text-[#A84A28] hover:underline" @click="openCase(couple)">
-                    {{ couple.publications === 3 ? 'Confirmer' : 'Ouvrir' }}
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="flex items-start gap-2.5 border-t border-[#EDE9E4] bg-[#FDF3DC] px-4 py-3 text-[13.5px] leading-5 text-[#2E2925]">
-            <CalendarDays :size="19" class="mt-0.5 shrink-0 text-[#8A5200]" />
-            <div><strong>Dimanche 7 septembre :</strong> 2 bans à lire aux trois messes. La feuille de lecture s'imprime avec la feuille d'intentions.</div>
-          </div>
+      <div v-if="error && !selected && !showNew" class="m-4 rounded border border-[#B3261E]/30 bg-[#FFF5F4] p-3 text-sm text-[#B3261E]">{{ error }}</div>
+
+      <div v-if="loading" class="p-12 text-center text-sm text-[#6B655D]">Chargement des dossiers…</div>
+
+      <div v-else class="overflow-x-auto">
+        <table class="w-full min-w-[1180px] text-[14px]">
+          <thead class="bg-[#F7F5F2] text-left text-xs font-bold uppercase tracking-[0.05em] text-[#6B655D]">
+            <tr>
+              <th class="px-4 py-3">Fiancés</th>
+              <th class="w-[150px] px-3 py-3">Célébration</th>
+              <th class="w-[350px] px-3 py-3">Pièces requises</th>
+              <th class="w-[240px] px-3 py-3">Publication des bans</th>
+              <th class="w-[150px] px-3 py-3">Célébrant</th>
+              <th class="w-[100px] px-3 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in couples" :key="item.id" class="border-t border-[#EDE9E4] align-top hover:bg-[#FCFBFA]">
+              <td class="px-4 py-4">
+                <div class="font-semibold text-[#2E2925]">{{ item.groomName }}</div>
+                <div class="text-[13.5px] text-[#6B655D]">et {{ item.brideName }}</div>
+              </td>
+              <td class="px-3 py-4 tabular-nums">
+                {{ formatDate(item.celebrationDate) }}
+                <div class="text-[13px] text-[#6B655D]">{{ item.celebrationTime || 'Heure à définir' }}</div>
+              </td>
+              <td class="px-3 py-4">
+                <div class="flex flex-wrap gap-1.5">
+                  <span v-for="doc in documents(item)" :key="doc.label" class="rounded-xl px-2 py-0.5 text-[12px] font-semibold" :class="statusClass(doc.status)">
+                    {{ doc.label }} · {{ statusLabel(doc.status) }}
+                  </span>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <div class="mb-1.5 flex gap-1">
+                  <span v-for="n in 3" :key="n" class="h-2 w-[30px] rounded" :class="n <= publicationCount(item) ? 'bg-[#14713C]' : 'bg-[#EDE9E4]'" />
+                </div>
+                <div class="text-[13px] font-semibold" :class="publicationCount(item) === 3 ? 'text-[#14713C]' : publicationCount(item) ? 'text-[#8A5200]' : 'text-[#6B655D]'">
+                  {{ publicationText(item) }}
+                </div>
+                <div v-if="item.publication1Date || item.publication2Date || item.publication3Date" class="mt-1 text-[12px] text-[#6B655D]">
+                  <span v-if="item.publication1Date">1 : {{ formatDate(item.publication1Date) }}</span>
+                  <span v-if="item.publication2Date"> · 2 : {{ formatDate(item.publication2Date) }}</span>
+                  <span v-if="item.publication3Date"> · 3 : {{ formatDate(item.publication3Date) }}</span>
+                </div>
+              </td>
+              <td class="px-3 py-4">
+                <span :class="item.celebrantName ? 'text-[#2E2925]' : 'font-semibold text-[#8A5200]'">
+                  {{ item.celebrantName || 'À définir' }}
+                </span>
+              </td>
+              <td class="px-3 py-4">
+                <button type="button" class="font-semibold text-[#A84A28] hover:underline" @click="openCase(item)">
+                  Ouvrir
+                </button>
+              </td>
+            </tr>
+            <tr v-if="!couples.length">
+              <td colspan="6" class="px-6 py-12 text-center text-sm text-[#6B655D]">Aucun dossier de mariage enregistré.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flex items-start gap-2.5 border-t border-[#EDE9E4] bg-[#FDF3DC] px-4 py-3 text-[13.5px] leading-5 text-[#2E2925]">
+        <CalendarDays :size="19" class="mt-0.5 shrink-0 text-[#8A5200]" />
+        <div>
+          <strong>Publication des bans :</strong> dans cette vue, une publication est une date réellement renseignée pour une lecture/affichage du ban.
+          Les trois étapes sont suivies séparément afin de savoir ce qui a déjà été publié et ce qui reste à faire.
+          Les règles et le nombre de publications applicables à la paroisse doivent être confirmés par le responsable avant validation finale.
         </div>
-
-        <aside class="bg-white p-4">
-          <div>
-            <div class="text-[15.5px] font-bold text-[#2E2925]">Disponibilité des célébrants</div>
-            <div class="text-[13.5px] text-[#6B655D]">Octobre 2026 · samedis de célébration</div>
-          </div>
-          <div class="mt-3 flex flex-wrap gap-3 text-xs text-[#4A443E]">
-            <span class="inline-flex items-center gap-1.5"><i class="h-2.5 w-2.5 rounded-sm bg-[#14345E]" />Mariage retenu</span>
-            <span class="inline-flex items-center gap-1.5"><i class="h-2.5 w-2.5 rounded-sm bg-[#C25A34]" />Autre engagement</span>
-            <span class="inline-flex items-center gap-1.5"><i class="h-2.5 w-2.5 rounded-sm border border-[#14713C] bg-[#E4F1E8]" />Libre</span>
-          </div>
-
-          <div class="mt-3 rounded border border-[#EDE9E4] p-3">
-            <div class="mb-1.5 grid grid-cols-7 gap-1 text-center text-[11.5px] text-[#6B655D]">
-              <div v-for="(day, index) in ['L','M','M','J','V','S','D']" :key="index">{{ day }}</div>
-            </div>
-            <div class="grid grid-cols-7 gap-1 text-center text-[13px] text-[#2E2925]">
-              <template v-for="(day, index) in [28,29,30,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,1]" :key="index">
-                <div class="rounded px-0 py-1.5" :class="{
-                  'text-[#C2BAB0]': index < 3 || index === 35,
-                  'bg-[#C25A34] font-bold text-white': index === 5,
-                  'bg-[#14345E] font-bold text-white': [19, 26].includes(index),
-                  'border border-[#14713C] bg-[#E4F1E8] font-semibold text-[#14713C]': [12, 33].includes(index)
-                }">{{ day }}</div>
-              </template>
-            </div>
-          </div>
-
-          <div class="mt-3 grid gap-2">
-            <div class="border border-[#EDE9E4] border-l-[3px] border-l-[#C25A34] rounded p-2.5">
-              <div class="text-sm font-semibold text-[#2E2925]">Sam. 3 octobre · toute la journée</div>
-              <div class="text-[13.5px] text-[#4A443E]">Pèlerinage diocésain — les deux prêtres absents</div>
-            </div>
-            <div class="border border-[#EDE9E4] border-l-[3px] border-l-[#14345E] rounded p-2.5">
-              <div class="text-sm font-semibold text-[#2E2925]">Sam. 17 octobre · 10 h 00</div>
-              <div class="text-[13.5px] text-[#4A443E]">Mariage Ouattara – Sanogo · P. Konan</div>
-            </div>
-            <div class="border border-[#EDE9E4] border-l-[3px] border-l-[#14345E] rounded p-2.5">
-              <div class="text-sm font-semibold text-[#2E2925]">Sam. 24 octobre · 10 h 00</div>
-              <div class="text-[13.5px] text-[#4A443E]">Mariage Kouamé – Assamoi · P. Konan</div>
-            </div>
-          </div>
-
-          <div class="mt-3 flex items-start gap-2.5 rounded border border-[#B3261E] bg-[#FBE9E8] p-3">
-            <AlertTriangle :size="18" class="mt-0.5 shrink-0 text-[#B3261E]" />
-            <div class="text-[13.5px] leading-5 text-[#2E2925]">Deux mariages le même samedi demandent deux célébrants. Le 24 octobre n'en a qu'un de libre.</div>
-          </div>
-        </aside>
       </div>
     </div>
 
     <div v-if="selected" class="fixed inset-0 z-50 grid place-items-center bg-[#0B1F3A]/45 p-4" @click.self="closeCase">
-      <div class="w-full max-w-2xl rounded-md border border-[#C2BAB0] bg-white shadow-xl">
-        <div class="flex items-start justify-between border-b border-[#DDD7CF] p-5">
+      <div class="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-md border border-[#C2BAB0] bg-white shadow-xl">
+        <div class="sticky top-0 z-10 flex items-start justify-between border-b border-[#DDD7CF] bg-white p-5">
           <div>
             <p class="text-xs font-bold uppercase tracking-[0.12em] text-[#C25A34]">Dossier de mariage</p>
-            <h2 class="mt-1 font-serif text-2xl text-[#2E2925]">{{ selected.groom }} et {{ selected.bride }}</h2>
-            <p class="mt-1 text-sm text-[#6B655D]">{{ selected.date }} · {{ selected.time }}</p>
+            <h2 class="mt-1 font-serif text-2xl text-[#2E2925]">{{ selected.groomName }} et {{ selected.brideName }}</h2>
+            <p class="mt-1 text-sm text-[#6B655D]">{{ formatDate(selected.celebrationDate) }} · {{ selected.celebrationTime || 'Heure à définir' }}</p>
           </div>
-          <button class="rounded p-1 text-[#6B655D] hover:bg-[#F7F5F2]" @click="closeCase"><X :size="20" /></button>
+          <button type="button" class="rounded p-1 text-[#6B655D] hover:bg-[#F7F5F2]" @click="closeCase"><X :size="20" /></button>
         </div>
-        <div class="grid gap-5 p-5 md:grid-cols-2">
-          <div>
-            <h3 class="text-sm font-bold text-[#2E2925]">Pièces requises</h3>
-            <div class="mt-3 grid gap-2">
-              <div v-for="doc in selected.documents" :key="doc.label" class="flex items-center gap-2 rounded border border-[#EDE9E4] p-2.5">
-                <Check v-if="doc.status === 'complete'" :size="16" class="text-[#14713C]" />
-                <AlertTriangle v-else :size="16" :class="doc.status === 'pending' ? 'text-[#B3261E]' : 'text-[#8A5200]'" />
-                <span class="text-sm text-[#2E2925]">{{ doc.label }}</span>
+
+        <div class="grid gap-6 p-5">
+          <section>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-[#6B655D]">Informations des fiancés</h3>
+            <div class="mt-3 grid gap-4 md:grid-cols-2">
+              <div class="rounded border border-[#EDE9E4] p-4">
+                <h4 class="font-bold text-[#2E2925]">Époux</h4>
+                <div class="mt-3 grid gap-3">
+                  <label class="text-sm font-semibold">Nom et prénoms<input v-model="selected.groomName" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal outline-none focus:border-[#14345E]" /></label>
+                  <label class="text-sm font-semibold">Date de naissance<input v-model="selected.groomBirthDate" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal outline-none focus:border-[#14345E]" /></label>
+                  <label class="text-sm font-semibold">Téléphone<input v-model="selected.groomPhone" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal outline-none focus:border-[#14345E]" /></label>
+                  <label class="text-sm font-semibold">Adresse<textarea v-model="selected.groomAddress" rows="2" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal outline-none focus:border-[#14345E]" /></label>
+                </div>
+              </div>
+              <div class="rounded border border-[#EDE9E4] p-4">
+                <h4 class="font-bold text-[#2E2925]">Épouse</h4>
+                <div class="mt-3 grid gap-3">
+                  <label class="text-sm font-semibold">Nom et prénoms<input v-model="selected.brideName" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal outline-none focus:border-[#14345E]" /></label>
+                  <label class="text-sm font-semibold">Date de naissance<input v-model="selected.brideBirthDate" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal outline-none focus:border-[#14345E]" /></label>
+                  <label class="text-sm font-semibold">Téléphone<input v-model="selected.bridePhone" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal outline-none focus:border-[#14345E]" /></label>
+                  <label class="text-sm font-semibold">Adresse<textarea v-model="selected.brideAddress" rows="2" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal outline-none focus:border-[#14345E]" /></label>
+                </div>
               </div>
             </div>
-          </div>
-          <div>
-            <h3 class="text-sm font-bold text-[#2E2925]">Publications</h3>
-            <div class="mt-3 rounded border border-[#EDE9E4] p-4">
-              <div class="flex gap-2">
-                <span v-for="n in 3" :key="n" class="h-2.5 flex-1 rounded" :class="n <= selected.publications ? 'bg-[#14713C]' : 'bg-[#EDE9E4]'" />
-              </div>
-              <p class="mt-3 text-sm text-[#4A443E]">{{ selected.publicationNote }}</p>
-              <p class="mt-2 text-sm text-[#4A443E]">Célébrant : <strong>{{ selected.celebrant }}</strong></p>
+          </section>
+
+          <section>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-[#6B655D]">Célébration</h3>
+            <div class="mt-3 grid gap-4 md:grid-cols-3">
+              <label class="text-sm font-semibold">Date<input v-model="selected.celebrationDate" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" /></label>
+              <label class="text-sm font-semibold">Heure<input v-model="selected.celebrationTime" type="time" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" /></label>
+              <label class="text-sm font-semibold">Célébrant<input v-model="selected.celebrantName" placeholder="À définir si non attribué" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" /></label>
             </div>
-          </div>
+          </section>
+
+          <section>
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <h3 class="text-sm font-bold uppercase tracking-wide text-[#6B655D]">Pièces requises</h3>
+                <p class="mt-1 text-xs text-[#6B655D]">Renseignez l'état réel de chaque élément du dossier.</p>
+              </div>
+            </div>
+            <div class="mt-3 grid gap-3 md:grid-cols-2">
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">
+                Baptême époux
+                <select v-model="selected.groomBaptismStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal">
+                  <option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option>
+                </select>
+              </label>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">
+                Baptême épouse
+                <select v-model="selected.brideBaptismStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal">
+                  <option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option>
+                </select>
+              </label>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">
+                Confirmation époux
+                <select v-model="selected.groomConfirmationStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal">
+                  <option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option>
+                </select>
+              </label>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">
+                Confirmation épouse
+                <select v-model="selected.brideConfirmationStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal">
+                  <option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option>
+                </select>
+              </label>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">
+                Préparation
+                <select v-model="selected.preparationStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal">
+                  <option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option>
+                </select>
+              </label>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">
+                État civil
+                <select v-model="selected.civilStatusStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal">
+                  <option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <section class="rounded border border-[#EDE9E4] p-4">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-[#6B655D]">Publication des bans</h3>
+            <p class="mt-1 text-xs leading-5 text-[#6B655D]">
+              Chaque date correspond à une publication réellement effectuée. Ne renseignez une date qu'après la lecture ou l'affichage effectif du ban.
+            </p>
+            <div class="mt-4 grid gap-4 md:grid-cols-3">
+              <label v-for="(key, index) in ['publication1Date', 'publication2Date', 'publication3Date']" :key="key" class="text-sm font-semibold">
+                Publication {{ index + 1 }}
+                <input v-model="selected[key as 'publication1Date' | 'publication2Date' | 'publication3Date']" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" />
+              </label>
+            </div>
+            <div class="mt-4 grid gap-4 md:grid-cols-[180px_1fr]">
+              <label class="text-sm font-semibold">Oppositions
+                <input v-model.number="selected.oppositionCount" min="0" type="number" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" />
+              </label>
+              <label class="text-sm font-semibold">Observation / opposition
+                <input v-model="selected.oppositionNote" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" placeholder="Laisser vide s'il n'y en a pas" />
+              </label>
+            </div>
+            <div class="mt-4 flex gap-2 rounded bg-[#FDF3DC] p-3 text-sm leading-5 text-[#2E2925]">
+              <AlertTriangle class="mt-0.5 size-4 shrink-0 text-[#8A5200]" />
+              L'application ne considère pas une publication comme effectuée simplement parce qu'une date est prévue : la date doit être saisie après réalisation.
+            </div>
+          </section>
+
+          <section>
+            <label class="text-sm font-semibold">Notes internes
+              <textarea v-model="selected.notes" rows="3" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" placeholder="Informations utiles au suivi du dossier" />
+            </label>
+          </section>
         </div>
+
         <div class="flex justify-end gap-2 border-t border-[#DDD7CF] bg-[#F7F5F2] p-4">
-          <button class="rounded border border-[#C2BAB0] bg-white px-4 py-2 text-sm font-semibold text-[#2E2925]" @click="closeCase">Fermer</button>
-          <button class="rounded bg-[#14345E] px-4 py-2 text-sm font-bold text-white" @click="saveCase">Enregistrer</button>
+          <button type="button" class="rounded border border-[#C2BAB0] bg-white px-4 py-2 text-sm font-semibold text-[#2E2925]" @click="closeCase">Annuler</button>
+          <button type="button" :disabled="saving" class="inline-flex items-center gap-2 rounded bg-[#14345E] px-4 py-2 text-sm font-bold text-white disabled:opacity-50" @click="saveCase">
+            <Save :size="16" /> {{ saving ? 'Enregistrement…' : 'Enregistrer le dossier' }}
+          </button>
         </div>
       </div>
     </div>
 
     <div v-if="showNew" class="fixed inset-0 z-50 grid place-items-center bg-[#0B1F3A]/45 p-4" @click.self="showNew = false">
-      <form class="w-full max-w-lg rounded-md border border-[#C2BAB0] bg-white shadow-xl" @submit.prevent="createCase">
-        <div class="flex items-center justify-between border-b border-[#DDD7CF] p-5">
+      <form class="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-md border border-[#C2BAB0] bg-white shadow-xl" @submit.prevent="createCase">
+        <div class="sticky top-0 z-10 flex items-start justify-between border-b border-[#DDD7CF] bg-white p-5">
           <div>
             <p class="text-xs font-bold uppercase tracking-[0.12em] text-[#C25A34]">Nouveau dossier</p>
             <h2 class="mt-1 font-serif text-2xl text-[#2E2925]">Ouvrir un dossier de mariage</h2>
+            <p class="mt-1 text-sm text-[#6B655D]">Renseignez les informations connues. Les pièces et publications pourront être complétées ensuite.</p>
           </div>
           <button type="button" class="rounded p-1 text-[#6B655D]" @click="showNew = false"><X :size="20" /></button>
         </div>
-        <div class="grid gap-4 p-5">
-          <label class="text-sm font-semibold text-[#2E2925]">Fiancé
-            <input v-model="newGroom" required class="mt-1.5 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal outline-none focus:border-[#14345E]" placeholder="Nom et prénoms" />
-          </label>
-          <label class="text-sm font-semibold text-[#2E2925]">Fiancée
-            <input v-model="newBride" required class="mt-1.5 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal outline-none focus:border-[#14345E]" placeholder="Nom et prénoms" />
-          </label>
-          <div class="grid gap-4 sm:grid-cols-2">
-            <label class="text-sm font-semibold text-[#2E2925]">Date
-              <input v-model="newDate" required type="date" class="mt-1.5 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal outline-none focus:border-[#14345E]" />
+
+        <div class="space-y-6 p-5">
+          <div v-if="error" class="rounded border border-[#B3261E]/30 bg-[#FFF5F4] p-3 text-sm text-[#B3261E]">{{ error }}</div>
+
+          <section>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-[#6B655D]">Fiancés</h3>
+            <div class="mt-3 grid gap-4 md:grid-cols-2">
+              <div class="rounded border border-[#EDE9E4] p-4">
+                <h4 class="font-bold text-[#2E2925]">Époux</h4>
+                <div class="mt-3 grid gap-3">
+                  <label class="text-sm font-semibold">Nom et prénoms *
+                    <input v-model="newForm.groomName" required class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" placeholder="Nom et prénoms" />
+                  </label>
+                  <label class="text-sm font-semibold">Date de naissance
+                    <input v-model="newForm.groomBirthDate" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" />
+                  </label>
+                  <label class="text-sm font-semibold">Téléphone
+                    <input v-model="newForm.groomPhone" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" />
+                  </label>
+                  <label class="text-sm font-semibold">Adresse
+                    <textarea v-model="newForm.groomAddress" rows="2" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" />
+                  </label>
+                </div>
+              </div>
+              <div class="rounded border border-[#EDE9E4] p-4">
+                <h4 class="font-bold text-[#2E2925]">Épouse</h4>
+                <div class="mt-3 grid gap-3">
+                  <label class="text-sm font-semibold">Nom et prénoms *
+                    <input v-model="newForm.brideName" required class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" placeholder="Nom et prénoms" />
+                  </label>
+                  <label class="text-sm font-semibold">Date de naissance
+                    <input v-model="newForm.brideBirthDate" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" />
+                  </label>
+                  <label class="text-sm font-semibold">Téléphone
+                    <input v-model="newForm.bridePhone" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" />
+                  </label>
+                  <label class="text-sm font-semibold">Adresse
+                    <textarea v-model="newForm.brideAddress" rows="2" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-[#6B655D]">Célébration</h3>
+            <div class="mt-3 grid gap-4 md:grid-cols-3">
+              <label class="text-sm font-semibold">Date *
+                <input v-model="newForm.celebrationDate" required type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" />
+              </label>
+              <label class="text-sm font-semibold">Heure
+                <input v-model="newForm.celebrationTime" type="time" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" />
+              </label>
+              <label class="text-sm font-semibold">Célébrant
+                <input v-model="newForm.celebrantName" placeholder="À définir si non attribué" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal" />
+              </label>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-[#6B655D]">Suivi initial des pièces</h3>
+            <div class="mt-3 grid gap-3 md:grid-cols-2">
+              <label v-for="field in [
+                ['groomBaptismStatus', 'Baptême époux'], ['brideBaptismStatus', 'Baptême épouse'],
+                ['groomConfirmationStatus', 'Confirmation époux'], ['brideConfirmationStatus', 'Confirmation épouse'],
+                ['preparationStatus', 'Préparation'], ['civilStatusStatus', 'État civil']
+              ]" :key="field[0]" class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">
+                {{ field[1] }}
+                <select v-model="newForm[field[0] as keyof typeof newForm]" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal">
+                  <option value="PENDING">À renseigner</option>
+                  <option value="COMPLETE">Complet</option>
+                  <option value="ISSUE">À corriger</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-[#6B655D]">Publication des bans</h3>
+            <p class="mt-1 text-xs leading-5 text-[#6B655D]">Laissez les dates vides tant que les publications n'ont pas réellement eu lieu.</p>
+            <div class="mt-3 grid gap-4 md:grid-cols-3">
+              <label v-for="(key, index) in ['publication1Date', 'publication2Date', 'publication3Date']" :key="key" class="text-sm font-semibold">
+                Publication {{ index + 1 }}
+                <input v-model="newForm[key as 'publication1Date' | 'publication2Date' | 'publication3Date']" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" />
+              </label>
+            </div>
+          </section>
+
+          <section>
+            <label class="text-sm font-semibold">Notes
+              <textarea v-model="newForm.notes" rows="3" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" placeholder="Informations utiles au suivi" />
             </label>
-            <label class="text-sm font-semibold text-[#2E2925]">Heure
-              <input v-model="newTime" required type="time" class="mt-1.5 w-full rounded border border-[#C2BAB0] px-3 py-2.5 font-normal outline-none focus:border-[#14345E]" />
-            </label>
-          </div>
+          </section>
         </div>
+
         <div class="flex justify-end gap-2 border-t border-[#DDD7CF] bg-[#F7F5F2] p-4">
           <button type="button" class="rounded border border-[#C2BAB0] bg-white px-4 py-2 text-sm font-semibold" @click="showNew = false">Annuler</button>
-          <button type="submit" class="rounded bg-[#14345E] px-4 py-2 text-sm font-bold text-white">Créer le dossier</button>
+          <button type="submit" :disabled="saving" class="inline-flex items-center gap-2 rounded bg-[#14345E] px-4 py-2 text-sm font-bold text-white disabled:opacity-50">
+            <Plus :size="16" /> {{ saving ? 'Création…' : 'Créer le dossier' }}
+          </button>
         </div>
       </form>
     </div>
