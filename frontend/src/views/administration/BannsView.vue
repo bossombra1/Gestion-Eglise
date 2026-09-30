@@ -149,7 +149,9 @@ async function createCase() {
 }
 
 function openCase(item: Couple) {
-  selected.value = structuredClone(item)
+  // Les éléments de `couples` sont des proxies réactifs Vue : structuredClone() peut
+  // lever DataCloneError sur un proxy. On crée ici un clone simple de l'objet plat.
+  selected.value = { ...item }
   error.value = ''
 }
 
