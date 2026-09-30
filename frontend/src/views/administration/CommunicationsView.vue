@@ -167,7 +167,7 @@ onMounted(load)
               <tr><th class="px-3 py-2.5">Message</th><th class="w-20 px-2 py-2.5">Envoyé</th><th class="w-20 px-2 py-2.5">Reçus</th><th class="w-16 px-2 py-2.5">Lus</th></tr>
             </thead>
             <tbody>
-              <tr v-for="item in history"" :key="item.message" class="border-t border-[#EDE9E4]">
+              <tr v-for="item in history" :key="item.id" class="border-t border-[#EDE9E4]">
                 <td class="px-3 py-2.5"><div class="font-semibold text-[#2E2925]">{{ item.title }}</div><div class="text-[#6B655D]">{{ item.movement?.name || 'Paroisse' }} · {{ item.type }}</div></td>
                 <td class="px-2 py-2.5 tabular-nums">{{ item.sentAt ? new Date(item.sentAt).toLocaleDateString('fr-FR') : 'Brouillon' }}</td><td class="px-2 py-2.5 tabular-nums">{{ item.recipients.length }}</td><td class="px-2 py-2.5 tabular-nums">{{ item.recipients.length ? Math.round(item.recipients.filter(r => r.readAt).length / item.recipients.length * 100) : 0 }} %</td>
               </tr>
