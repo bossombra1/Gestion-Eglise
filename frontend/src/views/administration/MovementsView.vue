@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { Search, RefreshCw, Users, ClipboardList } from 'lucide-vue-next'
+import { Search, RefreshCw, Users, ClipboardList, ArrowRight } from 'lucide-vue-next'
 import { administrationMovementsApi, type AdministrationMovement } from '@/services/administration-movements.service'
 const movements=ref<AdministrationMovement[]>([]),loading=ref(true),error=ref(''),search=ref(''),status=ref('')
 const load=async()=>{loading.value=true;error.value='';try{movements.value=await administrationMovementsApi.list({search:search.value||undefined,status:status.value||undefined})}catch{error.value='Impossible de charger les mouvements.'}finally{loading.value=false}}
