@@ -16,6 +16,7 @@ import DocumentsView from '@/views/mouvement/DocumentsView.vue'
 import CommunicationsView from '@/views/mouvement/CommunicationsView.vue'
 import AdministrationDashboardView from '@/views/administration/DashboardView.vue'
 import AdministrationModulePlaceholderView from '@/views/administration/ModulePlaceholderView.vue'
+import AdministrationUsersView from '@/views/administration/UsersView.vue'
 import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue'
 
 const movementRoles = ['MOVEMENT_MANAGER']
@@ -51,6 +52,7 @@ const router = createRouter({
       children: [
         { path: '', redirect: '/administration/dashboard' },
         { path: 'dashboard', component: AdministrationDashboardView },
+        { path: 'utilisateurs', component: AdministrationUsersView },
         { path: ':module', component: AdministrationModulePlaceholderView },
       ],
     },
