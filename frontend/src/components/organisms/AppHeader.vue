@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Bell, LogOut } from 'lucide-vue-next'
+import { Bell, LogOut, Menu } from 'lucide-vue-next'
 import AppButton from '@/components/atoms/AppButton.vue'
 import { useAuthStore } from '@/stores/auth'
+
+defineEmits<{ menu: [] }>()
 
 const auth = useAuthStore()
 const fullName = computed(() => auth.user ? `${auth.user.firstName} ${auth.user.lastName}`.trim() : 'Utilisateur')
@@ -10,9 +12,18 @@ const fullName = computed(() => auth.user ? `${auth.user.firstName} ${auth.user.
 
 <template>
   <header class="flex min-h-16 flex-wrap items-center justify-between gap-2 border-b border-[#C2BAB0] bg-white px-3 py-3 sm:px-5 lg:flex-nowrap lg:px-6">
-    <div class="min-w-0">
-      <p class="eyebrow truncate text-[#C25A34]">Espace responsable</p>
-      <p class="truncate text-xs text-[#6B655D] sm:text-sm">Gestion de votre mouvement</p>
+    <div class="flex min-w-0 items-center gap-2 sm:gap-3">
+      <button
+        class="touch-target flex shrink-0 items-center justify-center rounded text-[#0B1F3A] hover:bg-[#F2EFEA] lg:hidden"
+        aria-label="Ouvrir le menu"
+        @click="$emit('menu')"
+      >
+        <Menu class="size-6" />
+      </button>
+      <div class="min-w-0">
+        <p class="eyebrow truncate text-[#C25A34]">Espace responsable</p>
+        <p class="truncate text-xs text-[#6B655D] sm:text-sm">Gestion de votre mouvement</p>
+      </div>
     </div>
 
     <div class="flex min-w-0 items-center gap-1 sm:gap-2 lg:gap-4">
