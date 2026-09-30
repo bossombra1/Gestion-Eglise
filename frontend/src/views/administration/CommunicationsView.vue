@@ -17,11 +17,14 @@ const sent = ref(false)
 const loading = ref(true)
 const error = ref('')
 const sending = ref(false)
+const scheduledAt = ref('')
+const selectedFile = ref<File | null>(null)
 
 const charCount = computed(() => message.value.length)
 const smsCount = computed(() => Math.max(1, Math.ceil(charCount.value / 160)))
 const selectedMovement = computed(() => movements.value.find(m => m.id === movement.value))
 const audienceCount = computed(() => audience.value === 'all' ? movements.value.reduce((n,m)=>n+(m._count?.members??0),0) : selectedMovement.value?._count?.members ?? 0)
+const audienceLabel = computed(() => ({ all: 'Tous les fidèles inscrits', 'movement-parents': 'Parents d’un mouvement', 'movement-members': 'Membres d’un mouvement', donors: 'Donateurs d’un projet' } as Record<string,string>)[audience.value] ?? audience.value)
 
 async function load() {
   loading.value = true
@@ -32,16 +35,44 @@ async function load() {
   } catch { error.value = 'Impossible de charger les communications.' }
   finally { loading.value = false }
 }
-function saveDraft(){ saved.value=true; window.setTimeout(()=>saved.value=false,2500) }
-async function sendMessage(){
-  if(!movement.value || !subject.value.trim() || !message.value.trim()) return
+function insertToken(token: string) {
+  message.value = message.value ? message.value + ' ' + token : token
+}
+function onFileChange(event: Event) {
+  selectedFile.value = (event.target as HTMLInputElement).files?.[0] ?? null
+}
+async function persistCommunication(sendNow: boolean, schedule = false) {
+  if(!movement.value || !subject.value.trim() || !message.value.trim()) {
+    error.value = 'Le mouvement, l’objet et le message sont obligatoires.'
+    return false
+  }
+  if(schedule && !scheduledAt.value) {
+    error.value = 'Choisissez une date et une heure de programmation.'
+    return false
+  }
   sending.value=true; error.value=''
   try {
-    const item=await administrationCommunicationsApi.send({movementId:movement.value,title:subject.value,content:message.value,type:nature.value==='urgent'?'REMINDER':'INFORMATION',audience:audience.value==='movement-members'?'MEMBERS':audience.value==='movement-parents'?'PARENTS':'ALL',sendNow:true})
-    history.value.unshift(item); sent.value=true; showConfirmation.value=false
-  } catch { error.value='Impossible d’envoyer le message.' }
+    const item=await administrationCommunicationsApi.send({
+      movementId:movement.value,
+      title:subject.value.trim(),
+      content:message.value.trim(),
+      type:nature.value==='urgent'?'REMINDER':'INFORMATION',
+      audience:audience.value==='movement-members'?'MEMBERS':audience.value==='movement-parents'?'PARENTS':audience.value==='donors'?'DONORS':'ALL',
+      sendNow,
+      scheduledAt: schedule ? new Date(scheduledAt.value).toISOString() : null,
+    })
+    history.value.unshift(item)
+    if (sendNow) sent.value=true
+    if (!sendNow && schedule) saved.value=true
+    if (!sendNow && !schedule) saved.value=true
+    showConfirmation.value=false
+    return true
+  } catch { error.value='Impossible d’enregistrer la communication.'; return false }
   finally { sending.value=false }
 }
+function saveDraft(){ void persistCommunication(false) }
+async function sendMessage(){ await persistCommunication(true) }
+async function scheduleMessage(){ await persistCommunication(false, true) }
 onMounted(load)
 </script>
 
@@ -54,7 +85,7 @@ onMounted(load)
       </div>
       <div class="flex flex-wrap gap-2 lg:ml-auto">
         <button class="min-h-10 border-[1.5px] border-[#C2BAB0] bg-white px-3 text-sm font-semibold text-[#2E2925]" @click="saveDraft">Enregistrer le brouillon</button>
-        <button class="inline-flex min-h-10 items-center gap-2 border-[1.5px] border-[#14345E] bg-white px-3 text-sm font-semibold text-[#14345E]"><Clock3 class="size-4" />Programmer</button>
+        <button class="inline-flex min-h-10 items-center gap-2 border-[1.5px] border-[#14345E] bg-white px-3 text-sm font-semibold text-[#14345E]" @click="scheduleMessage"><Clock3 class="size-4" />Programmer</button>
         <button class="inline-flex min-h-10 items-center gap-2 bg-[#14345E] px-3.5 text-sm font-bold text-white hover:bg-[#0E2A4E]" @click="showConfirmation = true"><Send class="size-4" />Vérifier et envoyer</button>
       </div>
     </div>
@@ -98,13 +129,13 @@ onMounted(load)
         </div>
         <label class="mt-4 block text-[13.5px] font-semibold">Objet<input v-model="subject" class="mt-1 min-h-11 w-full border-[1.5px] border-[#C2BAB0] bg-white px-3 text-[15px] outline-none focus:border-[#14345E]" /></label>
         <div class="mt-4">
-          <div class="mb-1.5 flex items-center gap-2"><span class="text-[13.5px] font-semibold">Message</span><div class="ml-auto flex gap-1.5"><button class="border border-[#DDD7CF] px-2 py-1 text-xs">Insérer : prénom de l’enfant</button><button class="border border-[#DDD7CF] px-2 py-1 text-xs">date</button></div></div>
+          <div class="mb-1.5 flex items-center gap-2"><span class="text-[13.5px] font-semibold">Message</span><div class="ml-auto flex gap-1.5"><button class="border border-[#DDD7CF] px-2 py-1 text-xs" type="button" @click="insertToken('{{prenom_enfant}}')">Insérer : prénom de l’enfant</button><button class="border border-[#DDD7CF] px-2 py-1 text-xs" type="button" @click="insertToken('{{date}}')">date</button></div></div>
           <textarea v-model="message" class="min-h-[210px] w-full border-2 border-[#14345E] bg-white p-3 text-[15px] leading-[1.6] outline-none shadow-[0_0_0_3px_rgba(20,52,94,.15)]"></textarea>
           <div class="mt-1.5 flex flex-wrap gap-4 text-[13px] text-[#6B655D]"><span>{{ charCount }} caractères</span><span class="font-semibold text-[#8A5200]">SMS : {{ smsCount }} messages par destinataire</span><span class="font-semibold text-[#A84A28]">Raccourcir pour un seul SMS</span></div>
         </div>
         <div class="mt-4">
           <div class="text-[13.5px] font-semibold">Pièce jointe (WhatsApp et app uniquement)</div>
-          <label class="mt-1 flex min-h-12 cursor-pointer items-center gap-2.5 border-[1.5px] border-dashed border-[#C2BAB0] bg-white px-3 text-sm text-[#6B655D]"><Paperclip class="size-5" />Déposer une affiche ou un PDF · 2 Mo maximum<input type="file" class="hidden" /></label>
+          <label class="mt-1 flex min-h-12 cursor-pointer items-center gap-2.5 border-[1.5px] border-dashed border-[#C2BAB0] bg-white px-3 text-sm text-[#6B655D]"><Paperclip class="size-5" /><span>{{ selectedFile ? selectedFile.name : 'Déposer une affiche ou un PDF · 2 Mo maximum' }}</span><input type="file" accept=".pdf,image/*" class="hidden" @change="onFileChange" /></label>
         </div>
       </main>
 
@@ -140,7 +171,7 @@ onMounted(load)
         </div>
         <div class="grid gap-3 p-4">
           <div class="grid gap-2 rounded bg-[#F7F5F2] p-3 text-sm">
-            <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Audience</span><b>Parents · {{ movement }}</b></div>
+            <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Audience</span><b>{{ audienceLabel }} · {{ selectedMovement?.name || movement }}</b></div>
             <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Canaux</span><b>Push 71 · SMS 96 · WhatsApp 83</b></div>
             <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Nature</span><b>{{ nature === 'urgent' ? 'Urgent' : 'Informatif' }} · envoi immédiat</b></div>
             <div class="flex justify-between gap-4 border-t border-[#DDD7CF] pt-2"><span class="text-[#6B655D]">Coût SMS</span><b class="text-[#14345E]">2 880 FCFA</b></div>
@@ -188,12 +219,12 @@ onMounted(load)
           <div class="grid gap-2 rounded bg-[#F7F5F2] p-3 text-sm">
             <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Objet</span><b>{{ subject }}</b></div>
             <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Audience</span><b>{{ movement }}</b></div>
-            <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Coût SMS</span><b class="text-[#14345E]">2 880 FCFA</b></div>
+            <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Programmation</span><b>{{ scheduledAt ? new Date(scheduledAt).toLocaleString('fr-FR') : 'Immédiat' }}</b></div>
           </div>
         </div>
         <div class="flex justify-end gap-2 border-t border-[#DDD7CF] bg-[#F7F5F2] p-4">
           <button class="min-h-10 border border-[#C2BAB0] bg-white px-4 text-sm font-semibold" @click="showConfirmation = false">Revenir au brouillon</button>
-          <button class="inline-flex min-h-10 items-center gap-2 bg-[#14345E] px-4 text-sm font-bold text-white" @click="sent = true; showConfirmation = false"><Send class="size-4" />Envoyer maintenant</button>
+          <button class="inline-flex min-h-10 items-center gap-2 bg-[#14345E] px-4 text-sm font-bold text-white" @click="sendMessage()"><Send class="size-4" />Envoyer maintenant</button>
         </div>
       </div>
     </div>
