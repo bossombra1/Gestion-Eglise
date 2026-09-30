@@ -13,3 +13,9 @@ export async function getAdministrationSettings(): Promise<AdministrationSetting
   const response = await api.get<{ success: boolean; data: AdministrationSettings }>('/administration/overview/settings')
   return response.data.data
 }
+
+
+export async function updateAdministrationSettings(payload: AdministrationSettings): Promise<AdministrationSettings> {
+  const response = await api.patch<{ success: boolean; data: AdministrationSettings }>('/administration/overview/settings', payload)
+  return response.data.data
+}
