@@ -516,17 +516,23 @@ onMounted(load)
           <section>
             <h3 class="text-sm font-bold uppercase tracking-wide text-[#6B655D]">Suivi initial des pièces</h3>
             <div class="mt-3 grid gap-3 md:grid-cols-2">
-              <label v-for="field in [
-                ['groomBaptismStatus', 'Baptême époux'], ['brideBaptismStatus', 'Baptême épouse'],
-                ['groomConfirmationStatus', 'Confirmation époux'], ['brideConfirmationStatus', 'Confirmation épouse'],
-                ['preparationStatus', 'Préparation'], ['civilStatusStatus', 'État civil']
-              ]" :key="field[0]" class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">
-                {{ field[1] }}
-                <select v-model="newForm[field[0] as keyof typeof newForm]" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal">
-                  <option value="PENDING">À renseigner</option>
-                  <option value="COMPLETE">Complet</option>
-                  <option value="ISSUE">À corriger</option>
-                </select>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">Baptême époux
+                <select v-model="newForm.groomBaptismStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal"><option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option></select>
+              </label>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">Baptême épouse
+                <select v-model="newForm.brideBaptismStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal"><option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option></select>
+              </label>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">Confirmation époux
+                <select v-model="newForm.groomConfirmationStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal"><option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option></select>
+              </label>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">Confirmation épouse
+                <select v-model="newForm.brideConfirmationStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal"><option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option></select>
+              </label>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">Préparation
+                <select v-model="newForm.preparationStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal"><option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option></select>
+              </label>
+              <label class="flex items-center justify-between gap-3 rounded border border-[#EDE9E4] p-3 text-sm font-semibold">État civil
+                <select v-model="newForm.civilStatusStatus" class="rounded border border-[#C2BAB0] px-2 py-1 font-normal"><option value="PENDING">À renseigner</option><option value="COMPLETE">Complet</option><option value="ISSUE">À corriger</option></select>
               </label>
             </div>
           </section>
@@ -535,10 +541,9 @@ onMounted(load)
             <h3 class="text-sm font-bold uppercase tracking-wide text-[#6B655D]">Publication des bans</h3>
             <p class="mt-1 text-xs leading-5 text-[#6B655D]">Laissez les dates vides tant que les publications n'ont pas réellement eu lieu.</p>
             <div class="mt-3 grid gap-4 md:grid-cols-3">
-              <label v-for="(key, index) in ['publication1Date', 'publication2Date', 'publication3Date']" :key="key" class="text-sm font-semibold">
-                Publication {{ index + 1 }}
-                <input v-model="newForm[key as 'publication1Date' | 'publication2Date' | 'publication3Date']" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" />
-              </label>
+              <label class="text-sm font-semibold">Publication 1<input v-model="newForm.publication1Date" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" /></label>
+              <label class="text-sm font-semibold">Publication 2<input v-model="newForm.publication2Date" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" /></label>
+              <label class="text-sm font-semibold">Publication 3<input v-model="newForm.publication3Date" type="date" class="mt-1 w-full rounded border border-[#C2BAB0] px-3 py-2 font-normal" /></label>
             </div>
           </section>
 
