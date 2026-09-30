@@ -51,8 +51,8 @@ onMounted(load)
 
         <main class="min-w-0 space-y-3 p-4 sm:p-[16px_18px]">
           <div class="flex items-center gap-3 rounded-[5px] border border-[#EDE9E4] bg-white p-3.5">
-            <div class="grid size-[52px] shrink-0 place-items-center rounded-full bg-[#14345E] text-[18px] font-bold text-white">{{ person.name.split(' ').map(n=>n[0]).join('').slice(0,2) }}</div>
-            <div class="min-w-0 flex-1"><div class="text-[20px] font-bold text-[#2E2925]">{{ person.name }}</div><div class="text-[13.5px] text-[#4A443E]">Née le 8 juin 1988 à Bouaké · fille de Kouassi Étienne et Aya Marguerite</div></div>
+            <div class="grid size-[52px] shrink-0 place-items-center rounded-full bg-[#14345E] text-[18px] font-bold text-white">{{ person?.name?.split(' ').map(n=>n[0]).join('').slice(0,2) ?? '—' }}</div>
+            <div class="min-w-0 flex-1"><div class="text-[20px] font-bold text-[#2E2925]">{{ person?.name ?? 'Aucun fidèle sélectionné' }}</div><div class="text-[13.5px] text-[#4A443E]">Née le 8 juin 1988 à Bouaké · fille de Kouassi Étienne et Aya Marguerite</div></div>
             <div class="hidden text-right sm:block"><div class="text-[12.5px] text-[#6B655D]">Dossier</div><div class="text-[14px] font-bold text-[#2E2925]">F-1988-0412</div></div>
           </div>
 
