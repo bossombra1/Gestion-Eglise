@@ -15,20 +15,13 @@ import CotisationsView from '@/views/mouvement/CotisationsView.vue'
 import DocumentsView from '@/views/mouvement/DocumentsView.vue'
 import CommunicationsView from '@/views/mouvement/CommunicationsView.vue'
 import AdministrationDashboardView from '@/views/administration/DashboardView.vue'
-import AdministrationModulePlaceholderView from '@/views/administration/ModulePlaceholderView.vue'
-import AdministrationUsersView from '@/views/administration/UsersView.vue'
-import AdministrationMovementsView from '@/views/administration/MovementsView.vue'
-import AdministrationMovementReportView from '@/views/administration/MovementReportView.vue'
-import AdministrationActivityView from '@/views/administration/ActivityView.vue'
 import AdministrationRegistrationsView from '@/views/administration/RegistrationsView.vue'
-import AdministrationDocumentsView from '@/views/administration/DocumentsView.vue'
 import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue'
-import AdministrationFinancesView from '@/views/administration/FinancesView.vue'
 import AdministrationCommunicationsView from '@/views/administration/CommunicationsView.vue'
 import AdministrationIntentionsView from '@/views/administration/IntentionsView.vue'
-import AdministrationAgendaView from '@/views/administration/AgendaView.vue'
 import AdministrationSettingsView from '@/views/administration/SettingsView.vue'
-import AdministrationReportsView from '@/views/administration/ReportsView.vue'
+import AdministrationSacramentalView from '@/views/administration/SacramentalView.vue'
+import AdministrationBannsView from '@/views/administration/BannsView.vue'
 
 const movementRoles = ['MOVEMENT_MANAGER']
 const administrationRoles = ['ADMIN_PARISH']
@@ -63,19 +56,12 @@ const router = createRouter({
       children: [
         { path: '', redirect: '/administration/dashboard' },
         { path: 'dashboard', component: AdministrationDashboardView },
-        { path: 'utilisateurs', component: AdministrationUsersView },
-        { path: 'mouvements', component: AdministrationMovementsView },
-        { path: 'mouvements/:id', component: AdministrationMovementReportView },
-        { path: 'activite', component: AdministrationActivityView },
         { path: 'inscriptions', component: AdministrationRegistrationsView },
-        { path: 'documents', component: AdministrationDocumentsView },
-        { path: 'finances', component: AdministrationFinancesView },
         { path: 'communications', component: AdministrationCommunicationsView },
         { path: 'intentions', component: AdministrationIntentionsView },
-        { path: 'agenda', component: AdministrationAgendaView },
+        { path: 'registres', component: AdministrationSacramentalView },
+        { path: 'bans', component: AdministrationBannsView },
         { path: 'parametres', component: AdministrationSettingsView },
-        { path: 'rapports', component: AdministrationReportsView },
-        { path: ':module', component: AdministrationModulePlaceholderView },
       ],
     },
     {
