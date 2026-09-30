@@ -516,6 +516,7 @@ model Communication {
   @@index([parishId])
   @@index([movementId])
   @@index([status])
+  @@index([scheduledAt])
   @@map("communications")
 }
 
