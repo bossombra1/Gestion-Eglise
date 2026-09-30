@@ -8,6 +8,8 @@ const nature = ref<'informative' | 'urgent'>('informative')
 const subject = ref('Première rencontre des Scouts — samedi 12 septembre')
 const message = ref('Chers parents,\n\nLa première rencontre des Scouts et Guides aura lieu samedi 12 septembre à 15 h, dans la cour de la paroisse. Prévoyez une tenue simple et une gourde d\'eau. La rencontre se termine à 18 h.\n\nLes inscriptions restent ouvertes jusqu\'au 30 septembre.\n\nLe secrétariat paroissial')
 const saved = ref(false)
+const showConfirmation = ref(false)
+const sent = ref(false)
 
 const charCount = computed(() => message.value.length)
 const smsCount = computed(() => Math.max(1, Math.ceil(charCount.value / 160)))
@@ -29,7 +31,7 @@ const saveDraft = () => {
       <div class="flex flex-wrap gap-2 lg:ml-auto">
         <button class="min-h-10 border-[1.5px] border-[#C2BAB0] bg-white px-3 text-sm font-semibold text-[#2E2925]" @click="saveDraft">Enregistrer le brouillon</button>
         <button class="inline-flex min-h-10 items-center gap-2 border-[1.5px] border-[#14345E] bg-white px-3 text-sm font-semibold text-[#14345E]"><Clock3 class="size-4" />Programmer</button>
-        <button class="inline-flex min-h-10 items-center gap-2 bg-[#14345E] px-3.5 text-sm font-bold text-white hover:bg-[#0E2A4E]"><Send class="size-4" />Vérifier et envoyer</button>
+        <button class="inline-flex min-h-10 items-center gap-2 bg-[#14345E] px-3.5 text-sm font-bold text-white hover:bg-[#0E2A4E]" @click="showConfirmation = true"><Send class="size-4" />Vérifier et envoyer</button>
       </div>
     </div>
 
@@ -99,6 +101,82 @@ const saveDraft = () => {
           <div class="rounded-lg bg-[#E4F1E8] p-3 text-[13.5px] leading-5 whitespace-pre-line">{{ message.slice(0,260) }}{{ message.length > 260 ? '…' : '' }}</div>
         </div>
       </aside>
+    </div>
+  
+    <div class="mt-6 grid gap-6 xl:grid-cols-[560px_minmax(0,1fr)]">
+      <section class="border border-[#C2BAB0] bg-white">
+        <div class="border-b border-[#EDE9E4] p-5">
+          <div class="flex items-start gap-3">
+            <div class="grid size-10 shrink-0 place-items-center rounded bg-[#E8EDF5]"><Send class="size-5 text-[#14345E]" /></div>
+            <div>
+              <h2 class="text-lg font-bold text-[#2E2925]">Confirmation d’envoi</h2>
+              <p class="mt-1 text-sm leading-5 text-[#4A443E]">Un message parti ne peut pas être rappelé. Vérifiez la date et le lieu une dernière fois.</p>
+            </div>
+          </div>
+        </div>
+        <div class="grid gap-3 p-4">
+          <div class="grid gap-2 rounded bg-[#F7F5F2] p-3 text-sm">
+            <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Audience</span><b>Parents · {{ movement }}</b></div>
+            <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Canaux</span><b>Push 71 · SMS 96 · WhatsApp 83</b></div>
+            <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Nature</span><b>{{ nature === 'urgent' ? 'Urgent' : 'Informatif' }} · envoi immédiat</b></div>
+            <div class="flex justify-between gap-4 border-t border-[#DDD7CF] pt-2"><span class="text-[#6B655D]">Coût SMS</span><b class="text-[#14345E]">2 880 FCFA</b></div>
+          </div>
+          <div class="flex gap-2.5 bg-[#FDF3DC] p-3 text-sm leading-5">
+            <Info class="mt-0.5 size-4 shrink-0 text-[#8A5200]" />
+            <span>Aucune donnée personnelle ne doit figurer dans un message de groupe.</span>
+          </div>
+          <div class="flex justify-end gap-2">
+            <button class="min-h-10 border border-[#C2BAB0] bg-white px-4 text-sm font-semibold" @click="showConfirmation = true">Revenir au brouillon</button>
+            <button class="inline-flex min-h-10 items-center gap-2 bg-[#14345E] px-4 text-sm font-bold text-white" @click="sent = true; showConfirmation = false"><Send class="size-4" />Envoyer maintenant</button>
+          </div>
+          <p v-if="sent" class="text-sm font-semibold text-[#14713C]">Message enregistré comme envoyé.</p>
+        </div>
+      </section>
+
+      <section class="border border-[#C2BAB0] bg-white">
+        <div class="border-b border-[#EDE9E4] px-4 py-3">
+          <h2 class="text-[15px] font-bold text-[#2E2925]">Historique des envois</h2>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[560px] text-[13.5px]">
+            <thead class="bg-[#F7F5F2] text-left text-xs font-bold uppercase tracking-wide text-[#6B655D]">
+              <tr><th class="px-3 py-2.5">Message</th><th class="w-20 px-2 py-2.5">Envoyé</th><th class="w-20 px-2 py-2.5">Reçus</th><th class="w-16 px-2 py-2.5">Lus</th></tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in [
+                {message:'Kermesse : appel aux volontaires', audience:'Tous les fidèles · informatif', sent:'28 août', received:'1 838', read:'62 %'},
+                {message:'Messe de 6 h déplacée à 6 h 30', audience:'Tous les fidèles · urgent', sent:'26 août', received:'1 842', read:'88 %'},
+                {message:'Reprise de la catéchèse', audience:'Parents · Catéchèse', sent:'22 août', received:'124', read:'74 %'},
+                {message:'Merci aux donateurs de la toiture', audience:'Donateurs · projet toiture', sent:'15 août', received:'214', read:'81 %'}
+              ]" :key="item.message" class="border-t border-[#EDE9E4]">
+                <td class="px-3 py-2.5"><div class="font-semibold text-[#2E2925]">{{ item.message }}</div><div class="text-[#6B655D]">{{ item.audience }}</div></td>
+                <td class="px-2 py-2.5 tabular-nums">{{ item.sent }}</td><td class="px-2 py-2.5 tabular-nums">{{ item.received }}</td><td class="px-2 py-2.5 tabular-nums">{{ item.read }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="border-t border-[#EDE9E4] px-3 py-2.5 text-xs leading-5 text-[#6B655D]">Le taux de lecture ne couvre que l’app et WhatsApp. Un SMS est compté comme reçu, jamais comme lu.</div>
+      </section>
+    </div>
+
+    <div v-if="showConfirmation" class="fixed inset-0 z-50 grid place-items-center bg-[#0B1F3A]/45 p-4" @click.self="showConfirmation = false">
+      <div class="w-full max-w-xl border border-[#C2BAB0] bg-white shadow-xl">
+        <div class="flex items-start gap-3 border-b border-[#EDE9E4] p-5">
+          <div class="grid size-10 shrink-0 place-items-center rounded bg-[#E8EDF5]"><Send class="size-5 text-[#14345E]" /></div>
+          <div><h2 class="text-xl font-bold text-[#2E2925]">Envoyer à {{ audienceCount }} destinataires ?</h2><p class="mt-1 text-sm leading-5 text-[#4A443E]">Vérifiez une dernière fois le contenu et le coût avant diffusion.</p></div>
+        </div>
+        <div class="p-5">
+          <div class="grid gap-2 rounded bg-[#F7F5F2] p-3 text-sm">
+            <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Objet</span><b>{{ subject }}</b></div>
+            <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Audience</span><b>{{ movement }}</b></div>
+            <div class="flex justify-between gap-4"><span class="text-[#6B655D]">Coût SMS</span><b class="text-[#14345E]">2 880 FCFA</b></div>
+          </div>
+        </div>
+        <div class="flex justify-end gap-2 border-t border-[#DDD7CF] bg-[#F7F5F2] p-4">
+          <button class="min-h-10 border border-[#C2BAB0] bg-white px-4 text-sm font-semibold" @click="showConfirmation = false">Revenir au brouillon</button>
+          <button class="inline-flex min-h-10 items-center gap-2 bg-[#14345E] px-4 text-sm font-bold text-white" @click="sent = true; showConfirmation = false"><Send class="size-4" />Envoyer maintenant</button>
+        </div>
+      </div>
     </div>
   </section>
 </template>
