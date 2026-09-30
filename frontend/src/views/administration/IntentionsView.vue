@@ -108,6 +108,8 @@ const validatedThisMonth = computed(() => {
 const cashCandidates = computed(() => data.value.filter(i => i.status === 'PENDING' && Number(i.amount ?? 0) > 0))
 const cashIntention = computed(() => data.value.find(i => i.id === cashIntentionId.value) ?? null)
 
+const pendingActionItems = computed(() => data.value.filter(i => pendingActionIds.value.includes(i.id)))
+
 const selectedPending = computed(() =>
   data.value.filter(i => selectedIds.value.includes(i.id) && i.status === 'PENDING')
 )
@@ -547,24 +549,35 @@ onMounted(load)
         </div>
         <div>
           <h2 class="text-lg font-bold text-[#2E2925]">
-            {{ confirmMode === 'CONFIRM' ? `Valider ${pendingActionIds.length} intention${pendingActionIds.length > 1 ? 's' : ''} ?` : `Refuser ${pendingActionIds.length} intention${pendingActionIds.length > 1 ? 's' : ''} ?` }}
+            {{ confirmMode === 'CONFIRM' ? 'Confirmation de validation' : 'Confirmation du refus' }}
           </h2>
           <p class="mt-1 text-sm leading-5 text-[#4A443E]">
             {{ confirmMode === 'CONFIRM'
-              ? 'Une fois validées, elles entrent dans la feuille du prêtre et ne peuvent plus être modifiées.'
-              : 'Les intentions seront refusées et retirées de la file de validation.' }}
+              ? 'Vérifiez les informations ci-dessous avant de valider cette intention. La validation sera enregistrée dans la base de données.'
+              : 'Vérifiez les informations ci-dessous avant de refuser cette intention.' }}
           </p>
         </div>
       </div>
 
-      <div class="grid gap-2 p-5">
-        <div v-for="id in pendingActionIds" :key="id" class="flex justify-between gap-4 rounded bg-[#F7F5F2] px-3 py-2.5 text-sm">
-          <span class="text-[#4A443E]">{{ requesterName(data.find(item => item.id === id)!) }} · {{ data.find(item => item.id === id)?.intention }}</span>
-          <span class="font-semibold text-[#2E2925]">{{ data.find(item => item.id === id) ? formatDate(data.find(item => item.id === id)!.requestedDate) : '' }}</span>
+      <div class="grid gap-3 p-5">
+        <div v-for="item in pendingActionItems" :key="item.id" class="rounded border border-[#EDE9E4] bg-[#F7F5F2] p-4">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wide text-[#6B655D]">Demandeur</p>
+              <p class="mt-1 font-semibold text-[#2E2925]">{{ requesterName(item) }}</p>
+            </div>
+            <span class="rounded-full border border-dashed border-[#8A5200] bg-[#FDF3DC] px-2.5 py-1 text-xs font-semibold text-[#8A5200]">En attente</span>
+          </div>
+          <dl class="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+            <div><dt class="text-[#6B655D]">Type</dt><dd class="mt-0.5 font-semibold text-[#2E2925]">{{ item.intention }}</dd></div>
+            <div><dt class="text-[#6B655D]">Date de messe</dt><dd class="mt-0.5 font-semibold text-[#2E2925]">{{ formatDate(item.requestedDate) }} · {{ formatTime(item.timeSlot) }}</dd></div>
+            <div><dt class="text-[#6B655D]">Bénéficiaire</dt><dd class="mt-0.5 font-semibold text-[#2E2925]">{{ item.beneficiaryName || '—' }}</dd></div>
+            <div><dt class="text-[#6B655D]">Montant</dt><dd class="mt-0.5 font-semibold tabular-nums text-[#2E2925]">{{ formatAmount(item.amount, item.currency) }}</dd></div>
+          </dl>
         </div>
         <div v-if="confirmMode === 'CONFIRM'" class="flex gap-2 rounded bg-[#E8EDF5] p-3 text-sm text-[#14345E]">
           <CheckCircle2 class="mt-0.5 size-4 shrink-0" />
-          La validation est appliquée à toutes les intentions sélectionnées.
+          La validation sera enregistrée avec les données actuellement présentes en base.
         </div>
       </div>
 
