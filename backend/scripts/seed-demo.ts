@@ -79,6 +79,37 @@ async function main() {
   console.log(`✅ Responsable : ${manager.firstName} ${manager.lastName}`)
 
   // ─────────────────────────────────────────────
+  // 2 BIS. ADMINISTRATEUR DE PAROISSE
+  // ─────────────────────────────────────────────
+
+  const adminParish = await prisma.user.upsert({
+    where: {
+      email: 'admin@ecclesiaconnect.ci',
+    },
+    update: {
+      firstName: 'Administrateur',
+      lastName: 'Paroisse',
+      phone: '+225 07 66 66 66 66',
+      passwordHash,
+      role: 'ADMIN_PARISH',
+      status: 'ACTIVE',
+      parishId: parish.id,
+    },
+    create: {
+      firstName: 'Administrateur',
+      lastName: 'Paroisse',
+      email: 'admin@ecclesiaconnect.ci',
+      phone: '+225 07 66 66 66 66',
+      passwordHash,
+      role: 'ADMIN_PARISH',
+      status: 'ACTIVE',
+      parishId: parish.id,
+    },
+  })
+
+  console.log(`✅ Administrateur paroisse : ${adminParish.firstName} ${adminParish.lastName}`)
+
+  // ─────────────────────────────────────────────
   // 3. MOUVEMENT
   // ─────────────────────────────────────────────
 
