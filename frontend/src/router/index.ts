@@ -15,13 +15,13 @@ import CotisationsView from '@/views/mouvement/CotisationsView.vue'
 import DocumentsView from '@/views/mouvement/DocumentsView.vue'
 import CommunicationsView from '@/views/mouvement/CommunicationsView.vue'
 import AdministrationDashboardView from '@/views/administration/DashboardView.vue'
-import AdministrationRegistrationsView from '@/views/administration/RegistrationsView.vue'
 import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue'
 import AdministrationCommunicationsView from '@/views/administration/CommunicationsView.vue'
 import AdministrationIntentionsView from '@/views/administration/IntentionsView.vue'
 import AdministrationSettingsView from '@/views/administration/SettingsView.vue'
 import AdministrationSacramentalView from '@/views/administration/SacramentalView.vue'
 import AdministrationBannsView from '@/views/administration/BannsView.vue'
+import AdministrationMovementReportsView from '@/views/administration/MovementReportsView.vue'
 
 const movementRoles = ['MOVEMENT_MANAGER']
 const administrationRoles = ['ADMIN_PARISH']
@@ -56,7 +56,7 @@ const router = createRouter({
       children: [
         { path: '', redirect: '/administration/dashboard' },
         { path: 'dashboard', component: AdministrationDashboardView },
-        { path: 'inscriptions', component: AdministrationRegistrationsView },
+        { path: 'rapports-mouvements', component: AdministrationMovementReportsView },
         { path: 'communications', component: AdministrationCommunicationsView },
         { path: 'intentions', component: AdministrationIntentionsView },
         { path: 'registres', component: AdministrationSacramentalView },
