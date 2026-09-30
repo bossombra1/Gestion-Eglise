@@ -153,6 +153,10 @@ function openCase(item: Couple) {
   error.value = ''
 }
 
+function printTable() {
+  window.print()
+}
+
 function closeCase() {
   selected.value = null
 }
@@ -239,7 +243,7 @@ onMounted(load)
           <button
             type="button"
             class="inline-flex min-h-[38px] items-center gap-2 rounded border border-[#C2BAB0] bg-white px-3 text-sm font-semibold text-[#2E2925] transition hover:bg-[#F7F5F2]"
-            @click="window.print()"
+            @click="printTable"
           >
             <Printer :size="16" /> Imprimer le tableau
           </button>
