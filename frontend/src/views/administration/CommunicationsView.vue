@@ -40,7 +40,10 @@ function insertToken(token: string) {
   message.value = message.value ? message.value + ' ' + token : token
 }
 function onFileChange(event: Event) {
-  selectedFile.value = (event.target as HTMLInputElement).files?.[0] ?? null
+  const file = (event.target as HTMLInputElement).files?.[0] ?? null
+  if (file && file.size > 2 * 1024 * 1024) { error.value = 'La pièce jointe dépasse la limite de 2 Mo.'; selectedFile.value = null; return }
+  selectedFile.value = file
+  error.value = ''
 }
 async function persistCommunication(sendNow: boolean, schedule = false) {
   if(!movement.value || !subject.value.trim() || !message.value.trim()) {
@@ -85,6 +88,7 @@ onMounted(load)
         <h1 class="text-[20px] font-bold leading-tight text-[#2E2925]">Nouveau message</h1>
         <p class="text-[13.5px] text-[#6B655D]">{{ saved ? 'Brouillon enregistré à l’instant' : 'Brouillon non envoyé' }}</p>
       </div>
+      <div v-if="error" class="mt-2 text-sm font-semibold text-[#B3261E]">{{ error }}</div>
       <div class="flex flex-wrap gap-2 lg:ml-auto">
         <button class="min-h-10 border-[1.5px] border-[#C2BAB0] bg-white px-3 text-sm font-semibold text-[#2E2925]" @click="saveDraft">Enregistrer le brouillon</button>
         <button class="inline-flex min-h-10 items-center gap-2 border-[1.5px] border-[#14345E] bg-white px-3 text-sm font-semibold text-[#14345E]" @click="scheduleMessage"><Clock3 class="size-4" />Programmer</button>
