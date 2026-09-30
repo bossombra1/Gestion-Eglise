@@ -17,6 +17,42 @@ router.get('/communications',async(req,res,next)=>{try{const parishId=req.user!.
 router.get('/intentions',async(req,res,next)=>{try{const parishId=req.user!.parishId!
  const items=await prisma.massIntention.findMany({where:{parishId},select:{id:true,intention:true,beneficiaryName:true,requestedDate:true,timeSlot:true,amount:true,currency:true,status:true,createdAt:true,requester:{select:{firstName:true,lastName:true,phone:true}}},orderBy:{requestedDate:'asc'}})
  return res.json({success:true,data:items})}catch(e){next(e)}})
+router.post('/intentions/:id/cash',async(req,res,next)=>{try{
+ const parishId=req.user!.parishId!,id=typeof req.params.id==='string'?req.params.id:''
+ const item=await prisma.massIntention.findFirst({where:{id,parishId},select:{id:true,amount:true,currency:true,status:true}})
+ if(!item)return res.status(404).json({success:false,message:'Intention introuvable.'})
+ if(item.status!=='PENDING')return res.status(409).json({success:false,message:'Cette intention n’est plus en attente de validation.'})
+ const amount=Number(req.body?.amount ?? item.amount ?? 0)
+ if(!Number.isFinite(amount)||amount<=0)return res.status(400).json({success:false,message:'Le montant encaissé doit être supérieur à zéro.'})
+ const reference=String(req.body?.reference ?? '').trim()
+ if(reference.length>150)return res.status(400).json({success:false,message:'La référence du bordereau est trop longue.'})
+ const note=String(req.body?.note ?? '').trim()
+ const transactionReference=reference || `MASS_INTENTION:${id}`
+ const result=await prisma.$transaction(async(tx)=>{
+   const existing=await tx.payment.findFirst({where:{parishId,transactionReference},select:{id:true}})
+   if(existing)throw new Error('Ce bordereau a déjà été enregistré.')
+   const payment=await tx.payment.create({data:{
+     parishId,
+     amount,
+     currency:item.currency,
+     method:'CASH',
+     status:'SUCCESS',
+     transactionReference,
+     paidAt:new Date(),
+     createdById:req.user!.id,
+     metadata:{massIntentionId:id,source:'ADMINISTRATION_CASH_COUNTER',note:note||undefined},
+   }})
+   const updated=await tx.massIntention.updateMany({where:{id,parishId,status:'PENDING'},data:{status:'CONFIRMED'}})
+   if(!updated.count)throw new Error('L’intention a déjà été traitée.')
+   return payment
+ })
+ return res.status(201).json({success:true,data:{paymentId:result.id,intentionId:id}})
+}catch(e){
+ if(e instanceof Error && ['Ce bordereau a déjà été enregistré.','L’intention a déjà été traitée.'].includes(e.message))
+   return res.status(409).json({success:false,message:e.message})
+ next(e)
+}})
+
 router.patch('/intentions/:id/status',async(req,res,next)=>{try{const parishId=req.user!.parishId!,id=typeof req.params.id==='string'?req.params.id:''
  const status=req.body?.status
  if(!['PENDING','CONFIRMED','CANCELLED','COMPLETED'].includes(status)) return res.status(400).json({success:false,message:'Statut invalide.'})
