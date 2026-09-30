@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import {
+  BarChart3,
   Bell,
   BookOpen,
   Heart,
@@ -8,7 +9,6 @@ import {
   MessageSquare,
   Megaphone,
   Settings,
-  Users,
   X,
 } from 'lucide-vue-next'
 
@@ -20,7 +20,7 @@ const items = [
   { to: '/administration/intentions', label: 'Intentions', icon: Megaphone },
   { to: '/administration/registres', label: 'Registres', icon: BookOpen },
   { to: '/administration/bans', label: 'Bans de mariage', icon: Heart },
-  { to: '/administration/inscriptions', label: 'Inscriptions aux mouvements', icon: Users },
+  { to: '/administration/rapports-mouvements', label: 'Rapports des mouvements', icon: BarChart3 },
   { to: '/administration/communications', label: 'Communication', icon: MessageSquare },
   { to: '/administration/parametres', label: 'Paramètres', icon: Settings },
 ]
