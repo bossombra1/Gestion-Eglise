@@ -8,6 +8,7 @@ import {
   MessageSquare,
   Megaphone,
   Settings,
+  Users,
   X,
 } from 'lucide-vue-next'
 
