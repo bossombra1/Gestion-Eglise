@@ -1,98 +1,18 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { AlertTriangle, CalendarDays, Check, Plus, X } from 'lucide-vue-next'
-
-type Status = 'complete' | 'progress' | 'pending'
-type Couple = {
-  groom: string
-  bride: string
-  date: string
-  time: string
-  documents: { label: string; status: Status }[]
-  publications: number
-  publicationNote: string
-  celebrant: string
-}
-
-const couples = ref<Couple[]>([
-  {
-    groom: 'Kouamé Éric', bride: 'Assamoi Léa', date: 'Sam. 24 oct.', time: '10 h 00',
-    documents: [
-      { label: 'Baptêmes', status: 'complete' }, { label: 'Confirmations', status: 'complete' },
-      { label: 'Préparation', status: 'complete' }, { label: 'État civil', status: 'complete' },
-    ], publications: 3, publicationNote: '3 / 3 publiées · aucune opposition', celebrant: 'P. Konan',
-  },
-  {
-    groom: 'Gnahoré Franck', bride: 'Bamba Rachelle', date: 'Sam. 7 nov.', time: '10 h 00',
-    documents: [
-      { label: 'Baptêmes', status: 'complete' }, { label: 'Confirmation ép.', status: 'progress' },
-      { label: 'Préparation', status: 'complete' }, { label: 'État civil', status: 'complete' },
-    ], publications: 2, publicationNote: '2 / 3 · 3ᵉ le dim. 7 sept.', celebrant: 'P. Kouamé',
-  },
-  {
-    groom: 'Yao Christian', bride: 'Diomandé Nadia', date: 'Sam. 21 nov.', time: '10 h 00',
-    documents: [
-      { label: 'Baptêmes', status: 'complete' }, { label: 'Confirmations', status: 'complete' },
-      { label: 'Préparation à faire', status: 'pending' }, { label: 'État civil', status: 'progress' },
-    ], publications: 1, publicationNote: '1 / 3 · à publier dim. 7 sept.', celebrant: 'P. Konan',
-  },
-  {
-    groom: 'Koffi Landry', bride: 'Traoré Estelle', date: 'Sam. 12 déc.', time: '10 h 00',
-    documents: [
-      { label: 'Baptêmes', status: 'complete' }, { label: 'Confirmations', status: 'progress' },
-      { label: 'Préparation', status: 'progress' }, { label: 'État civil manquant', status: 'pending' },
-    ], publications: 0, publicationNote: 'Non commencée', celebrant: 'À définir',
-  },
-  {
-    groom: "N'Da Wilfried", bride: 'Aka Sylvie', date: 'Sam. 9 janv.', time: '10 h 00',
-    documents: [
-      { label: 'Baptême époux', status: 'progress' }, { label: 'Confirmations', status: 'progress' },
-      { label: 'Préparation', status: 'progress' }, { label: 'État civil', status: 'progress' },
-    ], publications: 0, publicationNote: 'Non commencée', celebrant: 'À définir',
-  },
-])
-
-const selected = ref<Couple | null>(null)
-const showNew = ref(false)
-const newGroom = ref('')
-const newBride = ref('')
-const newDate = ref('')
-const newTime = ref('10:00')
-
-const openCase = (couple: Couple) => { selected.value = couple }
-const closeCase = () => { selected.value = null }
-
-const createCase = () => {
-  if (!newGroom.value.trim() || !newBride.value.trim() || !newDate.value) return
-  couples.value.unshift({
-    groom: newGroom.value.trim(),
-    bride: newBride.value.trim(),
-    date: new Date(newDate.value + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' }).replace('.', ''),
-    time: newTime.value.replace(':', ' h '),
-    documents: [
-      { label: 'Baptêmes', status: 'progress' }, { label: 'Confirmations', status: 'progress' },
-      { label: 'Préparation', status: 'progress' }, { label: 'État civil', status: 'progress' },
-    ],
-    publications: 0,
-    publicationNote: 'Non commencée',
-    celebrant: 'À définir',
-  })
-  newGroom.value = ''
-  newBride.value = ''
-  newDate.value = ''
-  newTime.value = '10:00'
-  showNew.value = false
-}
-
-const statusClass = (status: Status) => ({
-  complete: 'bg-[#E4F1E8] text-[#14713C]',
-  progress: 'bg-[#FDF3DC] text-[#8A5200]',
-  pending: 'bg-[#FBE9E8] text-[#B3261E]',
-}[status])
-
-const publicationBars = computed(() => (couple: Couple) =>
-  [1, 2, 3].map((n) => n <= couple.publications)
-)
+import { bannsApi, type MarriageCase } from '@/services/administration-banns.service'
+type Status='complete'|'progress'|'pending'
+type Couple={id:string;groom:string;bride:string;date:string;time:string;documents:{label:string;status:Status}[];publications:number;publicationNote:string;celebrant:string}
+const couples=ref<Couple[]>([]);const selected=ref<Couple|null>(null);const showNew=ref(false);const newGroom=ref('');const newBride=ref('');const newDate=ref('');const newTime=ref('10:00');const error=ref('')
+function map(x:MarriageCase):Couple{return{id:x.id,groom:x.groomName,bride:x.brideName,date:new Date(x.celebrationDate).toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'}),time:x.celebrationTime?.replace(':',' h ')||'—',documents:[{label:'Documents époux',status:x.groomDocuments>=x.requiredDocuments?'complete':x.groomDocuments?'progress':'pending'},{label:'Documents épouse',status:x.brideDocuments>=x.requiredDocuments?'complete':x.brideDocuments?'progress':'pending'}],publications:x.publicationCount,publicationNote:x.publicationCount+' / 3',celebrant:x.celebrantName||'À définir'}}
+async function load(){try{couples.value=(await bannsApi.list()).map(map)}catch{error.value='Impossible de charger les dossiers.'}}
+async function createCase(){try{await bannsApi.create({groomName:newGroom.value,brideName:newBride.value,celebrationDate:newDate.value,celebrationTime:newTime.value});showNew.value=false;newGroom.value='';newBride.value='';newDate.value='';await load()}catch{error.value='Impossible de créer le dossier.'}}
+async function saveCase(){if(!selected.value)return;try{await bannsApi.update(selected.value.id,{status:selected.value.publications===3?'PUBLISHED':'DOCUMENTS_PENDING',publicationCount:selected.value.publications,celebrantName:selected.value.celebrant==='À définir'?null:selected.value.celebrant});selected.value=null;await load()}catch{error.value='Impossible d’enregistrer le dossier.'}}
+const closeCase=()=>{selected.value=null};const openCase=(c:Couple)=>{selected.value=c}
+const statusClass=(status:Status)=>({complete:'bg-[#E4F1E8] text-[#14713C]',progress:'bg-[#FDF3DC] text-[#8A5200]',pending:'bg-[#FBE9E8] text-[#B3261E]'}[status])
+const publicationBars=computed(()=> (couple:Couple)=>[1,2,3].map(n=>n<=couple.publications))
+onMounted(load)
 </script>
 
 <template>
@@ -260,7 +180,7 @@ const publicationBars = computed(() => (couple: Couple) =>
         </div>
         <div class="flex justify-end gap-2 border-t border-[#DDD7CF] bg-[#F7F5F2] p-4">
           <button class="rounded border border-[#C2BAB0] bg-white px-4 py-2 text-sm font-semibold text-[#2E2925]" @click="closeCase">Fermer</button>
-          <button class="rounded bg-[#14345E] px-4 py-2 text-sm font-bold text-white" @click="closeCase">Enregistrer</button>
+          <button class="rounded bg-[#14345E] px-4 py-2 text-sm font-bold text-white" @click="saveCase">Enregistrer</button>
         </div>
       </div>
     </div>
