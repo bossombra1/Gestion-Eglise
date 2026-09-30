@@ -1,8 +1,8 @@
 <template>
   <div class="flex min-h-screen min-w-0 flex-col bg-[#F7F5F2] lg:h-screen lg:flex-row lg:overflow-hidden">
-    <AppSidebar :open="menuOpen" @close="menuOpen = false" />
+    <AdministrationSidebar :open="menuOpen" @close="closeMenu" />
     <div class="flex min-h-0 min-w-0 flex-1 flex-col">
-      <AppHeader @menu="menuOpen = true" />
+      <AdministrationHeader @menu="menuOpen = true" />
       <main class="min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-hidden">
         <div class="app-container py-4 sm:py-6 lg:py-7">
           <RouterView />
@@ -14,8 +14,8 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, ref, watch } from 'vue'
-import AppHeader from '@/components/organisms/AppHeader.vue'
-import AppSidebar from '@/components/organisms/AppSidebar.vue'
+import AdministrationHeader from '@/components/organisms/AdministrationHeader.vue'
+import AdministrationSidebar from '@/components/organisms/AdministrationSidebar.vue'
 
 const menuOpen = ref(false)
 

@@ -21,7 +21,7 @@ onMounted(() => store.loadDashboard())
       <p class="eyebrow text-[#C25A34]">Espace responsable</p>
       <div class="mt-2 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <h1 class="page-title text-4xl text-[#0B1F3A] md:text-5xl">Tableau de bord</h1>
+          <h1 class="page-title text-3xl sm:text-4xl text-[#0B1F3A] md:text-5xl">Tableau de bord</h1>
           <p class="mt-3 max-w-2xl text-sm leading-6 text-[#6B655D]">Pilotez vos mouvements, suivez les inscriptions et gardez une vue claire sur les activités qui nécessitent votre attention.</p>
         </div>
         <RouterLink to="/mouvement/inscriptions" class="inline-flex min-h-10 items-center justify-center gap-2 bg-[#C25A34] px-4 text-sm font-semibold text-white hover:bg-[#A84A28]">
