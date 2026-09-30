@@ -100,7 +100,32 @@ enum NotificationType {
   REMINDER
 }
 
-enum SacramentType {\n  BAPTISM\n  CONFIRMATION\n  FIRST_COMMUNION\n  MARRIAGE\n  ORDINATION\n  FUNERAL\n  OTHER\n}\n\nenum SacramentalActStatus {\n  DRAFT\n  VALIDATED\n  CANCELLED\n}\n\nenum MarriageCaseStatus {\n  DRAFT\n  DOCUMENTS_PENDING\n  READY\n  PUBLISHED\n  CELEBRATED\n  CANCELLED\n}\n\nenum MassIntentionStatus {
+enum SacramentType {
+  BAPTISM
+  CONFIRMATION
+  FIRST_COMMUNION
+  MARRIAGE
+  ORDINATION
+  FUNERAL
+  OTHER
+}
+
+enum SacramentalActStatus {
+  DRAFT
+  VALIDATED
+  CANCELLED
+}
+
+enum MarriageCaseStatus {
+  DRAFT
+  DOCUMENTS_PENDING
+  READY
+  PUBLISHED
+  CELEBRATED
+  CANCELLED
+}
+
+enum MassIntentionStatus {
   PENDING
   CONFIRMED
   CANCELLED
@@ -126,7 +151,9 @@ model Parish {
   documents      Document[]
   communications Communication[]
   notifications  Notification[]
-  massIntentions MassIntention[]\n  sacramentalActs SacramentalAct[]\n  marriageCases MarriageCase[]
+  massIntentions MassIntention[]
+  sacramentalActs SacramentalAct[]
+  marriageCases MarriageCase[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
