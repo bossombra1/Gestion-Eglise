@@ -1,0 +1,4 @@
+import api from './api'
+export interface AdministrationRegistrationItem{id:string;status:string;registrationDate:string;approvedAt:string|null;rejectedAt:string|null;rejectionReason:string|null;notes:string|null;movement:{id:string;name:string;code:string};child:{id:string;firstName:string;lastName:string;birthDate:string|null;parentLinks:Array<{parent:{firstName:string;lastName:string;phone:string|null}}>} }
+export interface AdministrationRegistrations{periodDays:number;total:number;pending:number;approved:number;rejected:number;cancelled:number;completed:number;items:AdministrationRegistrationItem[]}
+export const administrationRegistrationsApi={async list(params?:{movementId?:string;status?:string;days?:number}){const r=await api.get<{success:boolean;data:AdministrationRegistrations}>('/administration/inscriptions',{params});return r.data.data}}
