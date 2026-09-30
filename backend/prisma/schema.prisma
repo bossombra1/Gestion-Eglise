@@ -152,7 +152,6 @@ model Parish {
   communications Communication[]
   notifications  Notification[]
   massIntentions MassIntention[]
-  sacramentalActs SacramentalAct[]
   marriageCases MarriageCase[]
 
   createdAt DateTime @default(now())
@@ -563,10 +562,11 @@ model SacramentalAct {
   id String @id @default(uuid())
   parishId String
   parish Parish @relation(fields:[parishId],references:[id],onDelete:Cascade)
-  personId String
-  person User @relation(fields:[personId],references:[id],onDelete:Restrict)
   type SacramentType
   status SacramentalActStatus @default(DRAFT)
+  personFirstName String
+  personLastName String
+  personBirthDate DateTime?
   celebrationDate DateTime
   place String?
   celebrantName String?
@@ -577,7 +577,6 @@ model SacramentalAct {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   @@index([parishId])
-  @@index([personId])
   @@index([type])
   @@index([celebrationDate])
   @@map("sacramental_acts")
