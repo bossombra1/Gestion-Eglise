@@ -506,6 +506,7 @@ model Communication {
   sender   User   @relation("CommunicationSender", fields: [senderId], references: [id], onDelete: Restrict)
 
   sentAt DateTime?
+  scheduledAt DateTime?
 
   recipients CommunicationRecipient[]
 
