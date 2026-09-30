@@ -1,0 +1,11 @@
+import { Router } from 'express'
+import { prisma } from '../lib/prisma'
+import { authenticate } from '../middlewares/authenticate.middleware'
+import { authorize } from '../middlewares/authorize.middleware'
+import { requireParish } from '../middlewares/parish.middleware'
+const router=Router()
+router.use(authenticate,authorize('ADMIN_PARISH'),requireParish)
+router.get('/',async(req,res,next)=>{try{const parishId=req.user!.parishId!;const items=await prisma.marriageCase.findMany({where:{parishId},orderBy:{celebrationDate:'asc'}});res.json({success:true,data:items})}catch(e){next(e)}})
+router.post('/',async(req,res,next)=>{try{const parishId=req.user!.parishId!;const b=req.body??{};if(!b.groomName||!b.brideName||!b.celebrationDate)return res.status(400).json({success:false,message:'Les fiancés et la date sont obligatoires.'});const item=await prisma.marriageCase.create({data:{parishId,groomName:b.groomName.trim(),brideName:b.brideName.trim(),celebrationDate:new Date(b.celebrationDate),celebrationTime:b.celebrationTime||null,celebrantName:b.celebrantName||null,status:b.status||'DRAFT',groomDocuments:Number(b.groomDocuments||0),brideDocuments:Number(b.brideDocuments||0),requiredDocuments:Number(b.requiredDocuments||3),publicationCount:Number(b.publicationCount||0),notes:b.notes||null}});res.status(201).json({success:true,data:item})}catch(e){next(e)}})
+router.patch('/:id',async(req,res,next)=>{try{const parishId=req.user!.parishId!;const b=req.body??{};const item=await prisma.marriageCase.updateMany({where:{id:req.params.id,parishId},data:{...(b.status?{status:b.status}:{}),...(b.groomDocuments!==undefined?{groomDocuments:Number(b.groomDocuments)}:{}),...(b.brideDocuments!==undefined?{brideDocuments:Number(b.brideDocuments)}:{}),...(b.publicationCount!==undefined?{publicationCount:Number(b.publicationCount)}:{}),...(b.celebrationDate?{celebrationDate:new Date(b.celebrationDate)}:{}),...(b.celebrationTime!==undefined?{celebrationTime:b.celebrationTime||null}:{}),...(b.celebrantName!==undefined?{celebrantName:b.celebrantName||null}:{}),...(b.notes!==undefined?{notes:b.notes||null}:{})}});if(!item.count)return res.status(404).json({success:false,message:'Dossier introuvable.'});res.json({success:true})}catch(e){next(e)}})
+export default router
