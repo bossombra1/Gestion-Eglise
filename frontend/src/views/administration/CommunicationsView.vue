@@ -21,7 +21,7 @@ const sending = ref(false)
 const charCount = computed(() => message.value.length)
 const smsCount = computed(() => Math.max(1, Math.ceil(charCount.value / 160)))
 const selectedMovement = computed(() => movements.value.find(m => m.id === movement.value))
-const audienceCount = computed(() => audience.value === 'all' ? movements.value.reduce((n,m)=>n+(m.membersCount??0),0) : selectedMovement.value?.membersCount ?? 0)
+const audienceCount = computed(() => audience.value === 'all' ? movements.value.reduce((n,m)=>n+(m._count?.members??0),0) : selectedMovement.value?._count?.members ?? 0)
 
 async function load() {
   loading.value = true
