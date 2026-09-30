@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import {
   CalendarDays,
+  Banknote,
   Check,
   CheckCircle2,
   ChevronDown,
@@ -44,6 +45,13 @@ const dateFilter = ref('ALL')
 const page = ref(1)
 const pageSize = ref(4)
 const confirmOpen = ref(false)
+const cashOpen = ref(false)
+const cashSaving = ref(false)
+const cashError = ref('')
+const cashIntentionId = ref('')
+const cashAmount = ref('')
+const cashReference = ref('')
+const cashNote = ref('')
 const confirmMode = ref<'CONFIRM' | 'CANCEL'>('CONFIRM')
 const pendingActionIds = ref<string[]>([])
 
@@ -97,6 +105,9 @@ const validatedThisMonth = computed(() => {
   }).length
 })
 
+const cashCandidates = computed(() => data.value.filter(i => i.status === 'PENDING' && Number(i.amount ?? 0) > 0))
+const cashIntention = computed(() => data.value.find(i => i.id === cashIntentionId.value) ?? null)
+
 const selectedPending = computed(() =>
   data.value.filter(i => selectedIds.value.includes(i.id) && i.status === 'PENDING')
 )
@@ -141,6 +152,50 @@ const toggleAllVisible = () => {
     selectedIds.value = selectedIds.value.filter(id => !paginated.value.some(item => item.id === id))
   } else {
     selectedIds.value = [...new Set([...selectedIds.value, ...paginated.value.filter(i => i.status === 'PENDING').map(i => i.id)])]
+  }
+}
+
+const openCashModal = () => {
+  cashError.value = ''
+  cashIntentionId.value = ''
+  cashAmount.value = ''
+  cashReference.value = ''
+  cashNote.value = ''
+  cashOpen.value = true
+}
+
+const selectCashIntention = (item: MassIntention) => {
+  cashIntentionId.value = item.id
+  cashAmount.value = item.amount == null ? '' : String(item.amount)
+}
+
+const saveCashReceipt = async () => {
+  const item = cashIntention.value
+  const amount = Number(cashAmount.value)
+  if (!item) {
+    cashError.value = 'Sélectionnez une intention en attente.'
+    return
+  }
+  if (!Number.isFinite(amount) || amount <= 0) {
+    cashError.value = 'Renseignez un montant encaissé valide.'
+    return
+  }
+
+  cashSaving.value = true
+  cashError.value = ''
+  try {
+    await api.post('/administration/overview/intentions/' + item.id + '/cash', {
+      amount,
+      reference: cashReference.value.trim() || undefined,
+      note: cashNote.value.trim() || undefined,
+    })
+    item.status = 'CONFIRMED'
+    cashOpen.value = false
+    cashIntentionId.value = ''
+  } catch (e: any) {
+    cashError.value = e?.response?.data?.message || 'Impossible d’enregistrer l’encaissement.'
+  } finally {
+    cashSaving.value = false
   }
 }
 
@@ -220,10 +275,11 @@ onMounted(load)
         <div class="flex flex-wrap gap-2 lg:ml-auto">
           <button
             type="button"
-            disabled
-            title="L'encaissement espèces sera activé avec le module de paiement."
-            class="inline-flex min-h-10 items-center gap-2 rounded border-[1.5px] border-[#14345E] bg-white px-3 text-sm font-semibold text-[#14345E] opacity-55"
+            title="Enregistrer un encaissement réel lié à une intention en attente."
+            class="inline-flex min-h-10 items-center gap-2 rounded border-[1.5px] border-[#14345E] bg-white px-3 text-sm font-semibold text-[#14345E] hover:bg-[#F7F5F2]"
+            @click="openCashModal"
           >
+            <Banknote class="size-4" />
             Encaisser des espèces
           </button>
           <button
@@ -414,6 +470,74 @@ onMounted(load)
       Une intention validée devient verrouillée : elle reste consultable mais n’offre plus d’action opérationnelle.
     </p>
   </section>
+
+  <div v-if="cashOpen" class="fixed inset-0 z-[100] grid place-items-center bg-[#0B1F3A]/45 p-4" @click.self="cashOpen = false">
+    <div class="w-full max-w-2xl overflow-hidden rounded border border-[#C2BAB0] bg-white shadow-2xl">
+      <div class="flex items-start gap-3 border-b border-[#EDE9E4] p-5">
+        <div class="grid size-10 shrink-0 place-items-center rounded bg-[#F7F5F2]">
+          <Banknote class="size-6 text-[#4A443E]" />
+        </div>
+        <div>
+          <h2 class="text-lg font-bold text-[#2E2925]">Encaissement d'espèces au guichet</h2>
+          <p class="mt-1 text-sm leading-5 text-[#6B655D]">Sélectionnez une intention réelle en attente puis enregistrez le montant effectivement reçu au guichet.</p>
+        </div>
+      </div>
+
+      <div class="space-y-4 p-5">
+        <div v-if="cashError" class="rounded border border-[#B3261E]/30 bg-[#FFF5F4] p-3 text-sm text-[#B3261E]">{{ cashError }}</div>
+
+        <div v-if="!cashCandidates.length" class="rounded border border-dashed border-[#C2BAB0] bg-[#F7F5F2] p-5 text-center text-sm text-[#6B655D]">
+          Aucune intention avec montant n'est actuellement en attente de validation.
+        </div>
+
+        <div v-else class="space-y-2">
+          <p class="text-xs font-bold uppercase tracking-wide text-[#6B655D]">Intentions en attente</p>
+          <button
+            v-for="item in cashCandidates"
+            :key="item.id"
+            type="button"
+            class="flex w-full items-center justify-between gap-4 rounded border p-3 text-left transition"
+            :class="cashIntentionId === item.id ? 'border-[#14345E] bg-[#E8EDF5]' : 'border-[#EDE9E4] bg-white hover:bg-[#F7F5F2]'"
+            @click="selectCashIntention(item)"
+          >
+            <span class="min-w-0">
+              <span class="block truncate font-semibold text-[#2E2925]">{{ requesterName(item) }}</span>
+              <span class="block truncate text-[13px] text-[#6B655D]">{{ item.intention }} · {{ formatDate(item.requestedDate) }}</span>
+            </span>
+            <span class="shrink-0 font-bold tabular-nums text-[#2E2925]">{{ formatAmount(item.amount, item.currency) }}</span>
+          </button>
+        </div>
+
+        <div v-if="cashIntention" class="grid gap-3 sm:grid-cols-2">
+          <label class="block text-sm font-semibold text-[#2E2925]">
+            Montant encaissé
+            <input v-model="cashAmount" type="number" min="1" step="1" class="mt-1 h-11 w-full rounded border-[1.5px] border-[#C2BAB0] bg-white px-3 font-semibold outline-none focus:border-[#14345E]" />
+          </label>
+          <label class="block text-sm font-semibold text-[#2E2925]">
+            Référence du bordereau
+            <input v-model="cashReference" type="text" maxlength="150" placeholder="Optionnel" class="mt-1 h-11 w-full rounded border-[1.5px] border-[#C2BAB0] bg-white px-3 font-normal outline-none focus:border-[#14345E]" />
+          </label>
+          <label class="block text-sm font-semibold text-[#2E2925] sm:col-span-2">
+            Note
+            <textarea v-model="cashNote" rows="2" maxlength="500" placeholder="Observation sur l'encaissement, si nécessaire" class="mt-1 w-full rounded border-[1.5px] border-[#C2BAB0] bg-white px-3 py-2 font-normal outline-none focus:border-[#14345E]" />
+          </label>
+          <div class="flex gap-2 rounded bg-[#FDF3DC] p-3 text-sm text-[#8A5200] sm:col-span-2">
+            <Banknote class="mt-0.5 size-4 shrink-0" />
+            L'encaissement sera enregistré comme paiement espèces réel et l'intention sera validée dans la même opération.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 border-t border-[#EDE9E4] px-5 py-4">
+        <button type="button" class="min-h-10 rounded border-[1.5px] border-[#C2BAB0] bg-white px-4 text-sm font-semibold text-[#2E2925]" @click="cashOpen = false">Annuler</button>
+        <button type="button" class="inline-flex min-h-10 items-center gap-2 rounded bg-[#14345E] px-4 text-sm font-bold text-white hover:bg-[#0E2A4E] disabled:opacity-50" :disabled="cashSaving || !cashIntention" @click="saveCashReceipt">
+          <Loader2 v-if="cashSaving" class="size-4 animate-spin" />
+          <Banknote v-else class="size-4" />
+          Enregistrer l'encaissement
+        </button>
+      </div>
+    </div>
+  </div>
 
   <div v-if="confirmOpen" class="fixed inset-0 z-[100] grid place-items-center bg-[#0B1F3A]/45 p-4" @click.self="confirmOpen = false">
     <div class="w-full max-w-xl overflow-hidden rounded border border-[#C2BAB0] bg-white shadow-2xl">
