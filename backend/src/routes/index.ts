@@ -15,6 +15,7 @@ import administrationDocumentRouter from './administration-document.routes'
 import administrationOverviewRouter from './administration-overview.routes'
 import administrationSacramentalRouter from './administration-sacramental.routes'
 import administrationBannsRouter from './administration-banns.routes'
+import administrationCommunicationsRouter from './administration-communications.routes'
 const router = Router()
 router.get('/health', (_req, res) => res.json({ success: true, message: 'EcclesiaConnect API is running' }))
 router.use('/auth', authRouter)
@@ -33,4 +34,5 @@ router.use('/administration/documents', administrationDocumentRouter)
 router.use('/administration/overview', administrationOverviewRouter)
 router.use('/administration/sacramental', administrationSacramentalRouter)
 router.use('/administration/banns', administrationBannsRouter)
+router.use('/administration/communications', administrationCommunicationsRouter)
 export default router
