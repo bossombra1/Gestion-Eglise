@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 
 import AppLayout from '@/layouts/AppLayout.vue'
+import AdministrationLayout from '@/layouts/AdministrationLayout.vue'
 import EmptyLayout from '@/layouts/EmptyLayout.vue'
 import HomeView from '@/views/HomeView.vue'
 import MouvementDashboardView from '@/views/mouvement/DashboardView.vue'
@@ -13,9 +14,12 @@ import InscriptionsView from '@/views/mouvement/InscriptionsView.vue'
 import CotisationsView from '@/views/mouvement/CotisationsView.vue'
 import DocumentsView from '@/views/mouvement/DocumentsView.vue'
 import CommunicationsView from '@/views/mouvement/CommunicationsView.vue'
+import AdministrationDashboardView from '@/views/administration/DashboardView.vue'
+import AdministrationModulePlaceholderView from '@/views/administration/ModulePlaceholderView.vue'
 import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue'
 
 const movementRoles = ['MOVEMENT_MANAGER']
+const administrationRoles = ['ADMIN_PARISH']
 let sessionChecked = false
 
 const router = createRouter({
@@ -38,6 +42,16 @@ const router = createRouter({
         { path: 'cotisations', component: CotisationsView },
         { path: 'documents', component: DocumentsView },
         { path: 'communications', component: CommunicationsView },
+      ],
+    },
+    {
+      path: '/administration',
+      component: AdministrationLayout,
+      meta: { requiresAuth: true, roles: administrationRoles },
+      children: [
+        { path: '', redirect: '/administration/dashboard' },
+        { path: 'dashboard', component: AdministrationDashboardView },
+        { path: ':module', component: AdministrationModulePlaceholderView },
       ],
     },
     {
