@@ -1,0 +1,3 @@
+import api from './api'
+export interface MarriageCase{id:string;groomName:string;brideName:string;celebrationDate:string;celebrationTime:string|null;celebrantName:string|null;status:string;groomDocuments:number;brideDocuments:number;requiredDocuments:number;publicationCount:number;notes:string|null}
+export const bannsApi={async list(){const r=await api.get<{success:boolean;data:MarriageCase[]}>('/administration/banns');return r.data.data},async create(payload:Record<string,unknown>){const r=await api.post<{success:boolean;data:MarriageCase}>('/administration/banns',payload);return r.data.data},async update(id:string,payload:Record<string,unknown>){await api.patch('/administration/banns/'+id,payload)}}
