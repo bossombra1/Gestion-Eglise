@@ -588,14 +588,35 @@ model MarriageCase {
   parish Parish @relation(fields:[parishId],references:[id],onDelete:Cascade)
   groomName String
   brideName String
+  groomBirthDate DateTime?
+  brideBirthDate DateTime?
+  groomPhone String?
+  bridePhone String?
+  groomAddress String?
+  brideAddress String?
   celebrationDate DateTime
   celebrationTime String?
   celebrantName String?
   status MarriageCaseStatus @default(DRAFT)
+
+  groomBaptismStatus String @default("PENDING")
+  brideBaptismStatus String @default("PENDING")
+  groomConfirmationStatus String @default("PENDING")
+  brideConfirmationStatus String @default("PENDING")
+  preparationStatus String @default("PENDING")
+  civilStatusStatus String @default("PENDING")
+
   groomDocuments Int @default(0)
   brideDocuments Int @default(0)
   requiredDocuments Int @default(3)
+
   publicationCount Int @default(0)
+  publication1Date DateTime?
+  publication2Date DateTime?
+  publication3Date DateTime?
+  oppositionCount Int @default(0)
+  oppositionNote String?
+
   notes String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
