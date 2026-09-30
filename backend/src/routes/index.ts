@@ -7,6 +7,7 @@ import documentRouter from './document.routes'
 import communicationRouter from './communication.routes'
 import administrationRouter from './administration.routes'
 import administrationUserRouter from './administration-user.routes'
+import administrationMovementRouter from './administration-movement.routes'
 
 const router = Router()
 
@@ -25,5 +26,6 @@ router.use('/documents', documentRouter)
 router.use('/communications', communicationRouter)
 router.use('/administration', administrationRouter)
 router.use('/administration/users', administrationUserRouter)
+router.use('/administration/mouvements', administrationMovementRouter)
 
 export default router
